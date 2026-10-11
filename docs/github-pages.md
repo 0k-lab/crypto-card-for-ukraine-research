@@ -21,6 +21,7 @@ Push у `main` після увімкнення Pages автоматично он
 python3 scripts/build.py
 python3 scripts/check.py
 node scripts/check-sort.cjs
+node scripts/check-analytics.cjs
 ```
 
 `build.py` створює українську `index.html` та англійську `en/index.html` зі спільних даних і шаблону. Окремої дубльованої копії звіту немає. Нові зображення додаю лише після очищення персональних даних, видалення метаданих і перевірки SHA-256.
@@ -65,6 +66,21 @@ JSON-LD описує `Article`, автора й `FAQPage`. Запитання т
 
 ## Google Analytics
 
-У спільному шаблоні підключено Google Analytics 4, потік `G-NWFJQ8WLJ7`, для обох мов. Стандартний Google tag реєструє перегляд сторінки; зовнішні переходи й прокручування залежать від увімкненого **Enhanced measurement** у налаштуваннях вебпотоку. Власних подій для кнопок і скріншотів немає.
+У спільному шаблоні підключено Google Analytics 4, потік `G-NWFJQ8WLJ7`, для обох мов. Стандартний Google tag реєструє перегляд сторінки; зовнішні переходи й прокручування залежать від увімкненого **Enhanced measurement** у налаштуваннях вебпотоку.
+
+`assets/analytics.js` надсилає шість власних подій:
+
+| Подія | Параметри крім спільного `page_language` |
+|---|---|
+| `sort_change` | `sort_mode`: gross / potential / actual |
+| `detail_open` | `card_id`, `section`: purchase / cashback / earning / funding / losses |
+| `evidence_open` | `card_id`, `evidence_type`: transactions / prime_terms; `evidence_view`: gallery / original |
+| `card_open` | `card_id`, `is_referral` |
+| `language_switch` | `target_language` |
+| `repository_click` | `placement`: header / footer |
+
+Скрипт не надсилає подій під час початкового налаштування сортування або закриття секцій. Повторне відкриття — нова дія. Рідні toggle-події охоплюють відкриття з клавіатури. Якщо Google tag недоступний, навігація й сортування продовжують працювати. Жодних додаткових мережевих бібліотек, user ID або запису сесій немає.
+
+Для порівняння карток у звичайних звітах створити в GA4 **Admin → Custom definitions → Create custom dimension** визначення з областю **Event** для потрібних параметрів, наприклад `card_id`, `section`, `sort_mode`, `page_language`. Визначення не відновлюють історичні дані, тож краще створити їх до аналізу. У Realtime можна перевірити назви подій без цього налаштування. Автоматична подія `click` з Enhanced measurement і власна `card_open` описують той самий перехід: їх не потрібно додавати як дві окремі конверсії.
 
 Перевірка надходження відвідувань: Google Analytics → Reports → Realtime після відкриття сайту. Блокувальники аналітики можуть завадити збору. Measurement ID є публічним і не дає доступу до звітів.

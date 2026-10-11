@@ -34,6 +34,7 @@ jobs:
           python scripts/build.py
           python scripts/check.py
           node scripts/check-sort.cjs
+          node scripts/check-analytics.cjs
       - name: Prepare only public files
         run: |
           mkdir _site
