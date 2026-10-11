@@ -1,0 +1,86 @@
+{
+  "scenario": "1000 monthly merchant-spend equivalent before card fees; remaining known non-USD turnover includes UAH purchases plus EUR/UAH subscriptions; small unlisted services excluded",
+  "budget_usdt": "1000",
+  "usd_subscriptions_budget": "123.97",
+  "uah_equivalent_usd": "876.03",
+  "subscriptions": [
+    {
+      "merchant": "ChatGPT",
+      "amount": "100",
+      "currency": "USD",
+      "billing_channel": "direct website",
+      "solid_category_claim": "AI",
+      "status": "active",
+      "invoice_verified": false,
+      "monthly_equivalent_usd_at_nbu": "100"
+    },
+    {
+      "merchant": "YouTube Premium",
+      "amount": "299",
+      "currency": "UAH",
+      "billing_channel": "unknown",
+      "solid_category_claim": "Streaming",
+      "status": "active",
+      "invoice_verified": false,
+      "monthly_equivalent_usd_at_nbu": "6.666280215639673062431163411"
+    },
+    {
+      "merchant": "Netflix Premium",
+      "amount": "9.99",
+      "currency": "EUR",
+      "billing_channel": "unknown",
+      "solid_category_claim": "Streaming",
+      "status": "active",
+      "invoice_verified": false,
+      "monthly_equivalent_usd_at_nbu": "11.16732619736648488604896929"
+    },
+    {
+      "merchant": "iCloud+ 2TB",
+      "amount": "9.99",
+      "currency": "USD",
+      "billing_channel": "unknown",
+      "solid_category_claim": "not listed",
+      "status": "active",
+      "invoice_verified": false,
+      "monthly_equivalent_usd_at_nbu": "9.99"
+    },
+    {
+      "merchant": "Apple Music Family",
+      "amount": "7.99",
+      "currency": "USD",
+      "billing_channel": "unknown",
+      "solid_category_claim": "Music; actual billing eligibility requires validation",
+      "status": "active",
+      "invoice_verified": false,
+      "monthly_equivalent_usd_at_nbu": "7.99"
+    },
+    {
+      "merchant": "1Password",
+      "amount": "5.99",
+      "currency": "USD",
+      "billing_channel": "unknown",
+      "solid_category_claim": "not listed",
+      "status": "active",
+      "invoice_verified": false,
+      "monthly_equivalent_usd_at_nbu": "5.99"
+    }
+  ],
+  "source": "My monthly budget and subscription prices; scenario inputs, not settled invoices",
+  "prime_vs_core_model": {
+    "regular_cashback_increment": "0.01",
+    "non_usd_fx_fee_reduction": "0.005",
+    "category_increment_over_prime_regular": "0.06",
+    "annual_tier_cost_usd": "199",
+    "annual_regular_and_fx_benefit_usd": "172.56180",
+    "annual_net_without_categories_usd": "-26.43820",
+    "category_spend_break_even_monthly_usd": "36.71972222222222222222222222",
+    "annual_net_if_100_monthly_eligible_category_usd": "45.56180",
+    "eligible_billing_verified": false,
+    "grandfathering_verified": false,
+    "annual_net_if_chatgpt_netflix_first_and_apple_music_eligible_usd": "59.35507486210386911795525790",
+    "annual_net_if_chatgpt_youtube_first_and_apple_music_eligible_usd": "56.11432175526056460495043765"
+  },
+  "non_usd_turnover_equivalent_usd": "876.03",
+  "estimated_total_subscriptions_monthly_usd_at_nbu": "141.8036064130061579484801327",
+  "conversion_basis": "NBU 2026-10-09 benchmark for EUR/UAH; not actual card conversion or settled invoices"
+}

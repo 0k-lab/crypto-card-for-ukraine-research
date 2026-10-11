@@ -1,0 +1,1457 @@
+{
+  "test_date": "2026-10-09",
+  "merchant_amount_uah": "158",
+  "nbu_usd_uah": "44.8526",
+  "nbu_equivalent_usd": "3.522649746057084762087370632",
+  "basis": "Visual transcription; displayed debits; cash rewards conditional; shown Kolo and WhiteBIT BTC amounts included before payout at a fixed reference rate at author request; nominal stablecoin parity; TP current cashback deduction zero, not a measured points price",
+  "rows": [
+    {
+      "id": "okx",
+      "name": "OKX",
+      "before": "4.99",
+      "after": "1.47",
+      "tx": "3.52",
+      "debit": "3.52",
+      "asset": "USDT; баланс показано у USD",
+      "status": "Виконано",
+      "reward": "0",
+      "reward_text": "На екрані $0.00 / не відповідає вимогам; кешбек потребує USDG, у моєму акаунті він недоступний",
+      "note": "На завершеному екрані від 11.10.2026: 158 UAH, сума розрахунку $3.52, витрачено 3.49 USDT. Для порівняння беру витрачені USDT; старі баланси $4.99 → $1.47 зберігають початкову USD-оцінку. Причину різниці між $3.52 та 3.49 USDT не встановлено; це не кешбек. Мережеву комісію сплатив OKX.",
+      "effective_uah_per_usd": "44.88636363636363636363636364",
+      "gross_overhead_vs_nbu_pct": "-0.0752202531645569620253164600",
+      "delta_minus_tx": "0.00",
+      "conditional_net": "3.52",
+      "sources": {
+        "before": {
+          "file": "screenshots/okx_before.png",
+          "sha256": "0d0d18b151ae6c82cf9b637a03281da80a9421f8401273411bd0a35acbbfc09b"
+        },
+        "after": {
+          "file": "screenshots/okx_after.png",
+          "sha256": "676fe1b3ecd7906c7c5728d133b8e2e54dd5746dcfd351d8e39c1da437ba3dbd"
+        },
+        "tx": {
+          "file": "screenshots/okx_tx.png",
+          "sha256": "cbeadc52d740ba7ea5e052d4f1f74d3f6eb52c5bf4ba1a6b99b2a82461ea6c93"
+        },
+        "completed": {
+          "file": "screenshots/okx_completed.png",
+          "sha256": "aabd27bf0f787b10c6f357b6af1ce278a7fcf6d0b09400db5b4a21d7966585cb",
+          "dimensions": [
+            590,
+            1280
+          ],
+          "kind": "completed_transaction"
+        },
+        "historical_usd": {
+          "file": "screenshots/okx_historical_usd.png",
+          "sha256": "a8f802f3ba09491cb6ad2992cf2334b814f0dd2b685ab99b7a6d6618063e54ba",
+          "dimensions": [
+            590,
+            1280
+          ],
+          "kind": "historical_purchase"
+        },
+        "funding_before": {
+          "file": "screenshots/okx_funding_before.png",
+          "sha256": "06e0a6d5136b35592e35a9f3825b47e6dbacd6ec0cc6d39347f6c94082cb9796",
+          "dimensions": [
+            590,
+            1280
+          ],
+          "kind": "funding_test"
+        },
+        "funding_method": {
+          "file": "screenshots/okx_funding_method.png",
+          "sha256": "d3f20620d67c066d7acf9f440b085ff6389b4d397dce108f3fcc7b540db5ddd7",
+          "dimensions": [
+            590,
+            1280
+          ],
+          "kind": "funding_test"
+        },
+        "funding_alternate_method": {
+          "file": "screenshots/okx_funding_alternate_method.png",
+          "sha256": "5e08ebc79b1362dc7864773cf184255b4d2b5e6ba8500b84a2e53dcd106f87be",
+          "dimensions": [
+            590,
+            1280
+          ],
+          "kind": "funding_terms"
+        },
+        "funding_after": {
+          "file": "screenshots/okx_funding_after.png",
+          "sha256": "b8d4488ca0b97b2afb2448281972b63beb59de5a2583c2095d125eeb577e632e",
+          "dimensions": [
+            590,
+            1280
+          ],
+          "kind": "funding_test"
+        },
+        "funding_completed": {
+          "file": "screenshots/okx_funding_completed.png",
+          "sha256": "977135a1166f23c06476b81cae7662dfdb8060c81e68b451c93e49f9c18bf2f1",
+          "dimensions": [
+            590,
+            1280
+          ],
+          "kind": "funding_test"
+        },
+        "funding_balance": {
+          "file": "screenshots/okx_funding_balance.png",
+          "sha256": "d3154c8dfccabf16d57a081e2e4567ea6e10004406f9fe7a13bb168cf2a995a9",
+          "dimensions": [
+            590,
+            1280
+          ],
+          "kind": "funding_test"
+        },
+        "withdrawal_review": {
+          "file": "screenshots/okx_withdrawal_review.png",
+          "sha256": "a627ece42d933335bb291533c95eb49c4272e781a3cf0ba5535859376dd95d1e",
+          "dimensions": [
+            590,
+            1280
+          ],
+          "kind": "withdrawal_test"
+        }
+      },
+      "observed_reward": {
+        "amount": "0",
+        "asset": "USD",
+        "availability": "not_shown"
+      },
+      "balance_basis": "initial_USD_snapshot; comparison_prefers_completed_USDT_spend",
+      "funding_reported": {
+        "amount": "5",
+        "asset": "USDT",
+        "network": null,
+        "source_fee": null,
+        "evidence": "participant_report"
+      },
+      "transaction_ui_completed": true,
+      "final_settlement_independently_verified": false,
+      "privacy": "Gaussian blur in explicit regions; status bar retained; no metadata; no generative editing",
+      "reward_eligibility": {
+        "required_spending_asset": "USDG",
+        "tested_spending_asset": "USDT",
+        "eligible_for_cashback": false,
+        "evidence_level": "participant_report_rule_and_account_availability",
+        "usdg_available_on_my_account": false,
+        "country_context": "Ukraine",
+        "as_of": "2026-10-09",
+        "scope": "My account only; not a verified country-wide restriction."
+      },
+      "card_currency": "USD",
+      "snapshot_status": "Очікує на розгляд",
+      "final_transaction": {
+        "status": "Виконано",
+        "card_amount_usd": "3.52",
+        "spent_amount": "3.49",
+        "spent_asset": "USDT",
+        "created_at_as_displayed": "2026-10-09 14:17:40",
+        "published_at_as_displayed": "2026-10-11 08:48:04",
+        "network_fee_paid_by": "OKX",
+        "evidence_level": "visually_transcribed_completed_transaction",
+        "source_file": "screenshots/okx_completed.png",
+        "token_ledger_reconciled": false
+      }
+    },
+    {
+      "id": "coca",
+      "name": "COCA",
+      "before": "4.98",
+      "after": "1.35",
+      "tx": "3.63",
+      "debit": "3.63",
+      "asset": "USD display",
+      "status": "Completed",
+      "reward": "0.03",
+      "reward_text": "$0.03 · враховано; очікує зарахування",
+      "note": "Курс у транзакції: 1 USD = 43.5152 UAH. За округленим списанням отримую 43.526171. Платіж Completed; Pending стосується лише кешбеку. Показані $0.03 враховую до зарахування: $3.63 − $0.03 = $3.60. Rewards $0.00 до/після; доступність грошей ще не підтверджена. Visa.",
+      "effective_uah_per_usd": "43.52617079889807162534435262",
+      "gross_overhead_vs_nbu_pct": "3.047429113924050632911392400",
+      "delta_minus_tx": "0.00",
+      "conditional_net": "3.60",
+      "sources": {
+        "before": {
+          "file": "screenshots/coca_before.png",
+          "sha256": "b48e0c574772b9899775e78e6db7bc31aac7c4d18c849b779f4b41cde993b997"
+        },
+        "after": {
+          "file": "screenshots/coca_after.png",
+          "sha256": "e6805c82d14781f9220ee408e03a656ebc79f1cc2df9e830b7a9700f9cf46936"
+        },
+        "tx": {
+          "file": "screenshots/coca_tx.png",
+          "sha256": "420738f3b8ecda80b93c12c68667971a82d406f8d177223d09afeb83fbcec606"
+        },
+        "funding_before": {
+          "file": "screenshots/coca_funding_before.png",
+          "sha256": "35aedb6aab39b426515d7a6e86560c2715bb37e8e3c3196a1dd8ef295fe128ba",
+          "dimensions": [
+            1121,
+            1280
+          ],
+          "kind": "funding_test"
+        },
+        "funding_method": {
+          "file": "screenshots/coca_funding_method.png",
+          "sha256": "4460951becb893dc4b7b947c2fe554f8e80ea20cc68e06276a92232d9de0f556",
+          "dimensions": [
+            590,
+            1280
+          ],
+          "kind": "funding_test"
+        },
+        "funding_quote": {
+          "file": "screenshots/coca_funding_quote.png",
+          "sha256": "7c22d093df40cac97e79e248a515401c6a195ba66c1921a9aa9c3f59c7f0ef84",
+          "dimensions": [
+            590,
+            1280
+          ],
+          "kind": "funding_test"
+        },
+        "funding_after": {
+          "file": "screenshots/coca_funding_after.png",
+          "sha256": "8f50e17b697cd122e1807feecd06e2e645f928348c9f31cc7ec5042354c2c78b",
+          "dimensions": [
+            590,
+            1280
+          ],
+          "kind": "funding_test"
+        },
+        "funding_completed": {
+          "file": "screenshots/coca_funding_completed.png",
+          "sha256": "2d6690ea258568be6fe9dc8d776aac23a6303d745c05dd52b472e8cf4dfa26b2",
+          "dimensions": [
+            590,
+            1280
+          ],
+          "kind": "funding_test"
+        },
+        "withdrawal_review": {
+          "file": "screenshots/coca_withdrawal_review.png",
+          "sha256": "c1d4e5b6633416df45ef4262bc2e5fb7885c066cc5d3e6dfc906a0b93a496534",
+          "dimensions": [
+            590,
+            1280
+          ],
+          "kind": "withdrawal_test"
+        },
+        "withdrawal_confirmation": {
+          "file": "screenshots/coca_withdrawal_confirmation.png",
+          "sha256": "aca41fd99de6c7b1abfd4faa939c5c8d275612f6999ef2e4a7a2150ddd6ac166",
+          "dimensions": [
+            590,
+            1280
+          ],
+          "kind": "withdrawal_test"
+        },
+        "withdrawal_completed": {
+          "file": "screenshots/coca_withdrawal_completed.png",
+          "sha256": "ac07c488cf52db60b8fb00f5fad81a1b39debf51eeca63eee4f4ae4dc666bafe",
+          "dimensions": [
+            590,
+            1280
+          ],
+          "kind": "withdrawal_test"
+        }
+      },
+      "observed_reward": {
+        "amount": "0.03",
+        "asset": "USD",
+        "availability": "participant_accepted_fixed_amount",
+        "availability_at_capture": "pending_credit",
+        "payout_independently_verified": false,
+        "comparison_note": "Платіж завершений; Pending стосується лише зарахування кешбеку. Показані $0.03 включаю до розрахунку до виплати за власним уточненням."
+      },
+      "balance_basis": "displayed_balance",
+      "funding_reported": {
+        "amount": "5",
+        "asset": "USDT",
+        "network": null,
+        "source_fee": null,
+        "evidence": "participant_report"
+      },
+      "transaction_ui_completed": true,
+      "final_settlement_independently_verified": false,
+      "privacy": "Gaussian blur in explicit regions; status bar retained; no metadata; no generative editing",
+      "card_currency": "USD"
+    },
+    {
+      "id": "kolo",
+      "name": "Kolo",
+      "before": "5.00",
+      "after": "1.37",
+      "tx": "3.63",
+      "debit": "3.63",
+      "asset": "USDT",
+      "status": "Авторизовано",
+      "reward": null,
+      "reward_text": "0.0000008 BTC; показана сума, враховую до зарахування",
+      "note": "Загальний баланс 4.45 EUR → 1.22 EUR, різниця 3.23 EUR; заголовок транзакції −3.2 EUR округлений до одного знака. Не рахую 0.03 EUR як приховану комісію. 3.63 USDT точно сходяться з токеновими балансами. Visa. Авторизовано — кінцевий статус у моєму застосунку; окремої звірки розрахунку карткової мережі ще немає. Попередню виплату кешбеку підтверджено: 0.00000443 BTC за два інші платежі успішно зараховані на Wallet із затримкою. Сума показаного кешбеку OpenRouter 0.00000134 BTC та Hloya 0.00000309 BTC точно збігається з виплатою. Це підтверджує механізм, не зарахування 0.0000008 BTC за тестовий чек.",
+      "effective_uah_per_usd": "43.52617079889807162534435262",
+      "gross_overhead_vs_nbu_pct": "3.047429113924050632911392400",
+      "delta_minus_tx": "0.00",
+      "conditional_net": null,
+      "sources": {
+        "before": {
+          "file": "screenshots/kolo_before.png",
+          "sha256": "08141ea6a45bad183c1e628446df218f4218872b54ccf2affe94fb7021192b8e"
+        },
+        "after": {
+          "file": "screenshots/kolo_after.png",
+          "sha256": "4b170017c100d2eb3820b2d7d236748019ef7dc5669ce0e1eacc383b912c69f6"
+        },
+        "tx": {
+          "file": "screenshots/kolo_tx.png",
+          "sha256": "ba63d73f8ea87aaaa1522e1c989f96fdcc0bab695dbf78446f9285406b4021ae"
+        },
+        "cashback_history": {
+          "file": "screenshots/kolo_cashback_history.png",
+          "sha256": "99d136a22071b23b745a1219b5e4f18cbc515fcef4dd40c34fc52da1bb93aee1",
+          "dimensions": [
+            590,
+            1280
+          ],
+          "kind": "historical_cashback_credit"
+        },
+        "historical_usd": {
+          "file": "screenshots/kolo_historical_usd.png",
+          "sha256": "c1f9ae2167cfbd7ef8805f1bb1791770c86fd4e6d26eadfd3c5eec3e552f0bbf",
+          "dimensions": [
+            590,
+            1280
+          ],
+          "kind": "historical_purchase"
+        },
+        "historical_uah": {
+          "file": "screenshots/kolo_historical_uah.png",
+          "sha256": "19be2fa452f01e5ba2f1ab0dcadfbcea9e322dca0430945251a577d4c0ac7348",
+          "dimensions": [
+            590,
+            1280
+          ],
+          "kind": "historical_purchase"
+        },
+        "funding_before": {
+          "file": "screenshots/kolo_funding_before.png",
+          "sha256": "f9c329f69136411198e74ca15ea10d173775e0f4c429c63a1aa4ec4e33f791e0",
+          "dimensions": [
+            590,
+            1280
+          ],
+          "kind": "funding_test"
+        },
+        "funding_pending": {
+          "file": "screenshots/kolo_funding_pending.png",
+          "sha256": "4b5f99a276a5fd22f458a5968e28470c0f08d6a2ba5d1532acfb6130b66b9f05",
+          "dimensions": [
+            590,
+            1280
+          ],
+          "kind": "funding_test"
+        },
+        "funding_completed": {
+          "file": "screenshots/kolo_funding_completed.png",
+          "sha256": "6ee3582ee1b89e79fa25c9787c44812a5fc750cef29cc059aa1efd9a0a071f0d",
+          "dimensions": [
+            590,
+            1280
+          ],
+          "kind": "funding_test"
+        },
+        "funding_balance": {
+          "file": "screenshots/kolo_funding_balance.png",
+          "sha256": "714606c641df901d7a72109e375d37a75e042d5b79367f5189ad2cd8438df519",
+          "dimensions": [
+            1179,
+            1095
+          ],
+          "kind": "funding_test"
+        },
+        "funding_after": {
+          "file": "screenshots/kolo_funding_after.png",
+          "sha256": "cc63a4869a712b16893da669142328232e018d1bffef27c8318ffd5dab8d06bd",
+          "dimensions": [
+            590,
+            1280
+          ],
+          "kind": "funding_test"
+        },
+        "withdrawal_form": {
+          "file": "screenshots/kolo_withdrawal_form.png",
+          "sha256": "50443b5d8da55432d52c00d9c7de87bf4b100938f5e6bf029f66ba582ec5c106",
+          "dimensions": [
+            590,
+            1280
+          ],
+          "kind": "withdrawal_test"
+        },
+        "withdrawal_review": {
+          "file": "screenshots/kolo_withdrawal_review.png",
+          "sha256": "f5453d3b297724f3f4c7c57498c95398a40bc77d3c28f9a498da1e02945bfb3b",
+          "dimensions": [
+            590,
+            1280
+          ],
+          "kind": "withdrawal_test"
+        }
+      },
+      "observed_reward": {
+        "amount": "0.0000008",
+        "asset": "BTC",
+        "availability": "participant_confirmed_amount_pending_credit",
+        "payout_independently_verified": false,
+        "credit_delay_note": "Зарахування очікується за кілька днів; показану BTC-суму враховую в розрахунку вже зараз.",
+        "credited_at": null,
+        "mechanism_confirmed_by_historical_credit": true
+      },
+      "balance_basis": "displayed_balance",
+      "funding_reported": {
+        "amount": "5",
+        "asset": "USDT",
+        "network": null,
+        "source_fee": null,
+        "evidence": "participant_report"
+      },
+      "transaction_ui_completed": false,
+      "final_settlement_independently_verified": false,
+      "privacy": "Gaussian blur in explicit regions; status bar retained; no metadata; no generative editing",
+      "ui_status_finality": "participant_confirmed_final",
+      "status_note": "Авторизовано — кінцевий статус у моєму застосунку Kolo.",
+      "reward_valuation": {
+        "price_usd_per_btc": "82976.035",
+        "usd_value": "0.0663808280",
+        "net_value_usd": "3.5636191720",
+        "quote_date": "2026-10-09",
+        "quote_time_utc": "2026-10-09T14:56:42+00:00",
+        "source_file": "data/btc-usd-valuation-2026-10-09.json",
+        "basis": "Fixed reference valuation of the shown BTC amount included before payout at author request; nominal USDT/USD parity. Not the future credit-time price, available dollars or a measured BTC sale."
+      },
+      "card_currency": "EUR",
+      "historical_cashback_credit": {
+        "amount_btc": "0.00000443",
+        "shown_equivalent_eur": "0.33",
+        "payments_count": 2,
+        "destination_as_displayed": "Wallet",
+        "status_as_displayed": "Успішно",
+        "date_time_as_displayed": "Сьогодні, 03:33",
+        "received_on": "2026-10-11",
+        "absolute_credit_date_verified": false,
+        "test_purchase_credit": false,
+        "amount_matches_prior_transaction_displays_basis": "exact_sum_of_visually_transcribed_transaction_screens",
+        "source_file": "screenshots/kolo_cashback_history.png",
+        "purchase_source_files": [
+          "screenshots/kolo_historical_usd.png",
+          "screenshots/kolo_historical_uah.png"
+        ],
+        "payout_to_purchases_link_basis": "participant_attribution_supported_by_exact_amount_match_and_two_payments_count"
+      }
+    },
+    {
+      "id": "solid",
+      "name": "Solid Core",
+      "before": "5.00",
+      "after": "1.36",
+      "tx": "3.64",
+      "debit": "3.64",
+      "asset": "USD Available to spend",
+      "status": "Pending",
+      "reward": "0.11",
+      "reward_text": "$0.11 · враховано",
+      "note": "Беру Available to spend $5.00 → $1.36. Balance $4.00 → $1.36 дав би хибні $2.64: після поповнення рівно на $5 застосунок дивно показує баланс. Додаткового переказу я не робив; причину відображення ще не встановив. Місячний лічильник кешбеку не змінився; історичну суму приховав. Visa.",
+      "effective_uah_per_usd": "43.40659340659340659340659341",
+      "gross_overhead_vs_nbu_pct": "3.331306329113924050632911400",
+      "delta_minus_tx": "0.00",
+      "conditional_net": "3.53",
+      "sources": {
+        "before": {
+          "file": "screenshots/solid_before.png",
+          "sha256": "7e63e61a2799a6857837496c5a4233b9f68bbf0b7d3cd33b6159f2aa863718db"
+        },
+        "after": {
+          "file": "screenshots/solid_after.png",
+          "sha256": "c4ce948385995731479a062eed86b36dca284901b4bb9db020e957c59efd7847"
+        },
+        "tx": {
+          "file": "screenshots/solid_tx.png",
+          "sha256": "a786ed80e73c6b2d6020e8a15a5aaa8c775f9236c690b5a25f0c7bb42ca27168"
+        },
+        "historical_usd": {
+          "file": "screenshots/solid_historical_usd.png",
+          "sha256": "8624cbac4668e2942259621e94d82cb138c55d1a2880fe281bce2802ca5ff888",
+          "dimensions": [
+            590,
+            1280
+          ],
+          "kind": "historical_purchase"
+        },
+        "historical_chatgpt": {
+          "file": "screenshots/solid_historical_chatgpt.png",
+          "sha256": "508173031563a73de7fdd02f3c6d54647a5b6f78959b0babab7145448a1cfc18",
+          "dimensions": [
+            590,
+            1280
+          ],
+          "kind": "historical_purchase"
+        },
+        "funding_before": {
+          "file": "screenshots/solid_funding_before.png",
+          "sha256": "183686b6ff535dfb3a8e2563540573360813bcf8dfb1c5fc193955254d241148",
+          "dimensions": [
+            590,
+            1280
+          ],
+          "kind": "funding_test"
+        },
+        "funding_method": {
+          "file": "screenshots/solid_funding_method.png",
+          "sha256": "f31253ca15e570f6fed92e42b79cd73de0dab6d3fe9f52575f3d6f9660c24495",
+          "dimensions": [
+            590,
+            1280
+          ],
+          "kind": "funding_terms"
+        },
+        "funding_after": {
+          "file": "screenshots/solid_funding_after.png",
+          "sha256": "cb7d8d2a2e0c41bed23d80b0f25ac8f09121590be296d35e7eed1021ca7cbfeb",
+          "dimensions": [
+            590,
+            1280
+          ],
+          "kind": "funding_test"
+        },
+        "funding_balance": {
+          "file": "screenshots/solid_funding_balance.png",
+          "sha256": "6081fb4e7fdd5c5e4f2ecb9eb567fc9a99b50037faa59190f1cdeca7774c4629",
+          "dimensions": [
+            590,
+            1280
+          ],
+          "kind": "funding_test"
+        },
+        "funding_completed": {
+          "file": "screenshots/solid_funding_completed.png",
+          "sha256": "8c023da72b689ec552325a130902e5cfe608d5d6496084db7eaf59f8bdd0e8ef",
+          "dimensions": [
+            590,
+            1280
+          ],
+          "kind": "funding_test"
+        },
+        "funding_direct_credit": {
+          "file": "screenshots/solid_funding_direct_credit.png",
+          "sha256": "1d212bef629cc64dff57ac48ffb7df0bbe03f2dadcb9f952b256b51c98618f22",
+          "dimensions": [
+            590,
+            1280
+          ],
+          "kind": "funding_test"
+        },
+        "withdrawal_method": {
+          "file": "screenshots/solid_withdrawal_method.png",
+          "sha256": "9d978fd24c2be2b267566d01ca30748dc72bb1d6fed2229b22e71b06130ca5f5",
+          "dimensions": [
+            590,
+            1280
+          ],
+          "kind": "withdrawal_terms"
+        },
+        "withdrawal_alternate_quote": {
+          "file": "screenshots/solid_withdrawal_alternate_quote.png",
+          "sha256": "7a4b3d27c3fcef7f6c302b9f9488962e47f36332e37f21da845ca80c75c97350",
+          "dimensions": [
+            590,
+            1280
+          ],
+          "kind": "withdrawal_terms"
+        },
+        "withdrawal_form": {
+          "file": "screenshots/solid_withdrawal_form.png",
+          "sha256": "c7c6d731d3903478f446bad3a43ab7079c34bc3be350493b04d097a9f2204322",
+          "dimensions": [
+            590,
+            1280
+          ],
+          "kind": "withdrawal_test"
+        },
+        "withdrawal_review": {
+          "file": "screenshots/solid_withdrawal_review.png",
+          "sha256": "9b54d3ac2ae89b20cc90c187683e7fc7c3d6051aea7c8fd396a6228f9872d286",
+          "dimensions": [
+            590,
+            1280
+          ],
+          "kind": "withdrawal_test"
+        },
+        "withdrawal_completed": {
+          "file": "screenshots/solid_withdrawal_completed.png",
+          "sha256": "2e8a0edb6aa818432a37cc2042a7750e86ec2848fdc0f892e94bdc403d223f87",
+          "dimensions": [
+            590,
+            1280
+          ],
+          "kind": "withdrawal_test"
+        }
+      },
+      "observed_reward": {
+        "amount": "0.11",
+        "asset": "USD",
+        "availability": "participant_accepted_fixed_amount",
+        "availability_at_capture": "not_confirmed",
+        "payout_independently_verified": false,
+        "comparison_note": "Показані $0.11 вважаю остаточною сумою кешбеку й включаю в результат відразу за своїм уточненням. Це облікова оцінка суми, не новий скрін зарахування."
+      },
+      "balance_basis": "card_available_usd",
+      "funding_reported": {
+        "amount": "5",
+        "asset": "USDT",
+        "network": null,
+        "source_fee": null,
+        "evidence": "participant_report"
+      },
+      "transaction_ui_completed": false,
+      "final_settlement_independently_verified": false,
+      "privacy": "Gaussian blur in explicit regions; status bar retained; no metadata; no generative editing",
+      "onchain_processor_execution_observed": true,
+      "onchain_evidence": "data/onchain-summary.json; identifiers withheld",
+      "card_currency": "USD",
+      "ui_status_finality": "participant_assessed_completed",
+      "status_assessment_note": "Для дослідження Solid — Done. Показані $0.11 кешбеку враховую відразу; вартість після кешбеку $3.53. Напис Pending на скріні не використовую як статус завершення платежу."
+    },
+    {
+      "id": "bybit",
+      "name": "Bybit",
+      "before": "4.93",
+      "after": "1.34",
+      "tx": "3.59",
+      "debit": "3.59",
+      "asset": "USDT input; USD card display",
+      "status": "Successful",
+      "reward": "0.072",
+      "reward_text": "36 балів зараховано · 0.072 USDT за умовами конвертації",
+      "note": "Завершений платіж $3.59: $3.52 + $0.07 Foreign Transaction Fee. Історія активів підтверджує 3.6407 USDT → $3.59, як у котируванні; Savings Redemption — внутрішній переказ із Earn, не додаткова витрата чи дохід. Зараховано 36 балів = 0.072 USDT за умовами; отримання USDT ще не підтверджене. Комісія 0.0328 USDT уже включена; 0.0179 USDT без ринкового benchmark не називаю FX spread.",
+      "effective_uah_per_usd": "44.01114206128133704735376045",
+      "gross_overhead_vs_nbu_pct": "1.911920253164556962025316400",
+      "delta_minus_tx": "0.00",
+      "conditional_net": "3.518",
+      "sources": {
+        "before": {
+          "file": "screenshots/bybit_before.png",
+          "sha256": "9402f38cf3a4eb3a11fd63cf7b01a6cb2eb8e5667ff59832cac6c7b241862919"
+        },
+        "after": {
+          "file": "screenshots/bybit_after.png",
+          "sha256": "f59dcb177ff94b8cd4bad172350415c08431cfb4f1d8ce0e12686a6584d5b474"
+        },
+        "tx": {
+          "file": "screenshots/bybit_tx.png",
+          "sha256": "9b903ec564dee9e09c0c3136136084e21b62fc3a2cbec168a77706a6e08a48c0"
+        },
+        "quote": {
+          "file": "screenshots/bybit_quote.png",
+          "sha256": "090a5402bc6739f29ade9910bac55276123ebee80f1360b65a7c0d85d36f3a4f",
+          "dimensions": [
+            1179,
+            2556
+          ],
+          "kind": "conversion_quote"
+        },
+        "completed": {
+          "file": "screenshots/bybit_completed.png",
+          "sha256": "e9600a4ae7438e47900793c4d64d2e2e611892793f0478e40b3ed804548dd807",
+          "dimensions": [
+            590,
+            1280
+          ],
+          "kind": "completed_transaction"
+        },
+        "points": {
+          "file": "screenshots/bybit_points.png",
+          "sha256": "b8aae6696a24da8182e65aa816d849395719e5c70b02fbcd3ef38078ac0a23f2",
+          "dimensions": [
+            590,
+            1280
+          ],
+          "kind": "credited_points"
+        },
+        "historical_usd": {
+          "file": "screenshots/bybit_historical_usd.png",
+          "sha256": "4897cfdb141fa5cef1cff30d6dea04684e107fae0e8666e90909e46b04893e28",
+          "dimensions": [
+            590,
+            1280
+          ],
+          "kind": "historical_purchase"
+        },
+        "historical_usd_details": {
+          "file": "screenshots/bybit_historical_usd_details.png",
+          "sha256": "d718a022def18607f8612a8cca51750d606887f38960866dc4cb9f625a80fe1c",
+          "dimensions": [
+            590,
+            1280
+          ],
+          "kind": "historical_purchase"
+        },
+        "historical_usd_points": {
+          "file": "screenshots/bybit_historical_usd_points.png",
+          "sha256": "41ee5f61269595c3c28f9e36a7a8d795238de6d30a8065b2a32fde3d0fb1dfee",
+          "dimensions": [
+            590,
+            1280
+          ],
+          "kind": "historical_points_credit"
+        },
+        "historical_usd_assets": {
+          "file": "screenshots/bybit_historical_usd_assets.png",
+          "sha256": "782297424bdff70c1672f6cbc4cc083d16a07e417b03b6dd506d389af63b8857",
+          "dimensions": [
+            1157,
+            1280
+          ],
+          "kind": "payment_asset_history"
+        },
+        "asset_history": {
+          "file": "screenshots/bybit_asset_history.png",
+          "sha256": "9c593633d816c62807acceb7ca473e280fce6e31166298d87dda102688a4ad28",
+          "dimensions": [
+            1179,
+            1032
+          ],
+          "kind": "payment_asset_history"
+        },
+        "funding_before": {
+          "file": "screenshots/bybit_funding_before.png",
+          "sha256": "cae2f3e0adf5d18136d9a39a58856ae9baa9c9fede516eb5290c0407a4df9b1b",
+          "dimensions": [
+            590,
+            1280
+          ],
+          "kind": "funding_test"
+        },
+        "funding_waiting": {
+          "file": "screenshots/bybit_funding_waiting.png",
+          "sha256": "6133208e7a0e74cd141de2203e271ab4917a8d16ea050bc3d0601764d1b733c6",
+          "dimensions": [
+            590,
+            1280
+          ],
+          "kind": "funding_test"
+        },
+        "funding_after": {
+          "file": "screenshots/bybit_funding_after.png",
+          "sha256": "0b89ed7be1bdc0958f936bb33a66a0c05e7d38adff485a6281c21ba3d9be1174",
+          "dimensions": [
+            590,
+            1280
+          ],
+          "kind": "funding_test"
+        },
+        "funding_paywith": {
+          "file": "screenshots/bybit_funding_paywith.png",
+          "sha256": "ed7111d7616def62efd3109f8b273dc0f7ec636d4e6c985358a9b2f4aa87a189",
+          "dimensions": [
+            590,
+            1280
+          ],
+          "kind": "funding_test"
+        },
+        "funding_balance": {
+          "file": "screenshots/bybit_funding_balance.png",
+          "sha256": "a35860305198ddcb1607b148fec6a27f3ecc3c636439ad1b9ca3c563b7664098",
+          "dimensions": [
+            590,
+            1280
+          ],
+          "kind": "funding_test"
+        },
+        "funding_credit": {
+          "file": "screenshots/bybit_funding_credit.png",
+          "sha256": "128ec91cee60c9199d357ad6e89126fee58c8fa9f7f452a8cc7702518922a643",
+          "dimensions": [
+            1179,
+            685
+          ],
+          "kind": "funding_test"
+        }
+      },
+      "observed_reward": {
+        "amount": "36",
+        "asset": "Bybit Points",
+        "availability": "participant_confirmed_credited",
+        "credited_at_as_displayed": "2026-10-11 06:40:42",
+        "cash_conversion_verified": false,
+        "comparison_note": "Бали зараховані. За документованим співвідношенням 1 point = 0.002 USDT оцінюю їх у 0.072 USDT; це не доказ отримання USDT."
+      },
+      "balance_basis": "USD_valuation_snapshot; comparison_prefers_visually_corroborated_USDT_asset_history",
+      "funding_reported": {
+        "amount": "5",
+        "asset": "USDT",
+        "network": null,
+        "source_fee": null,
+        "evidence": "participant_report"
+      },
+      "transaction_ui_completed": true,
+      "final_settlement_independently_verified": false,
+      "privacy": "Gaussian blur in explicit regions; status bar retained; no metadata; no generative editing",
+      "conversion_quote": {
+        "input_amount": "3.6407",
+        "input_asset": "USDT",
+        "input_account": "Easy Earn",
+        "output_amount": "3.59",
+        "output_asset": "USD",
+        "shown_usdt_per_usd": "1.0141",
+        "shown_conversion_fee_usdt": "0.0328",
+        "fee_inclusion": "included_in_input_amount; not added again",
+        "transaction_time": "2026-10-09 14:16:25",
+        "evidence_level": "visually_transcribed_conversion_quote",
+        "final_token_ledger_reconciled": true,
+        "comparison_basis_note": "Purchase input and output corroborated by the visible asset-history sequence. This is not a complete account audit."
+      },
+      "card_currency": "USD",
+      "snapshot_status": "Pending / Authorization",
+      "final_transaction": {
+        "status": "Successful",
+        "card_amount_usd": "3.59",
+        "spent_amount": "3.6407",
+        "spent_asset": "USDT",
+        "base_amount_usd": "3.52",
+        "foreign_transaction_fee_usd": "0.07",
+        "foreign_transaction_fee_rate": "0.02",
+        "transaction_time_as_displayed": "2026-10-11 06:40:38",
+        "evidence_level": "visually_transcribed_completed_card_transaction_and_payment_asset_history",
+        "source_file": "screenshots/bybit_completed.png",
+        "token_ledger_reconciled": true,
+        "exact_token_debit_available_in_app": true,
+        "spent_source_file": "screenshots/bybit_asset_history.png"
+      },
+      "points_assessment": {
+        "points": "36",
+        "usdt_per_point": "0.002",
+        "cashback_deduction_usd": "0.072",
+        "basis": "Credited points valued at documented USDT redemption ratio; nominal USD/USDT parity. Actual redemption unverified.",
+        "source_file": "data/cashback-tiers.json",
+        "net_cost_usdt": "3.5687"
+      },
+      "asset_history": {
+        "source_file": "screenshots/bybit_asset_history.png",
+        "evidence_level": "visually_transcribed_payment_asset_history",
+        "entries": [
+          {
+            "label_as_displayed": "Купівля USD",
+            "amount": "-3.59",
+            "asset": "USD",
+            "time_as_displayed": "2026-10-09 14:16:28",
+            "available_balance_as_displayed": "0",
+            "account_type_as_displayed": "Картка Bybit"
+          },
+          {
+            "label_as_displayed": "Купівля монет USD",
+            "amount": "3.59",
+            "asset": "USD",
+            "time_as_displayed": "2026-10-09 14:16:28",
+            "available_balance_as_displayed": "3.59",
+            "account_type_as_displayed": "Картка Bybit"
+          },
+          {
+            "label_as_displayed": "Продаж USDT",
+            "amount": "-3.6407",
+            "asset": "USDT",
+            "time_as_displayed": "2026-10-09 14:16:27",
+            "available_balance_as_displayed": "0.000085046615",
+            "account_type_as_displayed": "Картка Bybit"
+          },
+          {
+            "label_as_displayed": "Savings Redemption (Card) USDT",
+            "amount": "3.6407",
+            "asset": "USDT",
+            "time_as_displayed": "2026-10-09 14:16:27",
+            "available_balance_as_displayed": "3.640785046615",
+            "account_type_as_displayed": "Earn"
+          }
+        ],
+        "crypto_spent_usdt": "3.6407",
+        "converted_usd": "3.59",
+        "internal_redemption_usdt": "3.6407",
+        "association_basis": "Same purchase date, adjacent seconds to the saved conversion quote, and exact USDT/USD amounts; no merchant or transaction ID in this crop.",
+        "cost_basis": "Count the USDT sale once. Savings Redemption is an internal transfer, not another expense or yield. The USD credit and debit are conversion and card spending of the same funds.",
+        "scope": "Visible purchase sequence only; not a complete account audit or proof of absence of other debits outside this crop."
+      }
+    },
+    {
+      "id": "trustee_plus",
+      "name": "Trustee Plus",
+      "before": "4.96",
+      "after": "1.31",
+      "tx": "3.64",
+      "debit": "3.65",
+      "asset": "USDC tx; USD card display",
+      "status": "Фінальний статус не показано",
+      "reward": null,
+      "reward_text": "15 Trustee Points отримано; внутрішні бонуси, поточний грошовий кешбек не підтверджений. У моделі віднімаю $0; майбутня конвертація лише можлива",
+      "note": "Квитанція підтверджує 3.648467 USDC за 158 UAH. Для порівняння витрат беру цю точну суму. Зміна карткового USD-балансу $3.65 узгоджується з нею після округлення; старий екран транзакції показує лише 3.64 USDC. Різницю на цент більше не трактую як непояснений окремий debit. Загальні $5.38 включають 0.417425 USDT іншого гаманця. Я вніс 10 USDT, кошти конвертувались у USDC, 5 USDC вивів. Історія показує +9.966112 USDT, −5 USDC та стару плату за випуск −10 USDC; остання не належить до цієї покупки. Завершення вважаю ймовірним; окремого settlement status у квитанції немає. Visa.",
+      "effective_uah_per_usd": "43.28767123287671232876712329",
+      "gross_overhead_vs_nbu_pct": "3.615183544303797468354430400",
+      "delta_minus_tx": "0.01",
+      "conditional_net": null,
+      "sources": {
+        "before": {
+          "file": "screenshots/trustee_plus_before.png",
+          "sha256": "c5aab2b38681d35e52e2f623b5c62595ab10f90fdfe2af92443493306fd67f61"
+        },
+        "after": {
+          "file": "screenshots/trustee_plus_after.png",
+          "sha256": "ff912da8455e83894d023cb57a803c10f0d1bd31a3c35c33ab76d497667b0b4c"
+        },
+        "tx": {
+          "file": "screenshots/trustee_plus_tx.png",
+          "sha256": "73c79a7c4c4b3861090db1970339858a6503925c56d285681794c00356fe01b6"
+        },
+        "receipt": {
+          "file": "screenshots/trustee_plus_receipt.png",
+          "sha256": "b436ae51c110cc1bd4c58585754a1d6c78db792903f55df65d04788762f06c24",
+          "dimensions": [
+            1179,
+            2556
+          ],
+          "kind": "receipt"
+        },
+        "funding_form_before": {
+          "file": "screenshots/trustee_plus_funding_form_before.png",
+          "sha256": "f5b2ef5ebee01783333e84ecfac724b5bb3a83ade74b7f18c95d7f1a591b4c30",
+          "dimensions": [
+            590,
+            1280
+          ],
+          "kind": "funding_test"
+        },
+        "funding_before": {
+          "file": "screenshots/trustee_plus_funding_before.png",
+          "sha256": "3148282bce262b9805d88350a5e19284cffe815c6e66ad4d1dc11cac4601b32f",
+          "dimensions": [
+            590,
+            1280
+          ],
+          "kind": "funding_test"
+        },
+        "funding_after": {
+          "file": "screenshots/trustee_plus_funding_after.png",
+          "sha256": "03f9740f1729695fce4ad49eca950f151f4a8e69b58557a28026f9a4c89d9f43",
+          "dimensions": [
+            590,
+            1280
+          ],
+          "kind": "funding_test"
+        },
+        "funding_completed": {
+          "file": "screenshots/trustee_plus_funding_completed.png",
+          "sha256": "41baf68ea2edc3b2b978a82ea975a04ffc4545b2c07418e578aa8b1a5b6ab012",
+          "dimensions": [
+            590,
+            1280
+          ],
+          "kind": "funding_test"
+        },
+        "funding_fee_blocked": {
+          "file": "screenshots/trustee_plus_funding_fee_blocked.png",
+          "sha256": "c7f2868305fc39b45b38fa331ee297371188035092a4e4b3d2963b0a143379d1",
+          "dimensions": [
+            590,
+            1280
+          ],
+          "kind": "funding_test"
+        },
+        "funding_minimum_blocked": {
+          "file": "screenshots/trustee_plus_funding_minimum_blocked.png",
+          "sha256": "bc37b23cb5c2e93168cb20fdf97fec63f17391cac71c478655d8237936e97839",
+          "dimensions": [
+            590,
+            1280
+          ],
+          "kind": "funding_test"
+        },
+        "funding_extra_balance": {
+          "file": "screenshots/trustee_plus_funding_extra_balance.png",
+          "sha256": "8afe8c55882561cf6fe2cecc0759c1276d14e48fa5f3736162722361cd8884bd",
+          "dimensions": [
+            590,
+            1280
+          ],
+          "kind": "funding_test"
+        },
+        "funding_card_after": {
+          "file": "screenshots/trustee_plus_funding_card_after.png",
+          "sha256": "1f6bec1d03f81c1ec031aa45506b4e523c58d7ff9704bbdabb66bd604b75bd35",
+          "dimensions": [
+            590,
+            1280
+          ],
+          "kind": "funding_test"
+        },
+        "funding_card_receipt": {
+          "file": "screenshots/trustee_plus_funding_card_receipt.png",
+          "sha256": "5dfa5354e5e3feca87d401f6f27ae70f3662c996353b491ca7bb2730b647af96",
+          "dimensions": [
+            590,
+            1280
+          ],
+          "kind": "receipt"
+        },
+        "funding_card_debit": {
+          "file": "screenshots/trustee_plus_funding_card_debit.png",
+          "sha256": "861580772fb20cafde5dab9a237a7d9e825c238c07379f42d41d614f5375b56d",
+          "dimensions": [
+            590,
+            1280
+          ],
+          "kind": "funding_test"
+        },
+        "withdrawal_minimum_blocked": {
+          "file": "screenshots/trustee_plus_withdrawal_minimum_blocked.png",
+          "sha256": "246fdbdde0ea79dfb1146e5df0cb62a44155b6800eeea97af5581bbcd290e520",
+          "dimensions": [
+            590,
+            1280
+          ],
+          "kind": "withdrawal_test"
+        },
+        "withdrawal_exchange_quote": {
+          "file": "screenshots/trustee_plus_withdrawal_exchange_quote.png",
+          "sha256": "e9d5088113c4a986edc358fc0257e22dd139ba4e3505590678ab94b40c744e26",
+          "dimensions": [
+            590,
+            1280
+          ],
+          "kind": "withdrawal_test"
+        },
+        "withdrawal_fee_blocked": {
+          "file": "screenshots/trustee_plus_withdrawal_fee_blocked.png",
+          "sha256": "ce9f0abf275fa088eb13696ca39794b11b52510e39bb0c28e9589af27685a428",
+          "dimensions": [
+            590,
+            1280
+          ],
+          "kind": "withdrawal_test"
+        },
+        "withdrawal_form": {
+          "file": "screenshots/trustee_plus_withdrawal_form.png",
+          "sha256": "605c3e615304c267a72e148248992af3dd48becefb3910553c5ffe8ca3edabbe",
+          "dimensions": [
+            590,
+            1280
+          ],
+          "kind": "withdrawal_test"
+        },
+        "withdrawal_review": {
+          "file": "screenshots/trustee_plus_withdrawal_review.png",
+          "sha256": "9a75c008cfb18834661949698a1eba9394f02bf7de1cb450fb9cfc1fd45ec4a5",
+          "dimensions": [
+            590,
+            1280
+          ],
+          "kind": "withdrawal_test"
+        }
+      },
+      "observed_reward": {
+        "amount": "15",
+        "asset": "TP",
+        "availability": "points_shown",
+        "cash_value": null
+      },
+      "balance_basis": "card_only_display",
+      "funding_reported": {
+        "amount": "10",
+        "asset": "USDT",
+        "network": null,
+        "source_fee": null,
+        "evidence": "participant_report"
+      },
+      "transaction_ui_completed": false,
+      "final_settlement_independently_verified": false,
+      "privacy": "Gaussian blur in explicit regions; status bar retained; no metadata; no generative editing",
+      "ui_status_finality": "participant_likely_final",
+      "status_note": "Квитанція є; вважаю завершення ймовірним, але окремого статусу фінального розрахунку вона не містить.",
+      "receipt": {
+        "amount": "3.648467",
+        "asset": "USDC",
+        "merchant_amount_uah": "158",
+        "transaction_date": "2026-10-09",
+        "transaction_time": "14:15",
+        "document_generated_at": "2026-10-09 16:38",
+        "merchant": "BONUS,KYIV,UKR",
+        "transaction_type": "Purchase",
+        "evidence_level": "issuer_receipt_exact_debit",
+        "explicit_settlement_status": null
+      },
+      "points_assessment": {
+        "cashback_deduction_usd": "0",
+        "basis": "no_confirmed_current_monetary_redemption",
+        "source_file": "data/trustee-points-terms.json",
+        "evidence_level": "participant_supplied_terms_excerpt",
+        "net_cost_usdc": "3.648467",
+        "scope": "Zero current cashback deduction, not a measured TP price or a guarantee of future value."
+      },
+      "card_currency": "USD"
+    },
+    {
+      "id": "simple",
+      "name": "Simple",
+      "before": "5.00",
+      "after": "1.34",
+      "tx": "3.65",
+      "debit": "3.66",
+      "asset": "USDC",
+      "status": "Завершено",
+      "reward": "0",
+      "reward_text": "Кешбек за покупку не показано",
+      "note": "Транзакція 3.65 USDC, але показані токенові баланси дають 3.66 USDC. Курс 1 USDC = 43.20 UAH: 158/43.20 = 3.657407…, ближче до 3.66. Лічильник авто-заробітку не змінився; історичну суму приховав. Він не є кешбеком за цей тест. Платіжну мережу на скрінах не видно.",
+      "effective_uah_per_usd": "43.16939890710382513661202186",
+      "gross_overhead_vs_nbu_pct": "3.899060759493670886075949400",
+      "delta_minus_tx": "0.01",
+      "conditional_net": "3.66",
+      "sources": {
+        "before": {
+          "file": "screenshots/simple_before.png",
+          "sha256": "7b4c12dc4204c9a3aff7505e50251e93aa30ebd745fec90ffadf53c03a3c531b"
+        },
+        "after": {
+          "file": "screenshots/simple_after.png",
+          "sha256": "22dcbf958951ff39732ec9ea197f4bcf2e6973bb7d3dc2fd6f71c0ec2ba47766"
+        },
+        "tx": {
+          "file": "screenshots/simple_tx.png",
+          "sha256": "0e8ac663f336042da12004b8e10c953205faf03cb258343c0e1a004e5f5ebd6b"
+        },
+        "historical_apple": {
+          "file": "screenshots/simple_historical_apple.png",
+          "sha256": "0da66e80bcdbd84e8e357ca6f5cd0b0584433df5583e7d05ef92c27393aab7ad",
+          "dimensions": [
+            590,
+            1280
+          ],
+          "kind": "historical_purchase"
+        },
+        "historical_chatgpt": {
+          "file": "screenshots/simple_historical_chatgpt.png",
+          "sha256": "f6cc6a7ad37d7b8f72969f37a000d055864d4d7104144fd2531221cb1919d726",
+          "dimensions": [
+            590,
+            1280
+          ],
+          "kind": "historical_purchase"
+        },
+        "funding_before": {
+          "file": "screenshots/simple_funding_before.png",
+          "sha256": "a40e41d5fb5ae4f69772398bf7aa9d102f0e3f511d9bc7094393f9ee7964af9a",
+          "dimensions": [
+            590,
+            1280
+          ],
+          "kind": "funding_test"
+        },
+        "funding_method": {
+          "file": "screenshots/simple_funding_method.png",
+          "sha256": "92c57a402a57f91e7f7d7b9401ad42b31dac121a9657bcf59515cda29e99c808",
+          "dimensions": [
+            590,
+            1280
+          ],
+          "kind": "funding_terms"
+        },
+        "funding_after": {
+          "file": "screenshots/simple_funding_after.png",
+          "sha256": "ab396021537583b3a8cd38f1e1b779bf008972915312287a9e9dff55ef16bc6c",
+          "dimensions": [
+            590,
+            1280
+          ],
+          "kind": "funding_test"
+        },
+        "funding_completed": {
+          "file": "screenshots/simple_funding_completed.png",
+          "sha256": "e19a9fb21ff94205a2208f52fa91c417d86cd7b28376bb67f06a21c7692207a0",
+          "dimensions": [
+            590,
+            1280
+          ],
+          "kind": "funding_test"
+        },
+        "withdrawal_form": {
+          "file": "screenshots/simple_withdrawal_form.png",
+          "sha256": "90baec8cc4fed14cf1fee088e6f49c47a8dc06c6c3ee7c0a41eea3aa47da0985",
+          "dimensions": [
+            590,
+            1280
+          ],
+          "kind": "withdrawal_test"
+        },
+        "withdrawal_review": {
+          "file": "screenshots/simple_withdrawal_review.png",
+          "sha256": "0b3e561ee3e15d40c58bfd43604c9698f6cec9792a805419d4fb2c72cf28417b",
+          "dimensions": [
+            590,
+            1280
+          ],
+          "kind": "withdrawal_test"
+        }
+      },
+      "observed_reward": {
+        "amount": "0",
+        "asset": "USD",
+        "availability": "not_shown"
+      },
+      "balance_basis": "displayed_balance",
+      "funding_reported": {
+        "amount": "5",
+        "asset": "USDT",
+        "network": null,
+        "source_fee": null,
+        "evidence": "participant_report"
+      },
+      "transaction_ui_completed": true,
+      "final_settlement_independently_verified": false,
+      "privacy": "Gaussian blur in explicit regions; status bar retained; no metadata; no generative editing",
+      "card_currency": "USD"
+    },
+    {
+      "id": "keyone",
+      "name": "Keyone",
+      "before": "4.96",
+      "after": "1.30",
+      "tx": "3.66",
+      "debit": "3.66",
+      "asset": "USD display",
+      "status": "Completed",
+      "reward": "0",
+      "reward_text": "Кешбек / бонусні бали за покупку не показано",
+      "note": "Транзакція та зміна балансу сходяться. До покупки Crypto deposit +$4.96; різницю з внесеними 5 USDT не можу розкласти без виписки поповнення. Visa.",
+      "effective_uah_per_usd": "43.16939890710382513661202186",
+      "gross_overhead_vs_nbu_pct": "3.899060759493670886075949400",
+      "delta_minus_tx": "0.00",
+      "conditional_net": "3.66",
+      "sources": {
+        "before": {
+          "file": "screenshots/keyone_before.png",
+          "sha256": "d8c546aec7fce58367d73c3b257eef313202e8064127d9173b4af352b192cc30"
+        },
+        "after": {
+          "file": "screenshots/keyone_after.png",
+          "sha256": "52034a19b8a45617e99f2ca329cd51d616674d8b05f967fdd688319cc52b46c3"
+        },
+        "tx": {
+          "file": "screenshots/keyone_tx.png",
+          "sha256": "d153e41787e5926e94d95a47cde8693983c597be96b8152d622b63e8b1f6ecf0"
+        },
+        "funding_before": {
+          "file": "screenshots/keyone_funding_before.png",
+          "sha256": "d0d4f6937da0c79d5a6d2993c0b6a3155f4fad8fcb9f55c920ea76ac54979efb",
+          "dimensions": [
+            590,
+            1280
+          ],
+          "kind": "funding_test"
+        },
+        "funding_pending": {
+          "file": "screenshots/keyone_funding_pending.png",
+          "sha256": "ea9ab9af8e40f355b63edefa8bdc1a3bb2cb4101b731e08345039cf1cf282c97",
+          "dimensions": [
+            590,
+            1280
+          ],
+          "kind": "funding_test"
+        },
+        "funding_details_pending": {
+          "file": "screenshots/keyone_funding_details_pending.png",
+          "sha256": "0d957ec8158bde69caf96c1c646367990791da0914846682ced20fe6b1a22c31",
+          "dimensions": [
+            590,
+            1280
+          ],
+          "kind": "funding_test"
+        },
+        "funding_after": {
+          "file": "screenshots/keyone_funding_after.png",
+          "sha256": "675126f0f7cff76c599c4873971927d531d71a0bcbf32641213aed650779f173",
+          "dimensions": [
+            590,
+            1280
+          ],
+          "kind": "funding_test"
+        },
+        "funding_completed": {
+          "file": "screenshots/keyone_funding_completed.png",
+          "sha256": "c78be423737957532a7c8426b28b685bc362c117dd2f286d7d0a28ccb7c5c787",
+          "dimensions": [
+            590,
+            1280
+          ],
+          "kind": "funding_test"
+        },
+        "withdrawal_form": {
+          "file": "screenshots/keyone_withdrawal_form.png",
+          "sha256": "43fd01dce62f856e46a2202ee243a6ec2de7d6f802ffbca1a2bcaca40df4605c",
+          "dimensions": [
+            590,
+            1280
+          ],
+          "kind": "withdrawal_test"
+        },
+        "withdrawal_completed": {
+          "file": "screenshots/keyone_withdrawal_completed.png",
+          "sha256": "85304ce450191c150c656be1f11dc7863e68dbc5a62c717f1189cd54a9b80e37",
+          "dimensions": [
+            590,
+            1280
+          ],
+          "kind": "withdrawal_test"
+        }
+      },
+      "observed_reward": {
+        "amount": "0",
+        "asset": "USD",
+        "availability": "not_shown"
+      },
+      "balance_basis": "displayed_balance",
+      "funding_reported": {
+        "amount": "5",
+        "asset": "USDT",
+        "network": null,
+        "source_fee": null,
+        "evidence": "participant_report"
+      },
+      "transaction_ui_completed": true,
+      "final_settlement_independently_verified": false,
+      "privacy": "Gaussian blur in explicit regions; status bar retained; no metadata; no generative editing",
+      "onchain_processor_execution_observed": true,
+      "onchain_evidence": "data/onchain-summary.json; identifiers withheld",
+      "card_currency": "USD"
+    },
+    {
+      "id": "whitebit",
+      "name": "WhiteBIT USD",
+      "before": "4.99",
+      "after": "1.17",
+      "tx": "3.57",
+      "debit": "3.82",
+      "asset": "USDT Assets; USD display",
+      "status": "Очікування",
+      "reward": null,
+      "reward_text": "0.00000215 BTC; показана сума, враховую до зарахування",
+      "note": "Сума покупки $3.57, але Assets −3.82 USDT і баланс зменшився на $3.82. Різниця $0.25. Перед покупкою застосунок показує 5% за першу покупку; категорія тесту — Продукти. Це не доводить 10% на підписки.",
+      "effective_uah_per_usd": "41.36125654450261780104712042",
+      "gross_overhead_vs_nbu_pct": "8.441096202531645569620253200",
+      "delta_minus_tx": "0.25",
+      "conditional_net": null,
+      "sources": {
+        "before": {
+          "file": "screenshots/whitebit_before.png",
+          "sha256": "ff1d045f2fb4c7c831606879adef1e965bdefd7754c29390a0e28199dbb962cc"
+        },
+        "after": {
+          "file": "screenshots/whitebit_after.png",
+          "sha256": "320ab80835f59c2c2e274dcc83d35ce91dd52509d117948bfb572f8cc402b5fb"
+        },
+        "tx": {
+          "file": "screenshots/whitebit_tx.png",
+          "sha256": "07e7ddf357476a31af0b9b33150945212d08c8573d646bd674349916462b2dc0"
+        },
+        "funding_before": {
+          "file": "screenshots/whitebit_funding_before.png",
+          "sha256": "23cdf5412b13c950d3e7c60c0d02db387de4c965c9eda4f6bf3c40e2b7725f3a",
+          "dimensions": [
+            590,
+            1280
+          ],
+          "kind": "funding_test"
+        },
+        "funding_after": {
+          "file": "screenshots/whitebit_funding_after.png",
+          "sha256": "57331ec09dab37ecb1eae4a11c86239acd0a7471cc1409eee3a8490ace84c361",
+          "dimensions": [
+            590,
+            1280
+          ],
+          "kind": "funding_test"
+        },
+        "funding_credit": {
+          "file": "screenshots/whitebit_funding_credit.png",
+          "sha256": "f9dc88b2c82a240dd3ed15aaa1e1ed7ff2a4345ae2879465e2091b100050e2eb",
+          "dimensions": [
+            1179,
+            969
+          ],
+          "kind": "funding_test"
+        },
+        "funding_balance": {
+          "file": "screenshots/whitebit_funding_balance.png",
+          "sha256": "8774937205bd6aded8a12f765834e2632f334e4aa874be15a2fe37feb36c4c19",
+          "dimensions": [
+            590,
+            1280
+          ],
+          "kind": "funding_test"
+        },
+        "withdrawal_method": {
+          "file": "screenshots/whitebit_withdrawal_method.png",
+          "sha256": "1e28436ce212dd609d9d977ee0e1add3ec8749090e80575b367654f2b8bc5d66",
+          "dimensions": [
+            590,
+            1280
+          ],
+          "kind": "withdrawal_test"
+        },
+        "withdrawal_review": {
+          "file": "screenshots/whitebit_withdrawal_review.png",
+          "sha256": "aa48ceb21dee62b926ad056e93e726dc91e77601b9e63932d89d35bd8e6357be",
+          "dimensions": [
+            590,
+            1280
+          ],
+          "kind": "withdrawal_test"
+        }
+      },
+      "observed_reward": {
+        "amount": "0.00000215",
+        "asset": "BTC",
+        "availability": "participant_confirmed_amount_pending_credit",
+        "recurring": false,
+        "note": "first-purchase promotion may apply",
+        "payout_independently_verified": false,
+        "credit_delay_note": "Зарахування очікується за кілька днів; показану BTC-суму враховую в розрахунку вже зараз.",
+        "credited_at": null
+      },
+      "balance_basis": "displayed_balance",
+      "funding_reported": {
+        "amount": "5",
+        "asset": "USDT",
+        "network": null,
+        "source_fee": null,
+        "evidence": "participant_report"
+      },
+      "transaction_ui_completed": false,
+      "final_settlement_independently_verified": false,
+      "privacy": "Gaussian blur in explicit regions; status bar retained; no metadata; no generative editing",
+      "reward_valuation": {
+        "price_usd_per_btc": "82976.035",
+        "usd_value": "0.17839847525",
+        "net_value_usd": "3.64160152475",
+        "quote_date": "2026-10-09",
+        "quote_time_utc": "2026-10-09T14:56:42+00:00",
+        "source_file": "data/btc-usd-valuation-2026-10-09.json",
+        "basis": "Fixed reference valuation of the shown BTC amount included before payout at author request; nominal USDT/USD parity. Not the future credit-time price, available dollars or a measured BTC sale."
+      },
+      "card_currency": "USD",
+      "status_assessment_note": "Статус досі Pending за моїм уточненням. Очікую, що сума не зміниться; це очікування, не підтвердження завершення. У порівнянні залишаю показані 3.82 USDT."
+    }
+  ],
+  "schema_version": 1,
+  "transcription_method": "visual; no OCR",
+  "reward_usd_values": "Solid 0.11 USD and COCA 0.03 USD accepted before payout; Bybit 36 credited points valued at documented 0.002 USDT/point (0.072 USDT), redemption unverified. Kolo/WhiteBIT BTC uses a fixed quote before credit. Nominal stablecoin parity.",
+  "publication_status": "sanitized evidence; partial settlement",
+  "comparison_basis": "OKX: 3.49 USDT from completed transaction. Bybit: 3.6407 USDT from visible payment asset history, corroborating the quote; card payment Successful. Trustee: exact receipt. Others: snapshot balance debit. Original debit, conditional_net and overhead fields retain snapshot arithmetic; current costs are computed with sorting.comparison_cost.",
+  "last_updated": "2026-10-11"
+}

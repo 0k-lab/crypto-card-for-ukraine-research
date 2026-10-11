@@ -1,0 +1,582 @@
+{
+  "confirmed_on": "2026-10-09",
+  "claims": [
+    {
+      "card": "solid",
+      "claim": "I have received cashback on earlier Solid transactions; it works in my actual use.",
+      "evidence_level": "participant_confirmed_historical_payout",
+      "amounts": null,
+      "transaction_dates": null,
+      "screenshots_in_public_dataset": false,
+      "scope": "Historical payout mechanism; not settlement or payout of the current 158 UAH test, and not verification of Prime category rates."
+    },
+    {
+      "card": "kolo",
+      "claim": "Авторизовано — кінцевий статус у моєму застосунку Kolo.",
+      "evidence_level": "participant_confirmed_ui_finality",
+      "scope": "App terminal status; not independent network settlement or cashback payout."
+    },
+    {
+      "card": "trustee_plus",
+      "claim": "Завершення Trustee Plus також вважаю ймовірним; додав квитанцію з точною сумою.",
+      "evidence_level": "participant_likely_ui_finality",
+      "scope": "Status confidence remains qualified; receipt measures the purchase amount without an explicit settlement status."
+    },
+    {
+      "card": "okx",
+      "claim": "Кешбек працює лише при витраті USDG. Зараз USDG недоступний у моєму акаунті в Україні.",
+      "evidence_level": "participant_report_rule_and_account_availability",
+      "scope": "Account-specific availability on 2026-10-09; not evidence of a restriction for all Ukrainian accounts. The current USDT test shows $0.00 / ineligible."
+    },
+    {
+      "card": "bybit",
+      "claim": "Емітент моєї картки: Fly Wallet Pty Ltd.",
+      "issuer_reported": "Fly Wallet Pty Ltd",
+      "confirmed_on": "2026-10-09",
+      "evidence_level": "participant_confirmed_test_card_issuer",
+      "screenshots_in_public_dataset": false,
+      "scope": "Tested card only; account-specific statement. Wirex/HashBank shorthand does not independently establish a full legal entity."
+    },
+    {
+      "card": "solid",
+      "claim": "Емітент моєї картки: Wirex.",
+      "issuer_reported": "Wirex",
+      "confirmed_on": "2026-10-09",
+      "evidence_level": "participant_confirmed_test_card_issuer",
+      "screenshots_in_public_dataset": false,
+      "scope": "Tested card only; account-specific statement. Wirex/HashBank shorthand does not independently establish a full legal entity."
+    },
+    {
+      "card": "okx",
+      "claim": "Емітент моєї картки: Bano Pty Ltd.",
+      "issuer_reported": "Bano Pty Ltd",
+      "confirmed_on": "2026-10-09",
+      "evidence_level": "participant_confirmed_test_card_issuer",
+      "screenshots_in_public_dataset": false,
+      "scope": "Tested card only; account-specific statement. Wirex/HashBank shorthand does not independently establish a full legal entity."
+    },
+    {
+      "card": "kolo",
+      "claim": "Емітент моєї картки: Wirex.",
+      "issuer_reported": "Wirex",
+      "confirmed_on": "2026-10-09",
+      "evidence_level": "participant_confirmed_test_card_issuer",
+      "screenshots_in_public_dataset": false,
+      "scope": "Tested card only; account-specific statement. Wirex/HashBank shorthand does not independently establish a full legal entity."
+    },
+    {
+      "card": "keyone",
+      "claim": "Емітент моєї картки: Wirex.",
+      "issuer_reported": "Wirex",
+      "confirmed_on": "2026-10-09",
+      "evidence_level": "participant_confirmed_test_card_issuer",
+      "screenshots_in_public_dataset": false,
+      "scope": "Tested card only; account-specific statement. Wirex/HashBank shorthand does not independently establish a full legal entity."
+    },
+    {
+      "card": "whitebit",
+      "claim": "Емітент моєї картки: HashBank.",
+      "issuer_reported": "HashBank",
+      "confirmed_on": "2026-10-09",
+      "evidence_level": "participant_confirmed_test_card_issuer",
+      "screenshots_in_public_dataset": false,
+      "scope": "Tested card only; account-specific statement. Wirex/HashBank shorthand does not independently establish a full legal entity."
+    },
+    {
+      "card": "coca",
+      "claim": "Емітент моєї картки: Wirex.",
+      "issuer_reported": "Wirex",
+      "confirmed_on": "2026-10-09",
+      "evidence_level": "participant_confirmed_test_card_issuer",
+      "screenshots_in_public_dataset": false,
+      "scope": "Tested card only; account-specific statement. Wirex/HashBank shorthand does not independently establish a full legal entity."
+    },
+    {
+      "card": "simple",
+      "claim": "Емітент моєї картки: Wirex.",
+      "issuer_reported": "Wirex",
+      "confirmed_on": "2026-10-09",
+      "evidence_level": "participant_confirmed_test_card_issuer",
+      "screenshots_in_public_dataset": false,
+      "scope": "Tested card only; account-specific statement. Wirex/HashBank shorthand does not independently establish a full legal entity."
+    },
+    {
+      "card": "kolo",
+      "claim": "На акаунт надходить саме показана сума кешбеку в BTC; її можна враховувати.",
+      "evidence_level": "participant_confirmed_btc_amount_pending_credit",
+      "confirmed_on": "2026-10-09",
+      "asset": "BTC",
+      "amount_shown": "0.0000008",
+      "screenshots_in_public_dataset": false,
+      "scope": "Clarified in subsequent author message: credit takes a few days; use the shown fixed BTC amount for calculated purchase cost before payout. No credited balance or BTC sale independently verified."
+    },
+    {
+      "card": "bybit",
+      "claim": "Додав скрін BIN-пошуку: FLY WALLET PTY, LTD., Австралія, Mastercard prepaid, поле валюти AUD.",
+      "evidence_level": "participant_supplied_bin_lookup_screenshot",
+      "confirmed_on": "2026-10-09",
+      "screenshots_in_public_dataset": false,
+      "scope": "Supporting BIN database evidence, provider and freshness unknown; no individual agreement. BIN and raw screenshot withheld; AUD does not establish purchase settlement currency."
+    },
+    {
+      "card": "coca",
+      "claim": "Додав три скріни BIN-пошуку: Wirex Ltd / Wirex Limited, Велика Британія, Visa prepaid; на одному поле валюти GBP.",
+      "evidence_level": "participant_supplied_bin_lookup_screenshot",
+      "confirmed_on": "2026-10-09",
+      "screenshots_in_public_dataset": false,
+      "scope": "Issuer name corroboration from three displayed BIN lookup results; providers, freshness and independent upstream sources unknown. Individual agreement absent; BIN and original screenshots withheld."
+    },
+    {
+      "card": "keyone",
+      "claim": "BIN-пошук KeyOne дає той самий результат, що й COCA: Wirex Limited, Велика Британія.",
+      "evidence_level": "participant_reported_bin_lookup_result",
+      "confirmed_on": "2026-10-09",
+      "screenshots_in_public_dataset": false,
+      "scope": "Participant-reported matching BIN result; no separate screenshot or individual agreement supplied. BIN withheld."
+    },
+    {
+      "card": "kolo",
+      "claim": "BIN-пошук KOLO дає той самий результат, що й COCA: Wirex Limited, Велика Британія.",
+      "evidence_level": "participant_reported_bin_lookup_result",
+      "confirmed_on": "2026-10-09",
+      "screenshots_in_public_dataset": false,
+      "scope": "Participant-reported matching BIN result; no separate screenshot or individual agreement supplied. BIN withheld."
+    },
+    {
+      "card": "simple",
+      "claim": "BIN-пошук Simple дає той самий результат, що й COCA: Wirex Limited, Велика Британія.",
+      "evidence_level": "participant_reported_bin_lookup_result",
+      "confirmed_on": "2026-10-09",
+      "screenshots_in_public_dataset": false,
+      "scope": "Participant-reported matching BIN result; no separate screenshot or individual agreement supplied. BIN withheld."
+    },
+    {
+      "card": "solid",
+      "claim": "BIN-пошук Solid дає той самий результат, що й COCA: Wirex Limited, Велика Британія.",
+      "evidence_level": "participant_reported_bin_lookup_result",
+      "confirmed_on": "2026-10-09",
+      "screenshots_in_public_dataset": false,
+      "scope": "Participant-reported matching BIN result; no separate screenshot or individual agreement supplied. BIN withheld."
+    },
+    {
+      "card": "trustee_plus",
+      "claim": "BIN-пошук Trustee Plus дає той самий результат, що й COCA: Wirex Limited, Велика Британія.",
+      "evidence_level": "participant_reported_bin_lookup_result",
+      "confirmed_on": "2026-10-09",
+      "screenshots_in_public_dataset": false,
+      "scope": "Participant-reported matching BIN result, corroborating official product page. No separate screenshot or individual agreement supplied. BIN withheld."
+    },
+    {
+      "card": "okx",
+      "claim": "Додав три скріни BIN-пошуку: два показують Bano Pty Ltd, Австралія, Debit; третій — JPMorgan Chase Bank, N.A., США, Credit.",
+      "evidence_level": "participant_supplied_conflicting_bin_lookup_screenshots",
+      "confirmed_on": "2026-10-09",
+      "screenshots_in_public_dataset": false,
+      "scope": "Conflicting supporting BIN records; previously reported Bano remains provisional. Provider freshness and independent sources unknown; legal issuer unresolved without account-specific agreement or support confirmation. BIN withheld; original screenshots deleted after analysis."
+    },
+    {
+      "card": "whitebit",
+      "claim": "Додав три BIN-скріни WhiteBIT: Insbank, США, Visa Debit; два позначають Business.",
+      "evidence_level": "participant_supplied_bin_lookup_screenshot",
+      "confirmed_on": "2026-10-09",
+      "screenshots_in_public_dataset": false,
+      "scope": "BIN records disagree with official Nova USD product documentation; cause unresolved. Providers and freshness unknown. BIN withheld; original screenshots deleted after analysis."
+    },
+    {
+      "card": "whitebit",
+      "claim": "У моєму Apple Pay для WhiteBIT написано Hashbank.",
+      "evidence_level": "participant_reported_wallet_issuer_label",
+      "confirmed_on": "2026-10-09",
+      "screenshots_in_public_dataset": false,
+      "scope": "Participant-reported Apple Pay label; no separate wallet screenshot supplied. Not an individual card agreement."
+    },
+    {
+      "card": "kolo",
+      "claim": "Share Card Kolo — працює.",
+      "evidence_level": "participant_confirmed_family_share_card_use",
+      "confirmed_on": "2026-10-09",
+      "test_date": null,
+      "screenshots_in_public_dataset": false,
+      "scope": "Author-confirmed working Share Card. Exact setup, limits, access revocation and refunds were not described; no independent screenshot verification."
+    },
+    {
+      "card": "kolo",
+      "claim": "Кешбек зарахується за кілька днів; показану BTC-суму враховую вже зараз у розрахунковій вартості покупки.",
+      "evidence_level": "participant_requested_btc_valuation_before_credit",
+      "confirmed_on": "2026-10-09",
+      "asset": "BTC",
+      "amount_shown": "0.0000008",
+      "screenshots_in_public_dataset": false,
+      "scope": "Calculated cost includes the shown BTC amount at a fixed reference quote; actual payout date and future BTC/USD price remain unknown."
+    },
+    {
+      "card": "whitebit",
+      "claim": "Кешбек зарахується за кілька днів; показану BTC-суму враховую вже зараз у розрахунковій вартості покупки.",
+      "evidence_level": "participant_requested_btc_valuation_before_credit",
+      "confirmed_on": "2026-10-09",
+      "asset": "BTC",
+      "amount_shown": "0.00000215",
+      "screenshots_in_public_dataset": false,
+      "scope": "Calculated cost includes the shown BTC amount at a fixed reference quote; actual payout date and future BTC/USD price remain unknown."
+    },
+    {
+      "claim": "Валюта всіх моїх карток — USD, окрім Kolo — EUR.",
+      "card_currencies": {
+        "okx": "USD",
+        "coca": "USD",
+        "kolo": "EUR",
+        "solid": "USD",
+        "bybit": "USD",
+        "trustee_plus": "USD",
+        "simple": "USD",
+        "keyone": "USD",
+        "whitebit": "USD"
+      },
+      "confirmed_on": "2026-10-09",
+      "evidence_level": "participant_confirmed_test_card_currency",
+      "screenshots_in_public_dataset": false,
+      "scope": "Card denomination reported by the author for the tested cards; separate from funding/spending crypto assets, merchant currency and internal processor settlement currency."
+    },
+    {
+      "card": "solid",
+      "confirmed_on": "2026-10-09",
+      "evidence_level": "participant_assessed_completed_payment",
+      "claim": "Після перевірки старіших операцій, що досі мають Pending, для дослідження вважаю тестовий платіж Done.",
+      "screenshots_in_public_dataset": false,
+      "scope": "Author assessment of payment completion, not a Done label observed in the app, independently verified card-network settlement, or crediting of the current $0.11 cashback.",
+      "unverified_hypotheses": [
+        "The transaction status may not update in the app.",
+        "Pending may be related to the cashback release period."
+      ],
+      "documented_cashback_rule": "14 days after settlement; this does not establish what the Pending transaction label means."
+    },
+    {
+      "card": "solid",
+      "confirmed_on": "2026-10-09",
+      "evidence_level": "participant_accepted_fixed_cashback_amount",
+      "claim": "Solid для дослідження — повністю Done; показані $0.11 кешбеку вважаю остаточною сумою та включаю в розрахунок відразу.",
+      "amount_usd": "0.11",
+      "net_cost_usd": "3.53",
+      "scope": "Author-directed comparison treatment of the displayed amount; does not assert a newly observed payout or change the original screenshot."
+    },
+    {
+      "card": "keyone",
+      "claim": "Інформації про Keyone Earning не знайшов.",
+      "confirmed_on": "2026-10-09",
+      "evidence_level": "participant_report_no_earning_information_found",
+      "scope": "Report of an unsuccessful search; not an official confirmation that no yield product exists."
+    },
+    {
+      "card": "kolo",
+      "claim": "Інформації про Kolo Earning не знайшов.",
+      "confirmed_on": "2026-10-09",
+      "evidence_level": "participant_report_no_earning_information_found",
+      "scope": "Report of an unsuccessful search; not an official confirmation that no yield product exists."
+    },
+    {
+      "card": "okx",
+      "claim": "Інших варіантів Earning для карткового балансу OKX не знайшов.",
+      "confirmed_on": "2026-10-10",
+      "evidence_level": "participant_report_no_earning_information_found",
+      "scope": "Report of an unsuccessful search for other card-linked Earning; not an official confirmation that no yield product exists. The documented USDG Rewards exclusion for Ukraine remains separately evidenced."
+    },
+    {
+      "card": "solid",
+      "claim": "Схоже, показані 4.3% APY — середня за 30 днів, на відміну від 2.83% 7 Day APY.",
+      "confirmed_on": "2026-10-10",
+      "evidence_level": "participant_hypothesis_rate_averaging_window",
+      "scope": "Tentative interpretation of the displayed USD headline rate; its averaging window is not labeled in the supplied screenshots or independently confirmed. Both figures are annualized APY, not returns earned over 30 or 7 days.",
+      "followup": "Subsequent private screenshots show labeled 7/15/30-day APY of 2.83%/3.44%/4.29%; rounded 4.3% is consistent with the 30-day figure, but the exact headline formula is not documented."
+    },
+    {
+      "card": "trustee_plus",
+      "claim": "Інформації про Trustee Plus Earning не знайшов.",
+      "confirmed_on": "2026-10-10",
+      "evidence_level": "participant_report_no_earning_information_found",
+      "scope": "Report of an unsuccessful search; not an official confirmation that no yield product exists. Trustee Points remain internal bonuses with no established monetary value."
+    },
+    {
+      "card": "bybit",
+      "claim": "На приватних скринах Bybit Auto-Earn показано USDT 6.81% APR (увімкнено), USDC 5.42% APR (вимкнено) та Auto Deduction «Deducted during payment». Загальний банер до 10.89% не є ставкою USDT.",
+      "confirmed_on": "2026-10-10",
+      "evidence_level": "author_transcription_of_private_app_screenshots",
+      "screenshots_in_public_dataset": false,
+      "scope": "Author review and transcription of privately supplied app screenshots. Images are retained only for private analysis and withheld from the public site and repository. Not independently inspectable image evidence or measured annual income."
+    },
+    {
+      "card": "simple",
+      "claim": "На приватному скрині Simple показано змінні 5% APR, автоматичне нарахування залежно від балансу й отримання від 1 USDC.",
+      "confirmed_on": "2026-10-10",
+      "evidence_level": "author_transcription_of_private_app_screenshots",
+      "screenshots_in_public_dataset": false,
+      "scope": "Author review and transcription of privately supplied app screenshots. Images are retained only for private analysis and withheld from the public site and repository. Not independently inspectable image evidence or measured annual income."
+    },
+    {
+      "card": "solid",
+      "claim": "На приватних скринах Solid показано USDC USD Yield 4.3% APY та 2.83% 7 Day APY, ETH 6.6% / 6.62% і FUSE 13.9%. Підказки описують автоматичне нарахування й капіталізацію та переказ Savings у гаманець або на картку. Фактичні внесення, дохід і переказ не перевірені.",
+      "confirmed_on": "2026-10-10",
+      "evidence_level": "author_transcription_of_private_app_screenshots",
+      "screenshots_in_public_dataset": false,
+      "scope": "Author review and transcription of privately supplied app screenshots. Images are retained only for private analysis and withheld from the public site and repository. Not independently inspectable image evidence or measured annual income."
+    },
+    {
+      "card": "whitebit",
+      "claim": "На приватних скринах WhiteBIT показано Auto-Invest DCA та історичний ROI без видимого періоду; активних планів немає. Це не підтверджена ставка APR/APY на картковий залишок.",
+      "confirmed_on": "2026-10-10",
+      "evidence_level": "author_transcription_of_private_app_screenshots",
+      "screenshots_in_public_dataset": false,
+      "scope": "Author review and transcription of privately supplied app screenshots. Images are retained only for private analysis and withheld from the public site and repository. Not independently inspectable image evidence or measured annual income."
+    },
+    {
+      "card": "solid",
+      "claim": "На додаткових приватних екранах Solid 7 / 15 / 30 Day APY — 2.83% / 3.44% / 4.29%. FAQ описує внесення USDC або USDT за soUSD, зростання вартості soUSD з доходом та вивід без exit fee, переважно за кілька хвилин. У моєму акаунті є Cash і Credit; Credit показує 4.00% APY і працює лише з USD Yield. Екран вступу з 5.57% — ілюстрація, не моя ставка. Credit і списання з Savings фактично не перевірені.",
+      "confirmed_on": "2026-10-10",
+      "evidence_level": "author_transcription_of_private_app_screenshots",
+      "screenshots_in_public_dataset": false,
+      "scope": "Author transcription of privately supplied app screens, FAQ and onboarding. Labeled historical annualized APY and account-screen borrowing quote are observed UI data, not future yields, measured payout, activated loan or tested payment."
+    },
+    {
+      "card": "coca",
+      "claim": "На екранах балансу COCA бачу Earning 5% і приріст лічильника з $0.00005191 до $0.00007055: +$0.00001864. Це не доказ отримання чи виміряний APY; вид ставки й механізм перевіряю за окремими офіційними умовами.",
+      "confirmed_on": "2026-10-10",
+      "evidence_level": "author_transcription_of_displayed_balance_rate_and_counter",
+      "scope": "Author summary of observed UI data, not measured annual yield or an independently verified claim/withdrawal. No image link is included among Earning sources."
+    },
+    {
+      "card": "coca",
+      "claim": "Платіж COCA завершений; Pending стосується лише зарахування кешбеку. Показані $0.03 враховую до виплати: $3.63 − $0.03 = $3.60.",
+      "confirmed_on": "2026-10-10",
+      "evidence_level": "participant_accepted_fixed_cashback_amount",
+      "amount_shown": "0.03",
+      "asset": "USD",
+      "scope": "Completed purchase and pending cashback credit are separate. Included amount is an accounting estimate, not independent proof of payout."
+    },
+    {
+      "card": "okx",
+      "confirmed_on": "2026-10-11",
+      "evidence_level": "visually_transcribed_completed_transaction",
+      "claim": "Тестова оплата завершена: сума розрахунку $3.52, витрачено 3.49 USDT; мережеву комісію сплатив OKX.",
+      "source_file": "screenshots/okx_completed.png"
+    },
+    {
+      "card": "bybit",
+      "confirmed_on": "2026-10-11",
+      "evidence_level": "visually_transcribed_completed_transaction_and_credited_points",
+      "claim": "Тестова оплата Successful: $3.59, включно з $0.07 foreign fee; зараховано 36 балів. За збереженими умовами це 0.072 USDT, фактична конвертація не підтверджена. Остаточну кількість витрачених USDT нові екрани не показують.",
+      "source_files": [
+        "screenshots/bybit_completed.png",
+        "screenshots/bybit_points.png"
+      ]
+    },
+    {
+      "card": "bybit",
+      "confirmed_on": "2026-10-11",
+      "evidence_level": "participant_report_app_information_limit",
+      "claim": "Надав усю доступну інформацію. Після завершення застосунок більше не показує точне списання USDT.",
+      "scope": "Earlier report about the completed card screen. Superseded for exact USDT spending by subsequently supplied general asset history; retain the original report chronologically."
+    },
+    {
+      "card": "whitebit",
+      "confirmed_on": "2026-10-11",
+      "evidence_level": "participant_report_pending_status_and_expected_unchanged_amount",
+      "claim": "Статус досі Pending. Думаю, що сума не зміниться.",
+      "scope": "Expectation only; does not independently establish completion or a final amount."
+    },
+    {
+      "card": "kolo",
+      "confirmed_on": "2026-10-11",
+      "evidence_level": "visually_transcribed_historical_purchases_and_aggregate_cashback_credit",
+      "claim": "Попередня успішна виплата 0.00000443 BTC за два платежі точно збігається з показаним кешбеком OpenRouter 0.00000134 BTC та Hloya 0.00000309 BTC. OpenRouter: рахунок 5.80 USD, списання 5.94 USDT, карткова сума 5.15 EUR.",
+      "source_file": "screenshots/kolo_cashback_history.png",
+      "amount_btc": "0.00000443",
+      "payments_count": 2,
+      "test_purchase_credit": false,
+      "scope": "Both purchase screenshots and aggregate successful BTC credit are available. Displayed BTC amounts sum exactly to the payout; attribution of this payout to those purchases is participant-confirmed. Does not establish credit of the 0.0000008 BTC controlled-test reward or a historical net USD amount.",
+      "purchase_source_files": [
+        "screenshots/kolo_historical_usd.png",
+        "screenshots/kolo_historical_uah.png"
+      ]
+    },
+    {
+      "card": "okx",
+      "confirmed_on": "2026-10-11",
+      "evidence_level": "visually_transcribed_historical_usd_purchase",
+      "claim": "Завершений OpenRouter: рахунок 5.80 USD, витрачено 5.75 USDT; мережеву комісію сплатив OKX, кешбек непридатний. Це уточнює попередній запис про списання 5.80 USDT.",
+      "source_file": "screenshots/okx_historical_usd.png",
+      "scope": "Historical USD payment separate from the controlled UAH test. The nominal -0.86% difference is not cashback or a guaranteed rate; token ledger and conversion mechanism not independently reconciled."
+    },
+    {
+      "card": "solid",
+      "confirmed_on": "2026-10-11",
+      "evidence_level": "visually_transcribed_historical_usd_purchases_and_shown_cashback",
+      "claim": "OpenRouter 29.09.2026: показано списання $5.80, кешбек $0.17, Standard 3%. ChatGPT 01.10.2026: $100.00, кешбек $3.00, Standard 3%. Обидва екрани позначають Subscriptions та Pending.",
+      "source_files": [
+        "screenshots/solid_historical_usd.png",
+        "screenshots/solid_historical_chatgpt.png"
+      ],
+      "scope": "Screenshots establish displayed USD charges and Standard 3% cashback, not an exact crypto debit, payout credit, or Prime 10% eligibility. Payments are treated as Done under the participant’s existing interpretation of Solid UI statuses."
+    },
+    {
+      "card": "simple",
+      "confirmed_on": "2026-10-11",
+      "evidence_level": "visually_transcribed_historical_usd_purchases",
+      "claim": "Завершені оплати Simple: Apple 27.08.2026 о 22:22 — 99 USD / 99 USDC; OpenAI ChatGPT 29.08.2026 о 18:35 — 100 USD / 100 USDC. В обох показано курс 1 USDC = 1 USD.",
+      "source_files": [
+        "screenshots/simple_historical_apple.png",
+        "screenshots/simple_historical_chatgpt.png"
+      ],
+      "scope": "Shows no surcharge at the USD purchase step and successful payments to these merchants. Does not establish funding/conversion costs, the exact Apple product purchased, or a permanent zero-fee promise."
+    },
+    {
+      "card": "bybit",
+      "confirmed_on": "2026-10-11",
+      "evidence_level": "visually_transcribed_completed_usd_card_transaction_and_points_credit",
+      "claim": "OpenRouter Successful: $5.80, settlement 27.09.2026, 58 балів зараховано; MCC 5734 Software. Pay with Crypto показано як 5.80 USD, не USDT.",
+      "source_files": [
+        "screenshots/bybit_historical_usd.png",
+        "screenshots/bybit_historical_usd_details.png",
+        "screenshots/bybit_historical_usd_points.png"
+      ],
+      "scope": "The three screens match the same transaction by private IDs, timestamps, merchant and amount. They establish completed USD card charge and points credit; exact USDT debit and actual points redemption are not established. Earlier 5.8819 USDT remains participant-reported. Subsequently supplied asset history corroborates two debits totaling 5.8819 USDT; actual points redemption remains unverified."
+    },
+    {
+      "card": "solid",
+      "confirmed_on": "2026-10-11",
+      "evidence_level": "author_checked_onchain_historical_usd_observation",
+      "claim": "За наданими прямими посиланнями OpenRouter і ChatGPT мають Success та MasterAccount-Debit-Settlement, transactionCurrency USD, джерело WUSD; суми 5.80 та 100 WUSD узгоджуються зі скрінами при округленні до 6 знаків.",
+      "source_file": "data/onchain-summary.json",
+      "scope": "Corroborates executed internal USD settlement against master-account WUSD, unlike EUR/WEUR in the controlled UAH purchase. Does not independently establish card-network finality, user-paid gas, USDT funding/conversion cost, cashback payout, or a causal FX advantage. URLs, addresses and raw logs are private."
+    },
+    {
+      "card": "bybit",
+      "confirmed_on": "2026-10-11",
+      "evidence_level": "visually_transcribed_payment_asset_history",
+      "claim": "Історія активів: тестова покупка 3.6407 USDT → $3.59; історичний USD-платіж 5.8696 + 0.0123 = 5.8819 USDT. Обидві послідовності показують Savings Redemption (Card) із Earn.",
+      "source_files": [
+        "screenshots/bybit_asset_history.png",
+        "screenshots/bybit_historical_usd_assets.png"
+      ],
+      "scope": "Payment-route evidence, not APY screenshots. Internal redemptions are not extra costs or yield. Historical purchase association uses author context, amount and sequence without shared IDs; extra 0.0123 purpose unknown. No proof of points redemption."
+    },
+    {
+      "card": "bybit",
+      "confirmed_on": "2026-10-11",
+      "evidence_level": "visual_app_screenshots_and_privately_reviewed_explorer; operational_steps_participant_report",
+      "claim": "Поповнив через Polygon на 10 USDT: усі 10 зараховані на акаунт фінансування, Spending Power $9.86. Після зарахування й розблокування можна користуватись карткою без ручного переказу. Час відповідає очікуванню для обраної мережі; користуватись зручно.",
+      "source_file": "data/funding-tests.json",
+      "scope": "Separate funding test. No token credit deduction; network gas is separate. Spending Power is a USD valuation, not proof of a deposit fee. Private explorer link withheld; precise network requirements and unlock time not independently verified."
+    },
+    {
+      "card": "coca",
+      "confirmed_on": "2026-10-11",
+      "evidence_level": "visually_transcribed_completed_deposit_and_privately_reviewed_onchain_events",
+      "claim": "Поповнення 10 USDT через Ethereum → Base: орієнтовний курс 0.9920 USD/USDT, завершене зарахування $9.96. Ончейн-переказ 10 USDT; у зарахуванні видно 9.969083 USDC/WUSD. Gas відправника окремо в ETH; оплату Base gas мною не підтверджено.",
+      "source_file": "data/funding-tests.json",
+      "scope": "Separate funding route, not a new payment. Addresses and transaction IDs private; account Earning screenshot retained only for private analysis."
+    },
+    {
+      "card": "keyone",
+      "confirmed_on": "2026-10-11",
+      "evidence_level": "visually_transcribed_pending_and_completed_deposit_and_privately_reviewed_onchain_events",
+      "claim": "Поповнення через Base: 10 USDT відправлено, спочатку +9.91 USDC Pending і баланс $0, потім Completed та баланс $9.91. Ончейн внутрішнє зарахування — 9.910683 USDC/WUSD; gas відправника окремо. Попереднє виведення $1.30 не є витратою цього внеску.",
+      "source_file": "data/funding-tests.json",
+      "scope": "Private transaction ID fragments match. Native sending gas counted separately; service credit gas not added without payer evidence. No measured Earning or confirmed active plan."
+    },
+    {
+      "card": "coca",
+      "confirmed_on": "2026-10-11",
+      "evidence_level": "visually_transcribed_app_completed_withdrawal",
+      "claim": "Виведення USDC у Base Completed: Recipient got 9.9691, Fees Sponsored; review і confirmation показували 9.96. Сума узгоджується з внутрішнім зарахуванням 9.969083 після округлення до 4 знаків.",
+      "source_file": "data/funding-tests.json",
+      "scope": "Original screenshot observation. Subsequent private explorer review confirms exact 9.969083 USDC receipt and no token deduction; see later onchain observation."
+    },
+    {
+      "card": "keyone",
+      "confirmed_on": "2026-10-11",
+      "evidence_level": "visually_transcribed_max_form_and_app_completed_withdrawal",
+      "claim": "Виведення USDC у Base: Max 9.910683 у формі, завершений екран −$9.91 Completed. Точної суми отримувача та окремої комісії на екрані немає.",
+      "source_file": "data/funding-tests.json",
+      "scope": "Original screenshot observation. Subsequent private explorer review confirms exact 9.910683 USDC receipt and no token deduction; see later onchain observation."
+    },
+    {
+      "card": "bybit",
+      "confirmed_on": "2026-10-11",
+      "evidence_level": "participant_report_only",
+      "claim": "Виведення коштів відбувається за правилами біржі для обраного активу й мережі.",
+      "source_file": "data/funding-tests.json",
+      "scope": "Participant report; no measured withdrawal amount or fee supplied."
+    },
+    {
+      "card": "coca",
+      "confirmed_on": "2026-10-11",
+      "evidence_level": "author_checked_private_explorer_transfer_and_events",
+      "claim": "Виведення Base Success: кінцевий гаманець отримав 9.969083 USDC, рівно внутрішнє зарахування та списання при виведенні. Утримання USDC — 0; UserOperationEvent success true, actualGasCost 0.",
+      "source_file": "data/funding-tests.json",
+      "scope": "Author-checked final USDC transfer, internal debit, WUSD burn and successful AA operation. Nonzero bundle ETH gas not charged by the user-operation event; ultimate sponsor unknown. Same nominal parity assumption and separate initial sender gas. Private explorer links, wallets and raw logs withheld; no universal withdrawal-fee or measured APY claim."
+    },
+    {
+      "card": "keyone",
+      "confirmed_on": "2026-10-11",
+      "evidence_level": "author_checked_private_explorer_transfer_and_events",
+      "claim": "Виведення Base Success: кінцевий гаманець отримав 9.910683 USDC, рівно внутрішнє зарахування та списання при виведенні. Утримання USDC — 0; UserOperationEvent success true, actualGasCost 0.",
+      "source_file": "data/funding-tests.json",
+      "scope": "Author-checked final USDC transfer, internal debit, WUSD burn and successful AA operation. Nonzero bundle ETH gas not charged by the user-operation event; ultimate sponsor unknown. Same nominal parity assumption and separate initial sender gas. Private explorer links, wallets and raw logs withheld; no universal withdrawal-fee or measured APY claim."
+    },
+    {
+      "card": "kolo",
+      "confirmed_on": "2026-10-11",
+      "evidence_level": "visual_app_screenshots_and_author_checked_private_explorer_transfers",
+      "claim": "Arbitrum One: поповнення 10 USDT, усі 10 зараховані без утримання; у Wallet 10 USDT та оцінка €8.91. Виведення зі залишками: буде списано 11.46, буде надіслано 10.46, комісія 1 USDT; ончейн підтвердив 10.46 на кінцевому гаманці.",
+      "source_file": "data/funding-tests.json",
+      "scope": "Participant explicitly says the withdrawal includes other balance. It is not 0.46 profit from a 10-USDT deposit. Deposit sender gas separate; withdrawal service gas not added again to the quoted 1-USDT charge. EUR valuation not an executed conversion; receipt confirms sent amount, not a full completed app debit ledger."
+    },
+    {
+      "card": "okx",
+      "confirmed_on": "2026-10-11",
+      "evidence_level": "visual_app_screenshots_and_author_checked_xlayer_rpc_receipts",
+      "claim": "OKX Pay X Layer: повні 10 USDT зараховані й ончейн повернуті на той самий гаманець. Pay показує ≈$9.98, але у відомостях балансу залишаються 10 USDT. Попередній перегляд виведення — 10 USDT, мережеву комісію сплатив OKX; ончейн gas price нульовий. Початковий sender gas — 0.0000015222 OKB окремо.",
+      "source_file": "data/funding-tests.json",
+      "scope": "Token amounts and receipt success checked by X Layer RPC chain 196, not merely explorer page metadata. Sponsorship attribution comes from app. Ethereum activation minimum 0.00082681 ETH is an untested app term. Historical transfers and duplicate notification screenshot excluded from public evidence."
+    },
+    {
+      "card": "simple",
+      "confirmed_on": "2026-10-11",
+      "evidence_level": "visual_app_screenshots_and_author_checked_private_explorer_transfers_and_events",
+      "claim": "10 USDT у Polygon → показані 9.98 USDC на картці. Max 9.989909 USDC повернув через гаманець Simple на зовнішній гаманець у Base: обидві операції Success, отримана сума однакова. Номінальна різниця всього маршруту 0.10091%, sender gas у POL окремо.",
+      "source_file": "data/funding-tests.json",
+      "scope": "Exact initial card credit not established. No token withdrawal deduction; AA gas nonzero, paymaster present, external transfer relayed. Ultimate gas reimbursement unknown; historical Earning excluded."
+    },
+    {
+      "card": "solid",
+      "confirmed_on": "2026-10-11",
+      "evidence_level": "visual_app_screenshots_and_author_checked_private_arbiscan_and_fuse_blockscout_api",
+      "claim": "Arbitrum → Fuse: 10 USDT → 9.997, різниця 0.003 / 0.03%. Прямий Fuse: 10 → 10. Обидва внески повернув одним виведенням 19.997 USDT у Fuse без утримання токенів, Gas Paid by Solid. Початковий sender gas у ETH та FUSE окремо.",
+      "source_file": "data/funding-tests.json",
+      "scope": "USD valuation and 2dp token rounding are not extra fees. Arbitrum withdrawal quote 0.33 USDT was not executed. Sponsored events show zero token charge; raw source links and wallet history private."
+    },
+    {
+      "card": "trustee_plus",
+      "confirmed_on": "2026-10-11",
+      "evidence_level": "visual_app_screenshots_and_card_receipt_with_author_checked_private_polygon_transfers",
+      "claim": "Polygon 10 + 1 USDT надійшли в гаманець. Перші 10 не дозволили переказати 10 на картку: fee 0.06 USDT понад суму, менший переказ 9.95 заблокований мінімумом 10. Після доплати переказав 10; квитанція картки 9.965114 USDT, залишок гаманця 0.94. Для мене найменш зручна апка тесту.",
+      "source_file": "data/funding-tests.json",
+      "scope": "Usability opinion separate from measured amounts. Approximate full cost uses displayed fee precision. Extra 1 is not all a fee; earlier withdrawals not part of this test. Explorer links and payer identity private."
+    },
+    {
+      "card": "trustee_plus",
+      "confirmed_on": "2026-10-11",
+      "evidence_level": "participant_confirmation_supported_by_balance_change",
+      "claim": "Збільшення балансу з 10.885677 до 11.885677 USDT — ще одне поповнення на 1 USDT для покриття комісії виводу.",
+      "source_file": "data/funding-tests.json",
+      "scope": "Third deposit separate from initial 10 + 1. No onchain receipt, gas or completed withdrawal supplied."
+    },
+    {
+      "card": "whitebit",
+      "confirmed_on": "2026-10-11",
+      "evidence_level": "participant_report_supported_by_app_balances_and_withdrawal_form",
+      "claim": "Поповнюється основний баланс біржі, картка доступна без окремого переказу, приблизно як у Bybit. Додаткові 1.18 USDT у формі виводу — залишок з іншого рахунку WhiteBIT для обнулення біржі.",
+      "source_file": "data/funding-tests.json",
+      "scope": "Operational experience and residual origin; not an independent completed withdrawal or sender gas proof."
+    }
+  ]
+}

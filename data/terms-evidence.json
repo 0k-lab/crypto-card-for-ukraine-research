@@ -1,0 +1,327 @@
+{
+  "evidence_type": "displayed_product_terms_not_measured_payout",
+  "captured_on": "2026-10-09",
+  "images": [
+    {
+      "file": "screenshots/solid_prime_terms.png",
+      "source_name": "solid_prime_terms.png",
+      "dimensions": [
+        1179,
+        2556
+      ],
+      "notes": "Prime tab selected; Upgrade to Prime button visible. This is a tier terms preview, not proof of active Prime membership or actual reward payment.",
+      "sha256": "3924eae8a881fcb1cbc759a2b4d8f5cf5e09885fb40d5c5643d8aa4355987637"
+    },
+    {
+      "card": "whitebit",
+      "file": "screenshots/whitebit_cashback_currency.png",
+      "source_name": "whitebit_cashback_currency.png",
+      "caption_key": "ui.whitebit_currency_caption",
+      "dimensions": [
+        1179,
+        2556
+      ],
+      "sha256": "09ef327d02f250f032ab37528d7462c2b83ace39479b8d043701e6d4a115b0d6",
+      "privacy_review": "No names, card details, wallet addresses, QR codes or transaction IDs visible. Status bar retained; ancillary PNG metadata removed; IHDR/IDAT/IEND chunks unchanged.",
+      "pixel_data_unchanged": true
+    },
+    {
+      "card": "whitebit",
+      "file": "screenshots/whitebit_cashback_categories.png",
+      "source_name": "whitebit_cashback_categories.png",
+      "caption_key": "ui.whitebit_categories_caption",
+      "dimensions": [
+        1179,
+        2556
+      ],
+      "sha256": "26fb944ca0e8f8a3250f24ce774f3e9ff3eca95bb688523b48101258286c8e31",
+      "privacy_review": "No names, card details, wallet addresses, QR codes or transaction IDs visible. Status bar retained; ancillary PNG metadata removed; IHDR/IDAT/IEND chunks unchanged.",
+      "pixel_data_unchanged": true
+    },
+    {
+      "card": "whitebit",
+      "file": "screenshots/whitebit_cashback_overview.png",
+      "source_name": "whitebit_cashback_overview.png",
+      "caption_key": "ui.whitebit_overview_caption",
+      "dimensions": [
+        1179,
+        2556
+      ],
+      "sha256": "e16a3ea87346091cdfb2bf16ef896c8d8be00ef24d2eb3f57ea0015c410290a6",
+      "privacy_review": "No names, card details, wallet addresses, QR codes or transaction IDs visible. Status bar retained; ancillary PNG metadata removed; IHDR/IDAT/IEND chunks unchanged.",
+      "pixel_data_unchanged": true
+    },
+    {
+      "card": "coca",
+      "file": "screenshots/coca_tier_claim_terms.png",
+      "source_name": "coca_tier_claim_terms.jpeg",
+      "caption_key": "ui.coca_tier_claim_terms_caption",
+      "dimensions": [
+        282,
+        612
+      ],
+      "privacy_review": "No names, card details, wallet addresses or transaction identifiers visible. Status bar and all terms retained; metadata removed; decoded JPEG pixels unchanged.",
+      "sha256": "e5d3ebaa031f15bf532dfa2b9d2122a860674174e9f2fbbc8f3a6622f913670b"
+    },
+    {
+      "card": "coca",
+      "file": "screenshots/coca_standard_claim_terms.png",
+      "source_name": "coca_standard_claim_terms.jpeg",
+      "caption_key": "ui.coca_standard_claim_terms_caption",
+      "dimensions": [
+        282,
+        612
+      ],
+      "privacy_review": "No names, card details, wallet addresses or transaction identifiers visible. Status bar and all terms retained; metadata removed; decoded JPEG pixels unchanged.",
+      "sha256": "6549ae10f40d7ba93944a24c5a6fec4ed83e2c8b119551fc67f8c1a5bfc0e709"
+    }
+  ],
+  "claims_visible": {
+    "regular_cashback_pct": "4",
+    "ai_streaming_music_cashback_pct": "10",
+    "rides_cashback_pct": "8",
+    "monthly_cashback_cap_usd": "100",
+    "prime_price_usd_per_year": "199",
+    "fuse_amount_to_upgrade": "50000",
+    "yield_boost_claim_pct_apy": "2",
+    "yield_boost_limit_usd": "10000"
+  },
+  "not_visible_on_this_screen": [
+    "first eligible purchase per category per month rule",
+    "early withdrawal / lock duration",
+    "FX fee detail",
+    "actual cashback payout",
+    "merchant eligibility of Apple Music billing"
+  ],
+  "rule_source": "https://support.solid.xyz/en/articles/15587319-how-does-solid-rewards-work",
+  "whitebit": {
+    "evidence_type": "displayed_account_program_settings_not_measured_payout",
+    "captured_on": "2026-10-09",
+    "claims_visible": {
+      "monthly_cashback_cap_usd": "25",
+      "cashback_currencies": [
+        "BTC",
+        "WBT"
+      ],
+      "selected_currency": "BTC",
+      "maximum_active_categories": 3,
+      "active_categories_count": 0,
+      "category_change_period": "once_per_week",
+      "category_rates": {
+        "taxi": "0.05",
+        "groceries": "0.01",
+        "food_cafes": "0.01",
+        "pets": "0.05",
+        "games": "0.02",
+        "subscriptions": "0.10",
+        "medicine": "0.01",
+        "entertainment": "0.02",
+        "auto": "0.01",
+        "electronics": "0.01",
+        "beauty": "0.01",
+        "clothing_shoes": "0.01"
+      },
+      "displayed_earned_usd": "0",
+      "displayed_btc_balance": "0"
+    },
+    "not_established_by_screenshots": [
+      "merchant MCC eligibility for specific subscriptions",
+      "settled cashback for the 158 UAH test",
+      "automatic activation of the displayed categories",
+      "future category rates",
+      "redemption threshold at zero balance"
+    ]
+  },
+  "bybit_earning": {
+    "evidence_type": "displayed_account_asset_rates_not_measured_annual_income",
+    "provided_on": "2026-10-09",
+    "screen_times": [
+      "23:45",
+      "23:45",
+      "23:46"
+    ],
+    "claims_visible": {
+      "banner_maximum_apr": "0.1089",
+      "asset_apr": {
+        "GRAM": "0.0176",
+        "USDT": "0.0681",
+        "USDC": "0.0542",
+        "MNT": "0.0130",
+        "BTC": "0.0040",
+        "BNB": "0.0080",
+        "ETH": "0.0080"
+      },
+      "usdt_auto_earn_enabled": true,
+      "usdc_auto_earn_enabled": false,
+      "usdt_auto_deduction": "Deducted during payment",
+      "usdc_auto_deduction": "Deducted during payment",
+      "usdt_total_staked": "1.3593",
+      "usdt_daily_yields_displayed": "0.0001"
+    },
+    "not_established": [
+      "rate bands or balance caps above displayed balance",
+      "income period and actual payment for Daily Yields",
+      "constant future APR",
+      "withdrawal terms for every supported asset"
+    ],
+    "source_images_public": false,
+    "public_evidence_level": "author_transcription_of_private_app_screenshots"
+  },
+  "coca_tiers": {
+    "evidence_type": "displayed_account_tier_terms_and_upgrade_preview_not_payout_or_active_standard",
+    "provided_on": "2026-10-09",
+    "claims_visible": {
+      "current_tier_name_not_visible": true,
+      "unlimited_accrual_no_monthly_spend_caps": true,
+      "claim_subject_to_monthly_capacity": true,
+      "standard_monthly_claim_capacity_usd": "25",
+      "unclaimed_rewards_carry_over": true,
+      "subscription_rebate_rate": "0.50",
+      "subscription_services": [
+        "Netflix",
+        "Disney+",
+        "Paramount+",
+        "YouTube Premium"
+      ],
+      "subscription_service_count": 1,
+      "subscription_monthly_price_cap_usd": "70",
+      "country_of_residence_condition": true,
+      "standard_required_stake_coca": "300",
+      "standard_stake_progress_shown": "0/300 COCA",
+      "cancellation_cooldown_days": 30
+    },
+    "not_established": [
+      "cashback payout for the live test",
+      "active Standard membership",
+      "specific country eligibility for subscription rebates",
+      "rebate treatment of subscriptions priced above $70"
+    ]
+  },
+  "simple_earning": {
+    "evidence_type": "displayed_account_rate_and_claim_threshold_not_measured_annual_income",
+    "provided_on": "2026-10-10",
+    "screen_time": "23:53",
+    "claims_visible": {
+      "apr": "0.05",
+      "automatic_accrual_based_on_balance": true,
+      "rate_variable": true,
+      "claim_minimum_usdc": "1",
+      "claim_button_visible": true
+    },
+    "not_established": [
+      "eligible balance cap or rate bands for a $1000 balance",
+      "accrual period for the historical unclaimed amount",
+      "actual claim or withdrawal",
+      "constant future APR",
+      "referral requirement for the displayed rate"
+    ],
+    "source_images_public": false,
+    "public_evidence_level": "author_transcription_of_private_app_screenshots"
+  },
+  "solid_earning": {
+    "evidence_type": "displayed_account_rates_and_onboarding_not_measured_income",
+    "provided_on": "2026-10-10",
+    "screen_times": [
+      "23:53",
+      "23:54",
+      "00:06",
+      "00:07",
+      "00:08"
+    ],
+    "claims_visible": {
+      "portfolio_total_usd": "0.00",
+      "asset_apy": {
+        "USDC": "0.043",
+        "ETH": "0.066",
+        "FUSE": "0.139"
+      },
+      "asset_7_day_apy": {
+        "USDC": "0.0283",
+        "ETH": "0.0662"
+      },
+      "deposit_assets": [
+        "USDC",
+        "ETH",
+        "FUSE"
+      ],
+      "automatic_accrual_and_compounding": true,
+      "withdraw_anytime_claim": true,
+      "transfer_to_wallet_or_card_claim": true,
+      "start_earning_button_visible": true,
+      "simulator_not_actual_balance": true,
+      "asset_15_day_apy": {
+        "USDC": "0.0344"
+      },
+      "asset_30_day_apy": {
+        "USDC": "0.0429"
+      },
+      "usd_faq_deposit_assets": [
+        "USDC",
+        "USDT"
+      ],
+      "soUSD_token_count_constant_value_grows": true,
+      "soUSD_fixed_one_usd": false,
+      "faq_spend_against_soUSD_without_withdrawing": true,
+      "faq_no_exit_fee_or_waiting_period": true,
+      "faq_most_withdrawals_within_minutes": true,
+      "cash_and_credit_modes_available_in_account_ui": true,
+      "credit_account_rate_apy": "0.04",
+      "credit_collateral_usd_yield_only": true,
+      "credit_activation_not_verified": true,
+      "onboarding_illustrative_borrowing_apy": "0.0557"
+    },
+    "not_established": [
+      "Exact headline APY calculation and relationship to chart averages not documented; labeled 30 Day APY 4.29% is consistent with rounded headline 4.3%",
+      "USD allocation rows as displayed sum to 96%, not a verified complete 100% allocation; reason unknown",
+      "Savings withdrawal minimum and any separate network/conversion fees not established; no exit fee and most withdrawals within minutes are app FAQ claims, not measured",
+      "Cash-mode spending directly from Savings not verified; FAQ spend-against-soUSD claim and Credit mode do not establish this",
+      "Credit LTV, liquidation rules, rate variability and repayment costs not established; actual loan/payment not tested",
+      "No active Savings balance or measured income; simulator balances are illustrative",
+      "ETH and FUSE yields are token-denominated, not stable USD income"
+    ],
+    "source_images_public": false,
+    "public_evidence_level": "author_transcription_of_private_app_screenshots"
+  },
+  "whitebit_autoinvest": {
+    "evidence_type": "displayed_autoinvest_terms_and_historical_roi_not_balance_yield_or_measured_returns",
+    "provided_on": "2026-10-10",
+    "screen_times": [
+      "23:57",
+      "23:58"
+    ],
+    "claims_visible": {
+      "total_invested_usdt": "0",
+      "no_active_plans": true,
+      "crypto_to_crypto_swaps": true,
+      "regular_fixed_amount_purchases_DCA": true,
+      "no_minimum_investment": true,
+      "price_limits_and_purchase_count_settings": true,
+      "historical_roi_pct": {
+        "BTC": "71.15",
+        "ETH": "-27.33",
+        "WBT": "4130.41",
+        "XRP": "31.64",
+        "SOL": "-23.76",
+        "TRX": "249.76",
+        "DOGE": "-61.72",
+        "SUI": "-17.30",
+        "BCH": "-51.84",
+        "FET": "-51.82",
+        "OP": "-77.79",
+        "S": "-94.36"
+      },
+      "btc_marketing_label": "Highest Yield"
+    },
+    "not_established": [
+      "APR or APY on a card-linked stablecoin balance",
+      "interest accrual or payouts",
+      "historical ROI period or calculation method",
+      "auto-invest swap fees or spreads",
+      "automatic liquidation for card payments",
+      "actual plan execution or realized profit",
+      "settlement or cashback payout from the repeated test purchase shown on the overview"
+    ],
+    "source_images_public": false,
+    "public_evidence_level": "author_transcription_of_private_app_screenshots"
+  }
+}

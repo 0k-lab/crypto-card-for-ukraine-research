@@ -1,0 +1,13 @@
+{
+  "requested_date": "2026-10-09",
+  "response_time_utc": "2026-10-09T14:56:42+00:00",
+  "source_url": "https://api.coinbase.com/v2/prices/BTC-USD/spot?date=2026-10-09",
+  "response": {
+    "data": {
+      "amount": "82976.035",
+      "base": "BTC",
+      "currency": "USD"
+    }
+  },
+  "use": "Fixed reference valuation of shown Kolo and WhiteBIT BTC cashback before credit, at author request. Response time is not the transaction or future payout time. No BTC sale measured."
+}

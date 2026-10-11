@@ -1,0 +1,356 @@
+{
+  "checked_on": "2026-10-09",
+  "evidence_type": "documented_terms_and_explicit_scenarios_not_measured_monthly_payouts",
+  "monthly_eligible_merchant_spend_usd": "1000",
+  "assumptions": [
+    "All 1000 USD of merchant purchases qualify; card, FX, funding and network fees are not part of cashback unless explicitly included in the Solid upgrade comparison.",
+    "Tiers are active for the full month. First-month upgrades, rounding per purchase, refunds and excluded MCCs can reduce payout.",
+    "Token principal is not a subscription fee. Token price risk, foregone income and exit restrictions are separate. Unknown caps are null, not unlimited.",
+    "No hypothetical tier changes the ranking of the measured 158 UAH test.",
+    "Kolo amounts are upper bounds before per-transaction caps; the 2% introductory period must cover the modeled purchases. EUR caps use the saved NBU EUR/USD ratio as a nominal conversion, not a measured Kolo exchange rate."
+  ],
+  "cards": {
+    "solid": {
+      "status": "official_terms",
+      "scope": "Solid Rewards; поточні правила, без старих індивідуальних 25%/50% за підписки.",
+      "sources": [
+        {
+          "label": "Solid Rewards",
+          "url": "https://support.solid.xyz/en/articles/15587319-how-does-solid-rewards-work"
+        }
+      ],
+      "tiers": [
+        {
+          "name": "Core · базовий",
+          "rate": "0.03",
+          "cap": "50",
+          "cap_kind": "earning",
+          "annual_fee_usd": "0",
+          "conditions": "Безкоштовно; увімкнути Rewards.",
+          "category_rate": "0.03",
+          "non_usd_fx_fee": "0.01"
+        },
+        {
+          "name": "Prime · наступний",
+          "rate": "0.04",
+          "cap": "100",
+          "cap_kind": "earning",
+          "annual_fee_usd": "199",
+          "conditions": "$199/рік або lock 50 000 FUSE на 12 місяців. З 12.10.2026 — 70 000 FUSE для нового lock; попередній зберігає свою суму.",
+          "category_rate": "0.10",
+          "non_usd_fx_fee": "0.005"
+        }
+      ],
+      "notes": [
+        "USDC-кешбек — через 14 днів після settlement. Категорійний кешбек замінює звичайний і використовує той самий cap.",
+        "Prime: AI/streaming/music 10%, rides 8%. Лише перша придатна покупка кожної категорії за календарний місяць. App Store, Google Play і PayPal — звичайна ставка.",
+        "Lock FUSE не є оплатою $199: токени залишаються моїми. Без ціни FUSE, оцінки ризику й фактичної дохідності lock немає єдиного порога окупності. За базовим бюджетом Prime дає додаткові $14.38/міс. разом із FX, або $20.38 із ChatGPT-категорією — до вартості капіталу й токенового ризику."
+      ]
+    },
+    "bybit": {
+      "status": "conflicting_official_program_pages",
+      "scope": "Моя картка Fly Wallet / AU. Загальна та AU-сторінки показують різні caps; активний розклад ще звірю в акаунті.",
+      "sources": [
+        {
+          "label": "Загальна програма",
+          "url": "https://www.bybit.com/en/pay-rewards/promo/rewards-details/"
+        },
+        {
+          "label": "AU Card",
+          "url": "https://www.bybitcard.com/aus"
+        },
+        {
+          "label": "VIP requirements",
+          "url": "https://www.bybit.com/en/VIPProgram/intro/"
+        }
+      ],
+      "tiers": [
+        {
+          "name": "Base · загальна",
+          "rate": "0.02",
+          "cap": "5",
+          "cap_kind": "earning",
+          "annual_fee_usd": "0",
+          "conditions": "Без платного upgrade; 2 500 points = 5 USDT."
+        },
+        {
+          "name": "Beta · загальна, наступний",
+          "rate": "0.02",
+          "cap": "50",
+          "cap_kind": "earning",
+          "annual_fee_usd": "0",
+          "conditions": "$500 придатного обороту за календарний місяць або VIP1/2. Upgrade — наступного дня після підтвердження покупки, до кінця наступного місяця."
+        },
+        {
+          "name": "Non-VIP · AU",
+          "rate": "0.02",
+          "cap": "10",
+          "cap_kind": "earning",
+          "annual_fee_usd": "0",
+          "conditions": "Без щорічної чи місячної плати; 5 000 points = 10 USDT."
+        },
+        {
+          "name": "VIP1 · AU, наступний",
+          "rate": "0.02",
+          "cap": "75",
+          "cap_kind": "earning",
+          "annual_fee_usd": "0",
+          "conditions": "Статус біржового VIP1. Числові вимоги до активів/торгів не вдалося прочитати на VIP-сторінці; $500 карткового обороту тут не вказано."
+        }
+      ],
+      "notes": [
+        "Points × 0.002 = USDT. Загальна сторінка: лише crypto spending; fiat spending не дає кешбеку. Auto-cashback потрібно увімкнути, points доступні після 4 днів; звірю умови саме своєї програми.",
+        "За загальним розкладом Beta дає +15 USDT/міс. при $1 000, економічна різниця починається вище $250, але кваліфікація — $500. Це прогноз повного місяця на Beta; перший місяць із досягненням порога не дорівнює автоматично 20 USDT.",
+        "За AU-розкладом VIP1 дає +10 USDT/міс. при $1 000; різниця починається вище $500, якщо VIP1 уже отриманий. Витрати/капітал для здобуття VIP1 не встановлені, тому окупність набуття статусу невідома.",
+        "FX і USDT-конвертація зменшують загальну вигоду, як видно в контрольному тесті."
+      ]
+    },
+    "coca": {
+      "status": "official_terms_and_live_claim_cap_with_marketing_conflict",
+      "scope": "Starter / Standard за Loyalty T&C та примітками в моїй апці. Standard claim cap $25 і перенесення залишку підтверджені екраном upgrade; доступність rebates залежить від країни.",
+      "sources": [
+        {
+          "label": "Tier T&C",
+          "url": "https://help.coca.xyz/support/solutions/articles/205000042710-tier-system-terms-conditions"
+        },
+        {
+          "label": "Рекламна сторінка",
+          "url": "https://www.coca.xyz/card-cashback"
+        },
+        {
+          "label": "Примітки claim у застосунку",
+          "file": "screenshots/coca_tier_claim_terms.png",
+          "evidence_type": "participant_supplied_app_terms"
+        },
+        {
+          "label": "Standard · умови апгрейду",
+          "file": "screenshots/coca_standard_claim_terms.png",
+          "evidence_type": "participant_supplied_app_terms"
+        }
+      ],
+      "tiers": [
+        {
+          "name": "Starter · базовий",
+          "rate": "0.01",
+          "cap": "15",
+          "cap_kind": "claim",
+          "annual_fee_usd": "0",
+          "conditions": "Без staking. Cap — отримання, а не нарахування."
+        },
+        {
+          "name": "Standard · наступний",
+          "rate": "0.03",
+          "cap": "25",
+          "cap_kind": "claim",
+          "annual_fee_usd": "0",
+          "conditions": "Stake 300 COCA у застосунку. У T&C — орієнтовно $470; це не актуальна ціна купівлі. Повернення токенів після скасування tier і 30 днів cooldown.",
+          "token_amount": "300",
+          "documented_approx_capital_usd": "470",
+          "subscription_rebate": {
+            "rate": "0.50",
+            "eligible_services": [
+              "Netflix",
+              "Disney+",
+              "Paramount+",
+              "YouTube Premium"
+            ],
+            "maximum_services": 1,
+            "monthly_price_cap_usd": "70",
+            "shares_monthly_claim_capacity": true,
+            "source_scope": "account Standard upgrade preview",
+            "country_eligibility_not_verified": true,
+            "above_price_cap_treatment_not_established": true
+          }
+        }
+      ],
+      "notes": [
+        "Нарахування без cap; claim capacity спільна для кешбеку, rebates, referrals і кампаній. Standard: $22 + staked COCA/100 = $25. Залишок переноситься; після 14 днів pending кешбек можна claim вручну, мінімум $1, раз на 24 години. Неотриманий кешбек згорає через 12 місяців після becoming claimable.",
+        "При $1 000 Standard нараховує $30, отримати можна до $25 після завершення pending, ще $5 залишаються на наступні місяці. Це +$15 доступного кешбеку проти Starter, якщо cap не зайнятий іншими бонусами. День отримання залежить від settlement/pending; таблиця не гарантує отримання всього цього кешбеку в місяці покупок. При постійних $1 000/міс. черга зростає на $5/міс. до згоряння старих сум; весь нарахований кешбек не є поточними грошима.",
+        "Без плати й без оцінки капіталу Standard дає більше при будь-якому позитивному придатному обороті. Економічний поріг залежить від вартості 300 COCA: min(3%×B,25) − min(1%×B,15) > K×r/12 + інші витрати. K — вартість токенів, r — річна альтернативна дохідність; падіння ціни токена додається окремо.",
+        "Екран Standard пропонує 50% rebate на ONE із Netflix, Disney+, Paramount+ або YouTube Premium; місячний price cap на сервіс $70, доступність залежить від країни. ChatGPT у цьому переліку немає. Rebate використовує спільний claim cap $25, уже вичерпаний звичайним кешбеком на $1 000; він не дає додаткової доступної виплати в цій моделі. Правило для рахунків понад $70 не підтверджене.",
+        "Детальні T&C вимагають staking і блокування; рекламна сторінка каже лише holding/no lockup. Для моделі беру T&C і позначаю суперечність. APY на балансі не є кешбеком і не включений у ці суми. Curve для Starter/Standard дає лише 1%, тому 3% модель — для прямої оплати."
+      ]
+    },
+    "okx": {
+      "status": "other_region_terms_not_account_eligibility",
+      "scope": "Кешбек зараз недоступний в Україні: потрібен USDG, якого немає у моєму акаунті. AU / Bano-умови нижче — довідкові, для резидентів Австралії.",
+      "sources": [
+        {
+          "label": "OKX AU Cashback T&C",
+          "url": "https://www.okx.com/help/okx-card-cashback-program-terms-and-conditions-au"
+        },
+        {
+          "label": "OKX USDG Rewards · регіони",
+          "url": "https://www.okx.com/ua/learn/usdg"
+        }
+      ],
+      "tiers": [
+        {
+          "name": "Regular · AU, довідково",
+          "rate": "0.02",
+          "cap": "50",
+          "cap_kind": "earning",
+          "annual_fee_usd": "0",
+          "conditions": "Придатна покупка з USDG; резидентство Австралії та активні Card/Pay Wallet."
+        },
+        {
+          "name": "VIP1 · AU, довідково",
+          "rate": "0.04",
+          "cap": "400",
+          "cap_kind": "earning",
+          "annual_fee_usd": "0",
+          "conditions": "Статус VIP1, не витрати $10 000: це сума для вичерпання cap. Числові вимоги набуття VIP1 для мого акаунта не встановлені."
+        }
+      ],
+      "notes": [
+        "Мій сценарій USDT: $0 кешбеку на $1 000 у будь-якому tier, бо USDG зараз недоступний у моєму акаунті. AU-суми $20/$40 — лише довідковий розрахунок придатних USDG-покупок, не прогноз моїх виплат.",
+        "За AU-правилами підвищення ставки дає різницю з першої придатної покупки до округлення; витратного порога для відкриття VIP1 тут немає. Поріг економічної окупності отримання VIP1 невідомий без вимог і ціни статусу. Cashback лише на частину покупки, профінансовану USDG; округлення вниз до 0.01 USDG.",
+        "Офіційна стаття OKX виключає Україну з USDG Rewards (дохідність на залишок). Це окрема програма: стаття не встановлює доступність торгівлі USDG чи умови карткового кешбеку."
+      ]
+    },
+    "kolo": {
+      "status": "official_cashback_program",
+      "scope": "Офіційна програма Kolo USD / EUR. Для моєї EUR-картки: 1% після стартових 30 днів, 2% протягом них. Це тимчасова ставка, не платний upgrade.",
+      "sources": [
+        {
+          "label": "Cashback Program",
+          "url": "https://help.kolo.xyz/en/articles/13623113-cashback-program"
+        }
+      ],
+      "tiers": [
+        {
+          "name": "Звичайний · після 30 днів",
+          "rate": "0.01",
+          "cap": "100",
+          "cap_kind": "payout",
+          "annual_fee_usd": "0",
+          "currency": "EUR",
+          "usd_per_currency_unit": "1.117850470206855343948845775",
+          "valuation_source": "data/nbu-eur-2026-10-09.json / data/nbu-usd-2026-10-09.json",
+          "per_transaction_cap": "1",
+          "minimum_purchase": "1",
+          "projection_kind": "upper_bound_before_per_transaction_caps",
+          "conditions": "1% у BTC після перших 30 днів. Мінімальна придатна покупка €1. Не потребує платного cashback tier."
+        },
+        {
+          "name": "Стартові 30 днів · 2%",
+          "rate": "0.02",
+          "cap": "100",
+          "cap_kind": "payout",
+          "annual_fee_usd": "0",
+          "currency": "EUR",
+          "usd_per_currency_unit": "1.117850470206855343948845775",
+          "valuation_source": "data/nbu-eur-2026-10-09.json / data/nbu-usd-2026-10-09.json",
+          "per_transaction_cap": "2",
+          "minimum_purchase": "1",
+          "projection_kind": "upper_bound_before_per_transaction_caps",
+          "conditions": "Перші 30 днів від випуску першої EUR-картки; для раніше випущених — від запуску програми 24.07.2026. Для USD-картки — від активації. Строк не поновлюється через збільшення витрат."
+        }
+      ],
+      "notes": [
+        "На $1 000 придатних покупок: до $10 за 1% або до $20 за 2%. Повна ставка діє на чеки до €100; більші обмежені €1 / €2 кешбеку за операцію. Без розмірів чеків точний місячний результат невідомий. Cap €100 досягається від €10 000 / €5 000 придатного обороту лише за достатньої кількості покупок без втрат через ліміт на операцію.",
+        "Виплата тільки в BTC. Курс Kolo фіксується при авторизації, не при зарахуванні. Кешбек виплачують щодня за операції, що пройшли clearing попереднього дня; EUR-clearing може тривати до 14 днів, USD зазвичай 1–3 дні. Завершення операції в інтерфейсі не замінює статус Paid кешбеку.",
+        "Програма для індивідуальних USD / EUR-карток; business і co-branded виключені. Обмежень за категоріями продавців немає. Повернення до виплати зменшує кешбек. Застосунок показує найвищу ставку серед карток, але кожна отримує власну. Для рейтингу потенціалу беру стартові до $20; це не обіцянка постійних 2% і не підтвердження активного стартового періоду саме моєї картки."
+      ]
+    },
+    "whitebit": {
+      "status": "official_terms_and_account_category_screenshots",
+      "scope": "Nóva USD: ставки з мого застосунку на 09.10.2026, спільний cap $25/місяць. Можна обрати до трьох категорій; зараз активних 0/3. Потенціал умовний після їх увімкнення, не виплата за тест.",
+      "sources": [
+        {
+          "label": "Nóva USD Cashback",
+          "url": "https://help.whitebit.com/hc/en-gb/articles/38461998477981-N%C3%B3va-USD-Card-Cashback-Categories-and-MCC-List"
+        },
+        {
+          "label": "Категорії в застосунку",
+          "file": "screenshots/whitebit_cashback_categories.png"
+        },
+        {
+          "label": "Ліміт і активні категорії",
+          "file": "screenshots/whitebit_cashback_overview.png"
+        },
+        {
+          "label": "BTC / WBT",
+          "file": "screenshots/whitebit_cashback_currency.png"
+        }
+      ],
+      "tiers": [
+        {
+          "name": "Категорії · базовий",
+          "rate": null,
+          "cap": "25",
+          "cap_kind": "earning",
+          "annual_fee_usd": "0",
+          "conditions": "Обрати до 3 категорій до покупки. Зміна раз на тиждень; застосування за довідкою може зайняти 24 години. Придатність визначає MCC.",
+          "category_rates": {
+            "taxi": "0.05",
+            "groceries": "0.01",
+            "food_cafes": "0.01",
+            "pets": "0.05",
+            "games": "0.02",
+            "subscriptions": "0.10",
+            "medicine": "0.01",
+            "entertainment": "0.02",
+            "auto": "0.01",
+            "electronics": "0.01",
+            "beauty": "0.01",
+            "clothing_shoes": "0.01"
+          },
+          "maximum_active_categories": 3,
+          "active_categories_at_capture": [],
+          "projection_kind": "upper_bound_after_category_selection"
+        }
+      ],
+      "notes": [
+        "Спільний cap $25/місяць; BTC або WBT, у мене обрано BTC. За довідкою отримання від 5 USDC і після завершення транзакції.",
+        "Потенціал на $1 000 — до $25 після вибору категорій, не 10% на весь бюджет. Ліміту вистачає на $250 придатних підписок за 10%, $500 таксі / товарів для домашніх улюбленців за 5%; одна ставка 2% на весь оборот дає $20, 1% — $10. Сума залежить від розподілу витрат і MCC.",
+        "Ставки показані в моєму акаунті на дату тесту, можуть змінюватися. Наступного платного cashback tier не встановлено; 5% Welcome на першу операцію — окрема акція, а не постійна ставка."
+      ]
+    },
+    "simple": {
+      "status": "cashback_program_not_established",
+      "scope": "Simple Crypto Card / Wirex: у прочитаних T&C немає числової постійної cashback tier-програми; окремі активності мають власні правила в app.",
+      "sources": [
+        {
+          "label": "Simple T&C",
+          "url": "https://simple.app/terms-and-conditions/"
+        }
+      ],
+      "tiers": [],
+      "notes": [
+        "Базова ставка, наступний cashback tier, cap та окупність не встановлені. На $1 000 не додаю непідтверджений кешбек; це не твердження, що жодних акцій у Simple немає. За тестову покупку кешбек не показано."
+      ]
+    },
+    "keyone": {
+      "status": "cashback_program_not_established_fee_tiers_documented",
+      "scope": "KeyOne Free / Premium: опубліковані tiers зменшують комісії, але числової cashback-програми не описано.",
+      "sources": [
+        {
+          "label": "KeyOne Fees · 05.10.2026",
+          "url": "https://www.keyone.help/fees"
+        }
+      ],
+      "tiers": [],
+      "annual_premium_eur": "149",
+      "crypto_topup_rate_free": "0.008",
+      "crypto_topup_rate_premium": "0.0033",
+      "notes": [
+        "Кешбек при $1 000, cashback cap і поріг cashback-upgrade не встановлені. Free — €0; Premium — €149/рік. Crypto top-up: 0.8% → 0.33% плюс однакові network fees; FX до 1% в обох планах. Економію на поповненні рахую окремо від кешбеку."
+      ]
+    },
+    "trustee_plus": {
+      "status": "non_cash_points_participant_terms",
+      "scope": "Trustee Points зараз внутрішні бонуси; можлива майбутня конвертація не є підтвердженим грошовим кешбеком.",
+      "sources": [
+        {
+          "label": "Текст FAQ",
+          "file": "data/trustee-points-terms.json"
+        }
+      ],
+      "tiers": [],
+      "notes": [
+        "Внесок TP у поточний грошовий розрахунок на $1 000 — $0. Кількість TP, їхній cap, наступний tier і поріг його окупності не встановлені; 15 TP за малу покупку не екстраполюю на місяць."
+      ]
+    }
+  }
+}

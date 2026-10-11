@@ -1,0 +1,12 @@
+{
+  "card": "trustee_plus",
+  "received_on": "2026-10-09",
+  "evidence_level": "participant_supplied_terms_excerpt",
+  "question": "Чи мають Trustee Points реальну цінність?",
+  "quote": "Зараз Trustee Points виконують роль внутрішніх бонусів. У майбутньому вони можуть бути конвертовані в інші винагороди.",
+  "source_url": null,
+  "independently_verified": false,
+  "interpretation": "No current monetary redemption is established by this excerpt. Possible future conversion is not a current cashback payment or a guaranteed future value.",
+  "comparison_cashback_deduction_usd": "0",
+  "scope": "Conservative current-spending model only; zero deduction is not a measured TP market price. Original 15 TP screenshot observation remains separate."
+}

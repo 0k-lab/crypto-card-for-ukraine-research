@@ -1,0 +1,9 @@
+private/
+cards_samples/
+_site/
+.DS_Store
+__pycache__/
+*.pyc
+*.zip
+screenshots/*.jpeg
+screenshots/*.jpg

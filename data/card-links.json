@@ -1,0 +1,79 @@
+{
+  "source": "Author-supplied referral invitations; promotional benefits are claimed terms, not independently verified payouts or inputs to the ranking.",
+  "cards": {
+    "bybit": {
+      "url": "https://www.bybit.com/cards/?ref=NZQ05D&source=applet_invite",
+      "referral": true,
+      "bonus_note": "У запрошенні заявлено 10% кешбеку та 10 USDT за реєстрацію. Умови, строк і доступність бонусів — за акцією Bybit."
+    },
+    "keyone": {
+      "url": "https://www.keyonepay.com/?ref=ref-2dc64a52-96dd-474e-a750-9d9629225f68",
+      "referral": true,
+      "bonus_note": null
+    },
+    "kolo": {
+      "url": "https://get.kolo.xyz/p730944",
+      "referral": true,
+      "bonus_note": null
+    },
+    "okx": {
+      "url": "https://okx.com/join/EQHODCN2",
+      "referral": true,
+      "bonus_note": "У запрошенні заявлено бонус до 100 USDT за реєстрацію на OKX. Сума й доступність залежать від умов акції."
+    },
+    "simple": {
+      "url": "https://join.simple.app/23649C",
+      "referral": true,
+      "bonus_note": "За запрошенням заявлено безкоштовну картку, 0% на поповнення, виведення й IBAN-перекази та 5% річних на залишок. Для бонусів має бути застосований реферальний код; діють умови Simple."
+    },
+    "solid": {
+      "url": "https://www.solid.xyz/refer?ref=EV8PU",
+      "referral": true,
+      "bonus_note": "За запрошенням тобі й мені — по $25. Створи й верифікуй акаунт, поповни його та зроби щонайменше 3 покупки в різних продавців сумарно на $150 протягом 30 днів.",
+      "bonus_source": {
+        "evidence_type": "participant_supplied_app_screenshot",
+        "observed_on": "2026-10-09",
+        "screen_title": "Invite friends & Earn together",
+        "quote": "You get $25. Your friend get $25. Create a Solid account And get verified. Deposit to their account Via bank deposit or crypto. Make 3+ purchases: spend $150 across 3+ payments at different merchants within 30 days.",
+        "limits_not_shown": "The screenshot does not specify the start of the 30-day window or the payout date."
+      }
+    },
+    "trustee_plus": {
+      "url": "https://trustee.io/ua/?r=ojNqqBbp66b",
+      "referral": true,
+      "bonus_note": "Додаткового бонусу для запрошеного не вказано.",
+      "bonus_source": {
+        "evidence_type": "official_referral_program_page",
+        "observed_on": "2026-10-09",
+        "url": "https://trustee.io/ua/referral-program/?r=ojNqqBbp66b",
+        "quotes": [
+          "Ваша винагорода за реферальну програму нараховується у вигляді відсотка від комісій за операції запрошених вами користувачів (рефералів), які об’єднуються в два рівні. Ви отримуєте дохід щоразу, коли ваш реферал здійснює обмін криптовалюти в гаманці або сплачує комісію за поповнення своєї картки.",
+          "Винагорода в реферальній програмі складається з 45% доходу Trustee від транзакцій запрошених вами користувачів, що поділяються на два рівні. Розподіл винагороди можна налаштовувати від 20 до 25% залежно від рівня.",
+          "Нарахування винагород відбуваються лише за користувачів, що пройшли KYC та є активними в застосунку.",
+          "Кожне посилання можна назвати унікальним іменем та встановити налаштування розподілу комісій у відсотках залежно від рівня користувача – 20/25 або 25/20."
+        ],
+        "partner_activation": "Verified Trustee Plus account; contact support to request participation, then create the referral link after activation.",
+        "payout_terms": "FAQ: immediate after an exchange transaction by a referred user, in the exchange currency.",
+        "invitee_signup_bonus": "Not specified on the linked page.",
+        "limits": "Exact settings of this author referral link and actual partner payouts were not verified. The percentage applies to Trustee commission income; promotional figures are excluded from purchase-cost and cashback ranking."
+      },
+      "conditions_url": "https://trustee.io/ua/referral-program/?r=ojNqqBbp66b"
+    },
+    "whitebit": {
+      "url": "https://whitebit.com/card-referral/4380c062-2877-4217-b438-b97f1b6e284f",
+      "referral": true,
+      "bonus_note": "За запрошенням заявлено бонуси до 50 USDC. Розподіл між тобою й мною та умови отримання на цьому екрані не уточнені.",
+      "bonus_source": {
+        "evidence_type": "participant_supplied_referral_page_screenshot",
+        "observed_on": "2026-10-09",
+        "quote": "ЗАПРОШУЙТЕ ДРУЗІВ ТА ОТРИМУЙТЕ РАЗОМ НАГОРОДИ ДО 50 USDC. Поділіться своїм унікальним реферальним посиланням з друзями та заробляйте щоразу, коли вони приєднуються. Більше запрошень, більше винагород!",
+        "limits_not_shown": "The screenshot does not specify how the up-to-50 USDC offer is split between inviter and invitee, eligibility requirements, spending/deposit thresholds or deadlines. The +15 USDC example is marketing imagery, not proof of payout."
+      }
+    },
+    "coca": {
+      "url": "https://www.coca.xyz/cards",
+      "referral": false,
+      "bonus_note": null
+    }
+  }
+}

@@ -1,0 +1,318 @@
+{
+  "captured_on": "2026-10-09",
+  "rights": "Third-party interfaces and designs; excluded from MIT grant.",
+  "originals_public": false,
+  "redaction_method": "gaussian_blur",
+  "radius_pixels": 42,
+  "normalized_dimensions": [
+    960,
+    600
+  ],
+  "normalization": "Native-size corner mask matched to source contours, proportional RGBA LANCZOS downsampling, centered transparent padding; no generative edits or upscaling.",
+  "images": [
+    {
+      "id": "okx",
+      "file": "assets/cards/okx.png",
+      "kind": "sanitized_card_sample",
+      "original_file": "IMG_9446.PNG",
+      "original_dimensions": [
+        1179,
+        2556
+      ],
+      "crop": [
+        54,
+        222,
+        1126,
+        896
+      ],
+      "redactions": [
+        {
+          "box": [
+            102,
+            792,
+            372,
+            871
+          ],
+          "reason": "card ending"
+        }
+      ],
+      "display_context": "Apple Wallet",
+      "note": "Card appearance only; not a new financial measurement or proof of regional availability.",
+      "dimensions": [
+        960,
+        600
+      ],
+      "sha256": "36c27a9c9673d7ff65eeade2730e6d08d9cd0b3dd177d53ce7ca378d85b4fdc8",
+      "corner_radius_pixels": 36
+    },
+    {
+      "id": "bybit",
+      "file": "assets/cards/bybit.png",
+      "kind": "sanitized_card_sample",
+      "original_file": "IMG_9438.PNG",
+      "original_dimensions": [
+        1179,
+        2556
+      ],
+      "crop": [
+        54,
+        222,
+        1126,
+        896
+      ],
+      "redactions": [
+        {
+          "box": [
+            102,
+            792,
+            372,
+            871
+          ],
+          "reason": "card ending"
+        }
+      ],
+      "display_context": "Apple Wallet",
+      "note": "Card appearance only; not a new financial measurement or proof of regional availability.",
+      "dimensions": [
+        960,
+        600
+      ],
+      "sha256": "df7dc3f42277d8aa96b3762a97534cd8760ea51b0b6e6e3e5d540c7e207f253f",
+      "corner_radius_pixels": 36
+    },
+    {
+      "id": "coca",
+      "file": "assets/cards/coca.png",
+      "kind": "sanitized_card_sample",
+      "original_file": "Screenshot_20261009_170143_Google Wallet.jpg",
+      "original_dimensions": [
+        1080,
+        2400
+      ],
+      "crop": [
+        68,
+        707,
+        1012,
+        1302
+      ],
+      "redactions": [],
+      "display_context": "Google Wallet",
+      "note": "Card appearance only; not a new financial measurement or proof of regional availability.",
+      "dimensions": [
+        960,
+        600
+      ],
+      "sha256": "3530b0f8f4353f1c5922f0ecf32e74ead3cba6a2cee2ff47ebfbbf96bf2b8864",
+      "corner_radius_pixels": 42
+    },
+    {
+      "id": "kolo",
+      "file": "assets/cards/kolo.png",
+      "kind": "sanitized_card_sample",
+      "original_file": "IMG_9439.PNG",
+      "original_dimensions": [
+        1179,
+        2556
+      ],
+      "crop": [
+        54,
+        222,
+        1126,
+        896
+      ],
+      "redactions": [
+        {
+          "box": [
+            102,
+            792,
+            372,
+            871
+          ],
+          "reason": "card ending"
+        }
+      ],
+      "display_context": "Apple Wallet",
+      "note": "Card appearance only; not a new financial measurement or proof of regional availability.",
+      "dimensions": [
+        960,
+        600
+      ],
+      "sha256": "9a7d7e8c1d77bb091e215a659c86d268726b4651c023e6d8b8130b12d5b82681",
+      "corner_radius_pixels": 36
+    },
+    {
+      "id": "solid",
+      "file": "assets/cards/solid.png",
+      "kind": "sanitized_card_sample",
+      "original_file": "IMG_9443.PNG",
+      "original_dimensions": [
+        1179,
+        2556
+      ],
+      "crop": [
+        54,
+        222,
+        1126,
+        896
+      ],
+      "redactions": [
+        {
+          "box": [
+            102,
+            792,
+            372,
+            871
+          ],
+          "reason": "card ending"
+        }
+      ],
+      "display_context": "Apple Wallet",
+      "note": "Card appearance only; not a new financial measurement or proof of regional availability.",
+      "dimensions": [
+        960,
+        600
+      ],
+      "sha256": "59a132aee2b0342d5d40c493933bf47eb712178e8930bdfae05005801f260073",
+      "corner_radius_pixels": 36
+    },
+    {
+      "id": "trustee_plus",
+      "file": "assets/cards/trustee_plus.png",
+      "kind": "sanitized_card_sample",
+      "original_file": "Screenshot_20261009_170203_Google Wallet.jpg",
+      "original_dimensions": [
+        1080,
+        2400
+      ],
+      "crop": [
+        68,
+        707,
+        1012,
+        1302
+      ],
+      "redactions": [],
+      "display_context": "Google Wallet",
+      "note": "Card appearance only; not a new financial measurement or proof of regional availability.",
+      "dimensions": [
+        960,
+        600
+      ],
+      "sha256": "6e7c2470ffed4b5cbd0b0a4698fb1edb5116ccb1d1a99b307f5b224539268fbd",
+      "corner_radius_pixels": 42
+    },
+    {
+      "id": "simple",
+      "file": "assets/cards/simple.png",
+      "kind": "sanitized_card_sample",
+      "original_file": "IMG_9444.PNG",
+      "original_dimensions": [
+        1179,
+        2556
+      ],
+      "crop": [
+        73,
+        411,
+        1106,
+        1061
+      ],
+      "redactions": [
+        {
+          "box": [
+            111,
+            965,
+            319,
+            1035
+          ],
+          "reason": "card ending"
+        }
+      ],
+      "display_context": "Застосунок Simple",
+      "note": "Card appearance only; not a new financial measurement or proof of regional availability.",
+      "dimensions": [
+        960,
+        600
+      ],
+      "sha256": "ee5783af3fd30cc1a11ca806be23d00661f2a6a000ac350148905dcad2115e6a",
+      "corner_radius_pixels": 36
+    },
+    {
+      "id": "keyone",
+      "file": "assets/cards/keyone.png",
+      "kind": "sanitized_card_sample",
+      "original_file": "IMG_9447.PNG",
+      "original_dimensions": [
+        1179,
+        2556
+      ],
+      "crop": [
+        81,
+        920,
+        1097,
+        1576
+      ],
+      "redactions": [
+        {
+          "box": [
+            120,
+            1395,
+            840,
+            1470
+          ],
+          "reason": "masked card number and ending"
+        },
+        {
+          "box": [
+            120,
+            1475,
+            525,
+            1532
+          ],
+          "reason": "cardholder name"
+        }
+      ],
+      "display_context": "Застосунок Keyone",
+      "note": "Card appearance only; not a new financial measurement or proof of regional availability.",
+      "dimensions": [
+        960,
+        600
+      ],
+      "sha256": "c8feee9656865c4090e76d2a4c7090b0f17e67febb6b791ffc0fcb9d9bdd6f7e",
+      "corner_radius_pixels": 68
+    },
+    {
+      "id": "whitebit",
+      "file": "assets/cards/whitebit.png",
+      "kind": "sanitized_card_sample",
+      "original_file": "IMG_9434.PNG",
+      "original_dimensions": [
+        1179,
+        2556
+      ],
+      "crop": [
+        54,
+        222,
+        1126,
+        896
+      ],
+      "redactions": [
+        {
+          "box": [
+            102,
+            792,
+            372,
+            871
+          ],
+          "reason": "card ending"
+        }
+      ],
+      "display_context": "Apple Wallet",
+      "note": "Card appearance only; not a new financial measurement or proof of regional availability.",
+      "dimensions": [
+        960,
+        600
+      ],
+      "sha256": "2fd1bf0df1badd9b877faa20cc5a7c04033d9121e1f48bb3bd82fe1ac3e8adcb",
+      "corner_radius_pixels": 36
+    }
+  ]
+}

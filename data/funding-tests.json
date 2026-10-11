@@ -1,0 +1,1132 @@
+{
+  "tests": [
+    {
+      "id": "bybit_polygon_10_usdt",
+      "card": "bybit",
+      "date": "2026-10-11",
+      "scope": "Separate top-up test; not a purchase and not part of the 158 UAH ranking.",
+      "evidence_level": "visual_app_screenshots_and_privately_reviewed_explorer; operational_steps_participant_report",
+      "network": "Polygon",
+      "onchain_asset_as_displayed": "USDT0",
+      "account_asset_as_displayed": "USDT",
+      "sent_token_amount": "10",
+      "onchain_recipient_amount": "10",
+      "credited_token_amount": "10",
+      "token_credit_shortfall": "0",
+      "network_fee": {
+        "asset": "POL",
+        "amount": "0.018765452502565536",
+        "payer": "sending_wallet",
+        "explorer_displayed_usd": "0.001896",
+        "usd_basis": "Explorer USD valuation at review, not a verified execution-time POL/USD rate."
+      },
+      "deposit_fee_deducted_from_token_credit": "0",
+      "credit_account_as_displayed": "Акаунт фінансування",
+      "credited_at_as_displayed": "2026-10-11 10:49:31",
+      "available_token_balance_after_credit": "10.000085046615",
+      "residual_before_credit_inferred": "0.000085046615",
+      "total_capital_as_displayed": "10.0001",
+      "funding_account_balance_rounded_as_displayed": "10.0000",
+      "spending_power_before_usd": "0.00",
+      "spending_power_after_usd": "9.86",
+      "spending_power_observation_time_as_displayed": "10:49",
+      "spending_power_shortfall_is_proven_deposit_fee": false,
+      "valuation_assessment": {
+        "basis": "10 USDT / prior purchase quote 1.0141 USDT per USD rounds to 9.86. New screens show a USD spending valuation, not a new conversion quote or token sale.",
+        "reference_usdt_per_usd": "1.0141",
+        "reference_scope": "Prior 9 October purchase, not a newly measured top-up conversion rate."
+      },
+      "manual_card_transfer_required": false,
+      "manual_card_transfer_evidence_level": "participant_report_corroborated_by_card_spending_power_and_funding_balance",
+      "timing": {
+        "exact_spend_unlock_time_verified": false,
+        "sender_submission_time_verified": false,
+        "network_confirmation_threshold_verified": false,
+        "participant_assessment": "Crediting and unlocking depend on block processing and required confirmations of the selected network. In the test, the process matched the expected Polygon conditions; funds were usable without a manual card transfer."
+      },
+      "source_files": [
+        "screenshots/bybit_funding_before.png",
+        "screenshots/bybit_funding_waiting.png",
+        "screenshots/bybit_funding_after.png",
+        "screenshots/bybit_funding_paywith.png",
+        "screenshots/bybit_funding_balance.png",
+        "screenshots/bybit_funding_credit.png"
+      ],
+      "limits": [
+        "Credit and card availability are observed; no purchase or withdrawal of this new deposit is shown.",
+        "Token credit has no deduction; this does not mean a gas-free or conversion-free route.",
+        "The zero USD display does not establish a zero token balance. Small residual remains.",
+        "Private transaction link and wallet details are withheld; public onchain observations are author-reviewed, not independently traceable evidence."
+      ],
+      "withdrawal": {
+        "evidence_level": "participant_report_only",
+        "participant_assessment": "Withdrawals follow the exchange rules for the chosen asset and network.",
+        "requested_token_amount": null,
+        "recipient_token_amount_as_displayed": null,
+        "fee_amount": null,
+        "source_files": [],
+        "limits": [
+          "No tested withdrawal amount, fee, completed receipt or destination receipt supplied."
+        ]
+      }
+    },
+    {
+      "id": "coca_ethereum_to_base_10_usdt",
+      "card": "coca",
+      "date": "2026-10-11",
+      "scope": "Separate USDT-to-USD funding test; not part of the 158 UAH purchase ranking.",
+      "evidence_level": "visually_transcribed_completed_deposit_and_privately_reviewed_onchain_events",
+      "network": "Ethereum → Base",
+      "onchain_asset_as_displayed": "USDT on Ethereum; USDC and WUSD on Base",
+      "sent_token_amount": "10",
+      "sent_asset": "USDT",
+      "onchain_recipient_amount": "10",
+      "credited_card_amount_usd": "9.96",
+      "card_balance_before_usd": "0.00",
+      "card_balance_after_usd": "9.96",
+      "status_as_displayed": "Completed",
+      "credited_at_as_displayed": "11 Oct 2026, 11:22 AM",
+      "quoted_usd_per_usdt": "0.9920",
+      "quoted_amount_usd": "9.9200",
+      "quote_scope": "Estimated rate before transfer, not guaranteed final conversion.",
+      "displayed_shortfall_usd": "0.04",
+      "displayed_shortfall_pct": "0.400",
+      "network_fee": {
+        "asset": "ETH",
+        "amount": "0.000013281376360192",
+        "payer": "sending_wallet",
+        "explorer_displayed_usd": "0.03",
+        "usd_basis": "Rounded explorer valuation at review; not a captured execution-time exchange rate."
+      },
+      "credit_execution": {
+        "network": "Base",
+        "status": "Success",
+        "event": "MigrationTransactionProcessed",
+        "transaction_type": "MigrateSynthetic",
+        "transaction_currency": "WUS",
+        "transaction_asset": "USDC",
+        "transaction_amount": "9.969083",
+        "target_asset": "WUSD",
+        "target_amount": "9.969083",
+        "amount_scaling_basis": "USDC 6 decimals; WUSD 18 decimals, consistent with displayed token transfers.",
+        "balance_increase": "9.969083",
+        "displayed_card_amount_difference": "0.009083",
+        "displayed_card_amount_matches_rounded_2dp": false,
+        "display_difference_reason": "Display precision/formatting mechanism unknown; Completed withdrawal reports 9.9691 USDC, matching internal credit at 4dp. Missing displayed cent is not a confirmed extra fee.",
+        "shortfall_vs_sent_nominal_usd": "0.030917",
+        "shortfall_pct": "0.3091700",
+        "gas_eth": "0.000004015427276093",
+        "gas_explorer_displayed_usd": "0.01",
+        "user_paid_gas_verified": false,
+        "gas_added_to_sender_cost": false,
+        "morpho_usdc_transfer_observed": true,
+        "visible_transaction_id_fragment_matched_privately": true
+      },
+      "cost_basis": "10 USDT sent, 9.969083 USDC received back on Base, equal to the exact internal funding credit and withdrawal debit. Nominal route difference at USDT/USDC/USD parity is 0.030917 / 0.3091700%, plus separately recorded sending-wallet gas. No extra token withdrawal deduction or AA gas debit observed. App displays are retained separately; no rounding income or repeated internal transfer costs. Fee/conversion/routing components of the funding difference are not individually itemized.",
+      "manual_card_transfer_required": null,
+      "manual_card_transfer_evidence_level": "Screens show completed credit to spendable USD account; no participant statement on extra steps or later purchase in this test.",
+      "source_files": [
+        "screenshots/coca_funding_before.png",
+        "screenshots/coca_funding_method.png",
+        "screenshots/coca_funding_quote.png",
+        "screenshots/coca_funding_after.png",
+        "screenshots/coca_funding_completed.png"
+      ],
+      "limits": [
+        "Nominal USDT/USD parity for shortfall calculation. No market reference or exact fee breakdown.",
+        "Original app balance 9.96 has less displayed precision than the Completed withdrawal amount 9.9691; exact formatting mechanism remains unknown.",
+        "Private explorer links, wallets, transaction IDs and raw logs are withheld.",
+        "Do not extrapolate this Ethereum-to-Base route to other networks, funding sizes or the earlier controlled test.",
+        "Internal Morpho and WUSD movements do not establish measured yield, redemption, full protocol allocation or user control of all intermediate wallets."
+      ],
+      "withdrawal": {
+        "evidence_level": "visually_transcribed_app_and_author_checked_explorer_transfer_and_events",
+        "network": "Base",
+        "asset": "USDC",
+        "send_account": "USD",
+        "review_recipient_amount_as_displayed": "9.96",
+        "review_total_as_displayed": "9.96",
+        "confirmation_pay_amount_as_displayed": "9.96",
+        "recipient_token_amount_as_displayed": "9.9691",
+        "recipient_amount_display_decimals": 4,
+        "status_as_displayed": "Completed",
+        "completed_at_as_displayed": "11 Oct 2026, 11:37 AM",
+        "fees_as_displayed": "Sponsored",
+        "user_fee_amount_as_displayed": "0",
+        "review_estimated_arrival_as_displayed": "~10 mins",
+        "measured_duration_verified": false,
+        "destination_receipt_independently_verified": true,
+        "matches_internal_credit_at_display_precision": true,
+        "source_files": [
+          "screenshots/coca_withdrawal_review.png",
+          "screenshots/coca_withdrawal_confirmation.png",
+          "screenshots/coca_withdrawal_completed.png"
+        ],
+        "limits": [
+          "No token deduction or AA gas debit observed in this withdrawal; not a universal zero-fee promise.",
+          "Bundle transaction has a nonzero ETH fee; ultimate sponsor not established. It is not added as a user debit.",
+          "Internal Morpho, vault shares, WUSD burn and tiny residual/yield bookkeeping are not additional received funds or a measured APY.",
+          "Public evidence contains the author review and cleaned app screenshots; exact explorer source is private."
+        ],
+        "recipient_token_amount_onchain": "9.969083",
+        "fee_amount": "0",
+        "fee_asset": "USDC",
+        "fee_basis": "Internal balance debit equals exact destination USDC transfer; no token deduction. UserOperationEvent actualGasCost is zero; bundle transaction gas is not added as a user cost.",
+        "execution": {
+          "network": "Base",
+          "status": "Success",
+          "recipient_matches_screenshot_privately": true,
+          "recipient_usdc_raw_units": "9969083",
+          "recipient_usdc_decimals": 6,
+          "internal_balance_debit_wusd": "9.969083",
+          "token_deduction_between_internal_debit_and_recipient": "0",
+          "wusd_burn_matches_transfer": true,
+          "morpho_usdc_withdrawal_observed": true,
+          "user_operation_success": true,
+          "user_operation_actual_gas_cost_wei": "0",
+          "bundle_transaction_gas_eth": "0.000004441570113618",
+          "bundle_gas_explorer_displayed_usd": "0.01",
+          "bundle_gas_added_to_user_cost": false,
+          "ultimate_gas_sponsor_identified": false,
+          "source_scope": "Author-reviewed private explorer page and decoded events; raw links, wallets and hashes withheld from public files."
+        }
+      }
+    },
+    {
+      "id": "keyone_base_10_usdt",
+      "card": "keyone",
+      "date": "2026-10-11",
+      "scope": "Separate funding test; prior 1.30 USD withdrawal excluded; no change to controlled 158 UAH purchase.",
+      "evidence_level": "visually_transcribed_pending_and_completed_deposit_and_privately_reviewed_onchain_events",
+      "network": "Base",
+      "onchain_asset_as_displayed": "Bridged Tether (USDT) sent; USDC/WUSD in credit execution",
+      "account_asset_as_displayed": "USDC in transaction details; USD in total balance",
+      "sent_token_amount": "10",
+      "sent_asset": "USDT",
+      "onchain_recipient_amount": "10",
+      "credited_card_amount_usd": "9.91",
+      "card_balance_before_usd": "0.00",
+      "card_balance_after_usd": "9.91",
+      "pending_crypto_amount_as_displayed": "9.91",
+      "pending_crypto_asset_as_displayed": "USDC",
+      "status_at_first_observation": "Pending",
+      "status_as_displayed": "Completed",
+      "credited_at_as_displayed": "11 Oct 2026 at 11:31",
+      "displayed_shortfall_usd": "0.09",
+      "displayed_shortfall_pct": "0.900",
+      "network_fee": {
+        "asset": "ETH",
+        "amount": "0.000000285874840484",
+        "payer": "sending_wallet",
+        "explorer_displayed_usd": "0.000714",
+        "usd_basis": "Explorer valuation at review, not a captured execution-time exchange rate."
+      },
+      "credit_execution": {
+        "network": "Base",
+        "status": "Success",
+        "event": "MigrationTransactionProcessed",
+        "transaction_type": "MigrateSynthetic",
+        "transaction_currency": "WUS",
+        "transaction_asset": "USDC",
+        "transaction_amount": "9.910683",
+        "target_asset": "WUSD",
+        "target_amount": "9.910683",
+        "amount_scaling_basis": "USDC 6 decimals; WUSD 18 decimals, consistent with explorer token transfers.",
+        "displayed_card_amount_difference": "0.000683",
+        "displayed_card_amount_matches_rounded_2dp": true,
+        "shortfall_vs_sent_nominal_usd": "0.089317",
+        "shortfall_pct": "0.8931700",
+        "gas_eth": "0.000004015361086634",
+        "gas_explorer_displayed_usd": "0.01",
+        "user_paid_gas_verified": false,
+        "gas_added_to_sender_cost": false,
+        "morpho_usdc_transfer_observed": true,
+        "visible_transaction_id_fragments_matched_privately": true
+      },
+      "documented_terms_comparison": {
+        "source_file": "data/cashback-tiers.json",
+        "free_crypto_topup_rate": "0.008",
+        "active_plan_confirmed_by_these_screenshots": false,
+        "nominal_result_if_only_free_fee_applies": "9.920",
+        "actual_internal_credit_below_this_result": "0.009317",
+        "basis": "Conditional illustration only. Published 0.8% top-up fee is not a separately observed debit; do not add it again to measured shortfall. Remaining difference is not proven market FX spread."
+      },
+      "cost_basis": "10 USDT sent, 9.910683 USDC received back on Base, equal to the exact internal funding credit and withdrawal debit. Nominal route difference at USDT/USDC/USD parity is 0.089317 / 0.8931700%, plus separately recorded sending-wallet gas. No extra token withdrawal deduction or AA gas debit observed. App displays are retained separately; no rounding income or repeated internal transfer costs. Fee/conversion/routing components of the funding difference are not individually itemized.",
+      "manual_card_transfer_required": null,
+      "manual_card_transfer_evidence_level": "Completed deposit and total balance observed; no participant statement or later card purchase for this deposit.",
+      "prior_withdrawal_included_in_funding_cost": false,
+      "source_files": [
+        "screenshots/keyone_funding_before.png",
+        "screenshots/keyone_funding_pending.png",
+        "screenshots/keyone_funding_details_pending.png",
+        "screenshots/keyone_funding_after.png",
+        "screenshots/keyone_funding_completed.png"
+      ],
+      "limits": [
+        "Nominal USDT/USDC/USD parity; fee, exchange-rate, conversion and routing components not separately established.",
+        "No estimated rate screen or active plan shown. Free fee comparison is conditional.",
+        "Pending and Completed screens display different hash fragments; visible transaction ID fragments match. Pending hash is not independently inspected.",
+        "Similar COCA and KeyOne USDC/WUSD/Morpho route does not establish identical fees, custody, protocol allocation or measured Earning.",
+        "Private links, wallets, IDs and full logs withheld.",
+        "No universal timing claim: pending and available states are observations from this Base route."
+      ],
+      "withdrawal": {
+        "evidence_level": "visually_transcribed_app_and_author_checked_explorer_transfer_and_events",
+        "network": "Base",
+        "asset": "USDC",
+        "requested_token_amount": "9.910683",
+        "selection_as_displayed": "Max",
+        "available_amount_as_displayed": "9.91",
+        "completed_debit_usd_as_displayed": "9.91",
+        "status_as_displayed": "Completed",
+        "completed_at_as_displayed": "11 Oct 2026 at 11:40",
+        "recipient_token_amount_as_displayed": null,
+        "fee_amount": "0",
+        "destination_receipt_independently_verified": true,
+        "source_files": [
+          "screenshots/keyone_withdrawal_form.png",
+          "screenshots/keyone_withdrawal_completed.png"
+        ],
+        "limits": [
+          "No token deduction or AA gas debit observed in this withdrawal; not a universal zero-fee promise.",
+          "Bundle transaction has a nonzero ETH fee; ultimate sponsor not established. It is not added as a user debit.",
+          "Internal Morpho, vault shares, WUSD burn and tiny residual/yield bookkeeping are not additional received funds or a measured APY.",
+          "Public evidence contains the author review and cleaned app screenshots; exact explorer source is private."
+        ],
+        "recipient_token_amount_onchain": "9.910683",
+        "fee_asset": "USDC",
+        "fee_basis": "Internal balance debit equals exact destination USDC transfer; no token deduction. UserOperationEvent actualGasCost is zero; bundle transaction gas is not added as a user cost.",
+        "execution": {
+          "network": "Base",
+          "status": "Success",
+          "recipient_matches_screenshot_privately": true,
+          "recipient_usdc_raw_units": "9910683",
+          "recipient_usdc_decimals": 6,
+          "internal_balance_debit_wusd": "9.910683",
+          "token_deduction_between_internal_debit_and_recipient": "0",
+          "wusd_burn_matches_transfer": true,
+          "morpho_usdc_withdrawal_observed": true,
+          "user_operation_success": true,
+          "user_operation_actual_gas_cost_wei": "0",
+          "bundle_transaction_gas_eth": "0.00000444169198719",
+          "bundle_gas_explorer_displayed_usd": "0.01",
+          "bundle_gas_added_to_user_cost": false,
+          "ultimate_gas_sponsor_identified": false,
+          "source_scope": "Author-reviewed private explorer page and decoded events; raw links, wallets and hashes withheld from public files."
+        }
+      }
+    },
+    {
+      "id": "kolo_arbitrum_10_usdt",
+      "card": "kolo",
+      "date": "2026-10-11",
+      "scope": "Separate USDT funding and withdrawal route; withdrawal includes other funds reported by the participant. No change to the controlled 158 UAH purchase or cashback ranking.",
+      "evidence_level": "visual_app_screenshots_and_author_checked_private_explorer_transfers",
+      "network": "Arbitrum One",
+      "onchain_asset_as_displayed": "USD₮0",
+      "account_asset_as_displayed": "USDT",
+      "sent_token_amount": "10",
+      "onchain_recipient_amount": "10",
+      "credited_token_amount": "10",
+      "token_credit_shortfall": "0",
+      "deposit_fee_deducted_from_token_credit": "0",
+      "status_at_first_observation": "В обробці",
+      "status_as_displayed": "Успішно",
+      "pending_confirmations_as_displayed": "0 / 65",
+      "credited_at_as_displayed": "Сьогодні, 12:08",
+      "fees_as_displayed": "Без комісій",
+      "network_fee": {
+        "asset": "ETH",
+        "amount": "0.00000089465152",
+        "payer": "sending_wallet",
+        "explorer_displayed_usd": "0.002239",
+        "usd_basis": "Explorer valuation when reviewed, not a captured execution-time ETH/USD rate."
+      },
+      "wallet_token_balance_after_credit_as_displayed": "10",
+      "wallet_token_valuation_eur_as_displayed": "8.91",
+      "total_balance_before_eur_as_displayed": "0.32",
+      "total_balance_after_eur_as_displayed": "9.23",
+      "other_btc_balance_as_displayed": "0.00000443",
+      "other_btc_valuation_eur_as_displayed": "0.32",
+      "valuation_assessment": {
+        "quote_usdt_per_eur_as_displayed": "1.1326",
+        "quote_is_executed_conversion": false,
+        "quote_reconciles_with_shown_eur_value": false,
+        "basis": "10 USDT remain USDT. Quote 10 / 1.1326 is approximately 8.83 EUR, versus the shown 8.91 EUR token valuation; display valuation basis not established, not a proven fee. Total 9.23 includes other BTC worth 0.32 EUR."
+      },
+      "timing": {
+        "confirmation_threshold_as_displayed": 65,
+        "precise_unlock_time_independently_verified": false,
+        "basis": "App pending screen shows 0/65 network confirmations; completed screen shows 12:08. Credit depends on network confirmations and provider processing; no universal duration inferred."
+      },
+      "cost_basis": "Full 10 USDT credited, zero deposit token deduction. Initial sender gas separate. Withdrawal review debits 11.46 USDT, sends 10.46 and charges 1 USDT; private explorer confirms 10.46 received. Other 1.46 USDT reported by participant are not income from this deposit. Do not use 10 minus 10.46 as profit. A hypothetical isolated 10-USDT withdrawal under the same observed fee would return 9 USDT, not an observed second transfer.",
+      "source_files": [
+        "screenshots/kolo_funding_before.png",
+        "screenshots/kolo_funding_pending.png",
+        "screenshots/kolo_funding_completed.png",
+        "screenshots/kolo_funding_balance.png",
+        "screenshots/kolo_funding_after.png"
+      ],
+      "withdrawal": {
+        "evidence_level": "visual_app_review_and_author_checked_private_explorer_transfer",
+        "network": "Arbitrum One",
+        "asset": "USDT",
+        "onchain_asset_as_displayed": "USD₮0",
+        "requested_total_debit_as_displayed": "11.46",
+        "recipient_token_amount_as_displayed": "10.46",
+        "recipient_token_amount_onchain": "10.46",
+        "fee_amount": "1",
+        "fee_asset": "USDT",
+        "fees_as_displayed": "1 USDT",
+        "status_onchain": "Success",
+        "destination_receipt_independently_verified": true,
+        "other_amount_excluded_from_new_deposit": "1.46",
+        "other_amount_basis": "Participant says withdrawal includes other balance; intervening movements are not shown.",
+        "execution": {
+          "recipient_raw_units": "10460000",
+          "token_decimals": 6,
+          "recipient_matches_screenshot_privately": true,
+          "same_token_contract_as_deposit": true,
+          "bundle_or_service_gas_eth": "0.000001095492104",
+          "gas_explorer_displayed_usd": "0.002742",
+          "sender_is_service_wallet": true,
+          "gas_added_separately_to_user_cost": false,
+          "gas_basis": "Token transfer sent by the service wallet, not the private receiving wallet. Do not add the service ETH transaction fee on top of the observed 1 USDT user charge; fee breakdown and ultimate payer not separately established."
+        },
+        "source_files": [
+          "screenshots/kolo_withdrawal_form.png",
+          "screenshots/kolo_withdrawal_review.png"
+        ],
+        "limits": [
+          "11.46 debit and 1 fee are app review values; no completed app ledger is supplied. Exact 10.46 destination credit is verified on the provided transfer.",
+          "1 USDT is the observed fee for this Arbitrum withdrawal; not a confirmed universal fixed tariff.",
+          "Other balance cannot be counted as new deposit yield or negative route cost."
+        ]
+      },
+      "limits": [
+        "EUR wallet valuation is not a conversion of this USDT deposit into EUR or a new card-spending test.",
+        "Deposit network token and app asset labels differ; exact units reconcile at nominal token parity.",
+        "Private explorer links, addresses and hashes withheld; public onchain observations are author-reviewed.",
+        "Different route and assets from COCA/KeyOne; no universal ranking of funding routes or fees."
+      ]
+    },
+    {
+      "id": "okx_xlayer_10_usdt",
+      "card": "okx",
+      "date": "2026-10-11",
+      "scope": "Separate OKX Pay X Layer deposit and withdrawal, not an exchange Funding Account test; original 158 UAH purchase and cashback ranking unchanged.",
+      "evidence_level": "visual_app_screenshots_and_author_checked_xlayer_rpc_receipts",
+      "network": "X Layer",
+      "onchain_asset_as_displayed": "USDT, verified token units",
+      "account_asset_as_displayed": "USDT",
+      "sent_token_amount": "10",
+      "onchain_recipient_amount": "10",
+      "credited_token_amount": "10",
+      "token_credit_shortfall": "0",
+      "deposit_fee_deducted_from_token_credit": "0",
+      "credit_account_as_displayed": "Платіжний баланс",
+      "status_as_displayed": "Виконано",
+      "credited_at_as_displayed": "11 жовт. 2026 р. о 12:22",
+      "pay_balance_before_usd_as_displayed": "0.00",
+      "pay_balance_after_usd_as_displayed": "9.98",
+      "wallet_token_balance_after_credit_as_displayed": "10",
+      "balance_excluded_assets_as_displayed": "Виключені активи відсутні",
+      "valuation_assessment": {
+        "asset_usd_value_as_displayed": "9.98",
+        "implied_usd_per_usdt_display_value": "0.998",
+        "usd_display_shortfall_is_token_deduction": false,
+        "basis": "Receipt and token balance both show all 10 USDT, valued at approximately 9.98 USD. This is a display valuation, not a measured token conversion or a 0.02 deposit fee."
+      },
+      "network_fee": {
+        "asset": "OKB",
+        "amount": "0.0000015222",
+        "payer": "sending_wallet",
+        "explorer_displayed_usd": null,
+        "usd_basis": "No execution-time OKB/USD price captured; no USD gas estimate included.",
+        "basis": "X Layer RPC gasUsed multiplied by effectiveGasPrice; chain-native OKB uses 18 decimals."
+      },
+      "funding_execution": {
+        "chain_id": 196,
+        "status": "Success",
+        "received_raw_units": "10000000",
+        "token_decimals": 6,
+        "source_matches_screenshot_privately": true,
+        "gas_used": "60888",
+        "effective_gas_price_wei": "25000000",
+        "l1_fee_wei": "0"
+      },
+      "alternate_network_terms": {
+        "network": "Ethereum",
+        "evidence_level": "live_app_claim_not_tested",
+        "first_send_activation_fee_minimum_eth_as_displayed": "0.00082681",
+        "recurring_network_fee_claim": true,
+        "included_in_test_cost": false,
+        "scope": "App says one-time network activation charge on first send, at least the displayed ETH amount. No Ethereum transaction tested; not an X Layer charge."
+      },
+      "timing": {
+        "precise_unlock_time_independently_verified": false,
+        "basis": "App credit marked Done and displayed timestamp captured. No universal duration or confirmation threshold established."
+      },
+      "source_files": [
+        "screenshots/okx_funding_before.png",
+        "screenshots/okx_funding_method.png",
+        "screenshots/okx_funding_alternate_method.png",
+        "screenshots/okx_funding_after.png",
+        "screenshots/okx_funding_completed.png",
+        "screenshots/okx_funding_balance.png"
+      ],
+      "withdrawal": {
+        "network": "X Layer",
+        "asset": "USDT",
+        "evidence_level": "visual_app_review_and_author_checked_xlayer_rpc_transfer",
+        "requested_token_amount": "10",
+        "recipient_token_amount_as_displayed": "10",
+        "recipient_token_amount_onchain": "10",
+        "fee_amount": "0",
+        "fee_asset": "USDT",
+        "fees_as_displayed": "Сплачено OKX",
+        "fee_basis": "All 10 USDT transferred back to the original private wallet; transaction effectiveGasPrice and gasPrice are zero. Paid by OKX is a separate app claim about sponsorship.",
+        "status_onchain": "Success",
+        "destination_receipt_independently_verified": true,
+        "execution": {
+          "chain_id": 196,
+          "recipient_raw_units": "10000000",
+          "token_decimals": 6,
+          "recipient_matches_screenshot_privately": true,
+          "same_token_contract_as_deposit": true,
+          "sender_matches_deposit_recipient": true,
+          "gas_used": "161138",
+          "effective_gas_price_wei": "0",
+          "network_fee_okb": "0",
+          "network_fee_paid_by_as_displayed": "OKX",
+          "sponsor_funding_mechanism_verified": false,
+          "l1_fee_wei": "0"
+        },
+        "source_files": [
+          "screenshots/okx_withdrawal_review.png"
+        ],
+        "limits": [
+          "Completed onchain transfer verified; no completed app withdrawal screen supplied.",
+          "Paid by OKX is the live app claim; zero gas price and no token deduction are observed for this transaction, not a universal subsidy promise."
+        ]
+      },
+      "cost_basis": "10 USDT sent into OKX Pay and 10 USDT received back on X Layer; zero token route difference. Initial sending-wallet gas 0.0000015222 OKB separate, USD value unknown. Withdrawal gas price is zero. Pay USD valuation 9.98 is not a 0.02 fee. Historical debits on the before/after screens and untested Ethereum activation fee are excluded.",
+      "limits": [
+        "OKX Pay and X Layer route only, not a deposit to the exchange account or Ethereum route.",
+        "No new card purchase, token sale or APY measured.",
+        "Raw RPC receipts, explorer links, token/wallet addresses and hashes withheld from public files.",
+        "Dollar token valuation does not change measured crypto units; no current OKB USD price used."
+      ]
+    },
+    {
+      "id": "simple_polygon_10_usdt_base_return",
+      "card": "simple",
+      "date": "2026-10-11",
+      "scope": "Separate Polygon USDT funding and two-stage Base USDC withdrawal; controlled 158 UAH purchase and ranking unchanged.",
+      "evidence_level": "visual_app_screenshots_and_author_checked_private_explorer_transfers_and_events",
+      "network": "Polygon",
+      "onchain_asset_as_displayed": "USDT0",
+      "account_asset_as_displayed": "USDC",
+      "sent_token_amount": "10",
+      "onchain_recipient_amount": "10",
+      "credited_token_amount": "9.98",
+      "credited_amount_precision": "App display only; exact initial funding credit not independently established.",
+      "credit_account_as_displayed": "Крипто картка",
+      "status_as_displayed": "Завершено",
+      "credited_at_as_displayed": "11.10.2026, 12:31",
+      "card_balance_before_as_displayed": "0",
+      "card_balance_after_as_displayed": "9.98",
+      "valuation_assessment": {
+        "withdrawal_max_usdc": "9.989909",
+        "max_matches_exact_return": true,
+        "app_credit_matches_standard_2dp_rounding_of_return": false,
+        "basis": "9.989909 rounds to 9.99, whereas the card and completed deposit display 9.98. Truncation is possible but not established; the precise withdrawal is not an independently measured funding credit."
+      },
+      "network_fee": {
+        "asset": "POL",
+        "amount": "0.024118584668353324",
+        "payer": "sending_wallet",
+        "explorer_displayed_usd": "0.002442",
+        "usd_basis": "Explorer valuation at review, not verified execution-time POL/USD price."
+      },
+      "funding_execution": {
+        "status": "Success",
+        "sent_raw_units": "10000000",
+        "token_decimals": 6,
+        "service_deposit_received_token_amount": "10",
+        "exact_card_credit_independently_verified": false
+      },
+      "documented_app_terms": {
+        "evidence_level": "live_app_claim_not_measured_duration",
+        "network": "Polygon",
+        "minimum_usdt": "1",
+        "estimated_minutes_as_displayed": "approximately 10"
+      },
+      "timing": {
+        "precise_unlock_time_independently_verified": false,
+        "basis": "Confirmation timestamp and screen clock retained; duration depends on network confirmations and service processing, not a universal fixed interval."
+      },
+      "source_files": [
+        "screenshots/simple_funding_before.png",
+        "screenshots/simple_funding_method.png",
+        "screenshots/simple_funding_after.png",
+        "screenshots/simple_funding_completed.png"
+      ],
+      "route_result": {
+        "returned_asset": "USDC",
+        "returned_token_amount": "9.989909",
+        "nominal_shortfall": "0.010091",
+        "nominal_shortfall_pct": "0.10091",
+        "basis": "Whole-route difference under nominal USDT/USDC/USD parity; separate initial gas, no exact funding fee or isolated FX spread inferred."
+      },
+      "withdrawal": {
+        "network": "Base",
+        "asset": "USDC",
+        "requested_token_amount": "9.989909",
+        "recipient_token_amount_as_displayed": "9.989909",
+        "recipient_token_amount_onchain": "9.989909",
+        "fees_as_displayed": "0 USDC",
+        "fee_amount": "0",
+        "fee_asset": "USDC",
+        "fee_basis": "No token deduction in either withdrawal stage; nonzero paymaster and relayer gas are separate, ultimate economic funding not established.",
+        "evidence_level": "visual_internal_withdrawal_review_and_author_checked_both_private_onchain_transfers",
+        "status_onchain": "Success",
+        "destination_receipt_independently_verified": true,
+        "stages": [
+          {
+            "route": "card_to_simple_self_custody_wallet",
+            "status": "Success",
+            "received_usdc_raw_units": "9989909",
+            "usdc_decimals": 6,
+            "received_usdc": "9.989909",
+            "internal_balance_debit_wusd": "9.989909",
+            "token_deduction": "0",
+            "wusd_burn_matches_transfer": true,
+            "morpho_redemption_observed": true,
+            "user_operation_success": true,
+            "user_operation_actual_gas_cost_wei": "8101176000000",
+            "user_operation_actual_gas_cost_eth": "0.000008101176",
+            "paymaster_is_nonzero": true,
+            "bundle_transaction_gas_eth": "0.000006652843799073",
+            "bundle_gas_added_to_user_cost": false,
+            "ultimate_economic_gas_payer_verified": false
+          },
+          {
+            "route": "simple_self_custody_wallet_to_external_wallet",
+            "status": "Success",
+            "received_usdc_raw_units": "9989909",
+            "usdc_decimals": 6,
+            "received_usdc": "9.989909",
+            "sender_matches_stage_one_recipient": true,
+            "recipient_matches_original_sending_wallet": true,
+            "token_deduction": "0",
+            "transaction_function": "transferWithAuthorization",
+            "transaction_gas_payer_differs_from_token_sender": true,
+            "transaction_gas_eth": "0.000000486902981168",
+            "transaction_gas_added_to_user_cost": false,
+            "ultimate_economic_gas_payer_verified": false
+          }
+        ],
+        "source_files": [
+          "screenshots/simple_withdrawal_form.png",
+          "screenshots/simple_withdrawal_review.png"
+        ],
+        "limits": [
+          "No completed app withdrawal screen supplied; both successful transfers verified onchain.",
+          "Zero displayed USDC fee is not zero protocol gas. Paymaster and relayer submit/pay the operations; ultimate economic reimbursement is unknown.",
+          "AA reimbursement and outer bundle transaction fee are not two additional user debits."
+        ]
+      },
+      "cost_basis": "10 USDT sent on Polygon; 9.989909 USDC returned to the original external wallet on Base after two withdrawals of equal amount. Nominal whole-route difference 0.010091 / 0.10091%, plus separate initial POL gas. Funding display 9.98 is lower precision and not an exact fee basis. No extra USDC withdrawal deduction observed; no unverified ETH debit added.",
+      "limits": [
+        "Exact initial card credit and fee/FX/routing decomposition are not established.",
+        "Historical Earning and unrelated withdrawals excluded; no APY measured from tiny yield accounting or residuals.",
+        "No universal fee or duration claim; one 10 USDT route only.",
+        "Private explorer URLs, hashes, wallets, ENS labels, raw logs and original images excluded from publication."
+      ]
+    },
+    {
+      "id": "solid_arbitrum_and_fuse_20_usdt",
+      "card": "solid",
+      "date": "2026-10-11",
+      "scope": "Two separate 10 USDT funding routes with one combined 19.997 USDT Fuse withdrawal; initial 158 UAH purchase and ranking unchanged.",
+      "evidence_level": "visual_app_screenshots_and_author_checked_private_arbiscan_and_fuse_blockscout_api",
+      "network": "Arbitrum One → Fuse; Fuse → Fuse",
+      "onchain_asset_as_displayed": "USD₮0 in Arbitrum; Stargate Bridged USDT in Fuse",
+      "account_asset_as_displayed": "USDT",
+      "sent_token_amount": "20",
+      "credited_token_amount": "19.997",
+      "token_credit_shortfall": "0.003",
+      "deposit_fee_deducted_from_token_credit": null,
+      "status_as_displayed": "Success",
+      "card_balance_before_usd_as_displayed": "0.00",
+      "card_balance_after_first_credit_usd_as_displayed": "9.99",
+      "available_to_spend_after_first_credit_usd_as_displayed": "9.99",
+      "wallet_token_balance_after_first_credit_as_displayed": "10.00",
+      "valuation_assessment": {
+        "usd_value_is_token_amount": false,
+        "wallet_display_matches_rounded_2dp_credit": true,
+        "basis": "First received amount is 9.997 USDT. Assets rounds it to 10.00 USDT and values it at 9.99 USD. Do not infer a second 0.01 fee from the USD display."
+      },
+      "funding_routes": [
+        {
+          "route": "arbitrum_to_fuse",
+          "sent_token_amount": "10",
+          "service_deposit_received_raw_units": "10000000",
+          "service_deposit_token_decimals": 6,
+          "service_deposit_token_amount": "10",
+          "credited_token_amount": "9.997",
+          "token_shortfall": "0.003",
+          "shortfall_pct": "0.03",
+          "credit_execution": {
+            "network": "Fuse",
+            "status": "Success",
+            "raw_amount": "9997000",
+            "token_decimals": 6,
+            "credited_token_amount": "9.997",
+            "recipient_matches_screenshot_privately": true,
+            "timestamp_utc": "2026-10-11T09:42:50.000000Z",
+            "bundle_transaction_gas_fuse": "0.004527992",
+            "user_operation_actual_gas_cost_fuse": "0.0049341052",
+            "user_operation_success": true,
+            "paymaster_is_nonzero": true,
+            "sponsored_event_token_charge_raw": "0",
+            "gas_added_as_user_debit": false,
+            "ultimate_economic_sponsor_verified": false
+          },
+          "fee_fx_bridge_breakdown_verified": false,
+          "shared_bridge_message_id_verified": false
+        },
+        {
+          "route": "direct_fuse",
+          "sent_token_amount": "10",
+          "service_deposit_received_raw_units": "10000000",
+          "service_deposit_token_decimals": 6,
+          "service_deposit_token_amount": "10",
+          "credited_token_amount": "10",
+          "token_shortfall": "0",
+          "shortfall_pct": "0",
+          "credit_execution": {
+            "network": "Fuse",
+            "status": "Success",
+            "raw_amount": "10000000",
+            "token_decimals": 6,
+            "credited_token_amount": "10",
+            "recipient_matches_screenshot_privately": true,
+            "timestamp_utc": "2026-10-11T09:46:45.000000Z",
+            "bundle_transaction_gas_fuse": "0.00382578",
+            "user_operation_actual_gas_cost_fuse": "0.004207136",
+            "user_operation_success": true,
+            "paymaster_is_nonzero": true,
+            "sponsored_event_token_charge_raw": "0",
+            "gas_added_as_user_debit": false,
+            "ultimate_economic_sponsor_verified": false
+          },
+          "same_card_recipient_and_fuse_token_as_other_credit": true,
+          "credit_found_from_matching_app_time_amount_and_card_history": true,
+          "shared_deposit_credit_protocol_id_verified": false
+        }
+      ],
+      "network_fees": [
+        {
+          "route": "arbitrum_to_fuse",
+          "asset": "ETH",
+          "amount": "0.000001239929504",
+          "payer": "sending_wallet",
+          "explorer_displayed_usd": "0.003099",
+          "usd_basis": "Explorer review valuation, not verified execution-time ETH/USD price."
+        },
+        {
+          "route": "direct_fuse",
+          "asset": "FUSE",
+          "amount": "0.0008222985",
+          "payer": "sending_wallet",
+          "explorer_displayed_usd": null,
+          "usd_basis": "No historic FUSE/USD quote supplied by the API; current quote not substituted for execution-time price."
+        }
+      ],
+      "documented_app_terms": {
+        "evidence_level": "live_app_claim",
+        "selected_deposit_network": "Fuse",
+        "minimum_deposit_usdt_as_displayed": "10",
+        "below_minimum_warning_as_displayed": "Deposits below the minimum will not be credited or refunded",
+        "fuse_withdrawal_timing_claim": "Instant · no bridge",
+        "included_in_measured_duration": false
+      },
+      "timing": {
+        "precise_unlock_time_independently_verified": false,
+        "basis": "Screens show receipt times 12:42 and 12:46; UTC execution timestamps retained. Clock differences and API confirmation_duration do not establish end-to-end unlock latency."
+      },
+      "source_files": [
+        "screenshots/solid_funding_before.png",
+        "screenshots/solid_funding_method.png",
+        "screenshots/solid_funding_after.png",
+        "screenshots/solid_funding_balance.png",
+        "screenshots/solid_funding_completed.png",
+        "screenshots/solid_funding_direct_credit.png"
+      ],
+      "withdrawal": {
+        "network": "Fuse",
+        "asset": "USDT",
+        "requested_token_amount": "19.997",
+        "recipient_token_amount_as_displayed": "19.997",
+        "recipient_token_amount_onchain": "19.997",
+        "fee_amount": "0",
+        "fee_asset": "USDT",
+        "fees_as_displayed": "Paid by Solid",
+        "status_as_displayed": "Success",
+        "status_onchain": "Success",
+        "destination_receipt_independently_verified": true,
+        "scope": "One combined withdrawal of both deposits: 9.997 + 10, not two independently tested withdrawals.",
+        "execution": {
+          "recipient_raw_units": "19997000",
+          "token_decimals": 6,
+          "sender_matches_both_credit_recipients": true,
+          "recipient_matches_both_original_sending_wallets": true,
+          "same_fuse_token_contract_as_both_credits": true,
+          "bundle_transaction_gas_fuse": "0.00429801",
+          "user_operation_actual_gas_cost_fuse": "0.00487328",
+          "user_operation_success": true,
+          "paymaster_is_nonzero": true,
+          "sponsored_event_token_charge_raw": "0",
+          "gas_added_as_user_debit": false,
+          "ultimate_economic_sponsor_verified": false
+        },
+        "alternate_quote": {
+          "network": "Arbitrum One",
+          "evidence_level": "live_app_quote_not_executed",
+          "send_amount_usdt": "19.997",
+          "recipient_estimate_usdt": "19.67",
+          "fee_usdt": "0.33",
+          "minimum_receive_usdt": "19.65",
+          "gas_as_displayed": "Paid by Solid",
+          "arrival_claim": "About 2 min",
+          "included_in_measured_route_cost": false
+        },
+        "source_files": [
+          "screenshots/solid_withdrawal_method.png",
+          "screenshots/solid_withdrawal_alternate_quote.png",
+          "screenshots/solid_withdrawal_form.png",
+          "screenshots/solid_withdrawal_review.png",
+          "screenshots/solid_withdrawal_completed.png"
+        ],
+        "limits": [
+          "No withdrawal token deduction observed for the chosen Fuse route.",
+          "Arbitrum 0.33 fee is an unexecuted quote and is excluded from actual route cost.",
+          "Sponsored event records zero tokenAmountPaid; nonzero AA reimbursement and bundle gas are not two additional user debits."
+        ]
+      },
+      "cost_basis": "Two deposits of 10 USDT: Arbitrum route credits 9.997 USDT in Fuse, direct Fuse route credits 10 USDT. Combined withdrawal returns all 19.997 USDT to the original external wallet in Fuse. Total token difference 0.003 USDT, 0.015% of both deposits; Arbitrum-specific shortfall 0.03%. Initial ETH and FUSE sender gas separate. No USD-display fee, unexecuted Arbitrum quote fee or duplicated bundle/AA gas added.",
+      "limits": [
+        "One 10 USDT test per funding route, one combined withdrawal; not universal zero-fee terms.",
+        "Deposit-to-card linkage is based on participant context, matching amounts, recipient and chronology; no common bridge/deposit message ID checked.",
+        "No USD conversion or APY inferred; historical cashback is excluded.",
+        "Direct Fuse preserves tokens within the tested route; obtaining USDT in Fuse beforehand may have separate costs not tested here.",
+        "Explorer links, hashes, wallet addresses, QR and raw APIs are not public. Original screenshots were deleted after analysis."
+      ]
+    },
+    {
+      "id": "trustee_plus_polygon_10_plus_1_usdt_card_topup",
+      "card": "trustee_plus",
+      "date": "2026-10-11",
+      "scope": "Two verified Polygon wallet deposits followed by a separate card top-up; withdrawal attempts, exchange quote and final transfer review. An additional 1 USDT withdrawal-funding deposit is participant-confirmed, without independent receipt. Withdrawal execution and recipient credit are unconfirmed; controlled purchase unchanged.",
+      "evidence_level": "visual_app_screenshots_and_card_receipt_with_author_checked_private_polygon_transfers",
+      "network": "Polygon",
+      "onchain_asset_as_displayed": "USDT0",
+      "account_asset_as_displayed": "USDT",
+      "sent_token_amount": "11",
+      "onchain_recipient_amount": "11",
+      "credited_token_amount": "11",
+      "token_credit_shortfall": "0",
+      "deposit_fee_deducted_from_token_credit": "0",
+      "credit_account_as_displayed": "Trustee Plus wallet",
+      "wallet_balance_before_usdt_as_displayed": "0",
+      "card_balance_before_usd_as_displayed": "0",
+      "first_wallet_credit_usdt_as_displayed": "10",
+      "card_balance_after_first_wallet_credit_usd_as_displayed": "0",
+      "wallet_balance_after_second_deposit_usdt_as_displayed": "11",
+      "deposits": [
+        {
+          "amount": "10",
+          "received_raw_units": "10000000",
+          "token_decimals": 6,
+          "status_onchain": "Success",
+          "same_sender_and_recipient": true,
+          "network_fee_pol": "0.026368988428792112",
+          "gas_explorer_displayed_usd": "0.002664"
+        },
+        {
+          "amount": "1",
+          "received_raw_units": "1000000",
+          "token_decimals": 6,
+          "status_onchain": "Success",
+          "same_sender_and_recipient": true,
+          "network_fee_pol": "0.017409486990699512",
+          "gas_explorer_displayed_usd": "0.001759"
+        }
+      ],
+      "network_fee": {
+        "asset": "POL",
+        "amount": "0.043778475419491624",
+        "payer": "sending_wallet",
+        "transaction_count": 2,
+        "explorer_displayed_usd": "0.004423",
+        "usd_basis": "Sum of explorer USD valuations at review, not verified execution-time POL/USD prices."
+      },
+      "card_funding": {
+        "minimum_as_displayed_usdt": "10",
+        "requested_token_amount": "10",
+        "wallet_transfer_as_displayed": "10",
+        "wallet_fee_as_displayed_usdt": "0.06",
+        "wallet_remaining_as_displayed_usdt": "0.94",
+        "wallet_debit_estimate_usdt": "10.06",
+        "credited_asset_as_displayed": "USDT",
+        "credited_token_amount": "9.965114",
+        "receipt_original_amount_usdt": "9.965114",
+        "card_balance_after_usd_as_displayed": "9.96",
+        "card_credit_time_as_displayed": "2026-10-11 13:23",
+        "wallet_transfer_time_as_displayed": "2026-10-11 13:23:13",
+        "requested_to_receipt_difference_usdt": "0.034886",
+        "requested_to_receipt_difference_pct": "0.34886",
+        "total_difference_estimate_usdt": "0.094886",
+        "estimated_difference_pct_of_requested": "0.94886",
+        "estimate_precision_basis": "Total uses the displayed 0.06 USDT fee and 0.94 residual, not an exact fee ledger. Six decimal places in the arithmetic do not establish six-decimal precision for the full cost.",
+        "card_credit_independently_verified_onchain": false,
+        "exact_wallet_fee_independently_verified": false,
+        "fee_fx_conversion_breakdown_verified": false,
+        "fee_warning": {
+          "balance_as_displayed_usdt": "10",
+          "available_after_fee_as_displayed_usdt": "9.95",
+          "fee_as_displayed_usdt": "0.06",
+          "simple_subtraction_usdt": "9.94",
+          "display_discrepancy_usdt": "0.01",
+          "precision_or_basis_not_established": true,
+          "included_as_additional_fee": false
+        },
+        "minimum_warning": {
+          "attempted_usdt": "9.95",
+          "minimum_usdt": "10",
+          "card_topup_blocked": true
+        },
+        "extra_deposit_amount_usdt": "1",
+        "extra_deposit_is_entirely_a_fee": false
+      },
+      "timing": {
+        "first_onchain_send_utc": "2026-10-11 10:09:14",
+        "first_wallet_credit_as_displayed": "2026-10-11 13:09:40",
+        "extra_onchain_send_utc": "2026-10-11 10:14:57",
+        "screen_sequence_local_start": "13:05",
+        "screen_sequence_local_end": "13:24",
+        "end_to_end_network_latency_measured": false,
+        "basis": "Screen interval includes deposit attempts, additional funding, waiting and manual card transfer; it is not one network transaction duration."
+      },
+      "usability": {
+        "evidence_level": "participant_subjective_experience_supported_by_screen_sequence",
+        "author_assessment": "Least convenient app in my test; multiple steps, minimum plus extra fee, waiting and insufficient clarity.",
+        "manual_wallet_to_card_transfer_required": true,
+        "first_10_usdt_insufficient_for_10_usdt_card_transfer": true,
+        "additional_external_deposit_required_in_this_attempt": true
+      },
+      "source_files": [
+        "screenshots/trustee_plus_funding_form_before.png",
+        "screenshots/trustee_plus_funding_before.png",
+        "screenshots/trustee_plus_funding_after.png",
+        "screenshots/trustee_plus_funding_completed.png",
+        "screenshots/trustee_plus_funding_fee_blocked.png",
+        "screenshots/trustee_plus_funding_minimum_blocked.png",
+        "screenshots/trustee_plus_funding_extra_balance.png",
+        "screenshots/trustee_plus_funding_card_after.png",
+        "screenshots/trustee_plus_funding_card_receipt.png",
+        "screenshots/trustee_plus_funding_card_debit.png"
+      ],
+      "withdrawal": {
+        "evidence_level": "visual_blocked_attempts_exchange_quote_and_transfer_review_with_participant_confirmed_extra_deposit",
+        "recipient_token_amount_onchain": null,
+        "fees_as_displayed": "1",
+        "completed": false,
+        "completion_independently_verified": false,
+        "fee_actually_paid_verified": false,
+        "internal_return": {
+          "wallet_asset_as_displayed": "USDC",
+          "wallet_amount_as_displayed": "9.965114",
+          "card_to_wallet_ledger_supplied": false,
+          "conversion_or_internal_fee_verified": false,
+          "basis": "Card top-up receipt labels USDT; later withdrawal wallet labels USDC. Equal displayed amounts do not prove the internal conversion route or its fee."
+        },
+        "base_attempt": {
+          "asset": "USDC",
+          "network": "Base",
+          "requested_amount": "9.965114",
+          "minimum_as_displayed": "10",
+          "blocked": true
+        },
+        "exchange_quote": {
+          "give_asset": "USDC",
+          "give_amount": "9.965114",
+          "receive_asset": "USDT",
+          "receive_amount": "9.945677",
+          "fee_pct_as_displayed": "0",
+          "rate_as_displayed": "0.99805",
+          "nominal_parity_difference": "0.019437",
+          "nominal_parity_difference_pct": "0.195050",
+          "rate_rounding_difference_is_additional_fee": false,
+          "execution_receipt_supplied": false,
+          "consistent_with_later_wallet_balance": true
+        },
+        "polygon_attempt": {
+          "asset": "USDT",
+          "network": "Polygon",
+          "wallet_balance_as_displayed": "10.885677",
+          "requested_amount": "10.885677",
+          "fee_as_displayed": "1",
+          "available_after_fee_as_displayed": "9.885677",
+          "blocked": true,
+          "minimum_verified": false
+        },
+        "extra_deposit": {
+          "amount_usdt": "1",
+          "confirmed_by_participant": true,
+          "confirmed_on": "2026-10-11",
+          "independently_verified_onchain": false,
+          "network_fee": null,
+          "wallet_before_as_displayed": "10.885677",
+          "wallet_after_as_displayed": "11.885677",
+          "included_in_initial_two_deposits": false
+        },
+        "review": {
+          "asset": "USDT",
+          "network": "Polygon",
+          "requested_recipient_amount": "10.885677",
+          "fee_as_displayed": "1",
+          "total_debit_as_displayed": "11.885677",
+          "execution_time_claim": "up to 1 hour",
+          "execution_time_measured": false,
+          "stage": "before_transfer_button"
+        },
+        "source_files": [
+          "screenshots/trustee_plus_withdrawal_minimum_blocked.png",
+          "screenshots/trustee_plus_withdrawal_exchange_quote.png",
+          "screenshots/trustee_plus_withdrawal_fee_blocked.png",
+          "screenshots/trustee_plus_withdrawal_form.png",
+          "screenshots/trustee_plus_withdrawal_review.png"
+        ],
+        "basis": "No completed withdrawal screen or hash supplied. Quoted 1 USDT is not included as an executed fee in the funding cost. Initial two-deposit gas excludes the third participant-confirmed deposit; whole-route cost remains unfinalized."
+      },
+      "cost_basis": "External deposits total 11 USDT and are fully credited to the wallet. A separate requested 10 USDT card transfer shows an additional 0.06 USDT fee, a 0.94 USDT wallet residual, and a 9.965114 USDT card credit. Nominal full difference is approximately 0.094886 USDT / 0.94886% of requested 10, using displayed fee precision; two initial POL gas fees separate. The extra 1 USDT is not all spent and is not a 1 USDT fee. Exact fee ledger and FX/conversion breakdown unknown.",
+      "limits": [
+        "Card receipt confirms displayed credit; no independent onchain card-credit source supplied.",
+        "Full-cost estimate inherits two-decimal fee/residual precision.",
+        "Fee-warning 9.95 versus 10 minus 0.06 = 9.94 is a display discrepancy, not another proven fee.",
+        "Screen times describe a multi-step user journey; no universal network latency or tier fee extrapolation.",
+        "Previous unrelated withdrawals/history are excluded.",
+        "Explorer URLs, wallets, hashes, names, card endings, Trustee ID and transaction identifiers are not public. Original screenshots were deleted after analysis.",
+        "Withdrawal review is not execution: final recipient credit, paid fee and third-deposit gas remain unverified; no full round-trip cost established."
+      ]
+    },
+    {
+      "id": "whitebit_main_10_usdt_plasma_withdrawal_quote",
+      "card": "whitebit",
+      "date": "2026-10-11",
+      "scope": "Exchange main-account deposit with card USD valuation; withdrawal form and Plasma quote only. Other-account residual excluded. Controlled purchase unchanged.",
+      "evidence_level": "visual_app_deposit_history_and_balances_with_live_withdrawal_quote_and_participant_operational_confirmation",
+      "network": null,
+      "onchain_asset_as_displayed": null,
+      "account_asset_as_displayed": "USDT",
+      "sent_token_amount": "10",
+      "sender_debit_independently_verified": false,
+      "onchain_recipient_amount": null,
+      "credited_token_amount": "10",
+      "token_credit_shortfall": null,
+      "deposit_fee_deducted_from_token_credit": null,
+      "credit_account_as_displayed": "Основний баланс біржі",
+      "status_as_displayed": "Успішно",
+      "credited_at_as_displayed": "2026-10-11 13:55:27",
+      "main_token_balance_after_as_displayed": "10",
+      "card_balance_before_usd_as_displayed": "0",
+      "card_balance_after_usd_as_displayed": "9.98",
+      "valuation_assessment": {
+        "asset_usd_value_as_displayed": "9.98",
+        "implied_usd_per_usdt_display_value": "0.998",
+        "usd_display_shortfall_is_token_deduction": false,
+        "basis": "Main account and successful deposit history show 10 USDT, while card overview shows approximately 9.98 USD. No executed conversion or 0.02 USDT fee established."
+      },
+      "manual_card_transfer_required": false,
+      "manual_card_transfer_evidence_level": "participant_report_corroborated_by_main_account_and_card_overview",
+      "network_fee": {
+        "asset": null,
+        "amount": null,
+        "payer": "sending_wallet_if_charged",
+        "explorer_displayed_usd": null,
+        "basis": "Deposit network, sending-wallet debit, hash and gas not supplied; unknown is not zero."
+      },
+      "timing": {
+        "screen_sequence_start_local": "13:54",
+        "card_overview_after_local": "14:00",
+        "exact_sender_time_verified": false,
+        "precise_unlock_time_verified": false,
+        "latency_measured": false,
+        "basis": "Screen times and deposit history timestamp do not establish network latency or exact card unlock time."
+      },
+      "source_files": [
+        "screenshots/whitebit_funding_before.png",
+        "screenshots/whitebit_funding_after.png",
+        "screenshots/whitebit_funding_credit.png",
+        "screenshots/whitebit_funding_balance.png"
+      ],
+      "withdrawal": {
+        "evidence_level": "live_app_form_and_quote_not_executed_receipt",
+        "network": "Plasma",
+        "asset": "USDT",
+        "completed": false,
+        "completion_independently_verified": false,
+        "total_debit_as_displayed": "11.18",
+        "recipient_token_amount_as_displayed": "11.08",
+        "recipient_token_amount_onchain": null,
+        "fees_as_displayed": "0.1",
+        "fee_actually_paid_verified": false,
+        "display_amount_includes_fee": true,
+        "stage": "before_continue_button",
+        "other_account_residual_usdt": "1.18",
+        "other_balance_included_in_debit": true,
+        "residual_origin_confirmed_by_participant": true,
+        "residual_counted_as_test_gain": false,
+        "residual_basis": "Author moved an existing balance from another WhiteBIT account to empty the exchange, not a new deposit or return on the tested 10.",
+        "quoted_fee_pct_of_test_deposit": "1",
+        "alternate_network_fees_usdt_as_displayed": {
+          "ERC20": "0.8",
+          "TRC20": "1",
+          "PLASMA": "0.1",
+          "ARBITRUM": "1",
+          "CCHAIN": "1",
+          "BEP20": "1",
+          "DOTASSETHUB": "1",
+          "NEAR": "1",
+          "OPTIMISM": "1",
+          "POLYGON": "1",
+          "SOL": "1",
+          "TON": "1"
+        },
+        "quicksend_terms": {
+          "evidence_level": "live_app_claim_not_tested",
+          "fee_pct_as_displayed": "0",
+          "destination": "transfer_by_nickname",
+          "external_wallet_equivalent": false
+        },
+        "source_files": [
+          "screenshots/whitebit_withdrawal_method.png",
+          "screenshots/whitebit_withdrawal_review.png"
+        ],
+        "basis": "Selected Plasma fee 0.1; final form matches total debit minus fee. No completed receipt, destination receipt or hash supplied. Other-network fees are live claims, not paid fees or universal rates."
+      },
+      "cost_basis": "10 USDT credited to main exchange account; card USD display 9.98 is a valuation. Sender gas and deposit route unknown. Withdrawal quote 11.18 minus 0.1 equals 11.08; includes 1.18 existing funds from another account. No completed round-trip cost established.",
+      "limits": [
+        "No onchain receipt or exact sender debit/gas supplied for funding.",
+        "Approximate USD card display does not prove a fee or a sale of USDT.",
+        "Plasma quote is 1% of the tested 10; ERC20 8%, other listed external networks 10%, before unknown sender gas and conditional on execution.",
+        "Quoted fees are observed at this date and account; fees may change.",
+        "Existing 1.18 is not test gain; completed withdrawal and recipient credit remain unconfirmed.",
+        "No universal deposit network, processing duration or direct Bybit withdrawal-fee comparison established."
+      ]
+    }
+  ]
+}

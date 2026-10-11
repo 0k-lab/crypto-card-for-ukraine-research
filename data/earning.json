@@ -1,0 +1,520 @@
+{
+  "checked_on": "2026-10-09",
+  "model": {
+    "starting_eligible_balance_usd": "1000",
+    "ending_eligible_balance_usd": "0",
+    "days": 30,
+    "days_per_year": 365,
+    "spending_pattern": "linear_continuous_including_fees",
+    "average_eligible_balance_usd": "500",
+    "reinvest_income": false,
+    "rate_assumption": "constant_rate_and_entire_average_balance_eligible; unknown caps and brackets require account confirmation",
+    "cashback_combination": "add only realized spendable income; do not deduct the same tier fee twice; exclude borrowing without costs"
+  },
+  "cards": {
+    "okx": {
+      "evidence_level": "official_usdg_rewards_ukraine_exclusion",
+      "offers": [
+        {
+          "rate": "0.041",
+          "rate_kind": "apy",
+          "upper_bound": false,
+          "eligible_balance_cap_usd": null,
+          "eligible_in_ukraine": false,
+          "program": "USDG Rewards",
+          "scope": "USDG holding-rewards program only; not a restriction on acquiring/trading the asset and not card cashback terms",
+          "payout_frequency": "weekly",
+          "rate_variable": true,
+          "article_updated_on": "2026-06-02"
+        }
+      ],
+      "spend_access": "usdg_rewards_unavailable_in_ukraine; card_funding_link_not_verified",
+      "payout_asset": "USDG_documented_for_eligible_regions",
+      "measured_annual_yield": null,
+      "sources": [
+        {
+          "url": "https://www.okx.com/ua/learn/usdg",
+          "evidence_level": "official_article_checked_2026-10-09",
+          "title": "Програма винагород у USDG на OKX. Збільште кількість стейблкоїнів простим способом",
+          "author": "OKX",
+          "published_on": "2025-09-09",
+          "updated_on": "2026-06-02",
+          "quotes": [
+            "Винагороди доступні на ваші активи в USDG у нашому додатку, якщо ви перебуваєте в США, Австралії, Латинській Америці, СНД (за винятком Росії та України) та Південно-Східній Азії."
+          ],
+          "scope": "Official exclusion of Ukraine from USDG Rewards; asset availability and card cashback remain separately evidenced."
+        },
+        {
+          "file": "data/participant-confirmations.json",
+          "evidence_level": "participant_report_no_earning_information_found",
+          "scope": "No other card-linked Earning information found by the participant; does not replace the official USDG Rewards evidence."
+        }
+      ]
+    },
+    "bybit": {
+      "evidence_level": "live_account_usdt_apr_and_auto_deduction_with_purchase_quote_and_asset_history",
+      "offers": [
+        {
+          "rate": "0.0681",
+          "rate_kind": "apr",
+          "upper_bound": false,
+          "eligible_balance_cap_usd": null,
+          "asset": "USDT",
+          "rate_scope": "displayed for a 1.3593 USDT balance; higher-balance bands/caps unverified",
+          "rate_captured_on": "2026-10-09"
+        }
+      ],
+      "spend_access": "test_purchase_used_easy_earn",
+      "payout_asset": "USDT_daily_yields_displayed_payment_not_independently_reconciled",
+      "measured_annual_yield": null,
+      "sources": [
+        {
+          "file": "data/participant-confirmations.json",
+          "evidence_level": "author_transcription_of_private_app_screenshots",
+          "scope": "Author transcription of private app screenshots; source images are not published."
+        }
+      ],
+      "displayed_apr_by_asset": {
+        "GRAM": "0.0176",
+        "USDT": "0.0681",
+        "USDC": "0.0542",
+        "MNT": "0.0130",
+        "BTC": "0.0040",
+        "BNB": "0.0080",
+        "ETH": "0.0080"
+      },
+      "banner_maximum_apr": "0.1089",
+      "auto_earn_enabled_by_asset": {
+        "USDT": true,
+        "USDC": false
+      },
+      "displayed_daily_yields_usdt": "0.0001",
+      "displayed_usdt_balance": "1.3593",
+      "source_images_public": false,
+      "public_evidence_level": "author_transcription_of_private_app_screenshots"
+    },
+    "coca": {
+      "evidence_level": "live_rate_and_counter_with_official_apy_terms",
+      "offers": [
+        {
+          "rate": "0.05",
+          "rate_kind": "apy",
+          "upper_bound": false,
+          "eligible_balance_cap_usd": null,
+          "applies_to": [
+            "Starter",
+            "Standard"
+          ],
+          "cap_status": "conflict: tier table says 5% unlimited; section 4.1 mentions unspecified tier cap and possible 2% above it"
+        }
+      ],
+      "spend_access": "documented_liquid_unified_banking_balance_and_live_purchase",
+      "payout_asset": "USD_banking_balance_underlying_asset_not_independently_verified",
+      "measured_annual_yield": null,
+      "sources": [
+        {
+          "file": "data/participant-confirmations.json",
+          "evidence_level": "author_transcription_of_displayed_balance_rate_and_counter",
+          "scope": "Author transcription of the displayed 5% label and counter increase; Earning sources do not link to images. APR/APY and liquidity are established separately by the cited public terms."
+        },
+        {
+          "url": "https://help.coca.xyz/support/solutions/articles/205000042710-tier-system-terms-conditions",
+          "evidence_level": "official_documentation_checked_2026-10-09",
+          "quotes": [
+            "Starter: Balance APY 5% unlimited; Standard: Balance APY 5% unlimited.",
+            "5% APY is earned on USD banking balances up to the specified tier cap. A rate of 2% APY may be applied to any amount exceeding the cap.",
+            "The claim option becomes available once accrued earnings reach a minimum of $1.00 USD.",
+            "Monthly claim capacity covers all the rewards of the user except for APY on USD balance covered by a separate section below.",
+            "Banking balances remain fully liquid and accessible for payments and transfers at all times."
+          ]
+        },
+        {
+          "url": "https://help.coca.xyz/support/solutions/articles/205000059634-how-to-claim-apy",
+          "evidence_level": "official_documentation_checked_2026-10-09",
+          "quotes": [
+            "Press Claim to transfer earned APY to your balance.",
+            "Claiming APY moves the rewards instantly to your available COCA balance."
+          ]
+        },
+        {
+          "url": "https://docs.coca.xyz/coca/membership-and-rewards/5-balance-apy",
+          "evidence_level": "official_product_documentation_checked_2026-10-09",
+          "title": "5% Balance APY",
+          "last_updated_as_displayed": "9 months ago",
+          "quotes": [
+            "With COCA, your balance can earn APY while staying fully usable – meaning you can still pay with your card, withdraw, or move funds whenever you want.",
+            "No staking. No lockups. No “come back in 30 days.”"
+          ],
+          "scope": "Confirms liquidity and balance-APY mechanism; does not specify claim threshold, balance cap or override USD-only detailed terms."
+        }
+      ],
+      "counter_before_usd": "0.00005191",
+      "counter_after_usd": "0.00007055",
+      "counter_increase_usd": "0.00001864",
+      "claim_minimum_usd": "1",
+      "claim_manual": true,
+      "cashback_claim_cap_applies": false
+    },
+    "kolo": {
+      "evidence_level": "participant_report_no_earning_information_found",
+      "offers": [
+        {
+          "rate": null,
+          "rate_kind": null,
+          "upper_bound": false,
+          "eligible_balance_cap_usd": null
+        }
+      ],
+      "spend_access": "not_established",
+      "payout_asset": null,
+      "measured_annual_yield": null,
+      "sources": [
+        {
+          "file": "data/participant-confirmations.json",
+          "evidence_level": "participant_report_no_earning_information_found"
+        }
+      ]
+    },
+    "solid": {
+      "evidence_level": "live_app_displayed_savings_rates_and_onboarding_terms",
+      "offers": [
+        {
+          "rate": "0.0429",
+          "rate_kind": "apy",
+          "upper_bound": false,
+          "eligible_balance_cap_usd": null,
+          "asset": "USDC",
+          "rate_variable": true,
+          "rate_basis": "displayed_30_day_apy"
+        },
+        {
+          "rate": null,
+          "rate_kind": null,
+          "upper_bound": false,
+          "eligible_balance_cap_usd": "10000",
+          "boost_apy": "0.02",
+          "boost_payout_asset": "soFUSE",
+          "annual_subscription_usd": "199",
+          "token_lock_amount": "50000",
+          "token_lock_months": 12,
+          "token_lock_amount_from_2026_10_12": "70000"
+        }
+      ],
+      "spend_access": "cash_and_credit_modes_seen_in_account; credit_usd_yield_only; faq_claims_soUSD_backs_card; actual_savings_spending_not_tested",
+      "payout_asset": "base_soUSD_value_growth_per_private_app_faq; prime_boost_soFUSE",
+      "measured_annual_yield": null,
+      "sources": [
+        {
+          "url": "https://support.solid.xyz/en/articles/15587319-how-does-solid-rewards-work",
+          "evidence_level": "official_documentation_checked_2026-10-09",
+          "quotes": [
+            "+2% APY on your first $10,000 in savings",
+            "The boost is calculated on your savings across all vaults combined (USDC, ETH and FUSE), not per vault.",
+            "It accrues daily, you claim it from the banner at the top of the vault whenever you like, and it is paid in soFUSE."
+          ]
+        },
+        {
+          "url": "https://support.solid.xyz/en/articles/15804231-how-to-earn-more-with-solid",
+          "evidence_level": "official_documentation_checked_2026-10-09",
+          "quotes": [
+            "The rate fluctuates with market conditions, and the current rate is always shown in the app.",
+            "There are no deposit fees and no lock-ups: your money stays yours and you can withdraw at any time.",
+            "Instead of selling your savings, you borrow USDC against your soUSD at a low rate and spend as usual, while your full savings balance keeps earning yield in the background."
+          ]
+        },
+        {
+          "url": "https://support.solid.xyz/en/articles/13185531-what-is-the-solid-card",
+          "evidence_level": "official_documentation_checked_2026-10-09",
+          "quotes": [
+            "Use your Solid wallet balance or savings to power your card.",
+            "Savings Mode: spend directly from your balance",
+            "Borrow Mode: borrow against your savings, so your funds keep earning yield while you spend"
+          ]
+        },
+        {
+          "file": "data/participant-confirmations.json",
+          "evidence_level": "author_transcription_of_private_app_screenshots",
+          "scope": "Author transcription of private app screenshots; source images are not published."
+        }
+      ],
+      "displayed_apy_by_asset": {
+        "USDC": "0.043",
+        "ETH": "0.066",
+        "FUSE": "0.139"
+      },
+      "displayed_7_day_apy_by_asset": {
+        "USDC": "0.0283",
+        "ETH": "0.0662"
+      },
+      "automatic_base_accrual_and_compounding_claimed": true,
+      "portfolio_total_usd_displayed": "0.00",
+      "displayed_allocations": {
+        "USDC": [
+          {
+            "name_as_displayed": "Avantis USDC Base",
+            "allocation": "0.06",
+            "estimated_apy": "0.1767"
+          },
+          {
+            "name_as_displayed": "Auto Fi baseUSD",
+            "allocation": "0.15",
+            "estimated_apy": "0.0887"
+          },
+          {
+            "name_as_displayed": "InfiniFi iUSD-1w",
+            "allocation": "0.05",
+            "estimated_apy": "0.0662"
+          },
+          {
+            "name_as_displayed": "Maple syrupUSD",
+            "allocation": "0.10",
+            "estimated_apy": "0.0521"
+          },
+          {
+            "name_as_displayed": "Morpho Clearstar US...",
+            "allocation": "0.05",
+            "estimated_apy": "0.0681"
+          },
+          {
+            "name_as_displayed": "Morpho RE Ecosyste...",
+            "allocation": "0.10",
+            "estimated_apy": "0.0631"
+          },
+          {
+            "name_as_displayed": "Fluid Lite USDC Vault",
+            "allocation": "0.10",
+            "estimated_apy": "0.0683"
+          },
+          {
+            "name_as_displayed": "Morpho Gauntlet US...",
+            "allocation": "0",
+            "estimated_apy": "0.0400"
+          },
+          {
+            "name_as_displayed": "Morpho Gauntlet US...",
+            "allocation": "0.35",
+            "estimated_apy": "0.0460"
+          }
+        ],
+        "ETH": [
+          {
+            "name_as_displayed": "Auto Finance AutoETH",
+            "allocation": "0.15",
+            "estimated_apy": "0.0285"
+          },
+          {
+            "name_as_displayed": "Fluid Lite ETH",
+            "allocation": "0.15",
+            "estimated_apy": "0.0485"
+          },
+          {
+            "name_as_displayed": "IPOR Fusion stETH L...",
+            "allocation": "0.15",
+            "estimated_apy": "0.0224"
+          },
+          {
+            "name_as_displayed": "Lido Earn ETH",
+            "allocation": "0.15",
+            "estimated_apy": "0.0224"
+          },
+          {
+            "name_as_displayed": "Lido stETH",
+            "allocation": "0.40",
+            "estimated_apy": "0.0224"
+          }
+        ]
+      },
+      "observed_usd_allocation_total": "0.96",
+      "unresolved": [
+        "Exact headline APY calculation and relationship to chart averages not documented; labeled 30 Day APY 4.29% is consistent with rounded headline 4.3%",
+        "USD allocation rows as displayed sum to 96%, not a verified complete 100% allocation; reason unknown",
+        "Savings withdrawal minimum and any separate network/conversion fees not established; no exit fee and most withdrawals within minutes are app FAQ claims, not measured",
+        "Cash-mode spending directly from Savings not verified; FAQ spend-against-soUSD claim and Credit mode do not establish this",
+        "Credit LTV, liquidation rules, rate variability and repayment costs not established; actual loan/payment not tested",
+        "No active Savings balance or measured income; simulator balances are illustrative",
+        "ETH and FUSE yields are token-denominated, not stable USD income"
+      ],
+      "source_images_public": false,
+      "public_evidence_level": "author_transcription_of_private_app_screenshots",
+      "displayed_15_day_apy_by_asset": {
+        "USDC": "0.0344"
+      },
+      "displayed_30_day_apy_by_asset": {
+        "USDC": "0.0429"
+      },
+      "rate_period_evidence": {
+        "labeled_windows_days": [
+          7,
+          15,
+          30
+        ],
+        "headline_4_3_consistent_with_rounded_30_day_4_29": true,
+        "exact_headline_calculation_method": null,
+        "historical_chart_tooltip": {
+          "date": "2026-10-02",
+          "apy": "0.0499"
+        },
+        "public_evidence_level": "author_transcription_of_private_app_screenshots"
+      },
+      "savings_mechanism": {
+        "deposit_assets_per_faq": [
+          "USDC",
+          "USDT"
+        ],
+        "receipt_asset": "soUSD",
+        "receipt_token_count_stays_constant_claimed": true,
+        "receipt_token_usd_value_grows_with_yield_claimed": true,
+        "receipt_token_fixed_at_one_usd": false,
+        "yield_sources_claimed": "diversified_DeFi_lending_and_fixed_yield_strategies_including_Morpho_and_Pendle",
+        "card_backing_and_spend_against_soUSD_without_withdrawal_claimed": true,
+        "withdrawal_on_demand_claimed": true,
+        "withdrawal_time_claimed": "most_complete_within_minutes",
+        "exit_fee_claimed": "0",
+        "waiting_period_claimed": "none",
+        "withdrawal_minimum": null,
+        "network_or_conversion_fees_established": false,
+        "actual_withdrawal_verified": false
+      },
+      "credit_mode": {
+        "account_screen_borrowing_rate": "0.04",
+        "rate_kind_as_labeled": "apy",
+        "account_screen_borrowed_usd": "0",
+        "account_screen_limit_usd": "0",
+        "eligible_collateral": "USD_yield_balance_only",
+        "cash_mode_seen_selected_before_preview": true,
+        "credit_activation_verified": false,
+        "actual_loan_or_payment_verified": false,
+        "onboarding_illustrative_borrowing_apy": "0.0557",
+        "onboarding_no_fixed_payments_or_penalties_claimed": true,
+        "onboarding_repay_anytime_claimed": true,
+        "ltv_limit": null,
+        "liquidation_threshold": null,
+        "repayment_fees": null,
+        "included_in_income_model": false
+      }
+    },
+    "trustee_plus": {
+      "evidence_level": "participant_report_no_earning_information_found",
+      "offers": [
+        {
+          "rate": null,
+          "rate_kind": null,
+          "upper_bound": false,
+          "eligible_balance_cap_usd": null
+        }
+      ],
+      "spend_access": "not_established",
+      "payout_asset": null,
+      "measured_annual_yield": null,
+      "sources": [
+        {
+          "file": "data/participant-confirmations.json",
+          "evidence_level": "participant_report_no_earning_information_found"
+        }
+      ]
+    },
+    "simple": {
+      "evidence_level": "live_app_displayed_apr_and_claim_threshold",
+      "offers": [
+        {
+          "rate": "0.05",
+          "rate_kind": "apr",
+          "upper_bound": false,
+          "eligible_balance_cap_usd": null,
+          "asset": "USDC",
+          "rate_variable": true
+        }
+      ],
+      "spend_access": "automatic_accrual_on_card_balance; actual_claim_not_verified",
+      "payout_asset": "USDC_displayed_unclaimed_income",
+      "measured_annual_yield": null,
+      "sources": [
+        {
+          "file": "data/participant-confirmations.json",
+          "evidence_level": "author_transcription_of_private_app_screenshots",
+          "scope": "Author transcription of private app screenshots; source images are not published."
+        },
+        {
+          "file": "data/card-links.json",
+          "evidence_level": "participant_supplied_referral_claim"
+        }
+      ],
+      "claim_minimum_usdc": "1",
+      "claim_manual": true,
+      "source_images_public": false,
+      "public_evidence_level": "author_transcription_of_private_app_screenshots"
+    },
+    "keyone": {
+      "evidence_level": "participant_report_no_earning_information_found",
+      "offers": [
+        {
+          "rate": null,
+          "rate_kind": null,
+          "upper_bound": false,
+          "eligible_balance_cap_usd": null
+        }
+      ],
+      "spend_access": "not_established",
+      "payout_asset": null,
+      "measured_annual_yield": null,
+      "sources": [
+        {
+          "file": "data/participant-confirmations.json",
+          "evidence_level": "participant_report_no_earning_information_found"
+        }
+      ]
+    },
+    "whitebit": {
+      "evidence_level": "live_app_autoinvest_display_not_card_balance_yield",
+      "offers": [
+        {
+          "rate": null,
+          "rate_kind": null,
+          "upper_bound": false,
+          "eligible_balance_cap_usd": null
+        }
+      ],
+      "spend_access": "auto_invest_is_automated_crypto_buying; link_to_spendable_yield_not_established",
+      "payout_asset": null,
+      "measured_annual_yield": null,
+      "sources": [
+        {
+          "file": "data/participant-confirmations.json",
+          "evidence_level": "author_transcription_of_private_app_screenshots",
+          "scope": "Author transcription of private app screenshots; source images are not published."
+        }
+      ],
+      "other_displayed_product": {
+        "name": "Auto-Invest",
+        "mechanism_claimed": "automated_crypto_to_crypto_swaps_and_regular_fixed_amount_purchases_DCA",
+        "no_minimum_investment_claimed": true,
+        "price_limits_and_purchase_count_settings_claimed": true,
+        "total_invested_usdt_displayed": "0",
+        "no_active_plans_message_visible": true,
+        "plan_running_filter_deactivated_displayed": true,
+        "btc_marketing_label": "Highest Yield",
+        "wbt_marketing_label": "Store of Value",
+        "historical_roi_pct_as_displayed": {
+          "BTC": "71.15",
+          "ETH": "-27.33",
+          "WBT": "4130.41",
+          "XRP": "31.64",
+          "SOL": "-23.76",
+          "TRX": "249.76",
+          "DOGE": "-61.72",
+          "SUI": "-17.30",
+          "BCH": "-51.84",
+          "FET": "-51.82",
+          "OP": "-77.79",
+          "S": "-94.36"
+        },
+        "historical_roi_period": null,
+        "historical_roi_calculation_method": null,
+        "historical_roi_is_apr_or_apy": false,
+        "included_in_earning_model": false
+      },
+      "source_images_public": false,
+      "public_evidence_level": "author_transcription_of_private_app_screenshots"
+    }
+  }
+}

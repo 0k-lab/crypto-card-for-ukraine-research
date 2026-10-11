@@ -1,0 +1,338 @@
+{
+  "checked_on": "2026-10-09",
+  "basis": "Participant confirmations and supplied BIN lookup evidence identify the tested cards; public documentation is kept separately and may describe other programs. BIN issuer names do not replace individual card agreements.",
+  "entries": {
+    "okx": {
+      "label": "Bano Pty Ltd · уточнюю",
+      "legal_issuer": null,
+      "program_partner": null,
+      "evidence_level": "participant_confirmed_test_card_issuer",
+      "scope": "Раніше для своєї протестованої картки вказав Bano Pty Ltd. Три скріни BIN-пошуку від 09.10.2026 суперечать один одному: два називають Bano Pty Ltd, Австралія, Mastercard Debit; третій — JPMorgan Chase Bank, N.A., США, Mastercard Credit. Залишаю Bano як попередньо вказану назву, але остаточного юридичного емітента ще уточнюю. Провайдери, актуальність та незалежність джерел невідомі; більшість записів не є доказом правильності. Поле AUD на першому скріні не встановлює валюту розрахунку покупок. Потрібна індивідуальна карткова угода або письмова відповідь підтримки. BIN не публікую; оригінали скрінів видалив після аналізу.",
+      "source_url": null,
+      "source_quote": null,
+      "public_documentation": {
+        "label": "UAB Monavate · EEA",
+        "legal_issuer": "UAB Monavate",
+        "program_partner": null,
+        "evidence_level": "official_regional_terms",
+        "scope": "Умови для EEA називають UAB Monavate. Вони описують іншу регіональну програму й не підтверджують Bano Pty Ltd для моєї картки.",
+        "source_url": "https://www.okx.com/help/eea-regional-addendum-to-pay-wallet-terms",
+        "source_quote": "For residents of the European Economic Area (EEA) ... The OKX Debit Card is issued by UAB Monavate."
+      },
+      "source_file": "data/participant-confirmations.json",
+      "participant_reported_issuer": "Bano Pty Ltd",
+      "participant_confirmed_on": "2026-10-09",
+      "bin_lookup": {
+        "evidence_level": "participant_supplied_conflicting_bin_lookup_screenshots",
+        "received_on": "2026-10-09",
+        "network_as_displayed": "MASTERCARD",
+        "reports": [
+          {
+            "issuer_as_displayed": "BANO PTY, LTD.",
+            "country_as_displayed": "AUSTRALIA (AU)",
+            "currency_as_displayed": "AUD",
+            "type_as_displayed": "DEBIT • TITANIUM",
+            "prepaid_as_displayed": false,
+            "provider": null
+          },
+          {
+            "issuer_as_displayed": "Bano Pty Ltd",
+            "country_as_displayed": "Australia",
+            "type_as_displayed": "Debit",
+            "prepaid_as_displayed": "No",
+            "provider": null
+          },
+          {
+            "issuer_as_displayed": "JPMORGAN CHASE BANK, N.A.",
+            "country_as_displayed": "United States",
+            "type_as_displayed": "Credit",
+            "provider": null
+          }
+        ],
+        "conflicting_results": true,
+        "independently_verified": false,
+        "scope": "Two displayed records identify Bano in Australia; one identifies JPMorgan Chase in the US, with a different card type. No majority-based verification, individual agreement or resolved cause. BIN withheld; original screenshots deleted after analysis; AUD is database metadata, not measured settlement currency."
+      }
+    },
+    "bybit": {
+      "label": "Fly Wallet Pty Ltd",
+      "legal_issuer": "Fly Wallet Pty Ltd",
+      "program_partner": null,
+      "evidence_level": "participant_confirmed_test_card_issuer",
+      "scope": "Для моєї протестованої картки вказав Fly Wallet Pty Ltd. Скрін BIN-пошуку від 09.10.2026 також показує FLY WALLET PTY, LTD., Австралія, Mastercard prepaid. Це допоміжне підтвердження з бази BIN, провайдера й актуальність я незалежно не перевірив. Поле AUD у базі не встановлює валюту розрахунку моїх покупок. Індивідуальну карткову угоду ще не додав; BIN не публікую; оригінальний скрін видалив після аналізу.",
+      "source_url": null,
+      "source_quote": null,
+      "public_documentation": {
+        "label": "Не встановлено",
+        "legal_issuer": null,
+        "program_partner": "Bybit Limited — programme manager (AIFC)",
+        "evidence_level": "official_terms_issuer_unnamed",
+        "scope": "Умови AIFC, §1.2: лише Card Issuer без назви юрособи. Bybit Limited у §1.1 є менеджером програми. Це не джерело підтвердження Fly Wallet Pty Ltd.",
+        "source_url": "https://www.bybit.com/en/legal/bybit-card/Bybit-Cardholder-Terms-Conditions-AIFC",
+        "source_quote": "The Bybit Card is issued by Card Issuer pursuant to a licence by Mastercard International."
+      },
+      "source_file": "data/participant-confirmations.json",
+      "participant_reported_issuer": "Fly Wallet Pty Ltd",
+      "participant_confirmed_on": "2026-10-09",
+      "bin_lookup": {
+        "evidence_level": "participant_supplied_bin_lookup_screenshot",
+        "received_on": "2026-10-09",
+        "issuer_as_displayed": "FLY WALLET PTY, LTD.",
+        "country_as_displayed": "AUSTRALIA (AU)",
+        "currency_as_displayed": "AUD",
+        "network_as_displayed": "MASTERCARD",
+        "type_as_displayed": "PREPAID • PREPAID RELOADABLE",
+        "provider": null,
+        "independently_verified": false,
+        "scope": "BIN database corroboration only; not the individual card agreement or evidence of purchase settlement currency. BIN and screenshot withheld."
+      }
+    },
+    "simple": {
+      "label": "Wirex Limited",
+      "legal_issuer": null,
+      "program_partner": "Wirex",
+      "evidence_level": "participant_reported_bin_lookup_result",
+      "scope": "За моїм уточненням від 09.10.2026, BIN-пошук Simple дає той самий результат, що й COCA: Wirex Limited, Велика Британія. Окремий скрін цього пошуку ще не додав; це мій записаний результат, а не незалежно перевірена база чи індивідуальна карткова угода. Відображену назву уточнюю, юридичного емітента остаточно не верифікував. BIN не публікую.",
+      "source_url": null,
+      "source_quote": null,
+      "public_documentation": {
+        "label": "Wirex · юрособу уточнюю",
+        "legal_issuer": null,
+        "program_partner": "Wirex та афілійовані компанії",
+        "evidence_level": "official_program_terms_entity_unspecified",
+        "scope": "Crypto Card із self-custodial wallet, §4.1.1: Wirex та афілійовані компанії; Simple — технологічний партнер. Точну юридичну назву Wirex ці умови не встановлюють.",
+        "source_url": "https://simple.app/terms-and-conditions/",
+        "source_quote": "The Crypto Card program is provided, issued, and managed by Wirex and its affiliated entities."
+      },
+      "source_file": "data/participant-confirmations.json",
+      "participant_reported_issuer": "Wirex",
+      "participant_confirmed_on": "2026-10-09",
+      "bin_lookup": {
+        "evidence_level": "participant_reported_bin_lookup_result",
+        "received_on": "2026-10-09",
+        "issuer_normalized": "Wirex Limited",
+        "country_normalized": "United Kingdom",
+        "provider": null,
+        "independently_verified": false,
+        "scope": "Participant states the BIN result is the same as COCA; no separate lookup screenshot or individual agreement supplied. BIN withheld."
+      }
+    },
+    "solid": {
+      "label": "Wirex Limited",
+      "legal_issuer": null,
+      "program_partner": "Wirex",
+      "evidence_level": "participant_reported_bin_lookup_result",
+      "scope": "За моїм уточненням від 09.10.2026, BIN-пошук Solid дає той самий результат, що й COCA: Wirex Limited, Велика Британія. Окремий скрін цього пошуку ще не додав; це мій записаний результат, а не незалежно перевірена база чи індивідуальна карткова угода. Відображену назву уточнюю, юридичного емітента остаточно не верифікував. BIN не публікую.",
+      "source_url": null,
+      "source_quote": null,
+      "public_documentation": {
+        "label": "Rain / Wirex · програму уточнюю",
+        "legal_issuer": null,
+        "program_partner": "Rain або Wirex",
+        "evidence_level": "official_help_multiple_programs",
+        "scope": "Довідка описує Rain або Wirex залежно від країни проживання; моє окреме підтвердження визначає Wirex для протестованої картки.",
+        "source_url": "https://support.solid.xyz/en/articles/13185531-what-is-the-solid-card",
+        "source_quote": "Your card is issued by one of our two card program partners, Rain or Wirex, depending on your country of residence."
+      },
+      "source_file": "data/participant-confirmations.json",
+      "participant_reported_issuer": "Wirex",
+      "participant_confirmed_on": "2026-10-09",
+      "bin_lookup": {
+        "evidence_level": "participant_reported_bin_lookup_result",
+        "received_on": "2026-10-09",
+        "issuer_normalized": "Wirex Limited",
+        "country_normalized": "United Kingdom",
+        "provider": null,
+        "independently_verified": false,
+        "scope": "Participant states the BIN result is the same as COCA; no separate lookup screenshot or individual agreement supplied. BIN withheld."
+      }
+    },
+    "kolo": {
+      "label": "Wirex Limited",
+      "legal_issuer": null,
+      "program_partner": "Wirex",
+      "evidence_level": "participant_reported_bin_lookup_result",
+      "scope": "За моїм уточненням від 09.10.2026, BIN-пошук KOLO дає той самий результат, що й COCA: Wirex Limited, Велика Британія. Окремий скрін цього пошуку ще не додав; це мій записаний результат, а не незалежно перевірена база чи індивідуальна карткова угода. Відображену назву уточнюю, юридичного емітента остаточно не верифікував. BIN не публікую.",
+      "source_url": null,
+      "source_quote": null,
+      "public_documentation": {
+        "label": "Не названий · партнер Rain",
+        "legal_issuer": null,
+        "program_partner": "Signify Holdings Inc. (Rain)",
+        "evidence_level": "official_terms_card_services_partner",
+        "scope": "Умови v3.0.0 від 01.07.2026, §1.1: Hardline Holding Limited надає сервіс, Signify Holdings Inc. / Rain є партнером Card Services. Цей запис відрізняється від мого підтвердження Wirex; причину ще не встановив.",
+        "source_url": "https://cdn.kolo.xyz/public/terms-of-use",
+        "source_quote": "Card Services are provided in collaboration with Signify Holdings Inc."
+      },
+      "source_file": "data/participant-confirmations.json",
+      "participant_reported_issuer": "Wirex",
+      "participant_confirmed_on": "2026-10-09",
+      "bin_lookup": {
+        "evidence_level": "participant_reported_bin_lookup_result",
+        "received_on": "2026-10-09",
+        "issuer_normalized": "Wirex Limited",
+        "country_normalized": "United Kingdom",
+        "provider": null,
+        "independently_verified": false,
+        "scope": "Participant states the BIN result is the same as COCA; no separate lookup screenshot or individual agreement supplied. BIN withheld."
+      }
+    },
+    "coca": {
+      "label": "Wirex Limited",
+      "legal_issuer": null,
+      "program_partner": "Wirex",
+      "evidence_level": "participant_supplied_bin_lookup_screenshot",
+      "scope": "Для моєї COCA три додані 09.10.2026 скріни BIN-пошуку називають Wirex Ltd / Wirex Limited, Велику Британію та Visa prepaid. На двох також позначено Debit; на першому поле валюти — GBP. Уточнюю відображену назву до Wirex Limited за цими записами. Провайдери й актуальність баз невідомі; три сайти можуть використовувати спільне джерело. Індивідуальної карткової угоди ще немає, тому юридичного емітента остаточно не верифікував. GBP не доводить валюту розрахунку покупок. BIN не публікую; оригінали скрінів видалив після аналізу.",
+      "source_url": null,
+      "source_quote": null,
+      "public_documentation": {
+        "label": "Wirex · програму уточнюю",
+        "legal_issuer": null,
+        "program_partner": "Wirex",
+        "evidence_level": "official_page_network_scope_mismatch",
+        "scope": "Публічна сторінка називає Wirex Limited (UK) / UAB Wirex (EEA) для Mastercard. Моя картка — Visa, тому конкретну юрособу з цих умов на неї не переношу.",
+        "source_url": "https://www.coca.xyz/cards",
+        "source_quote": "The Physical Card and Virtual Cards powered by Coca Wallet are a prepaid Mastercard issued by Wirex Limited (in the UK) ... or UAB Wirex (in the EEA)."
+      },
+      "source_file": "data/participant-confirmations.json",
+      "participant_reported_issuer": "Wirex",
+      "participant_confirmed_on": "2026-10-09",
+      "bin_lookup": {
+        "evidence_level": "participant_supplied_bin_lookup_screenshot",
+        "received_on": "2026-10-09",
+        "issuer_normalized": "Wirex Limited",
+        "country_normalized": "United Kingdom",
+        "network_as_displayed": "VISA",
+        "reports": [
+          {
+            "issuer_as_displayed": "WIREX, LTD.",
+            "country_as_displayed": "UNITED KINGDOM (GB)",
+            "currency_as_displayed": "GBP",
+            "type_as_displayed": "PREPAID • PREPAID",
+            "provider": null
+          },
+          {
+            "issuer_as_displayed": "Wirex Limited",
+            "country_as_displayed": "United Kingdom Of Great Britain And Northern Ireland",
+            "type_as_displayed": "Debit",
+            "prepaid_as_displayed": "Yes",
+            "provider": null
+          },
+          {
+            "issuer_as_displayed": "WIREX, LTD.",
+            "country_as_displayed": "United Kingdom",
+            "type_as_displayed": "Debit",
+            "category_as_displayed": "PREPAID",
+            "spending_as_displayed": "Consumer",
+            "provider": null
+          }
+        ],
+        "independently_verified": false,
+        "scope": "Three supplied BIN lookup screenshots agree on the issuer name and country, but independent underlying sources are not established. No individual agreement; GBP is database metadata, not measured purchase settlement currency. BIN withheld; original screenshots deleted after analysis."
+      }
+    },
+    "trustee_plus": {
+      "label": "Wirex Limited",
+      "legal_issuer": "Wirex Limited",
+      "program_partner": "Wirex",
+      "evidence_level": "official_product_page",
+      "scope": "Поточна Crypto Card в Trustee Plus: окремий USDC/USDT-баланс, валюта USD. Офіційна сторінка прямо називає Wirex Limited. За моїм уточненням від 09.10.2026, BIN-пошук також дає той самий результат, що й COCA: Wirex Limited, Велика Британія. Окремого скріну цього пошуку та моєї індивідуальної карткової угоди ще не додав. BIN не публікую.",
+      "source_url": "https://trustee.io/cryptocard/",
+      "source_quote": "Issued in Great Britain Worldwide Crypto Card. The card issuer is Wirex Limited.",
+      "bin_lookup": {
+        "evidence_level": "participant_reported_bin_lookup_result",
+        "received_on": "2026-10-09",
+        "issuer_normalized": "Wirex Limited",
+        "country_normalized": "United Kingdom",
+        "provider": null,
+        "independently_verified": false,
+        "scope": "Participant states the BIN result is the same as COCA, corroborating the official Trustee product page. No separate lookup screenshot or individual agreement supplied. BIN withheld."
+      }
+    },
+    "whitebit": {
+      "label": "JSC Hash Bank",
+      "legal_issuer": "JSC Hash Bank",
+      "program_partner": null,
+      "evidence_level": "official_product_help",
+      "scope": "Саме Nóva USD Visa. Офіційну довідку прочитав 09.10.2026: вона називає JSC Hash Bank; за моїм уточненням, Apple Pay також показує Hashbank. Три додані скріни BIN-пошуку натомість називають Insbank, США, Visa Debit; два позначають Business. Залишаю JSC Hash Bank за джерелом саме цієї USD-програми та фіксую суперечність із BIN-базами. Провайдери, актуальність і незалежність баз невідомі; причину розбіжності не встановив. Пошук за номером платіжного токена Apple Pay або застарілий запис — можливі пояснення, а не перевірені факти. Індивідуальну карткову угоду ще не звірив; умови EUR-картки сюди не переношу. BIN не публікую; оригінали скрінів видалив після аналізу.",
+      "source_url": "https://help.whitebit.com/hc/en-gb/articles/38453058545949-N%C3%B3va-USD-Card-Issuer-and-Terms",
+      "source_quote": "Nova USD is a debit Visa card issued in partnership with JSC Hash Bank.",
+      "participant_reported_issuer": "HashBank",
+      "participant_confirmed_on": "2026-10-09",
+      "wallet_display": {
+        "evidence_level": "participant_reported_wallet_issuer_label",
+        "reported_on": "2026-10-09",
+        "wallet": "Apple Pay",
+        "label_as_reported": "Hashbank",
+        "screenshot_supplied": false,
+        "scope": "Participant reports the label shown in Apple Pay; not independently inspected or treated as an individual agreement."
+      },
+      "bin_lookup": {
+        "evidence_level": "participant_supplied_bin_lookup_screenshot",
+        "received_on": "2026-10-09",
+        "issuer_normalized": "Insbank",
+        "country_normalized": "United States",
+        "network_as_displayed": "VISA",
+        "reports": [
+          {
+            "issuer_as_displayed": "INSBANK",
+            "country_as_displayed": "UNITED STATES (US)",
+            "currency_as_displayed": "USD",
+            "type_as_displayed": "DEBIT • BUSINESS",
+            "commercial_as_displayed": true,
+            "provider": null
+          },
+          {
+            "issuer_as_displayed": "Insbank",
+            "country_as_displayed": "United States Of America",
+            "type_as_displayed": "Debit",
+            "prepaid_as_displayed": "No",
+            "provider": null
+          },
+          {
+            "issuer_as_displayed": "INSBANK",
+            "country_as_displayed": "United States",
+            "type_as_displayed": "Debit",
+            "category_as_displayed": "BUSINESS",
+            "spending_as_displayed": "Corporate",
+            "provider": null
+          }
+        ],
+        "conflicting_results": false,
+        "conflicts_with_program_source": true,
+        "independently_verified": false,
+        "scope": "Three supplied BIN results agree on Insbank/US but differ from official Nova USD program documentation and the participant-reported Apple Pay label Hashbank. Providers, freshness and independent upstream sources unknown. Stale data or token-number lookup are hypotheses only. BIN withheld; original screenshots deleted after analysis."
+      }
+    },
+    "keyone": {
+      "label": "Wirex Limited",
+      "legal_issuer": null,
+      "program_partner": "Wirex",
+      "evidence_level": "participant_reported_bin_lookup_result",
+      "scope": "За моїм уточненням від 09.10.2026, BIN-пошук KeyOne дає той самий результат, що й COCA: Wirex Limited, Велика Британія. Окремий скрін цього пошуку ще не додав; це мій записаний результат, а не незалежно перевірена база чи індивідуальна карткова угода. Відображену назву уточнюю, юридичного емітента остаточно не верифікував. BIN не публікую.",
+      "source_url": null,
+      "source_quote": null,
+      "public_documentation": {
+        "label": "Не встановлено",
+        "legal_issuer": null,
+        "program_partner": null,
+        "evidence_level": "not_established",
+        "scope": "Первинного публічного документа з юридичним емітентом не знайшов; назва Wirex для моєї картки походить із мого окремого підтвердження.",
+        "source_url": null,
+        "source_quote": null
+      },
+      "source_file": "data/participant-confirmations.json",
+      "participant_reported_issuer": "Wirex",
+      "participant_confirmed_on": "2026-10-09",
+      "bin_lookup": {
+        "evidence_level": "participant_reported_bin_lookup_result",
+        "received_on": "2026-10-09",
+        "issuer_normalized": "Wirex Limited",
+        "country_normalized": "United Kingdom",
+        "provider": null,
+        "independently_verified": false,
+        "scope": "Participant states the BIN result is the same as COCA; no separate lookup screenshot or individual agreement supplied. BIN withheld."
+      }
+    }
+  }
+}

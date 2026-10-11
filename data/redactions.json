@@ -1,0 +1,2125 @@
+{
+  "method": "gaussian_blur",
+  "radius_pixels": 12,
+  "dimensions": [
+    282,
+    612
+  ],
+  "status_bar": "preserved at participant request",
+  "coordinate_format": "left, top, right, bottom; right/bottom exclusive",
+  "images": {
+    "bybit_before.jpeg": [
+      {
+        "box": [
+          21,
+          490,
+          83,
+          508
+        ],
+        "reason": "unrelated historical cashback amount"
+      }
+    ],
+    "bybit_after.jpeg": [
+      {
+        "box": [
+          21,
+          490,
+          83,
+          508
+        ],
+        "reason": "unrelated historical cashback amount"
+      }
+    ],
+    "bybit_tx.jpeg": [
+      {
+        "box": [
+          203,
+          274,
+          267,
+          294
+        ],
+        "reason": "card ending"
+      }
+    ],
+    "coca_before.jpeg": [
+      {
+        "box": [
+          53,
+          375,
+          127,
+          395
+        ],
+        "reason": "wallet address fragment"
+      },
+      {
+        "box": [
+          53,
+          472,
+          93,
+          490
+        ],
+        "reason": "card ending"
+      }
+    ],
+    "coca_after.jpeg": [
+      {
+        "box": [
+          53,
+          472,
+          93,
+          490
+        ],
+        "reason": "card ending"
+      }
+    ],
+    "coca_tx.jpeg": [
+      {
+        "box": [
+          53,
+          205,
+          99,
+          226
+        ],
+        "reason": "card ending"
+      },
+      {
+        "box": [
+          21,
+          428,
+          271,
+          451
+        ],
+        "reason": "transaction ID"
+      }
+    ],
+    "keyone_before.jpeg": [
+      {
+        "box": [
+          23,
+          221,
+          98,
+          245
+        ],
+        "reason": "card ending"
+      }
+    ],
+    "keyone_after.jpeg": [
+      {
+        "box": [
+          23,
+          221,
+          98,
+          245
+        ],
+        "reason": "card ending"
+      },
+      {
+        "box": [
+          231,
+          414,
+          271,
+          435
+        ],
+        "reason": "card ending in transaction list"
+      }
+    ],
+    "keyone_tx.jpeg": [
+      {
+        "box": [
+          220,
+          339,
+          270,
+          362
+        ],
+        "reason": "card ending"
+      },
+      {
+        "box": [
+          174,
+          423,
+          270,
+          445
+        ],
+        "reason": "blockchain transaction hash"
+      },
+      {
+        "box": [
+          182,
+          477,
+          270,
+          500
+        ],
+        "reason": "processor reference"
+      },
+      {
+        "box": [
+          178,
+          505,
+          270,
+          531
+        ],
+        "reason": "transaction ID"
+      }
+    ],
+    "kolo_before.jpeg": [
+      {
+        "box": [
+          25,
+          356,
+          107,
+          390
+        ],
+        "reason": "card ending"
+      }
+    ],
+    "kolo_after.jpeg": [
+      {
+        "box": [
+          25,
+          356,
+          107,
+          390
+        ],
+        "reason": "card ending"
+      }
+    ],
+    "kolo_tx.jpeg": [
+      {
+        "box": [
+          17,
+          43,
+          123,
+          76
+        ],
+        "reason": "background card ending"
+      },
+      {
+        "box": [
+          109,
+          342,
+          164,
+          368
+        ],
+        "reason": "card ending in payment method"
+      }
+    ],
+    "okx_before.jpeg": [
+      {
+        "box": [
+          48,
+          390,
+          89,
+          410
+        ],
+        "reason": "card ending"
+      },
+      {
+        "box": [
+          15,
+          549,
+          275,
+          612
+        ],
+        "reason": "unrelated historical transfers"
+      }
+    ],
+    "okx_after.jpeg": [
+      {
+        "box": [
+          48,
+          390,
+          89,
+          410
+        ],
+        "reason": "card ending"
+      },
+      {
+        "box": [
+          15,
+          589,
+          275,
+          612
+        ],
+        "reason": "unrelated historical transfer"
+      }
+    ],
+    "okx_tx.jpeg": [
+      {
+        "box": [
+          221,
+          408,
+          270,
+          432
+        ],
+        "reason": "card ending"
+      },
+      {
+        "box": [
+          119,
+          474,
+          272,
+          495
+        ],
+        "reason": "transaction ID"
+      }
+    ],
+    "simple_before.jpeg": [
+      {
+        "box": [
+          25,
+          228,
+          79,
+          250
+        ],
+        "reason": "card ending"
+      },
+      {
+        "box": [
+          140,
+          308,
+          210,
+          328
+        ],
+        "reason": "unrelated accumulated yield"
+      },
+      {
+        "box": [
+          13,
+          515,
+          271,
+          545
+        ],
+        "reason": "unrelated historical payment"
+      }
+    ],
+    "simple_after.jpeg": [
+      {
+        "box": [
+          25,
+          228,
+          79,
+          250
+        ],
+        "reason": "card ending"
+      },
+      {
+        "box": [
+          140,
+          308,
+          210,
+          328
+        ],
+        "reason": "unrelated accumulated yield"
+      }
+    ],
+    "simple_tx.jpeg": [
+      {
+        "box": [
+          152,
+          425,
+          272,
+          449
+        ],
+        "reason": "transaction ID"
+      }
+    ],
+    "solid_before.jpeg": [
+      {
+        "box": [
+          29,
+          341,
+          103,
+          368
+        ],
+        "reason": "card ending"
+      },
+      {
+        "box": [
+          150,
+          466,
+          224,
+          491
+        ],
+        "reason": "unrelated historical monthly cashback"
+      }
+    ],
+    "solid_after.jpeg": [
+      {
+        "box": [
+          29,
+          341,
+          103,
+          368
+        ],
+        "reason": "card ending"
+      },
+      {
+        "box": [
+          150,
+          466,
+          224,
+          491
+        ],
+        "reason": "unrelated historical monthly cashback"
+      }
+    ],
+    "solid_tx.jpeg": [
+      {
+        "box": [
+          213,
+          250,
+          271,
+          276
+        ],
+        "reason": "card ending"
+      }
+    ],
+    "trustee_plus_before.jpeg": [
+      {
+        "box": [
+          9,
+          40,
+          93,
+          74
+        ],
+        "reason": "participant nickname and avatar"
+      },
+      {
+        "box": [
+          19,
+          309,
+          71,
+          333
+        ],
+        "reason": "card ending"
+      }
+    ],
+    "trustee_plus_after.jpeg": [
+      {
+        "box": [
+          18,
+          223,
+          77,
+          247
+        ],
+        "reason": "card ending"
+      }
+    ],
+    "trustee_plus_tx.jpeg": [],
+    "whitebit_before.jpeg": [
+      {
+        "box": [
+          268,
+          91,
+          282,
+          249
+        ],
+        "reason": "partly visible neighboring card"
+      }
+    ],
+    "whitebit_after.jpeg": [
+      {
+        "box": [
+          268,
+          91,
+          282,
+          249
+        ],
+        "reason": "partly visible neighboring card"
+      }
+    ],
+    "whitebit_tx.jpeg": [
+      {
+        "box": [
+          63,
+          335,
+          272,
+          359
+        ],
+        "reason": "transaction ID"
+      }
+    ],
+    "solid_prime_terms.png": [],
+    "trustee_plus_receipt.png": [
+      {
+        "box": [
+          270,
+          612,
+          675,
+          650
+        ],
+        "reason": "payer name"
+      },
+      {
+        "box": [
+          265,
+          704,
+          465,
+          744
+        ],
+        "reason": "card ending"
+      },
+      {
+        "box": [
+          228,
+          753,
+          440,
+          792
+        ],
+        "reason": "account identifier"
+      },
+      {
+        "box": [
+          78,
+          920,
+          340,
+          954
+        ],
+        "reason": "transaction number"
+      }
+    ],
+    "bybit_quote.png": [],
+    "coca_tier_claim_terms.jpeg": [],
+    "coca_standard_claim_terms.jpeg": [],
+    "bybit_completed.jpeg": [
+      {
+        "box": [
+          418,
+          728,
+          550,
+          770
+        ],
+        "reason": "Card ending",
+        "radius_pixels": 30
+      }
+    ],
+    "bybit_points.jpeg": [
+      {
+        "box": [
+          350,
+          423,
+          575,
+          470
+        ],
+        "reason": "Transaction ID",
+        "radius_pixels": 30
+      },
+      {
+        "box": [
+          360,
+          617,
+          575,
+          668
+        ],
+        "reason": "Card ending",
+        "radius_pixels": 30
+      }
+    ],
+    "okx_completed.jpeg": [
+      {
+        "box": [
+          384,
+          726,
+          560,
+          775
+        ],
+        "reason": "Card ending",
+        "radius_pixels": 30
+      },
+      {
+        "box": [
+          245,
+          860,
+          557,
+          909
+        ],
+        "reason": "Transaction ID",
+        "radius_pixels": 30
+      }
+    ],
+    "kolo_cashback_history.jpeg": [
+      {
+        "box": [
+          96,
+          1234,
+          566,
+          1280
+        ],
+        "reason": "Historical cashback transaction ID",
+        "radius_pixels": 30
+      }
+    ],
+    "kolo_historical_usd.jpeg": [
+      {
+        "box": [
+          15,
+          90,
+          570,
+          173
+        ],
+        "reason": "Unrelated background exchange history",
+        "radius_pixels": 30
+      },
+      {
+        "box": [
+          238,
+          719,
+          333,
+          773
+        ],
+        "reason": "Card ending",
+        "radius_pixels": 30
+      }
+    ],
+    "kolo_historical_uah.jpeg": [
+      {
+        "box": [
+          15,
+          90,
+          570,
+          173
+        ],
+        "reason": "Unrelated background exchange history",
+        "radius_pixels": 30
+      },
+      {
+        "box": [
+          238,
+          719,
+          333,
+          773
+        ],
+        "reason": "Card ending",
+        "radius_pixels": 30
+      }
+    ],
+    "okx_historical_usd.jpeg": [
+      {
+        "box": [
+          386,
+          668,
+          559,
+          714
+        ],
+        "reason": "Card ending",
+        "radius_pixels": 30
+      },
+      {
+        "box": [
+          245,
+          799,
+          563,
+          847
+        ],
+        "reason": "Transaction ID",
+        "radius_pixels": 30
+      }
+    ],
+    "solid_historical_usd.jpeg": [
+      {
+        "box": [
+          447,
+          525,
+          550,
+          575
+        ],
+        "reason": "Card ending",
+        "radius_pixels": 30
+      },
+      {
+        "box": [
+          362,
+          1050,
+          552,
+          1103
+        ],
+        "reason": "Blockchain transaction hash fragment",
+        "radius_pixels": 30
+      }
+    ],
+    "solid_historical_chatgpt.jpeg": [
+      {
+        "box": [
+          447,
+          525,
+          550,
+          575
+        ],
+        "reason": "Card ending",
+        "radius_pixels": 30
+      },
+      {
+        "box": [
+          362,
+          1050,
+          552,
+          1103
+        ],
+        "reason": "Blockchain transaction hash fragment",
+        "radius_pixels": 30
+      }
+    ],
+    "simple_historical_apple.jpeg": [
+      {
+        "box": [
+          16,
+          92,
+          574,
+          515
+        ],
+        "reason": "Unrelated background transaction history",
+        "radius_pixels": 30
+      },
+      {
+        "box": [
+          351,
+          919,
+          553,
+          974
+        ],
+        "reason": "Transaction ID",
+        "radius_pixels": 30
+      }
+    ],
+    "simple_historical_chatgpt.jpeg": [
+      {
+        "box": [
+          16,
+          92,
+          574,
+          515
+        ],
+        "reason": "Unrelated background transaction history",
+        "radius_pixels": 30
+      },
+      {
+        "box": [
+          351,
+          919,
+          553,
+          974
+        ],
+        "reason": "Transaction ID",
+        "radius_pixels": 30
+      }
+    ],
+    "bybit_historical_usd.jpeg": [
+      {
+        "box": [
+          420,
+          683,
+          554,
+          734
+        ],
+        "reason": "Card ending",
+        "radius_pixels": 30
+      },
+      {
+        "box": [
+          180,
+          774,
+          554,
+          888
+        ],
+        "reason": "Payment and transaction IDs",
+        "radius_pixels": 30
+      }
+    ],
+    "bybit_historical_usd_details.jpeg": [
+      {
+        "box": [
+          420,
+          276,
+          554,
+          326
+        ],
+        "reason": "Card ending",
+        "radius_pixels": 30
+      },
+      {
+        "box": [
+          180,
+          368,
+          554,
+          483
+        ],
+        "reason": "Payment and transaction IDs",
+        "radius_pixels": 30
+      }
+    ],
+    "bybit_historical_usd_points.jpeg": [
+      {
+        "box": [
+          350,
+          423,
+          575,
+          470
+        ],
+        "reason": "Transaction ID",
+        "radius_pixels": 30
+      },
+      {
+        "box": [
+          360,
+          617,
+          575,
+          668
+        ],
+        "reason": "Card ending",
+        "radius_pixels": 30
+      }
+    ],
+    "bybit_historical_usd_assets.jpeg": [],
+    "bybit_asset_history.jpeg": [],
+    "bybit_funding_before.jpeg": [],
+    "bybit_funding_waiting.jpeg": [
+      {
+        "box": [
+          20,
+          1190,
+          570,
+          1280
+        ],
+        "reason": "Unrelated previous transaction and card ending",
+        "radius_pixels": 30
+      }
+    ],
+    "bybit_funding_after.jpeg": [],
+    "bybit_funding_paywith.jpeg": [],
+    "bybit_funding_balance.jpeg": [],
+    "bybit_funding_credit.jpeg": [],
+    "coca_funding_before.jpeg": [],
+    "coca_funding_method.jpeg": [],
+    "coca_funding_quote.jpeg": [
+      {
+        "box": [
+          150,
+          450,
+          440,
+          736
+        ],
+        "reason": "Deposit wallet QR code",
+        "radius_pixels": 60
+      },
+      {
+        "box": [
+          35,
+          793,
+          490,
+          861
+        ],
+        "reason": "Deposit wallet address",
+        "radius_pixels": 40
+      }
+    ],
+    "coca_funding_after.jpeg": [
+      {
+        "box": [
+          133,
+          784,
+          274,
+          821
+        ],
+        "reason": "Wallet address fragment",
+        "radius_pixels": 30
+      },
+      {
+        "box": [
+          95,
+          983,
+          180,
+          1019
+        ],
+        "reason": "Card ending",
+        "radius_pixels": 30
+      }
+    ],
+    "coca_funding_completed.jpeg": [
+      {
+        "box": [
+          40,
+          838,
+          525,
+          905
+        ],
+        "reason": "Funding source wallet address",
+        "radius_pixels": 40
+      },
+      {
+        "box": [
+          40,
+          991,
+          500,
+          1030
+        ],
+        "reason": "Transaction ID",
+        "radius_pixels": 35
+      }
+    ],
+    "keyone_funding_before.jpeg": [
+      {
+        "box": [
+          108,
+          465,
+          185,
+          505
+        ],
+        "reason": "Card ending",
+        "radius_pixels": 30
+      },
+      {
+        "box": [
+          20,
+          757,
+          570,
+          1280
+        ],
+        "reason": "Unrelated prior withdrawal and purchase history, including card ending",
+        "radius_pixels": 35
+      }
+    ],
+    "keyone_funding_pending.jpeg": [
+      {
+        "box": [
+          108,
+          465,
+          185,
+          505
+        ],
+        "reason": "Card ending",
+        "radius_pixels": 30
+      },
+      {
+        "box": [
+          20,
+          916,
+          570,
+          1280
+        ],
+        "reason": "Unrelated prior withdrawal and purchase history, including card ending",
+        "radius_pixels": 35
+      }
+    ],
+    "keyone_funding_details_pending.jpeg": [
+      {
+        "box": [
+          377,
+          891,
+          561,
+          995
+        ],
+        "reason": "Funding wallet and transaction hash fragments",
+        "radius_pixels": 35
+      },
+      {
+        "box": [
+          420,
+          1054,
+          562,
+          1110
+        ],
+        "reason": "Transaction ID fragment",
+        "radius_pixels": 35
+      }
+    ],
+    "keyone_funding_after.jpeg": [
+      {
+        "box": [
+          108,
+          465,
+          185,
+          505
+        ],
+        "reason": "Card ending",
+        "radius_pixels": 30
+      },
+      {
+        "box": [
+          20,
+          916,
+          570,
+          1280
+        ],
+        "reason": "Unrelated prior withdrawal and purchase history, including card ending",
+        "radius_pixels": 35
+      }
+    ],
+    "keyone_funding_completed.jpeg": [
+      {
+        "box": [
+          377,
+          891,
+          561,
+          995
+        ],
+        "reason": "Funding wallet and transaction hash fragments",
+        "radius_pixels": 35
+      },
+      {
+        "box": [
+          420,
+          1054,
+          562,
+          1110
+        ],
+        "reason": "Transaction ID fragment",
+        "radius_pixels": 35
+      }
+    ],
+    "coca_withdrawal_review.jpeg": [
+      {
+        "box": [
+          40,
+          263,
+          548,
+          334
+        ],
+        "reason": "Destination wallet or transaction identifier",
+        "radius_pixels": 40
+      }
+    ],
+    "coca_withdrawal_confirmation.jpeg": [
+      {
+        "box": [
+          30,
+          260,
+          558,
+          337
+        ],
+        "reason": "Destination wallet or transaction identifier",
+        "radius_pixels": 40
+      }
+    ],
+    "coca_withdrawal_completed.jpeg": [
+      {
+        "box": [
+          40,
+          478,
+          543,
+          540
+        ],
+        "reason": "Destination wallet or transaction identifier",
+        "radius_pixels": 40
+      },
+      {
+        "box": [
+          40,
+          1045,
+          513,
+          1083
+        ],
+        "reason": "Destination wallet or transaction identifier",
+        "radius_pixels": 40
+      }
+    ],
+    "keyone_withdrawal_form.jpeg": [
+      {
+        "box": [
+          28,
+          815,
+          153,
+          852
+        ],
+        "reason": "Destination wallet or transaction identifier",
+        "radius_pixels": 35
+      }
+    ],
+    "keyone_withdrawal_completed.jpeg": [
+      {
+        "box": [
+          420,
+          886,
+          559,
+          990
+        ],
+        "reason": "Destination wallet or transaction identifier",
+        "radius_pixels": 35
+      },
+      {
+        "box": [
+          420,
+          1060,
+          559,
+          1111
+        ],
+        "reason": "Destination wallet or transaction identifier",
+        "radius_pixels": 35
+      }
+    ],
+    "kolo_funding_before.jpeg": [
+      {
+        "box": [
+          55,
+          750,
+          194,
+          810
+        ],
+        "reason": "Wallet address, card ending, transaction hash or unrelated private contact/history",
+        "radius_pixels": 40
+      },
+      {
+        "box": [
+          20,
+          1235,
+          570,
+          1280
+        ],
+        "reason": "Wallet address, card ending, transaction hash or unrelated private contact/history",
+        "radius_pixels": 40
+      }
+    ],
+    "kolo_funding_pending.jpeg": [
+      {
+        "box": [
+          108,
+          765,
+          548,
+          826
+        ],
+        "reason": "Wallet address, card ending, transaction hash or unrelated private contact/history",
+        "radius_pixels": 40
+      },
+      {
+        "box": [
+          385,
+          1144,
+          517,
+          1189
+        ],
+        "reason": "Wallet address, card ending, transaction hash or unrelated private contact/history",
+        "radius_pixels": 40
+      }
+    ],
+    "kolo_funding_completed.jpeg": [
+      {
+        "box": [
+          108,
+          535,
+          548,
+          599
+        ],
+        "reason": "Wallet address, card ending, transaction hash or unrelated private contact/history",
+        "radius_pixels": 40
+      },
+      {
+        "box": [
+          385,
+          975,
+          517,
+          1020
+        ],
+        "reason": "Wallet address, card ending, transaction hash or unrelated private contact/history",
+        "radius_pixels": 40
+      }
+    ],
+    "kolo_funding_balance.jpeg": [],
+    "kolo_funding_after.jpeg": [
+      {
+        "box": [
+          55,
+          750,
+          194,
+          810
+        ],
+        "reason": "Wallet address, card ending, transaction hash or unrelated private contact/history",
+        "radius_pixels": 40
+      },
+      {
+        "box": [
+          20,
+          1235,
+          570,
+          1280
+        ],
+        "reason": "Wallet address, card ending, transaction hash or unrelated private contact/history",
+        "radius_pixels": 40
+      }
+    ],
+    "kolo_withdrawal_form.jpeg": [
+      {
+        "box": [
+          226,
+          146,
+          365,
+          174
+        ],
+        "reason": "Wallet address, card ending, transaction hash or unrelated private contact/history",
+        "radius_pixels": 40
+      }
+    ],
+    "kolo_withdrawal_review.jpeg": [
+      {
+        "box": [
+          108,
+          548,
+          548,
+          615
+        ],
+        "reason": "Wallet address, card ending, transaction hash or unrelated private contact/history",
+        "radius_pixels": 40
+      }
+    ],
+    "okx_funding_before.jpeg": [
+      {
+        "box": [
+          99,
+          818,
+          170,
+          851
+        ],
+        "reason": "Card ending, wallet address, transaction hash or unrelated history",
+        "radius_pixels": 40
+      },
+      {
+        "box": [
+          20,
+          1035,
+          570,
+          1280
+        ],
+        "reason": "Card ending, wallet address, transaction hash or unrelated history",
+        "radius_pixels": 40
+      }
+    ],
+    "okx_funding_method.jpeg": [],
+    "okx_funding_alternate_method.jpeg": [],
+    "okx_funding_after.jpeg": [
+      {
+        "box": [
+          99,
+          818,
+          170,
+          851
+        ],
+        "reason": "Card ending, wallet address, transaction hash or unrelated history",
+        "radius_pixels": 40
+      },
+      {
+        "box": [
+          97,
+          1068,
+          458,
+          1105
+        ],
+        "reason": "Card ending, wallet address, transaction hash or unrelated history",
+        "radius_pixels": 40
+      },
+      {
+        "box": [
+          20,
+          1142,
+          570,
+          1280
+        ],
+        "reason": "Card ending, wallet address, transaction hash or unrelated history",
+        "radius_pixels": 40
+      }
+    ],
+    "okx_funding_completed.jpeg": [
+      {
+        "box": [
+          235,
+          414,
+          535,
+          477
+        ],
+        "reason": "Card ending, wallet address, transaction hash or unrelated history",
+        "radius_pixels": 40
+      },
+      {
+        "box": [
+          235,
+          633,
+          535,
+          719
+        ],
+        "reason": "Card ending, wallet address, transaction hash or unrelated history",
+        "radius_pixels": 40
+      }
+    ],
+    "okx_funding_balance.jpeg": [],
+    "okx_withdrawal_review.jpeg": [
+      {
+        "box": [
+          245,
+          360,
+          560,
+          423
+        ],
+        "reason": "Card ending, wallet address, transaction hash or unrelated history",
+        "radius_pixels": 40
+      }
+    ],
+    "simple_funding_before.jpeg": [
+      {
+        "box": [
+          50,
+          478,
+          158,
+          518
+        ],
+        "reason": "Card ending, transaction ID, historical Earning or unrelated history",
+        "radius_pixels": 40
+      },
+      {
+        "box": [
+          132,
+          637,
+          454,
+          691
+        ],
+        "reason": "Card ending, transaction ID, historical Earning or unrelated history",
+        "radius_pixels": 40
+      },
+      {
+        "box": [
+          20,
+          944,
+          570,
+          1120
+        ],
+        "reason": "Card ending, transaction ID, historical Earning or unrelated history",
+        "radius_pixels": 40
+      }
+    ],
+    "simple_funding_method.jpeg": [],
+    "simple_funding_after.jpeg": [
+      {
+        "box": [
+          50,
+          478,
+          158,
+          518
+        ],
+        "reason": "Card ending, transaction ID, historical Earning or unrelated history",
+        "radius_pixels": 40
+      },
+      {
+        "box": [
+          132,
+          637,
+          454,
+          691
+        ],
+        "reason": "Card ending, transaction ID, historical Earning or unrelated history",
+        "radius_pixels": 40
+      },
+      {
+        "box": [
+          20,
+          1080,
+          570,
+          1120
+        ],
+        "reason": "Card ending, transaction ID, historical Earning or unrelated history",
+        "radius_pixels": 40
+      }
+    ],
+    "simple_funding_completed.jpeg": [
+      {
+        "box": [
+          50,
+          478,
+          158,
+          518
+        ],
+        "reason": "Card ending, transaction ID, historical Earning or unrelated history",
+        "radius_pixels": 40
+      },
+      {
+        "box": [
+          337,
+          981,
+          521,
+          1026
+        ],
+        "reason": "Card ending, transaction ID, historical Earning or unrelated history",
+        "radius_pixels": 40
+      }
+    ],
+    "simple_withdrawal_form.jpeg": [],
+    "simple_withdrawal_review.jpeg": [],
+    "solid_funding_before.jpeg": [
+      {
+        "box": [
+          62,
+          710,
+          200,
+          772
+        ],
+        "reason": "Card ending, addresses, QR, transaction hash or unrelated historical cashback",
+        "radius_pixels": 40
+      },
+      {
+        "box": [
+          322,
+          978,
+          465,
+          1028
+        ],
+        "reason": "Card ending, addresses, QR, transaction hash or unrelated historical cashback",
+        "radius_pixels": 40
+      }
+    ],
+    "solid_funding_method.jpeg": [
+      {
+        "box": [
+          103,
+          667,
+          468,
+          716
+        ],
+        "reason": "Card ending, addresses, QR, transaction hash or unrelated historical cashback",
+        "radius_pixels": 40
+      },
+      {
+        "box": [
+          169,
+          766,
+          365,
+          824
+        ],
+        "reason": "Card ending, addresses, QR, transaction hash or unrelated historical cashback",
+        "radius_pixels": 40
+      }
+    ],
+    "solid_funding_after.jpeg": [
+      {
+        "box": [
+          62,
+          710,
+          200,
+          772
+        ],
+        "reason": "Card ending, addresses, QR, transaction hash or unrelated historical cashback",
+        "radius_pixels": 40
+      },
+      {
+        "box": [
+          322,
+          978,
+          465,
+          1028
+        ],
+        "reason": "Card ending, addresses, QR, transaction hash or unrelated historical cashback",
+        "radius_pixels": 40
+      }
+    ],
+    "solid_funding_balance.jpeg": [],
+    "solid_funding_completed.jpeg": [
+      {
+        "box": [
+          318,
+          564,
+          488,
+          616
+        ],
+        "reason": "Card ending, addresses, QR, transaction hash or unrelated historical cashback",
+        "radius_pixels": 40
+      },
+      {
+        "box": [
+          316,
+          685,
+          490,
+          737
+        ],
+        "reason": "Card ending, addresses, QR, transaction hash or unrelated historical cashback",
+        "radius_pixels": 40
+      },
+      {
+        "box": [
+          350,
+          880,
+          509,
+          934
+        ],
+        "reason": "Card ending, addresses, QR, transaction hash or unrelated historical cashback",
+        "radius_pixels": 40
+      }
+    ],
+    "solid_funding_direct_credit.jpeg": [
+      {
+        "box": [
+          318,
+          564,
+          488,
+          616
+        ],
+        "reason": "Card ending, addresses, QR, transaction hash or unrelated historical cashback",
+        "radius_pixels": 40
+      },
+      {
+        "box": [
+          316,
+          685,
+          490,
+          737
+        ],
+        "reason": "Card ending, addresses, QR, transaction hash or unrelated historical cashback",
+        "radius_pixels": 40
+      }
+    ],
+    "solid_withdrawal_method.jpeg": [],
+    "solid_withdrawal_alternate_quote.jpeg": [
+      {
+        "box": [
+          126,
+          232,
+          312,
+          282
+        ],
+        "reason": "Card ending, addresses, QR, transaction hash or unrelated historical cashback",
+        "radius_pixels": 40
+      }
+    ],
+    "solid_withdrawal_form.jpeg": [
+      {
+        "box": [
+          126,
+          232,
+          312,
+          282
+        ],
+        "reason": "Card ending, addresses, QR, transaction hash or unrelated historical cashback",
+        "radius_pixels": 40
+      }
+    ],
+    "solid_withdrawal_review.jpeg": [
+      {
+        "box": [
+          392,
+          396,
+          539,
+          445
+        ],
+        "reason": "Card ending, addresses, QR, transaction hash or unrelated historical cashback",
+        "radius_pixels": 40
+      }
+    ],
+    "solid_withdrawal_completed.jpeg": [
+      {
+        "box": [
+          318,
+          564,
+          488,
+          616
+        ],
+        "reason": "Card ending, addresses, QR, transaction hash or unrelated historical cashback",
+        "radius_pixels": 40
+      },
+      {
+        "box": [
+          316,
+          685,
+          490,
+          737
+        ],
+        "reason": "Card ending, addresses, QR, transaction hash or unrelated historical cashback",
+        "radius_pixels": 40
+      },
+      {
+        "box": [
+          357,
+          880,
+          514,
+          934
+        ],
+        "reason": "Card ending, addresses, QR, transaction hash or unrelated historical cashback",
+        "radius_pixels": 40
+      }
+    ],
+    "trustee_plus_funding_form_before.jpeg": [],
+    "trustee_plus_funding_before.jpeg": [
+      {
+        "box": [
+          16,
+          88,
+          196,
+          158
+        ],
+        "reason": "Profile name/avatar, card ending, payer identity, Trustee ID, transaction ID/hash or unrelated history",
+        "radius_pixels": 40
+      },
+      {
+        "box": [
+          40,
+          645,
+          148,
+          689
+        ],
+        "reason": "Profile name/avatar, card ending, payer identity, Trustee ID, transaction ID/hash or unrelated history",
+        "radius_pixels": 40
+      },
+      {
+        "box": [
+          359,
+          501,
+          566,
+          708
+        ],
+        "reason": "Profile name/avatar, card ending, payer identity, Trustee ID, transaction ID/hash or unrelated history",
+        "radius_pixels": 40
+      }
+    ],
+    "trustee_plus_funding_after.jpeg": [
+      {
+        "box": [
+          16,
+          88,
+          196,
+          158
+        ],
+        "reason": "Profile name/avatar, card ending, payer identity, Trustee ID, transaction ID/hash or unrelated history",
+        "radius_pixels": 40
+      },
+      {
+        "box": [
+          40,
+          645,
+          148,
+          689
+        ],
+        "reason": "Profile name/avatar, card ending, payer identity, Trustee ID, transaction ID/hash or unrelated history",
+        "radius_pixels": 40
+      }
+    ],
+    "trustee_plus_funding_completed.jpeg": [
+      {
+        "box": [
+          344,
+          487,
+          549,
+          531
+        ],
+        "reason": "Profile name/avatar, card ending, payer identity, Trustee ID, transaction ID/hash or unrelated history",
+        "radius_pixels": 40
+      },
+      {
+        "box": [
+          369,
+          625,
+          549,
+          670
+        ],
+        "reason": "Profile name/avatar, card ending, payer identity, Trustee ID, transaction ID/hash or unrelated history",
+        "radius_pixels": 40
+      }
+    ],
+    "trustee_plus_funding_fee_blocked.jpeg": [],
+    "trustee_plus_funding_minimum_blocked.jpeg": [],
+    "trustee_plus_funding_extra_balance.jpeg": [],
+    "trustee_plus_funding_card_after.jpeg": [
+      {
+        "box": [
+          38,
+          472,
+          145,
+          516
+        ],
+        "reason": "Profile name/avatar, card ending, payer identity, Trustee ID, transaction ID/hash or unrelated history",
+        "radius_pixels": 40
+      },
+      {
+        "box": [
+          24,
+          859,
+          566,
+          1244
+        ],
+        "reason": "Profile name/avatar, card ending, payer identity, Trustee ID, transaction ID/hash or unrelated history",
+        "radius_pixels": 40
+      }
+    ],
+    "trustee_plus_funding_card_receipt.jpeg": [
+      {
+        "box": [
+          137,
+          308,
+          282,
+          331
+        ],
+        "reason": "Profile name/avatar, card ending, payer identity, Trustee ID, transaction ID/hash or unrelated history",
+        "radius_pixels": 40
+      },
+      {
+        "box": [
+          135,
+          350,
+          195,
+          374
+        ],
+        "reason": "Profile name/avatar, card ending, payer identity, Trustee ID, transaction ID/hash or unrelated history",
+        "radius_pixels": 40
+      },
+      {
+        "box": [
+          117,
+          374,
+          205,
+          397
+        ],
+        "reason": "Profile name/avatar, card ending, payer identity, Trustee ID, transaction ID/hash or unrelated history",
+        "radius_pixels": 40
+      },
+      {
+        "box": [
+          36,
+          459,
+          188,
+          485
+        ],
+        "reason": "Profile name/avatar, card ending, payer identity, Trustee ID, transaction ID/hash or unrelated history",
+        "radius_pixels": 40
+      }
+    ],
+    "trustee_plus_funding_card_debit.jpeg": [
+      {
+        "box": [
+          344,
+          487,
+          549,
+          531
+        ],
+        "reason": "Profile name/avatar, card ending, payer identity, Trustee ID, transaction ID/hash or unrelated history",
+        "radius_pixels": 40
+      }
+    ],
+    "trustee_plus_withdrawal_minimum_blocked.jpeg": [
+      {
+        "box": [
+          115,
+          108,
+          477,
+          149
+        ],
+        "reason": "Private recipient wallet fragment",
+        "radius_pixels": 40
+      }
+    ],
+    "trustee_plus_withdrawal_exchange_quote.jpeg": [],
+    "trustee_plus_withdrawal_fee_blocked.jpeg": [
+      {
+        "box": [
+          115,
+          108,
+          477,
+          149
+        ],
+        "reason": "Private recipient wallet fragment",
+        "radius_pixels": 40
+      }
+    ],
+    "trustee_plus_withdrawal_form.jpeg": [
+      {
+        "box": [
+          115,
+          108,
+          477,
+          149
+        ],
+        "reason": "Private recipient wallet fragment",
+        "radius_pixels": 40
+      }
+    ],
+    "trustee_plus_withdrawal_review.jpeg": [
+      {
+        "box": [
+          296,
+          379,
+          548,
+          421
+        ],
+        "reason": "Private recipient wallet fragment",
+        "radius_pixels": 40
+      }
+    ],
+    "whitebit_funding_before.jpeg": [],
+    "whitebit_funding_after.jpeg": [],
+    "whitebit_funding_credit.jpeg": [
+      {
+        "box": [
+          38,
+          886,
+          322,
+          938
+        ],
+        "reason": "Private deposit transaction identifier fragment",
+        "radius_pixels": 60
+      }
+    ],
+    "whitebit_funding_balance.jpeg": [],
+    "whitebit_withdrawal_method.jpeg": [],
+    "whitebit_withdrawal_review.jpeg": []
+  },
+  "image_dimensions": {
+    "solid_prime_terms.png": [
+      1179,
+      2556
+    ],
+    "trustee_plus_receipt.png": [
+      1179,
+      2556
+    ],
+    "bybit_quote.png": [
+      1179,
+      2556
+    ],
+    "bybit_completed.jpeg": [
+      590,
+      1280
+    ],
+    "bybit_points.jpeg": [
+      590,
+      1280
+    ],
+    "okx_completed.jpeg": [
+      590,
+      1280
+    ],
+    "kolo_cashback_history.jpeg": [
+      590,
+      1280
+    ],
+    "kolo_historical_usd.jpeg": [
+      590,
+      1280
+    ],
+    "kolo_historical_uah.jpeg": [
+      590,
+      1280
+    ],
+    "okx_historical_usd.jpeg": [
+      590,
+      1280
+    ],
+    "solid_historical_usd.jpeg": [
+      590,
+      1280
+    ],
+    "solid_historical_chatgpt.jpeg": [
+      590,
+      1280
+    ],
+    "simple_historical_apple.jpeg": [
+      590,
+      1280
+    ],
+    "simple_historical_chatgpt.jpeg": [
+      590,
+      1280
+    ],
+    "bybit_historical_usd.jpeg": [
+      590,
+      1280
+    ],
+    "bybit_historical_usd_details.jpeg": [
+      590,
+      1280
+    ],
+    "bybit_historical_usd_points.jpeg": [
+      590,
+      1280
+    ],
+    "bybit_historical_usd_assets.jpeg": [
+      1157,
+      1280
+    ],
+    "bybit_asset_history.jpeg": [
+      1179,
+      1032
+    ],
+    "bybit_funding_before.jpeg": [
+      590,
+      1280
+    ],
+    "bybit_funding_waiting.jpeg": [
+      590,
+      1280
+    ],
+    "bybit_funding_after.jpeg": [
+      590,
+      1280
+    ],
+    "bybit_funding_paywith.jpeg": [
+      590,
+      1280
+    ],
+    "bybit_funding_balance.jpeg": [
+      590,
+      1280
+    ],
+    "bybit_funding_credit.jpeg": [
+      1179,
+      685
+    ],
+    "coca_funding_before.jpeg": [
+      1121,
+      1280
+    ],
+    "coca_funding_method.jpeg": [
+      590,
+      1280
+    ],
+    "coca_funding_quote.jpeg": [
+      590,
+      1280
+    ],
+    "coca_funding_after.jpeg": [
+      590,
+      1280
+    ],
+    "coca_funding_completed.jpeg": [
+      590,
+      1280
+    ],
+    "keyone_funding_before.jpeg": [
+      590,
+      1280
+    ],
+    "keyone_funding_pending.jpeg": [
+      590,
+      1280
+    ],
+    "keyone_funding_details_pending.jpeg": [
+      590,
+      1280
+    ],
+    "keyone_funding_after.jpeg": [
+      590,
+      1280
+    ],
+    "keyone_funding_completed.jpeg": [
+      590,
+      1280
+    ],
+    "coca_withdrawal_review.jpeg": [
+      590,
+      1280
+    ],
+    "coca_withdrawal_confirmation.jpeg": [
+      590,
+      1280
+    ],
+    "coca_withdrawal_completed.jpeg": [
+      590,
+      1280
+    ],
+    "keyone_withdrawal_form.jpeg": [
+      590,
+      1280
+    ],
+    "keyone_withdrawal_completed.jpeg": [
+      590,
+      1280
+    ],
+    "kolo_funding_before.jpeg": [
+      590,
+      1280
+    ],
+    "kolo_funding_pending.jpeg": [
+      590,
+      1280
+    ],
+    "kolo_funding_completed.jpeg": [
+      590,
+      1280
+    ],
+    "kolo_funding_balance.jpeg": [
+      1179,
+      1095
+    ],
+    "kolo_funding_after.jpeg": [
+      590,
+      1280
+    ],
+    "kolo_withdrawal_form.jpeg": [
+      590,
+      1280
+    ],
+    "kolo_withdrawal_review.jpeg": [
+      590,
+      1280
+    ],
+    "okx_funding_before.jpeg": [
+      590,
+      1280
+    ],
+    "okx_funding_method.jpeg": [
+      590,
+      1280
+    ],
+    "okx_funding_alternate_method.jpeg": [
+      590,
+      1280
+    ],
+    "okx_funding_after.jpeg": [
+      590,
+      1280
+    ],
+    "okx_funding_completed.jpeg": [
+      590,
+      1280
+    ],
+    "okx_funding_balance.jpeg": [
+      590,
+      1280
+    ],
+    "okx_withdrawal_review.jpeg": [
+      590,
+      1280
+    ],
+    "simple_funding_before.jpeg": [
+      590,
+      1280
+    ],
+    "simple_funding_method.jpeg": [
+      590,
+      1280
+    ],
+    "simple_funding_after.jpeg": [
+      590,
+      1280
+    ],
+    "simple_funding_completed.jpeg": [
+      590,
+      1280
+    ],
+    "simple_withdrawal_form.jpeg": [
+      590,
+      1280
+    ],
+    "simple_withdrawal_review.jpeg": [
+      590,
+      1280
+    ],
+    "solid_funding_before.jpeg": [
+      590,
+      1280
+    ],
+    "solid_funding_method.jpeg": [
+      590,
+      1280
+    ],
+    "solid_funding_after.jpeg": [
+      590,
+      1280
+    ],
+    "solid_funding_balance.jpeg": [
+      590,
+      1280
+    ],
+    "solid_funding_completed.jpeg": [
+      590,
+      1280
+    ],
+    "solid_funding_direct_credit.jpeg": [
+      590,
+      1280
+    ],
+    "solid_withdrawal_method.jpeg": [
+      590,
+      1280
+    ],
+    "solid_withdrawal_alternate_quote.jpeg": [
+      590,
+      1280
+    ],
+    "solid_withdrawal_form.jpeg": [
+      590,
+      1280
+    ],
+    "solid_withdrawal_review.jpeg": [
+      590,
+      1280
+    ],
+    "solid_withdrawal_completed.jpeg": [
+      590,
+      1280
+    ],
+    "trustee_plus_funding_form_before.jpeg": [
+      590,
+      1280
+    ],
+    "trustee_plus_funding_before.jpeg": [
+      590,
+      1280
+    ],
+    "trustee_plus_funding_after.jpeg": [
+      590,
+      1280
+    ],
+    "trustee_plus_funding_completed.jpeg": [
+      590,
+      1280
+    ],
+    "trustee_plus_funding_fee_blocked.jpeg": [
+      590,
+      1280
+    ],
+    "trustee_plus_funding_minimum_blocked.jpeg": [
+      590,
+      1280
+    ],
+    "trustee_plus_funding_extra_balance.jpeg": [
+      590,
+      1280
+    ],
+    "trustee_plus_funding_card_after.jpeg": [
+      590,
+      1280
+    ],
+    "trustee_plus_funding_card_receipt.jpeg": [
+      590,
+      1280
+    ],
+    "trustee_plus_funding_card_debit.jpeg": [
+      590,
+      1280
+    ],
+    "trustee_plus_withdrawal_minimum_blocked.jpeg": [
+      590,
+      1280
+    ],
+    "trustee_plus_withdrawal_exchange_quote.jpeg": [
+      590,
+      1280
+    ],
+    "trustee_plus_withdrawal_fee_blocked.jpeg": [
+      590,
+      1280
+    ],
+    "trustee_plus_withdrawal_form.jpeg": [
+      590,
+      1280
+    ],
+    "trustee_plus_withdrawal_review.jpeg": [
+      590,
+      1280
+    ],
+    "whitebit_funding_before.jpeg": [
+      590,
+      1280
+    ],
+    "whitebit_funding_after.jpeg": [
+      590,
+      1280
+    ],
+    "whitebit_funding_credit.jpeg": [
+      1179,
+      969
+    ],
+    "whitebit_funding_balance.jpeg": [
+      590,
+      1280
+    ],
+    "whitebit_withdrawal_method.jpeg": [
+      590,
+      1280
+    ],
+    "whitebit_withdrawal_review.jpeg": [
+      590,
+      1280
+    ]
+  }
+}

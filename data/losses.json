@@ -1,0 +1,293 @@
+{
+  "scope": "Different operations; do not sum rows. Stablecoin differences use nominal parity. Quotes and display discrepancies are separate from observed costs. Native sending-wallet gas only; no sponsor/bundle double counting.",
+  "entries": [
+    {
+      "group": "observed",
+      "card": "bybit",
+      "stage_key": "losses.payment_foreign",
+      "amount": "0.07",
+      "asset": "USD",
+      "approximate": false,
+      "minimum": false
+    },
+    {
+      "group": "observed",
+      "card": "bybit",
+      "stage_key": "losses.payment_conversion",
+      "amount": "0.0328",
+      "asset": "USDT",
+      "approximate": false,
+      "minimum": false
+    },
+    {
+      "group": "observed",
+      "card": "coca",
+      "stage_key": "losses.route_nominal",
+      "amount": "0.030917",
+      "asset": "USD",
+      "approximate": false,
+      "minimum": false
+    },
+    {
+      "group": "observed",
+      "card": "keyone",
+      "stage_key": "losses.route_nominal",
+      "amount": "0.089317",
+      "asset": "USD",
+      "approximate": false,
+      "minimum": false
+    },
+    {
+      "group": "observed",
+      "card": "simple",
+      "stage_key": "losses.route_nominal",
+      "amount": "0.010091",
+      "asset": "USD",
+      "approximate": false,
+      "minimum": false
+    },
+    {
+      "group": "observed",
+      "card": "solid",
+      "stage_key": "losses.solid_cross",
+      "amount": "0.003",
+      "asset": "USDT",
+      "approximate": false,
+      "minimum": false
+    },
+    {
+      "group": "observed",
+      "card": "trustee_plus",
+      "stage_key": "losses.trustee_topup",
+      "amount": "0.094886",
+      "asset": "USDT",
+      "approximate": true,
+      "minimum": false
+    },
+    {
+      "group": "observed",
+      "card": "kolo",
+      "stage_key": "losses.kolo_withdrawal",
+      "amount": "1",
+      "asset": "USDT",
+      "approximate": false,
+      "minimum": false
+    },
+    {
+      "group": "gas",
+      "card": "bybit",
+      "stage_key": "losses.deposit_gas",
+      "amount": "0.018765452502565536",
+      "asset": "POL",
+      "approximate": false,
+      "minimum": false
+    },
+    {
+      "group": "gas",
+      "card": "coca",
+      "stage_key": "losses.deposit_gas",
+      "amount": "0.000013281376360192",
+      "asset": "ETH",
+      "approximate": false,
+      "minimum": false
+    },
+    {
+      "group": "gas",
+      "card": "keyone",
+      "stage_key": "losses.deposit_gas",
+      "amount": "0.000000285874840484",
+      "asset": "ETH",
+      "approximate": false,
+      "minimum": false
+    },
+    {
+      "group": "gas",
+      "card": "kolo",
+      "stage_key": "losses.deposit_gas",
+      "amount": "0.00000089465152",
+      "asset": "ETH",
+      "approximate": false,
+      "minimum": false
+    },
+    {
+      "group": "gas",
+      "card": "okx",
+      "stage_key": "losses.deposit_gas",
+      "amount": "0.0000015222",
+      "asset": "OKB",
+      "approximate": false,
+      "minimum": false
+    },
+    {
+      "group": "gas",
+      "card": "simple",
+      "stage_key": "losses.deposit_gas",
+      "amount": "0.024118584668353324",
+      "asset": "POL",
+      "approximate": false,
+      "minimum": false
+    },
+    {
+      "group": "gas",
+      "card": "solid",
+      "stage_key": "losses.solid_cross_gas",
+      "amount": "0.000001239929504",
+      "asset": "ETH",
+      "approximate": false,
+      "minimum": false
+    },
+    {
+      "group": "gas",
+      "card": "solid",
+      "stage_key": "losses.solid_direct_gas",
+      "amount": "0.0008222985",
+      "asset": "FUSE",
+      "approximate": false,
+      "minimum": false
+    },
+    {
+      "group": "gas",
+      "card": "trustee_plus",
+      "stage_key": "losses.trustee_gas",
+      "amount": "0.043778475419491624",
+      "asset": "POL",
+      "approximate": false,
+      "minimum": false
+    },
+    {
+      "group": "gas",
+      "card": "whitebit",
+      "stage_key": "losses.whitebit_gas",
+      "amount": null,
+      "asset": null,
+      "approximate": false,
+      "minimum": false
+    },
+    {
+      "group": "quoted",
+      "card": "trustee_plus",
+      "stage_key": "losses.trustee_exchange",
+      "amount": "0.019437",
+      "asset": "USD",
+      "approximate": false,
+      "minimum": false
+    },
+    {
+      "group": "quoted",
+      "card": "trustee_plus",
+      "stage_key": "losses.trustee_withdrawal",
+      "amount": "1",
+      "asset": "USDT",
+      "approximate": false,
+      "minimum": false
+    },
+    {
+      "group": "quoted",
+      "card": "whitebit",
+      "stage_key": "losses.whitebit_plasma",
+      "amount": "0.1",
+      "asset": "USDT",
+      "approximate": false,
+      "minimum": false
+    },
+    {
+      "group": "quoted",
+      "card": "whitebit",
+      "stage_key": "losses.whitebit_erc20",
+      "amount": "0.8",
+      "asset": "USDT",
+      "approximate": false,
+      "minimum": false
+    },
+    {
+      "group": "quoted",
+      "card": "whitebit",
+      "stage_key": "losses.whitebit_other",
+      "amount": "1",
+      "asset": "USDT",
+      "approximate": false,
+      "minimum": false
+    },
+    {
+      "group": "quoted",
+      "card": "solid",
+      "stage_key": "losses.solid_alternate",
+      "amount": "0.33",
+      "asset": "USDT",
+      "approximate": false,
+      "minimum": false
+    },
+    {
+      "group": "quoted",
+      "card": "okx",
+      "stage_key": "losses.okx_activation",
+      "amount": "0.00082681",
+      "asset": "ETH",
+      "approximate": false,
+      "minimum": true
+    },
+    {
+      "group": "differences",
+      "card": "bybit",
+      "stage_key": "losses.bybit_difference",
+      "amount": "0.0179",
+      "asset": "USD",
+      "approximate": false,
+      "minimum": false
+    },
+    {
+      "group": "differences",
+      "card": "simple",
+      "stage_key": "losses.simple_difference",
+      "amount": "0.01",
+      "asset": "USDC",
+      "approximate": false,
+      "minimum": false
+    },
+    {
+      "group": "differences",
+      "card": "whitebit",
+      "stage_key": "losses.whitebit_difference",
+      "amount": "0.25",
+      "asset": "USD",
+      "approximate": false,
+      "minimum": false
+    },
+    {
+      "group": "observed",
+      "card": "bybit",
+      "stage_key": "losses.historical_bybit",
+      "amount": "0.0819",
+      "asset": "USD",
+      "approximate": false,
+      "minimum": false
+    },
+    {
+      "group": "differences",
+      "card": "bybit",
+      "stage_key": "losses.historical_bybit_extra",
+      "amount": "0.0123",
+      "asset": "USDT",
+      "approximate": false,
+      "minimum": false
+    },
+    {
+      "group": "observed",
+      "card": "kolo",
+      "stage_key": "losses.historical_kolo",
+      "amount": "0.14",
+      "asset": "USD",
+      "approximate": false,
+      "minimum": false
+    },
+    {
+      "group": "differences",
+      "card": "simple",
+      "stage_key": "losses.historical_simple_bill",
+      "amount": "0.01",
+      "asset": "USDC",
+      "approximate": false,
+      "minimum": false
+    }
+  ]
+}

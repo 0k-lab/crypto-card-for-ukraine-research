@@ -1,0 +1,324 @@
+{
+  "evidence": "Earlier recorded tests; OpenRouter purchases on OKX, Kolo, Bybit and Solid, Solid and Simple ChatGPT, Simple Apple, and Kolo Hloya are supported by sanitized screenshots. Bybit asset history corroborates the historical USDT debit sum; its association with OpenRouter is based on the author context, amount and sequence, without shared IDs. Other historical tests remain participant reports.",
+  "ua_registration_availability": "not independently established for every issuer",
+  "usd_tests": [
+    {
+      "card": "okx",
+      "merchant_usd": "5.80",
+      "debit": "5.75",
+      "asset": "USDT",
+      "previous_reported_debit": "5.80",
+      "merchant": "OPENROUTER, INC",
+      "status_as_displayed": "Виконано",
+      "created_at_as_displayed": "2026-09-26 12:36:19",
+      "published_at_as_displayed": "2026-09-27 04:36:04",
+      "network": "X Layer",
+      "funding_source_as_displayed": "Баланс Pay",
+      "network_fee_paid_by": "OKX",
+      "payment_method_as_displayed": "Онлайн, поштою або телефоном",
+      "cashback_eligibility_as_displayed": "Не відповідає вим...",
+      "cashback_included": "0",
+      "source_file": "screenshots/okx_historical_usd.png",
+      "evidence_level": "visually_transcribed_completed_transaction_screenshot",
+      "gross_overhead_pct": "-0.8620689655172413793103448300",
+      "debit_minus_merchant_nominal_usdt": "-0.05",
+      "comparison_basis": "Nominal USDT/USD parity; actual displayed USDT spend against merchant USD invoice. Difference is not cashback; conversion rate and token ledger not independently reconciled."
+    },
+    {
+      "card": "simple",
+      "merchant_usd": "100",
+      "debit": "100",
+      "asset": "USDC",
+      "merchant": "OpenAI ChatGPT",
+      "status_as_displayed": "Завершено",
+      "created_at_as_displayed": "2026-08-29 18:35",
+      "exchange_rate_as_displayed": "1 USDC = 1 USD",
+      "source_file": "screenshots/simple_historical_chatgpt.png",
+      "evidence_level": "visually_transcribed_completed_transaction_screenshot",
+      "gross_overhead_pct": "0",
+      "debit_minus_merchant_nominal_usdc": "0",
+      "purchase_cashback_shown": false,
+      "comparison_basis": "USD purchase amount and USDC debit both shown on the completed transaction screen. No surcharge at the purchase step; does not establish USDT-to-USDC conversion, top-up, or network costs."
+    },
+    {
+      "card": "simple",
+      "merchant_usd": "15",
+      "debit": "15",
+      "asset": "USDC"
+    },
+    {
+      "card": "solid",
+      "merchant_usd": "5.80",
+      "debit": "5.80",
+      "asset": "USD display",
+      "status_at_observation": "Pending",
+      "reward_shown": "0.17",
+      "merchant": "OpenRouter",
+      "evidence_level": "visually_transcribed_transaction_screenshot",
+      "merchant_amount_basis": "previous_participant_report; screen shows USD card debit, not a separate merchant invoice",
+      "created_at_as_displayed": "2026-09-29 13:22",
+      "source_file": "screenshots/solid_historical_usd.png",
+      "cashback_rate_as_displayed": "0.03",
+      "cashback_type_as_displayed": "Standard",
+      "category_as_displayed": "Subscriptions",
+      "conditional_net_usd": "5.63",
+      "payout_independently_verified": false,
+      "exact_crypto_debit": null,
+      "completion_assessment": "Done under participant interpretation of Solid statuses; app still displays Pending",
+      "comparison_basis": "Displayed USD card charge minus shown cashback; token conversion and funding costs not established by this screenshot.",
+      "onchain_assessment": {
+        "source_file": "data/onchain-summary.json",
+        "row_scope": "historical_usd_purchase",
+        "merchant": "OpenRouter",
+        "master_account_execution_status": "Success",
+        "settlement_currency": "USD",
+        "source_token": "WUSD",
+        "source_amount_matches_card_usd_at_6dp": true,
+        "exact_crypto_debit_verified": false,
+        "cashback_payout_verified": false
+      }
+    },
+    {
+      "card": "bybit",
+      "merchant_usd": "5.80",
+      "debit": "5.8819",
+      "asset": "USDT",
+      "reward_payout_verified": false,
+      "previous_reported_net_overhead_pct": "-0.49",
+      "merchant": "OPENROUTER, INC",
+      "card_amount_usd": "5.80",
+      "status_as_displayed": "Successful",
+      "transaction_at_as_displayed": "2026-09-27 01:31:31",
+      "settlement_date_as_displayed": "2026-09-27",
+      "total_transaction_usd": "5.80",
+      "transaction_amount_usd": "5.80",
+      "visible_card_surcharge_usd": "0.00",
+      "merchant_mcc": "5734",
+      "merchant_category_as_displayed": "Software",
+      "merchant_location_as_displayed": "NEW YORK, USA",
+      "pay_with_fiat_usd": "0.00",
+      "pay_with_crypto_usd": "5.80",
+      "credited_points": "58",
+      "points_last_updated_as_displayed": "2026-09-27 01:31:33",
+      "source_file": "screenshots/bybit_historical_usd.png",
+      "source_files": [
+        "screenshots/bybit_historical_usd.png",
+        "screenshots/bybit_historical_usd_details.png",
+        "screenshots/bybit_historical_usd_points.png",
+        "screenshots/bybit_historical_usd_assets.png"
+      ],
+      "evidence_level": "visually_transcribed_completed_card_transaction_points_and_payment_asset_history",
+      "debit_evidence_level": "visually_transcribed_two_USDT_debits; purchase_attribution_by_context_amount_and_sequence",
+      "exact_crypto_debit_verified": true,
+      "screen_shows_crypto_amount_in": "USD in card screens; USDT in asset history",
+      "points_assessment": {
+        "points": "58",
+        "usdt_per_point": "0.002",
+        "value_usdt": "0.116",
+        "source_file": "data/cashback-tiers.json",
+        "basis": "Credited points valued at the saved documented redemption ratio; actual redemption into USDT unverified."
+      },
+      "conditional_net_overhead_pct": "-0.5879310344827586206896551700",
+      "comparison_basis": "Two visible USDT debits sum to 5.8819, matching the earlier report. Association with the OpenRouter USD card payment follows author context, USD amount and sequence; there is no shared ID in the asset-history crop. The purpose of the additional 0.0123 debit is unknown. Subtracting credited points valued under saved terms gives a conditional net; actual redemption into USDT remains unverified.",
+      "transaction_screens_matched_privately": true,
+      "conditional_net_usdt": "5.7659",
+      "gross_overhead_pct": "1.412068965517241379310344800",
+      "asset_history": {
+        "source_file": "screenshots/bybit_historical_usd_assets.png",
+        "entries": [
+          {
+            "label_as_displayed": "Купівля USD",
+            "amount": "-5.8",
+            "asset": "USD",
+            "time_as_displayed": "2026-09-26 10:44:24",
+            "available_balance_as_displayed": "0",
+            "account_type_as_displayed": "Картка Bybit"
+          },
+          {
+            "label_as_displayed": "Купівля монет USD",
+            "amount": "5.8",
+            "asset": "USD",
+            "time_as_displayed": "2026-09-26 10:44:24",
+            "available_balance_as_displayed": "5.8",
+            "account_type_as_displayed": "Картка Bybit"
+          },
+          {
+            "label_as_displayed": "Продаж USDT",
+            "amount": "-5.8696",
+            "asset": "USDT",
+            "time_as_displayed": "2026-09-26 10:44:23",
+            "available_balance_as_displayed": "0.000045",
+            "account_type_as_displayed": "Картка Bybit"
+          },
+          {
+            "label_as_displayed": "Savings Redemption (Card) USDT",
+            "amount": "5.8696",
+            "asset": "USDT",
+            "time_as_displayed": "2026-09-26 10:44:23",
+            "available_balance_as_displayed": "5.869645",
+            "account_type_as_displayed": "Earn"
+          },
+          {
+            "label_as_displayed": "Купівля USDT",
+            "amount": "-0.0123",
+            "asset": "USDT",
+            "time_as_displayed": "2026-09-26 10:44:21",
+            "available_balance_as_displayed": "0.000045",
+            "account_type_as_displayed": "Картка Bybit"
+          }
+        ],
+        "crypto_sale_usdt": "5.8696",
+        "additional_debit_usdt": "0.0123",
+        "additional_debit_purpose": "unknown; not a confirmed fee",
+        "additional_debit_confirmed_fee": false,
+        "total_visible_debits_usdt": "5.8819",
+        "internal_redemption_usdt": "5.8696",
+        "purchase_attribution_independently_verified": false,
+        "timestamp_basis": "Asset history shows 26 September; completed card/settlement screen shows 27 September. Both retained as displayed, timezone and reason for date difference unknown.",
+        "cost_basis": "Sum only the two USDT debits. Savings Redemption is an internal transfer, not expense or yield. USD conversion credit and card debit are not extra USDT costs."
+      }
+    },
+    {
+      "card": "kolo",
+      "merchant_usd": "5.80",
+      "debit": "5.94",
+      "asset": "USDT",
+      "merchant": "OpenRouter",
+      "card_amount_eur": "5.15",
+      "status_as_displayed": "Успішно",
+      "date_as_displayed": "26 вер., 11:18",
+      "transaction_year_verified": false,
+      "cashback_btc_shown": "0.00000134",
+      "source_file": "screenshots/kolo_historical_usd.png",
+      "evidence_level": "visually_transcribed_transaction_screenshot",
+      "gross_overhead_pct": "2.413793103448275862068965500",
+      "cashback_credit_evidence": "screenshots/kolo_cashback_history.png",
+      "cashback_credit_scope": "Part of the aggregate payout attributed by participant to these two historical purchases; exact sum of displayed BTC amounts matches payout.",
+      "net_usd_after_cashback": null,
+      "net_usd_limitation": "No purchase-time or credit-time BTC/USD valuation established for this historical example."
+    },
+    {
+      "card": "solid",
+      "merchant": "OpenAI ChatGPT",
+      "merchant_usd": "100.00",
+      "merchant_amount_basis": "participant subscription price; screen shows USD card debit",
+      "debit": "100.00",
+      "asset": "USD display",
+      "status_at_observation": "Pending",
+      "created_at_as_displayed": "2026-10-01 23:37",
+      "reward_shown": "3.00",
+      "cashback_rate_as_displayed": "0.03",
+      "cashback_type_as_displayed": "Standard",
+      "category_as_displayed": "Subscriptions",
+      "conditional_net_usd": "97.00",
+      "payout_independently_verified": false,
+      "exact_crypto_debit": null,
+      "completion_assessment": "Done under participant interpretation of Solid statuses; app still displays Pending",
+      "comparison_basis": "Displayed USD card charge minus shown cashback; token conversion and funding costs not established by this screenshot.",
+      "source_file": "screenshots/solid_historical_chatgpt.png",
+      "evidence_level": "visually_transcribed_transaction_screenshot",
+      "onchain_assessment": {
+        "source_file": "data/onchain-summary.json",
+        "row_scope": "historical_usd_purchase",
+        "merchant": "OpenAI ChatGPT",
+        "master_account_execution_status": "Success",
+        "settlement_currency": "USD",
+        "source_token": "WUSD",
+        "source_amount_matches_card_usd_at_6dp": true,
+        "exact_crypto_debit_verified": false,
+        "cashback_payout_verified": false
+      }
+    },
+    {
+      "card": "simple",
+      "merchant": "Apple",
+      "merchant_usd": "99",
+      "debit": "99",
+      "asset": "USDC",
+      "status_as_displayed": "Завершено",
+      "created_at_as_displayed": "2026-08-27 22:22",
+      "exchange_rate_as_displayed": "1 USDC = 1 USD",
+      "source_file": "screenshots/simple_historical_apple.png",
+      "evidence_level": "visually_transcribed_completed_transaction_screenshot",
+      "gross_overhead_pct": "0",
+      "debit_minus_merchant_nominal_usdc": "0",
+      "purchase_cashback_shown": false,
+      "comparison_basis": "USD purchase amount and USDC debit both shown on the completed transaction screen. No surcharge at the purchase step; does not establish USDT-to-USDC conversion, top-up, or network costs."
+    }
+  ],
+  "uah_bill_test": {
+    "merchant": "Vega Telecom / RozetkaPay",
+    "date": "2026-09-29",
+    "merchant_uah": "50",
+    "results": [
+      {
+        "card": "okx",
+        "result": "declined; participant report; cause unknown"
+      },
+      {
+        "card": "bybit",
+        "result": "declined; participant report; cause unknown"
+      },
+      {
+        "card": "simple",
+        "tx_debit": "1.15",
+        "balance_delta": "1.16",
+        "asset": "USDC",
+        "status": "Completed"
+      },
+      {
+        "card": "kolo",
+        "debit_usdt": "1",
+        "debit_usdc": "0.15",
+        "status": "Authorized"
+      },
+      {
+        "card": "solid",
+        "debit": "1.14",
+        "reward_shown": "0.03",
+        "status": "Pending"
+      }
+    ]
+  },
+  "kolo_cashback_purchases": [
+    {
+      "merchant": "OpenRouter",
+      "merchant_amount": "5.80",
+      "merchant_currency": "USD",
+      "card_amount_eur": "5.15",
+      "funding_components": [
+        {
+          "amount": "5.94",
+          "asset": "USDT"
+        }
+      ],
+      "cashback_btc_shown": "0.00000134",
+      "status_as_displayed": "Успішно",
+      "date_as_displayed": "26 вер., 11:18",
+      "transaction_year_verified": false,
+      "source_file": "screenshots/kolo_historical_usd.png"
+    },
+    {
+      "merchant": "Hloya",
+      "merchant_amount": "600",
+      "merchant_currency": "UAH",
+      "card_amount_eur": "11.91",
+      "funding_components": [
+        {
+          "amount": "2.2",
+          "asset": "USDT"
+        },
+        {
+          "amount": "10",
+          "asset": "EUR"
+        }
+      ],
+      "cashback_btc_shown": "0.00000309",
+      "status_as_displayed": "Успішно",
+      "date_as_displayed": "26 вер., 09:37",
+      "transaction_year_verified": false,
+      "source_file": "screenshots/kolo_historical_uah.png",
+      "comparison_limitation": "Mixed USDT and EUR funding; not a wholly USDT-funded controlled comparison."
+    }
+  ]
+}
