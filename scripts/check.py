@@ -488,6 +488,10 @@ class ReportAudit(HTMLParser):
                 assert attrs == {'type': 'application/json', 'id': 'card-sorting'}
             elif attrs.get('type') == 'application/ld+json':
                 assert attrs == {'type': 'application/ld+json', 'id': 'research-schema'}
+            elif attrs.get('src') == 'https://www.googletagmanager.com/gtag/js?id=G-NWFJQ8WLJ7':
+                assert set(attrs) == {'src', 'async'}
+            elif attrs.get('id') == 'google-analytics':
+                assert attrs == {'id': 'google-analytics'}
             else:
                 assert set(attrs) == {'src', 'defer'} and attrs['src'] in {'assets/card-sort.js', '../assets/card-sort.js'}
             self.scripts.append(attrs)
@@ -640,10 +644,12 @@ for relative in ('index.html', 'en/index.html'):
     assert report.count('<span class="referral-kind">' + t('ui.no_referral') + '</span>') == 1
     assert report.count(t('ui.no_bonus')) == 3
     assert html.escape(t('page.comparison.p_2'), quote=True) in report
-    assert len(parser.scripts) == (3 if site_url else 2)
+    assert len(parser.scripts) == (5 if site_url else 4)
+    assert sum(script.get('src') == 'https://www.googletagmanager.com/gtag/js?id=G-NWFJQ8WLJ7' for script in parser.scripts) == 1
+    assert report.count("gtag('config', 'G-NWFJQ8WLJ7');") == 1
     assert json.loads(re.search(r'<script type="application/json" id="card-sorting">(.*?)</script>', report, re.S)[1]) == page_sorting
     for script in parser.scripts:
-        if 'src' in script:
+        if 'src' in script and not script['src'].startswith('https://'):
             assert (page.parent / script['src']).resolve() == ROOT / 'assets/card-sort.js'
             assert (page.parent / script['src']).is_file()
     assert report.count('class="sort-value"') == report.count('class="label sort-label"') == report.count('class="sort-note"') == 9
