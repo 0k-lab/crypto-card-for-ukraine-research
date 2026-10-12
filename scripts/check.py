@@ -1382,11 +1382,13 @@ loss_entries = json.loads((ROOT / 'data/losses.json').read_text())['entries']
 def recorded_loss(card, stage):
     return next(entry for entry in loss_entries if entry['card'] == card and entry['stage_key'] == 'losses.' + stage)
 
-assert len(loss_entries) == 31
+assert len(loss_entries) == 30
 assert not any(entry['stage_key'] == 'losses.solid_alternate' for entry in loss_entries), 'Unused Solid route belongs in funding options, not measured losses'
 assert Decimal(recorded_loss('bybit', 'historical_bybit')['amount']) == Decimal('0.0819')
 assert Decimal(recorded_loss('kolo', 'historical_kolo')['amount']) == Decimal('0.14')
-assert recorded_loss('bybit', 'historical_bybit_extra')['amount'] == '0.0123'
+assert not any(entry['stage_key'] == 'losses.historical_bybit_extra' for entry in loss_entries), 'Extra debit is already included in the historical total'
+assert recorded_loss('bybit', 'historical_bybit')['group'] == 'conversion'
+assert recorded_loss('bybit', 'historical_bybit')['asset'] == 'USDT'
 assert Decimal(recorded_loss('simple', 'historical_simple_bill')['amount']) == Decimal('0.01')
 assert Decimal(recorded_loss('coca', 'route_nominal')['amount']) == Decimal('0.030917')
 assert Decimal(recorded_loss('keyone', 'route_nominal')['amount']) == Decimal('0.089317')
@@ -1396,7 +1398,14 @@ assert Decimal(recorded_loss('trustee_plus', 'trustee_topup')['amount']) == Deci
 assert recorded_loss('trustee_plus', 'trustee_topup')['approximate'] is True
 assert Decimal(recorded_loss('bybit', 'payment_foreign')['amount']) == Decimal(rows['bybit']['final_transaction']['foreign_transaction_fee_usd'])
 assert Decimal(recorded_loss('bybit', 'payment_conversion')['amount']) == Decimal(rows['bybit']['conversion_quote']['shown_conversion_fee_usdt'])
-assert recorded_loss('bybit', 'bybit_difference')['group'] == 'differences'
+bybit_conversion = recorded_loss('bybit', 'bybit_difference')
+assert bybit_conversion['group'] == 'conversion' and bybit_conversion['asset'] == 'USDT'
+assert Decimal(bybit_conversion['amount']) == Decimal('0.0179')
+bybit_terms = rows['bybit']['conversion_quote']['documented_terms']
+assert bybit_terms['crypto_conversion_fee_rate'] == '0.009'
+for lang in ('uk', 'en'):
+    report = (ROOT / ('index.html' if lang == 'uk' else 'en/index.html')).read_text()
+    assert bybit_terms['fees_url'] in report
 whitebit_conversion = recorded_loss('whitebit', 'whitebit_difference')
 assert whitebit_conversion['group'] == 'conversion' and whitebit_conversion['asset'] == 'USDT'
 assert Decimal(whitebit_conversion['amount']) == Decimal(rows['whitebit']['final_transaction']['spent_amount']) - Decimal(rows['whitebit']['final_transaction']['card_amount_usd']) == Decimal('0.25')

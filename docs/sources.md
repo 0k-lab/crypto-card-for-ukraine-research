@@ -42,6 +42,9 @@
 - [WhiteBIT USD terms](https://help.whitebit.com/hc/en-gb/articles/38453058545949-N%C3%B3va-USD-Card-Issuer-and-Terms)
 - [публічний запит](https://api.coinbase.com/v2/prices/BTC-USD/spot?date=2026-10-09)
 - [Bybit загальна програма](https://www.bybit.com/en/pay-rewards/promo/rewards-details/)
+- [Bybit Card: тарифи за регіонами](https://www.bybit.com/en/help-center/article/Fees-and-Spending-Limits-Bybit-Card) — перевірено 12.10.2026: Australia, 2% FX та 0,9% конвертації поверх One-Click Sell.
+- [Механізм карткових платежів Bybit](https://www.bybit.com/en/help-center/article/How-Bybit-Card-Transactions-Work)
+- [FAQ карткових транзакцій Bybit](https://www.bybit.com/en/help-center/article/FAQ-Bybit-Card-Transaction) — не встановлює призначення окремого списання 0.0123 USDT в історії OpenRouter.
 - [AU-сторінка](https://www.bybitcard.com/aus)
 - [VIP](https://www.bybit.com/en/VIPProgram/intro/)
 - [COCA Tier T&C](https://help.coca.xyz/support/solutions/articles/205000042710-tier-system-terms-conditions)

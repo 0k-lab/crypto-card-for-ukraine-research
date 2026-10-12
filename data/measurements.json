@@ -810,7 +810,17 @@
         "transaction_time": "2026-10-09 14:16:25",
         "evidence_level": "visually_transcribed_conversion_quote",
         "final_token_ledger_reconciled": true,
-        "comparison_basis_note": "Purchase input and output corroborated by the visible asset-history sequence. This is not a complete account audit."
+        "comparison_basis_note": "Purchase input and output corroborated by the visible asset-history sequence. This is not a complete account audit.",
+        "documented_terms": {
+          "region": "Australia",
+          "pricing_basis": "Bybit One-Click Sell exchange rate plus crypto conversion fee",
+          "crypto_conversion_fee_rate": "0.009",
+          "foreign_exchange_fee_rate": "0.02",
+          "fees_url": "https://www.bybit.com/en/help-center/article/Fees-and-Spending-Limits-Bybit-Card",
+          "transactions_url": "https://www.bybit.com/en/help-center/article/How-Bybit-Card-Transactions-Work",
+          "checked_at": "2026-10-12",
+          "scope": "Explains the conversion mechanism, not an exact reconstruction of the historical quote or the separate 0.0123 USDT debit."
+        }
       },
       "card_currency": "USD",
       "snapshot_status": "Pending / Authorization",

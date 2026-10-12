@@ -224,15 +224,13 @@ def build(language):
         loss('tariffs', 'whitebit', stage, whitebit['alternate_network_fees_usdt_as_displayed'][network], 'USDT')
     loss('activation', 'okx', 'okx_activation', tests_by_card['okx']['alternate_network_terms']['first_send_activation_fee_minimum_eth_as_displayed'], 'ETH', minimum=True)
     quote = bybit['conversion_quote']
-    loss('differences', 'bybit', 'bybit_difference', Decimal(quote['input_amount']) - Decimal(quote['output_amount']) - Decimal(quote['shown_conversion_fee_usdt']), 'USD')
+    loss('conversion', 'bybit', 'bybit_difference', Decimal(quote['input_amount']) - Decimal(quote['output_amount']) - Decimal(quote['shown_conversion_fee_usdt']), 'USDT')
     loss('differences', 'simple', 'simple_difference', rows_by_id['simple']['delta_minus_tx'], 'USDC')
     loss('conversion', 'whitebit', 'whitebit_difference', rows_by_id['whitebit']['delta_minus_tx'], 'USDT')
     historical = json.loads((ROOT / 'data/historical.json').read_text())
     for card in ('bybit', 'kolo'):
         payment = next(payment for payment in historical['usd_tests'] if payment['card'] == card)
-        loss('observed', card, 'historical_' + card, Decimal(payment['debit']) - Decimal(payment['merchant_usd']), 'USD')
-        if card == 'bybit':
-            loss('differences', card, 'historical_bybit_extra', payment['asset_history']['additional_debit_usdt'], 'USDT')
+        loss('conversion' if card == 'bybit' else 'observed', card, 'historical_' + card, Decimal(payment['debit']) - Decimal(payment['merchant_usd']), payment['asset'] if card == 'bybit' else 'USD')
     bill = next(payment for payment in historical['uah_bill_test']['results'] if payment['card'] == 'simple')
     loss('differences', 'simple', 'historical_simple_bill', Decimal(bill['balance_delta']) - Decimal(bill['tx_debit']), 'USDC')
     (ROOT / 'data/losses.json').write_text(json.dumps({'scope': 'Different operations; do not sum rows. Stablecoin differences use nominal parity. Quotes and display discrepancies are separate from observed costs. Native sending-wallet gas only; no sponsor/bundle double counting.', 'entries': losses}, ensure_ascii=False, indent=2) + '\n')
@@ -246,7 +244,8 @@ def build(language):
                 items.append(f'<div><dt>{esc(t(entry["stage_key"]))}</dt><dd>{esc(amount)}</dd></div>')
             if items:
                 groups.append(f'<h4>{esc(t("losses." + group))}</h4><dl class="loss-ledger">{"".join(items)}</dl>')
-        return f'<details class="calculation losses" id="losses-{identifier}"><summary>{esc(t("losses.title"))}</summary>{"".join(groups)}</details>'
+        sources = source_links([{'url': quote['documented_terms']['fees_url'], 'label': t('losses.bybit_fees_source')}]) if identifier == 'bybit' else ''
+        return f'<details class="calculation losses" id="losses-{identifier}"><summary>{esc(t("losses.title"))}</summary>{"".join(groups)}{sources}</details>'
 
     networks = {'okx': 'Mastercard', 'bybit': 'Mastercard'}
     table, cards, evidence = [], [], []

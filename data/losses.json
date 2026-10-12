@@ -218,11 +218,11 @@
       "minimum": true
     },
     {
-      "group": "differences",
+      "group": "conversion",
       "card": "bybit",
       "stage_key": "losses.bybit_difference",
       "amount": "0.0179",
-      "asset": "USD",
+      "asset": "USDT",
       "approximate": false,
       "minimum": false
     },
@@ -245,19 +245,10 @@
       "minimum": false
     },
     {
-      "group": "observed",
+      "group": "conversion",
       "card": "bybit",
       "stage_key": "losses.historical_bybit",
       "amount": "0.0819",
-      "asset": "USD",
-      "approximate": false,
-      "minimum": false
-    },
-    {
-      "group": "differences",
-      "card": "bybit",
-      "stage_key": "losses.historical_bybit_extra",
-      "amount": "0.0123",
       "asset": "USDT",
       "approximate": false,
       "minimum": false
