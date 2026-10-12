@@ -500,6 +500,7 @@
   "page.faq.1.answer": "No. The cost ranking compares the purchase debit; cashback mode subtracts the included cashback. I show deposit, withdrawal and conversion fees separately within each card; network costs depend on the network you choose. The total cost depends on the route and transfer amount.",
   "page.faq.2.question": "Is the included cashback already available to spend?",
   "page.faq.2.answer": "Not always. Some cashback is displayed after the purchase, but its payout is still unconfirmed. I value credited Bybit points at the documented redemption ratio without a verified redemption, and BTC at a saved fixed valuation. Each card calculation states the basis for its amount.",
+  "ui.get_card": "Get the card:",
   "ui.open_without_referral_button": "Without referral",
   "ui.open_with_referral_button": "With referral",
   "ui.open_without_referral_label": "Open {value0} card without a referral link",
