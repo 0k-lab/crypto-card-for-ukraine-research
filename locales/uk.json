@@ -426,7 +426,7 @@
   "losses.whitebit_erc20": "Виведення через ERC20 · тариф біржі.",
   "losses.whitebit_other": "Виведення через TRC20, Arbitrum, CChain, BEP20, DOT Asset Hub, NEAR, Optimism, Polygon, SOL і TON · тариф біржі.",
   "losses.solid_alternate": "Котирування виводу в Arbitrum; виконав вивід у Fuse без утримання.",
-  "losses.okx_activation": "Ethereum: заявлений мінімум разової активації мережі. Тестував X Layer.",
+  "losses.okx_activation": "Ethereum: разова комісія активації при першому відправленні, вказана у застосунку. Мій тест — X Layer.",
   "losses.bybit_difference": "3.6407 USDT − $3.59 − fee 0.0328: номінальна різниця за паритетом. Без ринкового benchmark не називаю FX spread.",
   "losses.simple_difference": "Покупка: зміна балансу 3.66 USDC, екран платежу 3.65. Округлення чи інший debit не встановлені.",
   "losses.whitebit_difference": "За платіж $3.57 списано 3.82 USDT. Номінальна різниця за 1 USDT = $1 може включати курс конвертації та додаткові комісії; їхній розподіл не показаний.",
@@ -510,5 +510,6 @@
   "ui.credited_cashback_caption": "Зарахований BTC-кешбек · 12.10.2026",
   "ui.initial_transaction_caption": "Транзакція · початковий стан",
   "losses.tariffs": "Комісії біржі за виведення",
-  "losses.conversion": "Конвертація та можливі комісії"
+  "losses.conversion": "Конвертація та можливі комісії",
+  "losses.activation": "Комісія активації мережі"
 }

@@ -1202,7 +1202,7 @@ assert fee['asset'] == 'OKB' and fee['payer'] == 'sending_wallet' and fee['explo
 assert Decimal(execution['gas_used']) * Decimal(execution['effective_gas_price_wei']) / Decimal(10) ** 18 == Decimal(fee['amount']) == Decimal('0.0000015222')
 terms = okx_funding['alternate_network_terms']
 assert terms['network'] == 'Ethereum' and terms['included_in_test_cost'] is False
-assert terms['evidence_level'] == 'live_app_claim_not_tested' and terms['first_send_activation_fee_minimum_eth_as_displayed'] == '0.00082681'
+assert terms['evidence_level'] == 'live_app_activation_terms' and terms['first_send_activation_fee_minimum_eth_as_displayed'] == '0.00082681'
 withdrawal = okx_funding['withdrawal']
 assert withdrawal['status_onchain'] == 'Success' and withdrawal['destination_receipt_independently_verified'] is True
 assert Decimal(withdrawal['recipient_token_amount_onchain']) == Decimal(withdrawal['requested_token_amount']) == Decimal(okx_funding['credited_token_amount']) == 10
@@ -1402,6 +1402,8 @@ assert Decimal(whitebit_conversion['amount']) == Decimal(rows['whitebit']['final
 assert recorded_loss('trustee_plus', 'trustee_withdrawal')['group'] == 'quoted'
 assert all(recorded_loss('whitebit', stage)['group'] == 'tariffs' for stage in ('whitebit_plasma', 'whitebit_erc20', 'whitebit_other'))
 assert recorded_loss('okx', 'okx_activation')['minimum'] is True
+assert recorded_loss('okx', 'okx_activation')['group'] == 'activation'
+assert recorded_loss('okx', 'okx_activation')['asset'] == 'ETH'
 assert recorded_loss('whitebit', 'whitebit_gas')['amount'] is None
 for test in funding_tests['tests']:
     fees = test['network_fees'] if 'network_fees' in test else [test['network_fee']]

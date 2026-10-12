@@ -218,7 +218,7 @@
       "minimum": false
     },
     {
-      "group": "quoted",
+      "group": "activation",
       "card": "okx",
       "stage_key": "losses.okx_activation",
       "amount": "0.00082681",

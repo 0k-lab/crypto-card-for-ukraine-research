@@ -426,7 +426,7 @@
   "losses.whitebit_erc20": "Withdrawal via ERC20 · exchange fee.",
   "losses.whitebit_other": "Withdrawal via TRC20, Arbitrum, CChain, BEP20, DOT Asset Hub, NEAR, Optimism, Polygon, SOL and TON · exchange fee.",
   "losses.solid_alternate": "Quoted withdrawal to Arbitrum; I used Fuse with no token deduction.",
-  "losses.okx_activation": "Ethereum: stated minimum one-time network activation charge. I tested X Layer.",
+  "losses.okx_activation": "Ethereum: one-time activation fee on the first send, shown in the app. My test used X Layer.",
   "losses.bybit_difference": "3.6407 USDT − $3.59 − 0.0328 fee: nominal difference at parity. No market benchmark establishes an isolated FX spread.",
   "losses.simple_difference": "Purchase: balance change 3.66 USDC, payment screen 3.65. Rounding or another debit is unestablished.",
   "losses.whitebit_difference": "A $3.57 payment used 3.82 USDT. The nominal difference at 1 USDT = $1 may include conversion pricing and additional fees; their breakdown is not shown.",
@@ -510,5 +510,6 @@
   "ui.credited_cashback_caption": "Credited BTC cashback · 12 Oct 2026",
   "ui.initial_transaction_caption": "Transaction · initial state",
   "losses.tariffs": "Exchange withdrawal fees",
-  "losses.conversion": "Conversion and possible fees"
+  "losses.conversion": "Conversion and possible fees",
+  "losses.activation": "Network activation fee"
 }

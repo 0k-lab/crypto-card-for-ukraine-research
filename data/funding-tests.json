@@ -457,11 +457,11 @@
       },
       "alternate_network_terms": {
         "network": "Ethereum",
-        "evidence_level": "live_app_claim_not_tested",
+        "evidence_level": "live_app_activation_terms",
         "first_send_activation_fee_minimum_eth_as_displayed": "0.00082681",
         "recurring_network_fee_claim": true,
         "included_in_test_cost": false,
-        "scope": "App says one-time network activation charge on first send, at least the displayed ETH amount. No Ethereum transaction tested; not an X Layer charge."
+        "scope": "Displayed OKX terms: one-time Ethereum network activation fee on the first send, at least the displayed ETH amount. This is an app requirement, not an unconfirmed quote; no Ethereum transaction was tested and it is not an X Layer charge."
       },
       "timing": {
         "precise_unlock_time_independently_verified": false,
