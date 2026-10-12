@@ -222,7 +222,6 @@ def build(language):
     whitebit = tests_by_card['whitebit']['withdrawal']
     for network, stage in (('PLASMA', 'whitebit_plasma'), ('ERC20', 'whitebit_erc20'), ('POLYGON', 'whitebit_other')):
         loss('tariffs', 'whitebit', stage, whitebit['alternate_network_fees_usdt_as_displayed'][network], 'USDT')
-    loss('quoted', 'solid', 'solid_alternate', tests_by_card['solid']['withdrawal']['alternate_quote']['fee_usdt'], 'USDT')
     loss('activation', 'okx', 'okx_activation', tests_by_card['okx']['alternate_network_terms']['first_send_activation_fee_minimum_eth_as_displayed'], 'ETH', minimum=True)
     quote = bybit['conversion_quote']
     loss('differences', 'bybit', 'bybit_difference', Decimal(quote['input_amount']) - Decimal(quote['output_amount']) - Decimal(quote['shown_conversion_fee_usdt']), 'USD')

@@ -1382,7 +1382,8 @@ loss_entries = json.loads((ROOT / 'data/losses.json').read_text())['entries']
 def recorded_loss(card, stage):
     return next(entry for entry in loss_entries if entry['card'] == card and entry['stage_key'] == 'losses.' + stage)
 
-assert len(loss_entries) == 32
+assert len(loss_entries) == 31
+assert not any(entry['stage_key'] == 'losses.solid_alternate' for entry in loss_entries), 'Unused Solid route belongs in funding options, not measured losses'
 assert Decimal(recorded_loss('bybit', 'historical_bybit')['amount']) == Decimal('0.0819')
 assert Decimal(recorded_loss('kolo', 'historical_kolo')['amount']) == Decimal('0.14')
 assert recorded_loss('bybit', 'historical_bybit_extra')['amount'] == '0.0123'
