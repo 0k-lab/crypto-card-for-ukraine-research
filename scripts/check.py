@@ -680,6 +680,18 @@ for relative in ('index.html', 'en/index.html'):
     assert report.count('<option value=') == 3
     assert 'id="sort-controls" hidden' in report and 'aria-live="polite"' in report
     assert report.count('class="card-grid"') == 1
+    comparison_table = re.search(r'<table\b[^>]*>.*?</table>', report, re.S)[0]
+    assert comparison_table.count('scope="col"') == 5
+    assert html.escape(t('page.comparison.table_note'), quote=True) in report
+    assert 'aria-describedby="comparison-table-note"' in comparison_table
+    assert 'comparison-table-note' in parser.ids
+    for row in data['rows']:
+        table_row = re.search(r'<tr data-card="' + row['id'] + r'">.*?</tr>', comparison_table, re.S)[0]
+        cells = re.findall(r'<td class="money">(.*?)</td>', table_row)
+        cost = comparison_cost(row)
+        included = included_cashback_value(row)
+        prefix = '≈$' if 'reward_valuation' in row else '$'
+        assert cells == ['$' + f'{cost:.2f}', prefix + f'{included:.2f}', prefix + f'{cost - included:.2f}', f"{(cost / Decimal(data['nbu_equivalent_usd']) - 1) * 100:+.2f}%"]
     assert '<details class="issuer">' not in report
     assert report.count('class="card-meta"') == 9
     assert report.count('class="calculation cashback-tiers"') == 9
@@ -786,7 +798,7 @@ for relative in ('index.html', 'en/index.html'):
         network = 'Mastercard' if row['id'] in ('okx', 'bybit') else 'Visa'
         assert f'<span class="card-meta">{issuer_name} · {network} · {currency}</span>' in report
     assert report.count('<span class="card-index">—</span>') == 0
-    assert '$3.648467' in report and html.escape(t('cards.trustee_plus.experience'), quote=True) in report
+    assert '3.648467 USDC' in report and html.escape(t('cards.trustee_plus.experience'), quote=True) in report
     assert 'id="unranked"' not in report
     assert 'Перегляд не збільшує скріни' not in report
     assert 'окремий PNG відкривається без додаткового стиснення' not in report

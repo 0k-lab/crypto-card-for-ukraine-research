@@ -169,7 +169,8 @@ def build(language):
         notes = ''.join(f'<p class="muted">{esc(note)}</p>' for note in program['notes'] if note)
         sources = program['sources'] + [{'url': '#cashback-method', 'label': t('ui.model_sources')}]
         terms_button = f"""<button class="evidence-button" type="button" popovertarget="evidence-prime">{esc(t('ui.prime_button'))}<span>↗</span></button>""" if identifier == 'solid' else ''
-        return f"""<details class="calculation cashback-tiers" id="tiers-{identifier}"><summary>{esc(t('ui.cashback'))}</summary><p class="muted">{esc(t('ui.terms_date', value0=program['scope']))}</p>{''.join(blocks)}{extra}{notes}{source_links(sources)}{terms_button}</details>"""
+        checked_on = date.fromisoformat(program.get('checked_on', tier_data['checked_on'])).strftime('%d.%m.%Y')
+        return f"""<details class="calculation cashback-tiers" id="tiers-{identifier}"><summary>{esc(t('ui.cashback'))}</summary><p class="muted">{esc(t('ui.terms_date', value0=program['scope'], value1=checked_on))}</p>{''.join(blocks)}{extra}{notes}{source_links(sources)}{terms_button}</details>"""
 
     def tier_ledger(tier, spend, regional=False):
         rate = t('ui.rate_unknown') if tier['rate'] is None else fmt(Decimal(tier['rate']) * 100, 0) + '%'
@@ -314,8 +315,10 @@ def build(language):
         figures = ''.join(picture(source, t(source['caption_key']) if source.get('caption_key') else captions[phase], row['name']) for phase, source in row['sources'].items())
         figures += ''.join(picture(source, t(source['caption_key']), row['name']) for source in extra_sources)
         evidence.append(popover('evidence-' + identifier, row['name'], figures))
-        cells = [f"{row['before']} → {row['after']}", row['tx'], str(cost), fmt(rate, 4), overhead, row['reward_text'], net]
-        table.append(f'<tr><th scope="row"><a href="#{identifier}">{esc(row["name"])}</a></th>' + ''.join('<td>' + esc(cell) + '</td>' for cell in cells) + '</tr>')
+        included = included_cashback_value(row)
+        approximate = '≈' if 'reward_valuation' in row else ''
+        cells = ['$' + fmt(cost), approximate + '$' + fmt(included), approximate + '$' + fmt(cost - included), overhead]
+        table.append(f'<tr data-card="{identifier}"><th scope="row"><a href="#{identifier}">{esc(row["name"])}</a></th>' + ''.join('<td class="money">' + esc(cell) + '</td>' for cell in cells) + '</tr>')
 
     evidence.append(popover('evidence-prime', t('ui.prime_title'), picture(terms['images'][0], t('ui.prime_caption'), 'Solid Prime')))
     image_path = f'assets/social/preview-{language}.png'
