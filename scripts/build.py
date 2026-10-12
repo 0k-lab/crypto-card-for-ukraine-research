@@ -241,6 +241,9 @@ def build(language):
     def loss_details(identifier):
         groups = []
         for group in ('observed', 'gas', 'quoted', 'differences'):
+            if group == 'gas':
+                groups.append(f'<h4>{esc(t("losses.gas"))}</h4><p class="muted">{esc(t("losses.network_note"))}</p>')
+                continue
             items = []
             for entry in (entry for entry in losses if entry['card'] == identifier and entry['group'] == group):
                 amount = t('losses.unknown') if entry['amount'] is None else ('≈' if entry['approximate'] else '≥' if entry['minimum'] else '') + ('$' + entry['amount'] if entry['asset'] == 'USD' else entry['amount'] + ' ' + entry['asset'])

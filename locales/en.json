@@ -406,7 +406,7 @@
   "ui.funding_title": "Funding and withdrawals",
   "losses.title": "Where money is lost",
   "losses.observed": "Payments, funding and withdrawals",
-  "losses.gas": "Sending-wallet network fees",
+  "losses.gas": "Network fees",
   "losses.quoted": "Quotes · execution unconfirmed",
   "losses.differences": "Unexplained differences",
   "losses.unknown": "Unknown",
@@ -500,11 +500,12 @@
   "page.faq.0.question": "Which crypto card should I use for UAH purchases?",
   "page.faq.0.answer": "OKX had the lowest debit before cashback in my test. For bills, I keep a backup: in my earlier test, RozetkaPay declined OKX and Bybit, while Simple, Kolo and Solid accepted the payment. One test does not guarantee the same result for other purchases.",
   "page.faq.1.question": "Does the displayed purchase cost include deposits and withdrawals?",
-  "page.faq.1.answer": "No. The cost ranking compares the purchase debit; cashback mode subtracts the included cashback. I show deposit, withdrawal, conversion and network gas costs separately within each card. The total cost depends on the route and transfer amount.",
+  "page.faq.1.answer": "No. The cost ranking compares the purchase debit; cashback mode subtracts the included cashback. I show deposit, withdrawal and conversion fees separately within each card; network costs depend on the network you choose. The total cost depends on the route and transfer amount.",
   "page.faq.2.question": "Is the included cashback already available to spend?",
   "page.faq.2.answer": "Not always. Some cashback is displayed after the purchase, but its payout is still unconfirmed. I value credited Bybit points at the documented redemption ratio without a verified redemption, and BTC at a saved fixed valuation. Each card calculation states the basis for its amount.",
   "ui.open_without_referral_button": "Without referral",
   "ui.open_with_referral_button": "With referral",
   "ui.open_without_referral_label": "Open {value0} card without a referral link",
-  "ui.open_with_referral_label": "Open {value0} card with a referral link"
+  "ui.open_with_referral_label": "Open {value0} card with a referral link",
+  "losses.network_note": "Network fees depend on the network you choose and its congestion. Check the fee in your wallet before sending; service top-up and withdrawal fees are listed separately."
 }

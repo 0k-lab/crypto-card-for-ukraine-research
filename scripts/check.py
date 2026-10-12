@@ -1396,8 +1396,12 @@ for language in ('uk', 'en'):
     for row in data['rows']:
         card = re.search(r'<article class="card ' + row['id'] + r'".*?</article>', report, re.S)[0]
         block = re.search(r'<details class="calculation losses".*?</details>', card, re.S)[0]
-        own = [entry for entry in loss_entries if entry['card'] == row['id']]
+        own = [entry for entry in loss_entries if entry['card'] == row['id'] and entry['group'] != 'gas']
         assert block.count('<dt>') == len(own), 'Each card shows only its own losses'
+        assert block.count('<h4>' + html.escape(t('losses.gas'), quote=True) + '</h4><p class="muted">' + html.escape(t('losses.network_note'), quote=True) + '</p>') == 1
+        for entry in loss_entries:
+            if entry['group'] == 'gas':
+                assert html.escape(t(entry['stage_key']), quote=True) not in block, 'Per-transfer gas is retained in data, not shown as a card fee'
         for entry in own:
             assert html.escape(t(entry['stage_key']), quote=True) in block
             if entry['amount'] is not None:
