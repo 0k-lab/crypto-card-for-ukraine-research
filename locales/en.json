@@ -32,7 +32,7 @@
   "page.comparison.h2_1": "Cards in my test",
   "page.comparison.p_1": "Compare debits, monthly cashback potential, or purchase costs after included cashback. Each card has its details and evidence.",
   "page.comparison.label_1": "Sort cards",
-  "page.comparison.p_2": "Application links are referrals, except COCA. Referral bonuses are excluded from the ranking; check the current terms when signing up.",
+  "page.comparison.p_2": "Every card has a link without a referral code. My referral links are labeled separately; invitation bonuses are excluded from the ranking. Check the current terms when signing up.",
   "page.comparison.p_3": "Amounts are nominal USD equivalents. The cost with cashback uses the displayed cashback amount; BTC uses a fixed reference valuation. See the methodology for what the ranking includes.",
   "page.comparison.summary_1": "Compare all exact figures in a table",
   "page.comparison.div_aria_label_1": "Exact figures for nine cards",
@@ -123,8 +123,7 @@
   "ui.btc_rate": "BTC/USD valuation rate",
   "ui.valuation_source": "Valuation source",
   "ui.coinbase_source": "Coinbase · saved response",
-  "ui.referral": "Referral link",
-  "ui.no_referral": "No referral code",
+  "ui.referral": "With the referral link:",
   "ui.referral_terms": "Program terms ↗",
   "ui.debit": "Debit for 158 ₴",
   "ui.vs_nbu": "vs NBU",
@@ -274,7 +273,7 @@
   "cards.whitebit.bonus_note": "Invitation: bonuses up to 50 USDC; split and conditions remain unverified.",
   "ui.language": "Language",
   "ui.supporting_docs": "The supporting methodology and source documents are available in Ukrainian.",
-  "ui.no_bonus": "No additional terms stated.",
+  "ui.no_bonus": "No additional bonuses stated.",
   "page.methodology.intro": "The test is one 158 ₴ purchase on 09.10.2026. I assume 1 USDT ≈ 1 USDC ≈ $1 for comparison; card denomination, spending asset and internal settlement currency may differ.",
   "page.methodology.debit": "Debit: before balance minus after balance. Exceptions are USDT spent on the completed OKX screen, Bybit’s USDT debit in asset history, Trustee’s exact receipt and Solid’s Available to spend. Initial balances are kept separate from completed payments.",
   "page.methodology.benchmark": "The NBU rate on the test date was 44.8526 ₴/$, giving a $3.522649746… purchase equivalent. Deviation includes visible costs, not only FX spread. I do not add included fees twice.",
@@ -503,5 +502,9 @@
   "page.faq.1.question": "Does the displayed purchase cost include deposits and withdrawals?",
   "page.faq.1.answer": "No. The cost ranking compares the purchase debit; cashback mode subtracts the included cashback. I show deposit, withdrawal, conversion and network gas costs separately within each card. The total cost depends on the route and transfer amount.",
   "page.faq.2.question": "Is the included cashback already available to spend?",
-  "page.faq.2.answer": "Not always. Some cashback is displayed after the purchase, but its payout is still unconfirmed. I value credited Bybit points at the documented redemption ratio without a verified redemption, and BTC at a saved fixed valuation. Each card calculation states the basis for its amount."
+  "page.faq.2.answer": "Not always. Some cashback is displayed after the purchase, but its payout is still unconfirmed. I value credited Bybit points at the documented redemption ratio without a verified redemption, and BTC at a saved fixed valuation. Each card calculation states the basis for its amount.",
+  "ui.open_without_referral_button": "Without referral",
+  "ui.open_with_referral_button": "With referral",
+  "ui.open_without_referral_label": "Open {value0} card without a referral link",
+  "ui.open_with_referral_label": "Open {value0} card with a referral link"
 }

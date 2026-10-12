@@ -128,9 +128,24 @@ expected_opening_urls = {
     'coca': 'https://www.coca.xyz/cards',
 }
 assert {card: item['url'] for card, item in card_links.items()} == expected_opening_urls
+expected_official_urls = {
+    'bybit': 'https://www.bybit.com/cards/',
+    'keyone': 'https://www.keyonepay.com/',
+    'kolo': 'https://kolo.xyz/',
+    'okx': 'https://www.okx.com/pay',
+    'simple': 'https://simple.app/',
+    'solid': 'https://www.solid.xyz/',
+    'trustee_plus': 'https://trustee.io/ua/',
+    'whitebit': 'https://whitebit.com/usd-card',
+    'coca': 'https://www.coca.xyz/cards',
+}
+assert {card: item['official_url'] for card, item in card_links.items()} == expected_official_urls
 for card, item in card_links.items():
     url = urlsplit(item['url'])
     assert url.scheme == 'https' and url.hostname and not url.username and not url.password
+    official_url = urlsplit(item['official_url'])
+    assert official_url.scheme == 'https' and official_url.hostname and not official_url.username and not official_url.password
+    assert not official_url.query and not official_url.fragment, 'Official links must not contain referral or tracking parameters'
     assert item['referral'] is (card != 'coca')
 assert {card for card, item in card_links.items() if item['bonus_note']} == {'bybit', 'okx', 'simple', 'solid', 'whitebit', 'trustee_plus'}
 assert not (ROOT / 'data/p2p-uah-quotes-2026-10-09.json').exists()
@@ -501,12 +516,17 @@ class ReportAudit(HTMLParser):
         if tag == 'a':
             self.links.append(attrs['href'])
             if 'open-card' in attrs.get('class', '').split():
-                assert self.current_card and self.current_card not in self.opening_links
+                assert self.current_card
                 opening = card_links[self.current_card]
-                assert attrs['href'] == opening['url'] and attrs.get('target') == '_blank'
-                assert attrs.get('aria-label') == self.t('ui.open_card_label', value0=next(row['name'] for row in data['rows'] if row['id'] == self.current_card))
-                assert attrs.get('rel') == ('noopener sponsored' if opening['referral'] else 'noopener')
-                self.opening_links[self.current_card] = attrs['href']
+                opening_links = self.opening_links.setdefault(self.current_card, [])
+                is_referral = bool(opening_links)
+                assert len(opening_links) < (2 if opening['referral'] else 1), 'Duplicate opening link'
+                assert attrs['href'] == (opening['url'] if is_referral else opening['official_url'])
+                assert attrs.get('target') == '_blank'
+                label = 'ui.open_with_referral_label' if is_referral else 'ui.open_without_referral_label' if opening['referral'] else 'ui.open_card_label'
+                assert attrs.get('aria-label') == self.t(label, value0=next(row['name'] for row in data['rows'] if row['id'] == self.current_card))
+                assert attrs.get('rel') == ('noopener sponsored' if is_referral else 'noopener')
+                opening_links.append(attrs['href'])
             if 'image-file' in attrs.get('class', '').split():
                 assert attrs.get('target') == '_blank' and attrs.get('rel') == 'noopener'
                 self.image_files.append(attrs['href'])
@@ -638,10 +658,11 @@ for relative in ('index.html', 'en/index.html'):
     assert parser.links.count(repository_url) == 2
     assert repository_url in report.split('<header class="site-header">', 1)[1].split('</header>', 1)[0]
     assert repository_url in report.split('<footer class="footer">', 1)[1].split('</footer>', 1)[0]
-    assert parser.opening_links == expected_opening_urls
+    assert parser.opening_links == {card: [item['official_url']] + ([item['url']] if item['referral'] else []) for card, item in card_links.items()}
     assert len(parser.bonus_cards) == 9 and set(parser.bonus_cards) == set(card_links)
     assert report.count('<span class="referral-kind">' + t('ui.referral') + '</span>') == 8
-    assert report.count('<span class="referral-kind">' + t('ui.no_referral') + '</span>') == 1
+    assert report.count(t('ui.open_without_referral_button')) == 8
+    assert report.count(t('ui.open_with_referral_button')) == 8
     assert report.count(t('ui.no_bonus')) == 3
     assert html.escape(t('page.comparison.p_2'), quote=True) in report
     assert len(parser.scripts) == (6 if site_url else 5)

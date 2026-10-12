@@ -1,30 +1,35 @@
 {
-  "source": "Author-supplied referral invitations; promotional benefits are claimed terms, not independently verified payouts or inputs to the ranking.",
+  "source": "Official product pages and author-supplied referral invitations; promotional benefits are claimed terms, not independently verified payouts or inputs to the ranking.",
   "cards": {
     "bybit": {
       "url": "https://www.bybit.com/cards/?ref=NZQ05D&source=applet_invite",
       "referral": true,
-      "bonus_note": "У запрошенні заявлено 10% кешбеку та 10 USDT за реєстрацію. Умови, строк і доступність бонусів — за акцією Bybit."
+      "bonus_note": "У запрошенні заявлено 10% кешбеку та 10 USDT за реєстрацію. Умови, строк і доступність бонусів — за акцією Bybit.",
+      "official_url": "https://www.bybit.com/cards/"
     },
     "keyone": {
       "url": "https://www.keyonepay.com/?ref=ref-2dc64a52-96dd-474e-a750-9d9629225f68",
       "referral": true,
-      "bonus_note": null
+      "bonus_note": null,
+      "official_url": "https://www.keyonepay.com/"
     },
     "kolo": {
       "url": "https://get.kolo.xyz/p730944",
       "referral": true,
-      "bonus_note": null
+      "bonus_note": null,
+      "official_url": "https://kolo.xyz/"
     },
     "okx": {
       "url": "https://okx.com/join/EQHODCN2",
       "referral": true,
-      "bonus_note": "У запрошенні заявлено бонус до 100 USDT за реєстрацію на OKX. Сума й доступність залежать від умов акції."
+      "bonus_note": "У запрошенні заявлено бонус до 100 USDT за реєстрацію на OKX. Сума й доступність залежать від умов акції.",
+      "official_url": "https://www.okx.com/pay"
     },
     "simple": {
       "url": "https://join.simple.app/23649C",
       "referral": true,
-      "bonus_note": "За запрошенням заявлено безкоштовну картку, 0% на поповнення, виведення й IBAN-перекази та 5% річних на залишок. Для бонусів має бути застосований реферальний код; діють умови Simple."
+      "bonus_note": "За запрошенням заявлено безкоштовну картку, 0% на поповнення, виведення й IBAN-перекази та 5% річних на залишок. Для бонусів має бути застосований реферальний код; діють умови Simple.",
+      "official_url": "https://simple.app/"
     },
     "solid": {
       "url": "https://www.solid.xyz/refer?ref=EV8PU",
@@ -36,7 +41,8 @@
         "screen_title": "Invite friends & Earn together",
         "quote": "You get $25. Your friend get $25. Create a Solid account And get verified. Deposit to their account Via bank deposit or crypto. Make 3+ purchases: spend $150 across 3+ payments at different merchants within 30 days.",
         "limits_not_shown": "The screenshot does not specify the start of the 30-day window or the payout date."
-      }
+      },
+      "official_url": "https://www.solid.xyz/"
     },
     "trustee_plus": {
       "url": "https://trustee.io/ua/?r=ojNqqBbp66b",
@@ -57,7 +63,8 @@
         "invitee_signup_bonus": "Not specified on the linked page.",
         "limits": "Exact settings of this author referral link and actual partner payouts were not verified. The percentage applies to Trustee commission income; promotional figures are excluded from purchase-cost and cashback ranking."
       },
-      "conditions_url": "https://trustee.io/ua/referral-program/?r=ojNqqBbp66b"
+      "conditions_url": "https://trustee.io/ua/referral-program/?r=ojNqqBbp66b",
+      "official_url": "https://trustee.io/ua/"
     },
     "whitebit": {
       "url": "https://whitebit.com/card-referral/4380c062-2877-4217-b438-b97f1b6e284f",
@@ -68,12 +75,15 @@
         "observed_on": "2026-10-09",
         "quote": "ЗАПРОШУЙТЕ ДРУЗІВ ТА ОТРИМУЙТЕ РАЗОМ НАГОРОДИ ДО 50 USDC. Поділіться своїм унікальним реферальним посиланням з друзями та заробляйте щоразу, коли вони приєднуються. Більше запрошень, більше винагород!",
         "limits_not_shown": "The screenshot does not specify how the up-to-50 USDC offer is split between inviter and invitee, eligibility requirements, spending/deposit thresholds or deadlines. The +15 USDC example is marketing imagery, not proof of payout."
-      }
+      },
+      "official_url": "https://whitebit.com/usd-card"
     },
     "coca": {
       "url": "https://www.coca.xyz/cards",
       "referral": false,
-      "bonus_note": null
+      "bonus_note": null,
+      "official_url": "https://www.coca.xyz/cards"
     }
-  }
+  },
+  "official_links_checked_on": "2026-10-12"
 }

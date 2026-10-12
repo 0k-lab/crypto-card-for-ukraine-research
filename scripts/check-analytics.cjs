@@ -68,10 +68,11 @@ for (const [edition, language] of [['index.html', 'uk'], ['en/index.html', 'en']
     silent(() => toggle(popover, 'closed'));
     const imageLink = element(['a', '.image-file'], {}, {'.evidence-popover': popover});
     expect('evidence_open', {card_id: id, evidence_type: 'transactions', evidence_view: 'original'}, () => click(imageLink));
-    const sponsored = id !== 'coca';
-    const cardLink = element(['a', '.open-card'], {relList: {contains: value => value === 'sponsored' && sponsored}}, {'.card': card});
-    const nestedIcon = element([], {}, {a: cardLink});
-    expect('card_open', {card_id: id, is_referral: sponsored}, () => click(nestedIcon));
+    for (const sponsored of id === 'coca' ? [false] : [false, true]) {
+      const cardLink = element(['a', '.open-card'], {relList: {contains: value => value === 'sponsored' && sponsored}}, {'.card': card});
+      const nestedIcon = element([], {}, {a: cardLink});
+      expect('card_open', {card_id: id, is_referral: sponsored}, () => click(nestedIcon));
+    }
   }
   const prime = element(['.evidence-popover'], {id: 'evidence-prime'});
   expect('evidence_open', {card_id: 'solid', evidence_type: 'prime_terms', evidence_view: 'gallery'}, () => toggle(prime, 'open'));
