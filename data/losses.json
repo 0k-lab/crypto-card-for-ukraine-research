@@ -164,7 +164,7 @@
       "minimum": false
     },
     {
-      "group": "quoted",
+      "group": "conversion",
       "card": "trustee_plus",
       "stage_key": "losses.trustee_exchange",
       "amount": "0.019437",
@@ -173,7 +173,7 @@
       "minimum": false
     },
     {
-      "group": "quoted",
+      "group": "tariffs",
       "card": "trustee_plus",
       "stage_key": "losses.trustee_withdrawal",
       "amount": "1",

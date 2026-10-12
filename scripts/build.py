@@ -217,8 +217,8 @@ def build(language):
             stage = 'solid_cross_gas' if fee.get('route') == 'arbitrum_to_fuse' else 'solid_direct_gas' if fee.get('route') == 'direct_fuse' else 'trustee_gas' if card == 'trustee_plus' else 'whitebit_gas' if card == 'whitebit' else 'deposit_gas'
             loss('gas', card, stage, fee['amount'], fee['asset'])
     trustee = tests_by_card['trustee_plus']['withdrawal']
-    loss('quoted', 'trustee_plus', 'trustee_exchange', trustee['exchange_quote']['nominal_parity_difference'], 'USD')
-    loss('quoted', 'trustee_plus', 'trustee_withdrawal', trustee['review']['fee_as_displayed'], 'USDT')
+    loss('conversion', 'trustee_plus', 'trustee_exchange', trustee['exchange_quote']['nominal_parity_difference'], 'USD')
+    loss('tariffs', 'trustee_plus', 'trustee_withdrawal', trustee['review']['fee_as_displayed'], 'USDT')
     whitebit = tests_by_card['whitebit']['withdrawal']
     for network, stage in (('PLASMA', 'whitebit_plasma'), ('ERC20', 'whitebit_erc20'), ('POLYGON', 'whitebit_other')):
         loss('tariffs', 'whitebit', stage, whitebit['alternate_network_fees_usdt_as_displayed'][network], 'USDT')

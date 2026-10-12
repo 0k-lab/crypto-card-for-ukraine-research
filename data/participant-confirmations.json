@@ -571,6 +571,14 @@
       "scope": "Third deposit separate from initial 10 + 1. No onchain receipt, gas or completed withdrawal supplied."
     },
     {
+      "card": "trustee_plus",
+      "confirmed_on": "2026-10-12",
+      "evidence_level": "participant_confirmation_supported_by_later_wallet_balance",
+      "claim": "Виконав своп 9.965114 USDC → 9.945677 USDT, щоб підготувати виведення. Показаний курс — 0.99805 USDT за USDC, комісія — 0%.",
+      "source_file": "data/funding-tests.json",
+      "scope": "Confirms the swap, not the subsequent Polygon withdrawal or final recipient credit. Nominal parity shortfall belongs to this conversion quote; no independent market benchmark establishes a market spread."
+    },
+    {
       "card": "whitebit",
       "confirmed_on": "2026-10-11",
       "evidence_level": "participant_report_supported_by_app_balances_and_withdrawal_form",

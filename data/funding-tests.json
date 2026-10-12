@@ -829,7 +829,7 @@
       "id": "trustee_plus_polygon_10_plus_1_usdt_card_topup",
       "card": "trustee_plus",
       "date": "2026-10-11",
-      "scope": "Two verified Polygon wallet deposits followed by a separate card top-up; withdrawal attempts, exchange quote and final transfer review. An additional 1 USDT withdrawal-funding deposit is participant-confirmed, without independent receipt. Withdrawal execution and recipient credit are unconfirmed; controlled purchase unchanged.",
+      "scope": "Two verified Polygon wallet deposits followed by a separate card top-up; withdrawal attempts, participant-confirmed executed exchange and final transfer review. An additional 1 USDT withdrawal-funding deposit is participant-confirmed, without independent receipt. Withdrawal execution and recipient credit are unconfirmed; controlled purchase unchanged.",
       "evidence_level": "visual_app_screenshots_and_card_receipt_with_author_checked_private_polygon_transfers",
       "network": "Polygon",
       "onchain_asset_as_displayed": "USDT0",
@@ -940,7 +940,7 @@
         "screenshots/trustee_plus_funding_card_debit.png"
       ],
       "withdrawal": {
-        "evidence_level": "visual_blocked_attempts_exchange_quote_and_transfer_review_with_participant_confirmed_extra_deposit",
+        "evidence_level": "visual_blocked_attempts_exchange_quote_and_transfer_review_with_participant_confirmed_swap_and_extra_deposit",
         "recipient_token_amount_onchain": null,
         "fees_as_displayed": "1",
         "completed": false,
@@ -971,7 +971,12 @@
           "nominal_parity_difference_pct": "0.195050",
           "rate_rounding_difference_is_additional_fee": false,
           "execution_receipt_supplied": false,
-          "consistent_with_later_wallet_balance": true
+          "consistent_with_later_wallet_balance": true,
+          "completed": true,
+          "confirmed_by_participant": true,
+          "confirmed_on": "2026-10-12",
+          "evidence_level": "participant_confirmation_supported_by_later_wallet_balance",
+          "basis": "Participant confirms executing this swap to prepare the withdrawal. Quoted receive amount plus the earlier 0.94 USDT residual matches the later 10.885677 USDT balance. No separate execution receipt supplied; market-rate deviation is not independently measured."
         },
         "polygon_attempt": {
           "asset": "USDT",
@@ -1010,7 +1015,7 @@
           "screenshots/trustee_plus_withdrawal_form.png",
           "screenshots/trustee_plus_withdrawal_review.png"
         ],
-        "basis": "No completed withdrawal screen or hash supplied. Quoted 1 USDT is not included as an executed fee in the funding cost. Initial two-deposit gas excludes the third participant-confirmed deposit; whole-route cost remains unfinalized."
+        "basis": "USDC to USDT swap execution is participant-confirmed and consistent with the later wallet balance. Polygon withdrawal requires an additional 1 USDT fee as displayed in the app; paid fee and final recipient credit remain unverified. Initial two-deposit gas excludes the third participant-confirmed deposit; whole-route cost remains unfinalized."
       },
       "cost_basis": "External deposits total 11 USDT and are fully credited to the wallet. A separate requested 10 USDT card transfer shows an additional 0.06 USDT fee, a 0.94 USDT wallet residual, and a 9.965114 USDT card credit. Nominal full difference is approximately 0.094886 USDT / 0.94886% of requested 10, using displayed fee precision; two initial POL gas fees separate. The extra 1 USDT is not all spent and is not a 1 USDT fee. Exact fee ledger and FX/conversion breakdown unknown.",
       "limits": [

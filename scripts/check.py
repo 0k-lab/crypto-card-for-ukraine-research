@@ -1351,6 +1351,8 @@ assert Decimal(quote['give_amount']) - Decimal(quote['receive_amount']) == Decim
 assert (Decimal(quote['nominal_parity_difference']) / Decimal(quote['give_amount']) * 100).quantize(Decimal('0.000001')) == Decimal(quote['nominal_parity_difference_pct'])
 assert abs(Decimal(quote['give_amount']) * Decimal(quote['rate_as_displayed']) - Decimal(quote['receive_amount'])) < Decimal('0.00001')
 assert quote['rate_rounding_difference_is_additional_fee'] is False and quote['execution_receipt_supplied'] is False
+assert quote['completed'] is True and quote['confirmed_by_participant'] is True
+assert quote['confirmed_on'] == '2026-10-12'
 attempt = withdrawal['polygon_attempt']
 assert Decimal(quote['receive_amount']) + Decimal(card['wallet_remaining_as_displayed_usdt']) == Decimal(attempt['wallet_balance_as_displayed'])
 assert Decimal(attempt['wallet_balance_as_displayed']) - Decimal(attempt['fee_as_displayed']) == Decimal(attempt['available_after_fee_as_displayed'])
@@ -1409,7 +1411,9 @@ for lang in ('uk', 'en'):
 whitebit_conversion = recorded_loss('whitebit', 'whitebit_difference')
 assert whitebit_conversion['group'] == 'conversion' and whitebit_conversion['asset'] == 'USDT'
 assert Decimal(whitebit_conversion['amount']) == Decimal(rows['whitebit']['final_transaction']['spent_amount']) - Decimal(rows['whitebit']['final_transaction']['card_amount_usd']) == Decimal('0.25')
-assert recorded_loss('trustee_plus', 'trustee_withdrawal')['group'] == 'quoted'
+assert recorded_loss('trustee_plus', 'trustee_withdrawal')['group'] == 'tariffs'
+assert recorded_loss('trustee_plus', 'trustee_exchange')['group'] == 'conversion'
+assert Decimal(recorded_loss('trustee_plus', 'trustee_exchange')['amount']) == Decimal('0.019437')
 assert all(recorded_loss('whitebit', stage)['group'] == 'tariffs' for stage in ('whitebit_plasma', 'whitebit_erc20', 'whitebit_other'))
 assert recorded_loss('okx', 'okx_activation')['minimum'] is True
 assert recorded_loss('okx', 'okx_activation')['group'] == 'activation'
@@ -1484,4 +1488,4 @@ for name in filter(None, visible):
         text = (ROOT / p).read_text()
         assert not re.search(r'/(?:Users|home|mnt/data)/[A-Za-z0-9]', text), name
         assert not re.search(r'0x[0-9a-fA-F]{40,}', text), 'Public blockchain identifier: ' + name
-print('PASS: matching Ukrainian/English financial values, locale keys and placeholders; three exact sorting modes with Solid/COCA accepted cashback and credited Bybit points included; OKX completed USDT amount selected; shown BTC included at a fixed reference quote before payout and cap/fee-aware base/next projections; issuer evidence; conditional Earning arithmetic and unknown-rate handling; financial arithmetic; Kolo BTC valuation; Trustee receipt; Bybit quote and asset-history reconciliation; nine card samples; 125 public PNGs; credited WhiteBIT BTC and completed purchase; WhiteBIT main-account credit, unknown sender gas, Plasma quote and existing-balance exclusion; Trustee wallet/card separation, minimum/fee failures, exchange quote, confirmed extra deposit and unexecuted withdrawal review; Solid two funding routes and combined sponsored Fuse withdrawal; Simple exact two-stage USDC return and separate paymaster/relayer gas; OKX Pay X Layer token parity and separate OKB gas; KOLO full token credit, withdrawal fee and other-balance exclusion; COCA and KeyOne withdrawal precision and evidence limits; exact Kolo historical cashback sum and USD example; local scripts and links; private originals excluded.')
+print('PASS: matching Ukrainian/English financial values, locale keys and placeholders; three exact sorting modes with Solid/COCA accepted cashback and credited Bybit points included; OKX completed USDT amount selected; shown BTC included at a fixed reference quote before payout and cap/fee-aware base/next projections; issuer evidence; conditional Earning arithmetic and unknown-rate handling; financial arithmetic; Kolo BTC valuation; Trustee receipt; Bybit quote and asset-history reconciliation; nine card samples; 125 public PNGs; credited WhiteBIT BTC and completed purchase; WhiteBIT main-account credit, unknown sender gas, Plasma quote and existing-balance exclusion; Trustee wallet/card separation, minimum/fee failures, participant-confirmed swap, stated withdrawal fee, confirmed extra deposit and unexecuted withdrawal review; Solid two funding routes and combined sponsored Fuse withdrawal; Simple exact two-stage USDC return and separate paymaster/relayer gas; OKX Pay X Layer token parity and separate OKB gas; KOLO full token credit, withdrawal fee and other-balance exclusion; COCA and KeyOne withdrawal precision and evidence limits; exact Kolo historical cashback sum and USD example; local scripts and links; private originals excluded.')
