@@ -312,9 +312,9 @@
           "rank": "09"
         },
         "whitebit": {
-          "value": "3.64160152475",
+          "value": "3.64326104545",
           "display": "≈$3.64",
-          "note": "BTC at a fixed valuation.",
+          "note": "Cashback credited; BTC’s USD amount is a valuation; no sale measured.",
           "rank": "06"
         }
       }

@@ -3,7 +3,7 @@
   "merchant_amount_uah": "158",
   "nbu_usd_uah": "44.8526",
   "nbu_equivalent_usd": "3.522649746057084762087370632",
-  "basis": "Visual transcription; displayed debits; cash rewards conditional; shown Kolo and WhiteBIT BTC amounts included before payout at a fixed reference rate at author request; nominal stablecoin parity; TP current cashback deduction zero, not a measured points price",
+  "basis": "Visual transcription; displayed debits and completed OKX, Bybit and WhiteBIT purchase screens; Kolo shown BTC and WhiteBIT credited BTC valued at a fixed reference rate; nominal stablecoin parity; TP current cashback deduction zero.",
   "rows": [
     {
       "id": "okx",
@@ -1338,10 +1338,10 @@
       "tx": "3.57",
       "debit": "3.82",
       "asset": "USDT Assets; USD display",
-      "status": "Очікування",
+      "status": "Успішно",
       "reward": null,
-      "reward_text": "0.00000215 BTC; показана сума, враховую до зарахування",
-      "note": "Сума покупки $3.57, але Assets −3.82 USDT і баланс зменшився на $3.82. Різниця $0.25. Перед покупкою застосунок показує 5% за першу покупку; категорія тесту — Продукти. Це не доводить 10% на підписки.",
+      "reward_text": "0.00000213 BTC · зараховано",
+      "note": "Завершений платіж: $3.57, фактично витрачено 3.82 USDT. Різниця $0.25; окремий розклад комісій не показаний. Кешбек 0.00000213 BTC зарахований на баланс у застосунку.",
       "effective_uah_per_usd": "41.36125654450261780104712042",
       "gross_overhead_vs_nbu_pct": "8.441096202531645569620253200",
       "delta_minus_tx": "0.25",
@@ -1357,7 +1357,8 @@
         },
         "tx": {
           "file": "screenshots/whitebit_tx.png",
-          "sha256": "07e7ddf357476a31af0b9b33150945212d08c8573d646bd674349916462b2dc0"
+          "sha256": "07e7ddf357476a31af0b9b33150945212d08c8573d646bd674349916462b2dc0",
+          "caption_key": "ui.initial_transaction_caption"
         },
         "funding_before": {
           "file": "screenshots/whitebit_funding_before.png",
@@ -1412,17 +1413,37 @@
             1280
           ],
           "kind": "withdrawal_test"
+        },
+        "cashback_credited": {
+          "file": "screenshots/whitebit_cashback_credited.png",
+          "sha256": "246e92261043e7a4699b79e7378f64043d72fee07bcc59a4e4d48bef2ef8a044",
+          "dimensions": [
+            1179,
+            2556
+          ],
+          "kind": "cashback_credit",
+          "privacy_review": "No names, account details, wallet addresses, QR codes or transaction IDs visible. PNG pixel data and source dimensions unchanged; ancillary metadata removed.",
+          "caption_key": "ui.credited_cashback_caption"
         }
       },
       "observed_reward": {
-        "amount": "0.00000215",
+        "amount": "0.00000213",
         "asset": "BTC",
-        "availability": "participant_confirmed_amount_pending_credit",
+        "availability": "participant_confirmed_credited",
         "recurring": false,
         "note": "first-purchase promotion may apply",
         "payout_independently_verified": false,
-        "credit_delay_note": "Зарахування очікується за кілька днів; показану BTC-суму враховую в розрахунку вже зараз.",
-        "credited_at": null
+        "credit_delay_note": "На 12.10.2026 кешбек зараховано на баланс у застосунку; зняття або продаж BTC не перевірені.",
+        "credited_at": null,
+        "amount_at_initial_capture": "0.00000215",
+        "credit_independently_verified": true,
+        "credit_observed_on": "2026-10-12",
+        "credited_balance_btc_as_displayed": "0.00000213",
+        "usd_equivalent_as_displayed": "0.17",
+        "usd_equivalent_is_approximate": true,
+        "last_withdrawal_usd_as_displayed": "0",
+        "source_file": "screenshots/whitebit_cashback_credited.png",
+        "payout_verification_scope": "Withdrawal from the cashback balance or BTC sale remains unverified; credit to the cashback balance is verified by the supplied screenshot."
       },
       "balance_basis": "displayed_balance",
       "funding_reported": {
@@ -1432,26 +1453,37 @@
         "source_fee": null,
         "evidence": "participant_report"
       },
-      "transaction_ui_completed": false,
+      "transaction_ui_completed": true,
       "final_settlement_independently_verified": false,
       "privacy": "Gaussian blur in explicit regions; status bar retained; no metadata; no generative editing",
       "reward_valuation": {
         "price_usd_per_btc": "82976.035",
-        "usd_value": "0.17839847525",
-        "net_value_usd": "3.64160152475",
+        "usd_value": "0.17673895455",
+        "net_value_usd": "3.64326104545",
         "quote_date": "2026-10-09",
         "quote_time_utc": "2026-10-09T14:56:42+00:00",
         "source_file": "data/btc-usd-valuation-2026-10-09.json",
-        "basis": "Fixed reference valuation of the shown BTC amount included before payout at author request; nominal USDT/USD parity. Not the future credit-time price, available dollars or a measured BTC sale."
+        "basis": "Fixed reference valuation of the credited BTC amount; nominal USDT/USD parity. Not the credit-time price, available dollars or a measured BTC sale."
       },
       "card_currency": "USD",
-      "status_assessment_note": "Статус досі Pending за моїм уточненням. Очікую, що сума не зміниться; це очікування, не підтвердження завершення. У порівнянні залишаю показані 3.82 USDT."
+      "status_assessment_note": "На екрані 12.10.2026 платіж має статус Успішно: $3.57, активи −3.82 USDT. Зарахований баланс кешбеку 0.00000213 BTC підтверджено окремим екраном.",
+      "final_transaction": {
+        "status": "Успішно",
+        "card_amount_usd": "3.57",
+        "spent_amount": "3.82",
+        "spent_asset": "USDT",
+        "transaction_time_as_displayed": "2026-10-09 14:18:05",
+        "observed_on": "2026-10-12",
+        "evidence_level": "author_transcription_of_private_completed_app_screenshot",
+        "source_file": "data/participant-confirmations.json",
+        "token_ledger_reconciled": false
+      }
     }
   ],
   "schema_version": 1,
   "transcription_method": "visual; no OCR",
-  "reward_usd_values": "Solid 0.11 USD and COCA 0.03 USD accepted before payout; Bybit 36 credited points valued at documented 0.002 USDT/point (0.072 USDT), redemption unverified. Kolo/WhiteBIT BTC uses a fixed quote before credit. Nominal stablecoin parity.",
+  "reward_usd_values": "Solid 0.11 USD and COCA 0.03 USD accepted before payout; Bybit 36 credited points valued at documented 0.002 USDT/point (0.072 USDT), redemption unverified. Kolo shown BTC and WhiteBIT credited 0.00000213 BTC use a fixed quote; BTC sale unverified. Nominal stablecoin parity.",
   "publication_status": "sanitized evidence; partial settlement",
-  "comparison_basis": "OKX: 3.49 USDT from completed transaction. Bybit: 3.6407 USDT from visible payment asset history, corroborating the quote; card payment Successful. Trustee: exact receipt. Others: snapshot balance debit. Original debit, conditional_net and overhead fields retain snapshot arithmetic; current costs are computed with sorting.comparison_cost.",
-  "last_updated": "2026-10-11"
+  "comparison_basis": "OKX: 3.49 USDT from completed transaction. Bybit: 3.6407 USDT from visible payment asset history, corroborating the quote; card payment Successful. Trustee: exact receipt. Others: snapshot balance debit. Original debit, conditional_net and overhead fields retain snapshot arithmetic; current costs are computed with sorting.comparison_cost. WhiteBIT: completed purchase confirms 3.82 USDT spent and $3.57 card amount; cashback balance confirms 0.00000213 BTC credited.",
+  "last_updated": "2026-10-12"
 }

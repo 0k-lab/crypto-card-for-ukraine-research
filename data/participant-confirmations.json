@@ -577,6 +577,16 @@
       "claim": "Поповнюється основний баланс біржі, картка доступна без окремого переказу, приблизно як у Bybit. Додаткові 1.18 USDT у формі виводу — залишок з іншого рахунку WhiteBIT для обнулення біржі.",
       "source_file": "data/funding-tests.json",
       "scope": "Operational experience and residual origin; not an independent completed withdrawal or sender gas proof."
+    },
+    {
+      "card": "whitebit",
+      "confirmed_on": "2026-10-12",
+      "evidence_level": "completed_purchase_private_screenshot_transcription_and_public_cashback_balance",
+      "claim": "Контрольна покупка 158 ₴ від 09.10.2026 14:18:05 має статус Успішно, карткову суму $3.57 і витрачені 3.82 USDT. Кешбек у завершеній транзакції та на окремому балансі — 0.00000213 BTC, ≈$0.17 у застосунку; останнє зняття $0.",
+      "source_file": "screenshots/whitebit_cashback_credited.png",
+      "initial_cashback_btc": "0.00000215",
+      "final_cashback_btc": "0.00000213",
+      "scope": "Purchase screenshot transcribed privately because it contains a transaction identifier. Public cashback screen confirms the credited amount and claim availability, not withdrawal, sale or the BTC price at the unknown exact credit time. Initial screenshot is retained as historical evidence."
     }
   ]
 }

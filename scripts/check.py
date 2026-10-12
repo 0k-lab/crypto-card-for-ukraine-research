@@ -298,7 +298,7 @@ for spec in modes.values():
     assert len(spec['order']) == len(set(spec['order'])) == 9
     assert set(spec['order']) == set(spec['items']) == {row['id'] for row in data['rows']}
 assert Decimal(modes['actual']['items']['kolo']['value']) == Decimal('3.563619172')
-for card, expected in [('solid', '3.53'), ('coca', '3.60'), ('bybit', '3.5687'), ('whitebit', '3.64160152475')]:
+for card, expected in [('solid', '3.53'), ('coca', '3.60'), ('bybit', '3.5687'), ('whitebit', '3.64326104545')]:
     assert Decimal(modes['actual']['items'][card]['value']) == Decimal(expected)
 for card, expected in [('solid', '30'), ('coca', '25'), ('bybit', '20'), ('kolo', '20'), ('whitebit', '25'), ('okx', '0'), ('trustee_plus', '0')]:
     assert Decimal(modes['potential']['items'][card]['value']) == Decimal(expected)
@@ -395,7 +395,7 @@ for source in all_sources:
     assert digest == source['sha256']
     public_hashes.add(digest)
     check_png(raw, source.get('dimensions', config['dimensions']))
-assert len(public_hashes) == len(all_sources) == 124
+assert len(public_hashes) == len(all_sources) == 125
 assert len([image for image in terms['images'] if image.get('card') == 'coca']) == 2
 coca_claim_terms = terms['coca_tiers']['claims_visible']
 assert coca_claim_terms['unlimited_accrual_no_monthly_spend_caps'] is True
@@ -908,7 +908,20 @@ assert bybit_usd['screen_shows_crypto_amount_in'] == 'USD in card screens; USDT 
 assert purchases[1]['funding_components'] == [{'amount': '2.2', 'asset': 'USDT'}, {'amount': '10', 'asset': 'EUR'}]
 assert rows['kolo']['reward'] is None and rows['kolo']['conditional_net'] is None
 assert next(claim for claim in confirmations['claims'] if claim['evidence_level'] == 'participant_confirmed_btc_amount_pending_credit')['amount_shown'] == '0.0000008'
-assert rows['whitebit']['observed_reward']['availability'] == 'participant_confirmed_amount_pending_credit'
+assert rows['whitebit']['observed_reward']['availability'] == 'participant_confirmed_credited'
+whitebit_reward = rows['whitebit']['observed_reward']
+assert rows['whitebit']['transaction_ui_completed'] is True and rows['whitebit']['status'] == 'Успішно'
+assert rows['whitebit']['final_transaction']['status'] == 'Успішно'
+assert rows['whitebit']['final_transaction']['card_amount_usd'] == '3.57'
+assert rows['whitebit']['final_transaction']['spent_amount'] == '3.82'
+assert whitebit_reward['amount'] == whitebit_reward['credited_balance_btc_as_displayed'] == '0.00000213'
+assert whitebit_reward['amount_at_initial_capture'] == '0.00000215'
+assert whitebit_reward['credit_independently_verified'] is True and whitebit_reward['credit_observed_on'] == '2026-10-12'
+assert whitebit_reward['usd_equivalent_as_displayed'] == '0.17' and whitebit_reward['usd_equivalent_is_approximate'] is True
+assert whitebit_reward['last_withdrawal_usd_as_displayed'] == '0'
+assert whitebit_reward['source_file'] == rows['whitebit']['sources']['cashback_credited']['file']
+assert rows['whitebit']['sources']['cashback_credited']['dimensions'] == [1179, 2556]
+assert modes['actual']['items']['whitebit']['note'] == translator('uk')('sort.btc_credited_note')
 for card in ('kolo', 'whitebit'):
     row = rows[card]
     assert row['observed_reward']['credited_at'] is None
@@ -916,12 +929,12 @@ for card in ('kolo', 'whitebit'):
     assert row['reward_valuation']['quote_time_utc'] == btc_quote['response_time_utc']
     assert row['reward_valuation']['price_usd_per_btc'] == btc_quote['response']['data']['amount']
     assert included_cashback_value(row) == Decimal(row['reward_valuation']['usd_value'])
-    assert 'Not the future credit-time price' in row['reward_valuation']['basis']
+    assert 'credit-time price' in row['reward_valuation']['basis']
     unconfirmed_btc = deepcopy(row)
     unconfirmed_btc['observed_reward']['availability'] = 'not_confirmed'
     assert included_cashback_value(unconfirmed_btc) == 0
-assert included_cashback_value(rows['whitebit']) == Decimal('0.17839847525')
-assert Decimal(rows['whitebit']['reward_valuation']['net_value_usd']) == Decimal('3.64160152475')
+assert included_cashback_value(rows['whitebit']) == Decimal('0.17673895455')
+assert Decimal(rows['whitebit']['reward_valuation']['net_value_usd']) == Decimal('3.64326104545')
 assert len([claim for claim in confirmations['claims'] if claim['evidence_level'] == 'participant_requested_btc_valuation_before_credit']) == 2
 assert rows['trustee_plus']['ui_status_finality'] == 'participant_likely_final'
 tp_terms = json.loads((ROOT / 'data/trustee-points-terms.json').read_text())
@@ -1398,7 +1411,7 @@ for language in ('uk', 'en'):
         block = re.search(r'<details class="calculation losses".*?</details>', card, re.S)[0]
         own = [entry for entry in loss_entries if entry['card'] == row['id'] and entry['group'] != 'gas']
         assert block.count('<dt>') == len(own), 'Each card shows only its own losses'
-        assert block.count('<h4>' + html.escape(t('losses.gas'), quote=True) + '</h4><p class="muted">' + html.escape(t('losses.network_note'), quote=True) + '</p>') == 1
+        assert set(re.findall(r'<h4>(.*?)</h4>', block)) == {html.escape(t('losses.' + entry['group']), quote=True) for entry in own}, 'Only card-specific service costs and discrepancies are shown'
         for entry in loss_entries:
             if entry['group'] == 'gas':
                 assert html.escape(t(entry['stage_key']), quote=True) not in block, 'Per-transfer gas is retained in data, not shown as a card fee'
@@ -1455,4 +1468,4 @@ for name in filter(None, visible):
         text = (ROOT / p).read_text()
         assert not re.search(r'/(?:Users|home|mnt/data)/[A-Za-z0-9]', text), name
         assert not re.search(r'0x[0-9a-fA-F]{40,}', text), 'Public blockchain identifier: ' + name
-print('PASS: matching Ukrainian/English financial values, locale keys and placeholders; three exact sorting modes with Solid/COCA accepted cashback and credited Bybit points included; OKX completed USDT amount selected; shown BTC included at a fixed reference quote before payout and cap/fee-aware base/next projections; issuer evidence; conditional Earning arithmetic and unknown-rate handling; financial arithmetic; Kolo BTC valuation; Trustee receipt; Bybit quote and asset-history reconciliation; nine card samples; 124 public PNGs; WhiteBIT main-account credit, unknown sender gas, Plasma quote and existing-balance exclusion; Trustee wallet/card separation, minimum/fee failures, exchange quote, confirmed extra deposit and unexecuted withdrawal review; Solid two funding routes and combined sponsored Fuse withdrawal; Simple exact two-stage USDC return and separate paymaster/relayer gas; OKX Pay X Layer token parity and separate OKB gas; KOLO full token credit, withdrawal fee and other-balance exclusion; COCA and KeyOne withdrawal precision and evidence limits; exact Kolo historical cashback sum and USD example; local scripts and links; private originals excluded.')
+print('PASS: matching Ukrainian/English financial values, locale keys and placeholders; three exact sorting modes with Solid/COCA accepted cashback and credited Bybit points included; OKX completed USDT amount selected; shown BTC included at a fixed reference quote before payout and cap/fee-aware base/next projections; issuer evidence; conditional Earning arithmetic and unknown-rate handling; financial arithmetic; Kolo BTC valuation; Trustee receipt; Bybit quote and asset-history reconciliation; nine card samples; 125 public PNGs; credited WhiteBIT BTC and completed purchase; WhiteBIT main-account credit, unknown sender gas, Plasma quote and existing-balance exclusion; Trustee wallet/card separation, minimum/fee failures, exchange quote, confirmed extra deposit and unexecuted withdrawal review; Solid two funding routes and combined sponsored Fuse withdrawal; Simple exact two-stage USDC return and separate paymaster/relayer gas; OKX Pay X Layer token parity and separate OKB gas; KOLO full token credit, withdrawal fee and other-balance exclusion; COCA and KeyOne withdrawal precision and evidence limits; exact Kolo historical cashback sum and USD example; local scripts and links; private originals excluded.')
