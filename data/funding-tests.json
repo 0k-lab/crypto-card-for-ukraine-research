@@ -1116,7 +1116,9 @@
           "screenshots/whitebit_withdrawal_method.png",
           "screenshots/whitebit_withdrawal_review.png"
         ],
-        "basis": "Selected Plasma fee 0.1; final form matches total debit minus fee. No completed receipt, destination receipt or hash supplied. Other-network fees are live claims, not paid fees or universal rates."
+        "basis": "Exchange withdrawal tariffs shown in the app: Plasma 0.1 USDT, ERC20 0.8 USDT, other listed networks 1 USDT. These are exchange requirements for the selected network, separate from sending-wallet gas. The final Plasma form matches total debit minus the tariff. No completed withdrawal or destination receipt supplied; stated tariffs do not require a test execution to describe the requirement.",
+        "fee_terms_confirmed_by_participant": true,
+        "fee_terms_confirmed_on": "2026-10-12"
       },
       "cost_basis": "10 USDT credited to main exchange account; card USD display 9.98 is a valuation. Sender gas and deposit route unknown. Withdrawal quote 11.18 minus 0.1 equals 11.08; includes 1.18 existing funds from another account. No completed round-trip cost established.",
       "limits": [

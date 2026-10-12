@@ -182,7 +182,7 @@
       "minimum": false
     },
     {
-      "group": "quoted",
+      "group": "tariffs",
       "card": "whitebit",
       "stage_key": "losses.whitebit_plasma",
       "amount": "0.1",
@@ -191,7 +191,7 @@
       "minimum": false
     },
     {
-      "group": "quoted",
+      "group": "tariffs",
       "card": "whitebit",
       "stage_key": "losses.whitebit_erc20",
       "amount": "0.8",
@@ -200,7 +200,7 @@
       "minimum": false
     },
     {
-      "group": "quoted",
+      "group": "tariffs",
       "card": "whitebit",
       "stage_key": "losses.whitebit_other",
       "amount": "1",
@@ -245,11 +245,11 @@
       "minimum": false
     },
     {
-      "group": "differences",
+      "group": "conversion",
       "card": "whitebit",
       "stage_key": "losses.whitebit_difference",
       "amount": "0.25",
-      "asset": "USD",
+      "asset": "USDT",
       "approximate": false,
       "minimum": false
     },

@@ -1395,8 +1395,12 @@ assert Decimal(recorded_loss('trustee_plus', 'trustee_topup')['amount']) == Deci
 assert recorded_loss('trustee_plus', 'trustee_topup')['approximate'] is True
 assert Decimal(recorded_loss('bybit', 'payment_foreign')['amount']) == Decimal(rows['bybit']['final_transaction']['foreign_transaction_fee_usd'])
 assert Decimal(recorded_loss('bybit', 'payment_conversion')['amount']) == Decimal(rows['bybit']['conversion_quote']['shown_conversion_fee_usdt'])
-assert recorded_loss('bybit', 'bybit_difference')['group'] == recorded_loss('whitebit', 'whitebit_difference')['group'] == 'differences'
-assert recorded_loss('trustee_plus', 'trustee_withdrawal')['group'] == recorded_loss('whitebit', 'whitebit_plasma')['group'] == 'quoted'
+assert recorded_loss('bybit', 'bybit_difference')['group'] == 'differences'
+whitebit_conversion = recorded_loss('whitebit', 'whitebit_difference')
+assert whitebit_conversion['group'] == 'conversion' and whitebit_conversion['asset'] == 'USDT'
+assert Decimal(whitebit_conversion['amount']) == Decimal(rows['whitebit']['final_transaction']['spent_amount']) - Decimal(rows['whitebit']['final_transaction']['card_amount_usd']) == Decimal('0.25')
+assert recorded_loss('trustee_plus', 'trustee_withdrawal')['group'] == 'quoted'
+assert all(recorded_loss('whitebit', stage)['group'] == 'tariffs' for stage in ('whitebit_plasma', 'whitebit_erc20', 'whitebit_other'))
 assert recorded_loss('okx', 'okx_activation')['minimum'] is True
 assert recorded_loss('whitebit', 'whitebit_gas')['amount'] is None
 for test in funding_tests['tests']:
