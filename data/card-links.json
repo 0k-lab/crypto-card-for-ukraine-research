@@ -79,9 +79,15 @@
       "official_url": "https://whitebit.com/usd-card"
     },
     "coca": {
-      "url": "https://www.coca.xyz/cards",
-      "referral": false,
-      "bonus_note": null,
+      "url": "https://coca.go.link?adj_t=24olejd2&referral_code=guhAn6w4gdD",
+      "referral": true,
+      "bonus_note": "За запрошенням — безкоштовна Visa та $10 бонусу. Оформи картку й витрать від $100 щонайменше трьома платежами в різних продавців протягом 30 днів.",
+      "bonus_source": {
+        "evidence_type": "participant_supplied_referral_invitation_text",
+        "observed_on": "2026-11-03",
+        "quote": "Get a free Visa Card + $10 bonus! To claim your $10: get your card, spend $100+ across 3+ payments at different merchants within 30 days. Plus: up to 8% cashback, 50% subscription rebates, up to 5% APY on balance, and more!",
+        "limits_not_shown": "The invitation does not specify the start of the 30-day window, payout date or regional eligibility. Promotional program maxima are not referral-specific bonuses and are excluded from the ranking; actual payout is unverified."
+      },
       "official_url": "https://www.coca.xyz/cards"
     }
   },

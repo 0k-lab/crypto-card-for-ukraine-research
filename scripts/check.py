@@ -125,7 +125,7 @@ expected_opening_urls = {
     'solid': 'https://www.solid.xyz/refer?ref=EV8PU',
     'trustee_plus': 'https://trustee.io/ua/?r=ojNqqBbp66b',
     'whitebit': 'https://whitebit.com/card-referral/4380c062-2877-4217-b438-b97f1b6e284f',
-    'coca': 'https://www.coca.xyz/cards',
+    'coca': 'https://coca.go.link?adj_t=24olejd2&referral_code=guhAn6w4gdD',
 }
 assert {card: item['url'] for card, item in card_links.items()} == expected_opening_urls
 expected_official_urls = {
@@ -146,8 +146,8 @@ for card, item in card_links.items():
     official_url = urlsplit(item['official_url'])
     assert official_url.scheme == 'https' and official_url.hostname and not official_url.username and not official_url.password
     assert not official_url.query and not official_url.fragment, 'Official links must not contain referral or tracking parameters'
-    assert item['referral'] is (card != 'coca')
-assert {card for card, item in card_links.items() if item['bonus_note']} == {'bybit', 'okx', 'simple', 'solid', 'whitebit', 'trustee_plus'}
+    assert item['referral'] is True
+assert {card for card, item in card_links.items() if item['bonus_note']} == {'bybit', 'okx', 'simple', 'solid', 'whitebit', 'trustee_plus', 'coca'}
 assert not (ROOT / 'data/p2p-uah-quotes-2026-10-09.json').exists()
 issuers = json.loads((ROOT / 'data/card-issuers.json').read_text())
 assert issuers['checked_on'] == data['test_date']
@@ -660,10 +660,11 @@ for relative in ('index.html', 'en/index.html'):
     assert repository_url in report.split('<footer class="footer">', 1)[1].split('</footer>', 1)[0]
     assert parser.opening_links == {card: [item['official_url']] + ([item['url']] if item['referral'] else []) for card, item in card_links.items()}
     assert len(parser.bonus_cards) == 9 and set(parser.bonus_cards) == set(card_links)
-    assert report.count('<span class="referral-kind">' + t('ui.referral') + '</span>') == 8
-    assert report.count(t('ui.open_without_referral_button')) == 8
-    assert report.count(t('ui.open_with_referral_button')) == 8
-    assert report.count(t('ui.no_bonus')) == 3
+    assert report.count('<span class="referral-kind">' + t('ui.referral') + '</span>') == 9
+    assert report.count(t('ui.open_without_referral_button')) == 9
+    assert report.count(t('ui.open_with_referral_button')) == 9
+    assert report.count(t('ui.no_bonus')) == 2
+    assert html.escape(t('cards.coca.bonus_note'), quote=True) in report
     assert html.escape(t('page.comparison.p_2'), quote=True) in report
     assert len(parser.scripts) == (6 if site_url else 5)
     assert sum(script.get('src') == 'https://www.googletagmanager.com/gtag/js?id=G-NWFJQ8WLJ7' for script in parser.scripts) == 1
