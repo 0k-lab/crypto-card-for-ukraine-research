@@ -1135,5 +1135,68 @@
         "No universal deposit network, processing duration or direct Bybit withdrawal-fee comparison established."
       ]
     }
-  ]
+  ],
+  "current_terms": {
+    "solid": {
+      "checked_on": "2026-11-03",
+      "eligible_issuer": "Wirex",
+      "eur_balance_asset": "EURC",
+      "eur_balance_network": "Base",
+      "eurc_deposit_fee": "0",
+      "eur_purchase_fx_fee_when_fully_covered": "0",
+      "partial_eurc_payment_supported": false,
+      "sepa_incoming_supported": true,
+      "sepa_outgoing_supported": false,
+      "iban_opening_and_monthly_fee": "0",
+      "sepa_deposit_rates": {
+        "Core": "0.005",
+        "Prime": "0.0025"
+      },
+      "personally_tested": false,
+      "sources": [
+        {
+          "url": "https://support.solid.xyz/articles/euro-cards-pick-euro-as-your-main-currency-wirex-cards",
+          "label": "EUR-режим"
+        },
+        {
+          "url": "https://support.solid.xyz/articles/euro-account-receive-sepa-transfers-into-solid-with-your-own-iban-wirex-ca",
+          "label": "IBAN / SEPA"
+        }
+      ],
+      "unresolved": [
+        "EUR-card page says other-currency purchases route through EUR without a Solid FX fee; complete fees overview says other currencies retain FX. UAH result not tested.",
+        "EUR-card page still says SEPA lands in USD; dedicated Euro account page says personal-IBAN SEPA settles in EURC."
+      ]
+    },
+    "simple": {
+      "checked_on": "2026-11-03",
+      "app_withdrawal_fee": "may_apply; fixed_and_or_variable; disclosed_before_confirmation",
+      "activity_based_waiver": "personalised; not_guaranteed",
+      "sources": [
+        {
+          "url": "https://simple.app/terms-and-conditions/",
+          "label": "Умови виведення"
+        }
+      ]
+    },
+    "keyone": {
+      "checked_on": "2026-11-03",
+      "bank_deposit_rails": [
+        "SEPA",
+        "ACH"
+      ],
+      "bank_deposit_rates": {
+        "Free": "0.008",
+        "Premium": "0.003"
+      },
+      "bank_withdrawal_fee": "partner_fee_displayed_in_app",
+      "personally_tested": false,
+      "sources": [
+        {
+          "url": "https://www.keyone.help/fees",
+          "label": "Банківські перекази"
+        }
+      ]
+    }
+  }
 }

@@ -28,21 +28,31 @@
     "simple": {
       "url": "https://join.simple.app/23649C",
       "referral": true,
-      "bonus_note": "За запрошенням заявлено безкоштовну картку, 0% на поповнення, виведення й IBAN-перекази та 5% річних на залишок. Для бонусів має бути застосований реферальний код; діють умови Simple.",
-      "official_url": "https://simple.app/"
+      "bonus_note": "За запрошенням заявлено безкоштовну картку, 0% на поповнення, виведення й IBAN та 5% річних. Потрібен застосований код; перевіряй умови пропозиції й комісію перед операцією.",
+      "official_url": "https://simple.app/",
+      "conditions_url": "https://simple.app/terms-and-conditions/"
     },
     "solid": {
       "url": "https://www.solid.xyz/refer?ref=EV8PU",
       "referral": true,
-      "bonus_note": "За запрошенням тобі й мені — по $25. Створи й верифікуй акаунт, поповни його та зроби щонайменше 3 покупки в різних продавців сумарно на $150 протягом 30 днів.",
+      "bonus_note": "По $25 у FUSE: $150 витрат у 3+ продавців, від $10 у кожного, за 30 днів від реєстрації; ще одна покупка від $10 до виплати. Виплата через 30 днів після виконання умов; можлива додаткова перевірка.",
       "bonus_source": {
         "evidence_type": "participant_supplied_app_screenshot",
         "observed_on": "2026-10-09",
         "screen_title": "Invite friends & Earn together",
         "quote": "You get $25. Your friend get $25. Create a Solid account And get verified. Deposit to their account Via bank deposit or crypto. Make 3+ purchases: spend $150 across 3+ payments at different merchants within 30 days.",
-        "limits_not_shown": "The screenshot does not specify the start of the 30-day window or the payout date."
+        "limits_not_shown": "The screenshot does not specify the start of the 30-day window or the payout date.",
+        "current_terms": {
+          "checked_on": "2026-11-03",
+          "url": "https://support.solid.xyz/articles/refer-a-friend-how-to-earn-25-in-fuse",
+          "payout_asset": "FUSE",
+          "payout_delay_days_after_qualifying": 30,
+          "additional_review_days_up_to": 14,
+          "additional_purchase_minimum_usd": "10"
+        }
       },
-      "official_url": "https://www.solid.xyz/"
+      "official_url": "https://www.solid.xyz/",
+      "conditions_url": "https://support.solid.xyz/articles/refer-a-friend-how-to-earn-25-in-fuse"
     },
     "trustee_plus": {
       "url": "https://trustee.io/ua/?r=ojNqqBbp66b",

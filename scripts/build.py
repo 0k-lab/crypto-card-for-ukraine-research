@@ -105,7 +105,7 @@ def build(language):
     def earning_details(identifier):
         rate, result = earning_values(identifier)
         program = earning['cards'][identifier]
-        fields = [(t('earning.rate'), rate), (t('earning.assumed'), result)]
+        fields = [(t('earning.rate'), rate), (t('earning.before_fees') if identifier == 'solid' else t('earning.assumed'), result)]
         ledger = '<dl class="ledger">' + ''.join(f'<div><dt>{esc(label)}</dt><dd>{esc(value)}</dd></div>' for label, value in fields) + '</dl>' if program['offers'][0]['rate'] is not None else ''
         body = ledger + f'<p class="muted">{esc(t("earning.cards." + identifier + ".note"))}</p>'
         if identifier == 'bybit':
@@ -115,6 +115,7 @@ def build(language):
             body += f'<p class="muted">{esc(t("earning.cards.coca.claim_note"))}</p>'
         if identifier == 'solid':
             body = '<h4>Savings</h4>' + body
+            body += f'<p class="muted">{esc(t("earning.cards.solid.fees_note"))}</p>'
             recent_offer = dict(program['offers'][0], rate=program['displayed_7_day_apy_by_asset']['USDC'])
             body += f'<p class="muted">{esc(t("earning.cards.solid.recent_note", value0=fmt(Decimal(recent_offer["rate"]) * 100), value1=fmt(monthly_income(recent_offer, earning["model"])[0]), value2=fmt(Decimal(program["displayed_15_day_apy_by_asset"]["USDC"]) * 100), value3=fmt(Decimal(program["displayed_30_day_apy_by_asset"]["USDC"]) * 100)))}</p>'
             prime = program['offers'][1]
@@ -124,7 +125,8 @@ def build(language):
             body += f'<h4>Credit</h4><dl class="ledger"><div><dt>{esc(t("earning.borrowing_rate"))}</dt><dd>{esc(credit_rate)}</dd></div></dl><p class="muted">{esc(t("earning.cards.solid.borrow_note"))}</p>'
         sources = [dict(source, label=t(f'earning.cards.{identifier}.sources.{n}')) for n, source in enumerate(program['sources'])]
         sources.append({'url': '#earning-method', 'label': t('earning.rules')})
-        return f'<details class="calculation earning" id="earning-{identifier}"><summary>{esc(t("earning.title"))}</summary>{body}{source_links(sources)}</details>'
+        snapshot = f'<p class="muted">{esc(t("earning.rate_snapshot", value0=date.fromisoformat(earning["checked_on"]).strftime("%d.%m.%Y")))}</p>' if program['offers'][0]['rate'] is not None else ''
+        return f'<details class="calculation earning" id="earning-{identifier}"><summary>{esc(t("earning.title"))}</summary>{snapshot}{body}{source_links(sources)}</details>'
 
     def cashback_details(identifier):
         program = tier_data['cards'][identifier]
@@ -145,8 +147,7 @@ def build(language):
             tiers = program['tiers']
             no_categories = solid_upgrade(tiers, spend, usd)
             chatgpt = solid_upgrade(tiers, spend, usd, Decimal('100'))
-            plain_threshold = (Decimal(tiers[1]['annual_fee_usd']) / 12) / (Decimal(tiers[1]['rate']) - Decimal(tiers[0]['rate']))
-            extra = f"""<p class="muted"><strong>{esc(t('ui.solid_comparison'))}</strong>{esc(t('ui.solid_result', value0=f'{no_categories:+.2f}', value1=f'{chatgpt:+.2f}'))}</p><p class="muted"><strong>{esc(t('ui.solid_threshold_title'))}</strong>{esc(t('ui.solid_threshold', value0=fmt(plain_threshold), value1=fmt(solid_spend_threshold(tiers, usd)), value2=fmt(solid_spend_threshold(tiers, usd, Decimal('100')))))}</p>"""
+            extra = f"""<p class="muted"><strong>{esc(t('ui.solid_comparison'))}</strong>{esc(t('ui.solid_result', value0=f'{no_categories:+.2f}', value1=f'{chatgpt:+.2f}'))}</p><p class="muted"><strong>{esc(t('ui.solid_threshold_title'))}</strong>{esc(t('ui.solid_threshold', value0=fmt(solid_spend_threshold(tiers, usd)), value1=fmt(solid_spend_threshold(tiers, usd, Decimal('100')))))}</p>"""
         elif identifier == 'coca':
             capital = Decimal(program['tiers'][1]['documented_approx_capital_usd'])
             assumed_annual_hurdle = Decimal('0.05')
@@ -210,6 +211,9 @@ def build(language):
         returned = test['withdrawal']['recipient_token_amount_onchain']
         loss('observed', card, 'route_nominal', Decimal(test['sent_token_amount']) - Decimal(returned), 'USD')
     loss('observed', 'solid', 'solid_cross', tests_by_card['solid']['funding_routes'][0]['token_shortfall'], 'USDT')
+    for tier in ('Core', 'Prime'):
+        rate = Decimal(funding_tests['current_terms']['solid']['sepa_deposit_rates'][tier])
+        loss('tariffs', 'solid', 'solid_sepa_' + tier.lower(), fmt(1000 * rate), 'EUR')
     loss('observed', 'trustee_plus', 'trustee_topup', tests_by_card['trustee_plus']['card_funding']['total_difference_estimate_usdt'], 'USDT', approximate=True)
     loss('observed', 'kolo', 'kolo_withdrawal', tests_by_card['kolo']['withdrawal']['fee_amount'], 'USDT')
     for card, test in tests_by_card.items():
@@ -246,6 +250,8 @@ def build(language):
             if items:
                 groups.append(f'<h4>{esc(t("losses." + group))}</h4><dl class="loss-ledger">{"".join(items)}</dl>')
         sources = source_links([{'url': quote['documented_terms']['fees_url'], 'label': t('losses.bybit_fees_source')}]) if identifier == 'bybit' else ''
+        if identifier == 'solid':
+            sources = source_links([{'url': funding_tests['current_terms']['solid']['sources'][1]['url'], 'label': t('losses.solid_fees_source')}])
         return f'<details class="calculation losses" id="losses-{identifier}"><summary>{esc(t("losses.title"))}</summary>{"".join(groups)}{sources}</details>'
 
     networks = {'okx': 'Mastercard', 'bybit': 'Mastercard'}
@@ -302,7 +308,15 @@ def build(language):
         referral_kind = f'<span class="referral-kind">{esc(t("ui.referral"))}</span>' if opening['referral'] else ''
         conditions_link = f''' <a href="{esc(opening['conditions_url'])}" target="_blank" rel="noopener">{esc(t('ui.referral_terms'))}</a>''' if opening.get("conditions_url") else ""
         bonus_note = f'<p class="referral-note">{referral_kind}{esc(opening["bonus_note"])}{conditions_link}</p>'
-        funding_detail = f'<details class="calculation funding-summary" id="funding-{identifier}"><summary>{esc(t("ui.funding_title"))}</summary><p class="muted">{esc(t("cards." + identifier + ".funding"))}</p></details>'
+        funding_body = f'<p class="muted"><strong>{esc(t("ui.test_result"))}</strong> {esc(t("cards." + identifier + ".funding"))}</p>'
+        if identifier in funding_tests['current_terms']:
+            current = funding_tests['current_terms'][identifier]
+            checked_on = date.fromisoformat(current['checked_on']).strftime('%d.%m.%Y')
+            paragraphs = t("cards." + identifier + ".funding_current").splitlines()
+            funding_body += f'<p class="muted"><strong>{esc(t("ui.current_terms", value0=checked_on))}</strong> {esc(paragraphs[0])}</p>'
+            funding_body += ''.join(f'<p class="muted">{esc(paragraph)}</p>' for paragraph in paragraphs[1:])
+            funding_body += source_links([dict(source, label=t(f'cards.{identifier}.funding_sources.{n}')) for n, source in enumerate(current['sources'])])
+        funding_detail = f'<details class="calculation funding-summary" id="funding-{identifier}"><summary>{esc(t("ui.funding_title"))}</summary>{funding_body}</details>'
         experience = t('cards.' + identifier + '.experience')
         usd_example = t('cards.' + identifier + '.usd_example')
         usd_detail = f'<h4>{esc(t("ui.usd_examples"))}</h4><p class="muted">{esc(usd_example)}</p>' if usd_example else ''

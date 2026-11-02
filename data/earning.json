@@ -185,7 +185,8 @@
           "eligible_balance_cap_usd": null,
           "asset": "USDC",
           "rate_variable": true,
-          "rate_basis": "displayed_30_day_apy"
+          "rate_basis": "displayed_30_day_apy",
+          "current_rate_reverified": false
         },
         {
           "rate": null,
@@ -235,6 +236,14 @@
           "file": "data/participant-confirmations.json",
           "evidence_level": "author_transcription_of_private_app_screenshots",
           "scope": "Author transcription of private app screenshots; source images are not published."
+        },
+        {
+          "url": "https://support.solid.xyz/articles/solid-fees-and-limits-the-complete-overview",
+          "evidence_level": "official_documentation_checked_2026-11-03",
+          "quotes": [
+            "Performance fee: 10% of yield earned",
+            "Solver fee: 0.01% on Savings withdrawals"
+          ]
         }
       ],
       "displayed_apy_by_asset": {
@@ -328,7 +337,7 @@
       "unresolved": [
         "Exact headline APY calculation and relationship to chart averages not documented; labeled 30 Day APY 4.29% is consistent with rounded headline 4.3%",
         "USD allocation rows as displayed sum to 96%, not a verified complete 100% allocation; reason unknown",
-        "Savings withdrawal minimum and any separate network/conversion fees not established; no exit fee and most withdrawals within minutes are app FAQ claims, not measured",
+        "Current fees: 10% of yield and 0.01% on Savings withdrawals; whether the historical displayed APY is net of the performance fee is not established. Do not deduct it twice. Minimum and actual withdrawals remain unverified.",
         "Cash-mode spending directly from Savings not verified; FAQ spend-against-soUSD claim and Credit mode do not establish this",
         "Credit LTV, liquidation rules, rate variability and repayment costs not established; actual loan/payment not tested",
         "No active Savings balance or measured income; simulator balances are illustrative",
@@ -369,7 +378,7 @@
         "card_backing_and_spend_against_soUSD_without_withdrawal_claimed": true,
         "withdrawal_on_demand_claimed": true,
         "withdrawal_time_claimed": "most_complete_within_minutes",
-        "exit_fee_claimed": "0",
+        "exit_fee_claimed": "0 (historical private app FAQ; current solver fee is recorded in current_fees)",
         "waiting_period_claimed": "none",
         "withdrawal_minimum": null,
         "network_or_conversion_fees_established": false,
@@ -391,6 +400,13 @@
         "liquidation_threshold": null,
         "repayment_fees": null,
         "included_in_income_model": false
+      },
+      "current_fees": {
+        "checked_on": "2026-11-03",
+        "performance_fee_on_yield": "0.10",
+        "withdrawal_solver_fee": "0.0001",
+        "displayed_apy_net_of_performance_fee": null,
+        "source_url": "https://support.solid.xyz/articles/solid-fees-and-limits-the-complete-overview"
       }
     },
     "trustee_plus": {

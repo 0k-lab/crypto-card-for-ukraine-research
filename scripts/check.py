@@ -268,10 +268,14 @@ for categories in (Decimal('0'), Decimal('100')):
     threshold = solid_spend_threshold(solid_tiers, usd, categories)
     assert solid_upgrade(solid_tiers, threshold - 1, usd, categories) < 0
     assert solid_upgrade(solid_tiers, threshold + 1, usd, categories) > 0
-assert abs(solid_upgrade(solid_tiers, 1000, usd) * 12 - Decimal('-26.4382')) < Decimal('1e-20')
-assert abs(solid_upgrade(solid_tiers, 1000, usd, 100) * 12 - Decimal('45.5618')) < Decimal('1e-20')
-# Above both caps, an upgrade adds only the cap difference plus FX savings, not unlimited percentage cashback.
-assert abs(solid_upgrade(solid_tiers, 10000, usd) - (Decimal('50') + (10000 - usd) * Decimal('.005') - Decimal('199') / 12)) < Decimal('1e-20')
+assert [tier['non_usd_fx_fee'] for tier in solid_tiers] == ['0.015', '0.015']
+assert abs(solid_upgrade(solid_tiers, 1000, usd) * 12 - Decimal('-79')) < Decimal('1e-20')
+assert abs(solid_upgrade(solid_tiers, 1000, usd, 100) * 12 - Decimal('-7')) < Decimal('1e-20')
+assert solid_spend_threshold(solid_tiers, usd).quantize(Decimal('.01')) == Decimal('1658.33')
+assert solid_spend_threshold(solid_tiers, usd, 100).quantize(Decimal('.01')) == Decimal('1058.33')
+# Equal FX fees give no upgrade savings; above both caps, only the cap difference remains.
+assert solid_upgrade(solid_tiers, 1000, 0) == solid_upgrade(solid_tiers, 1000, 1000)
+assert abs(solid_upgrade(solid_tiers, 10000, usd) - (Decimal('50') - Decimal('199') / 12)) < Decimal('1e-20')
 assert [monthly_cashback(tier, 1000)[1] for tier in tier_data['cards']['okx']['tiers']] == [Decimal('20'), Decimal('40')]
 assert all(not tier_data['cards'][card]['tiers'] for card in ('simple', 'keyone', 'trustee_plus'))
 sorting = json.loads((ROOT / 'data/card-sorting.json').read_text())
@@ -716,6 +720,7 @@ for relative in ('index.html', 'en/index.html'):
     earning_blocks = re.findall(r'<details class="calculation earning".*?</details>', report, re.S)
     assert len(earning_blocks) == 9
     assert all('screenshots/' not in block and '<img' not in block for block in earning_blocks), 'Screenshots must not appear in Earning details or sources'
+    assert html.escape(t('page.hero.freshness'), quote=True) in report
     assert {'earning-method'} | {'earning-' + row['id'] for row in data['rows']} <= parser.ids
     assert html.escape(t('earning.combined'), quote=True) in report
     assert 'id="earning"' not in report and 'href="#earning"' not in report
@@ -727,6 +732,9 @@ for relative in ('index.html', 'en/index.html'):
     assert f'<dd>{solid_income}</dd>' in report
     assert html.escape(t('earning.cards.solid.recent_note', value0='2.83', value1='1.15', value2='3.44', value3='4.29'), quote=True) in report
     solid_earning_block = next(block for block in earning_blocks if 'id="earning-solid"' in block)
+    assert html.escape(t('earning.before_fees'), quote=True) in solid_earning_block
+    assert html.escape(t('earning.cards.solid.fees_note'), quote=True) in solid_earning_block
+    assert html.escape(t('earning.rate_snapshot', value0='09.10.2026'), quote=True) in solid_earning_block
     assert all(f'<h4>{name}</h4>' in solid_earning_block for name in ('Savings', 'Prime', 'Credit'))
     assert '<dd>4.29% APY</dd>' in solid_earning_block
     assert '<dd>+2% APY</dd>' in solid_earning_block and '<dd>$10,000</dd>' in solid_earning_block
@@ -1397,7 +1405,31 @@ loss_entries = json.loads((ROOT / 'data/losses.json').read_text())['entries']
 def recorded_loss(card, stage):
     return next(entry for entry in loss_entries if entry['card'] == card and entry['stage_key'] == 'losses.' + stage)
 
-assert len(loss_entries) == 30
+assert len(loss_entries) == 32
+current_terms = funding_tests['current_terms']
+solid_current = current_terms['solid']
+assert solid_current['eligible_issuer'] == 'Wirex' and solid_current['personally_tested'] is False
+assert solid_current['eur_balance_asset'] == 'EURC' and solid_current['eur_balance_network'] == 'Base'
+assert solid_current['sepa_incoming_supported'] is True and solid_current['sepa_outgoing_supported'] is False
+for tier, expected_credit in [('Core', '995'), ('Prime', '997.5')]:
+    fee = Decimal('1000') * Decimal(solid_current['sepa_deposit_rates'][tier])
+    assert Decimal('1000') - fee == Decimal(expected_credit)
+    entry = recorded_loss('solid', 'solid_sepa_' + tier.lower())
+    assert entry['group'] == 'tariffs' and entry['asset'] == 'EUR'
+    assert Decimal(entry['amount']) == fee, 'Documented SEPA fees must not be recorded as tested losses'
+assert solid_program['current_fees']['displayed_apy_net_of_performance_fee'] is None
+assert solid_program['current_fees']['performance_fee_on_yield'] == '0.10'
+assert solid_program['current_fees']['withdrawal_solver_fee'] == '0.0001'
+assert subscription_rebate['current_terms_review']['account_category_eligibility_reverified'] is False
+for lang in ('uk', 'en'):
+    messages = load_messages(lang)
+    report = (ROOT / ('index.html' if lang == 'uk' else 'en/index.html')).read_text()
+    for card, current in current_terms.items():
+        block = re.search(r'<details[^>]+id="funding-' + card + r'".*?</details>', report, re.S)[0]
+        assert all(html.escape(paragraph, quote=True) in block for paragraph in messages['cards.' + card + '.funding_current'].splitlines())
+        assert date.fromisoformat(current['checked_on']) <= date.fromisoformat(research['updated_on'])
+        assert date.fromisoformat(current['checked_on']).strftime('%d.%m.%Y') in block
+        assert all(source['url'] in block for source in current['sources'])
 assert not any(entry['stage_key'] == 'losses.solid_alternate' for entry in loss_entries), 'Unused Solid route belongs in funding options, not measured losses'
 assert Decimal(recorded_loss('bybit', 'historical_bybit')['amount']) == Decimal('0.0819')
 assert Decimal(recorded_loss('kolo', 'historical_kolo')['amount']) == Decimal('0.14')

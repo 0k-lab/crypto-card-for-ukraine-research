@@ -56,6 +56,24 @@
       "minimum": false
     },
     {
+      "group": "tariffs",
+      "card": "solid",
+      "stage_key": "losses.solid_sepa_core",
+      "amount": "5.00",
+      "asset": "EUR",
+      "approximate": false,
+      "minimum": false
+    },
+    {
+      "group": "tariffs",
+      "card": "solid",
+      "stage_key": "losses.solid_sepa_prime",
+      "amount": "2.50",
+      "asset": "EUR",
+      "approximate": false,
+      "minimum": false
+    },
+    {
       "group": "observed",
       "card": "trustee_plus",
       "stage_key": "losses.trustee_topup",

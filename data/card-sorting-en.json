@@ -159,7 +159,7 @@
             },
             {
               "tier": "Prime · next",
-              "conditions": "$199/year or lock 50 000 FUSE for 12 months. From 12.10.2026, new locks require 70 000 FUSE; earlier locks retain their amount.",
+              "conditions": "$199/year or lock 70,000 FUSE for 12 months. Locks made before 12 October 2026 retain their earlier amount.",
               "earned_usd": "40.00",
               "available_usd": "40.00",
               "monthly_fee_usd": "16.58333333333333333333333333",
