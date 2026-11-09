@@ -1,6 +1,6 @@
 {
   "checked_on": "2026-10-09",
-  "basis": "Participant confirmations and supplied BIN lookup evidence identify the tested cards; public documentation is kept separately and may describe other programs. BIN issuer names do not replace individual card agreements.",
+  "basis": "I identify my tested cards using my records and saved BIN lookups; public documentation is kept separately and may describe other programs. BIN issuer names do not replace individual card agreements.",
   "entries": {
     "okx": {
       "label": "Bano Pty Ltd · уточнюю",
@@ -114,7 +114,7 @@
         "country_normalized": "United Kingdom",
         "provider": null,
         "independently_verified": false,
-        "scope": "Participant states the BIN result is the same as COCA; no separate lookup screenshot or individual agreement supplied. BIN withheld."
+        "scope": "The BIN result I found matches COCA; no separate lookup screenshot or individual agreement supplied. BIN withheld."
       }
     },
     "solid": {
@@ -144,7 +144,7 @@
         "country_normalized": "United Kingdom",
         "provider": null,
         "independently_verified": false,
-        "scope": "Participant states the BIN result is the same as COCA; no separate lookup screenshot or individual agreement supplied. BIN withheld."
+        "scope": "The BIN result I found matches COCA; no separate lookup screenshot or individual agreement supplied. BIN withheld."
       }
     },
     "kolo": {
@@ -174,7 +174,7 @@
         "country_normalized": "United Kingdom",
         "provider": null,
         "independently_verified": false,
-        "scope": "Participant states the BIN result is the same as COCA; no separate lookup screenshot or individual agreement supplied. BIN withheld."
+        "scope": "The BIN result I found matches COCA; no separate lookup screenshot or individual agreement supplied. BIN withheld."
       }
     },
     "coca": {
@@ -246,7 +246,7 @@
         "country_normalized": "United Kingdom",
         "provider": null,
         "independently_verified": false,
-        "scope": "Participant states the BIN result is the same as COCA, corroborating the official Trustee product page. No separate lookup screenshot or individual agreement supplied. BIN withheld."
+        "scope": "The BIN result I found matches COCA, corroborating the official Trustee product page. No separate lookup screenshot or individual agreement supplied. BIN withheld."
       }
     },
     "whitebit": {
@@ -265,7 +265,7 @@
         "wallet": "Apple Pay",
         "label_as_reported": "Hashbank",
         "screenshot_supplied": false,
-        "scope": "Participant reports the label shown in Apple Pay; not independently inspected or treated as an individual agreement."
+        "scope": "I recorded the label shown in Apple Pay; not independently inspected or treated as an individual agreement."
       },
       "bin_lookup": {
         "evidence_level": "participant_supplied_bin_lookup_screenshot",
@@ -301,7 +301,7 @@
         "conflicting_results": false,
         "conflicts_with_program_source": true,
         "independently_verified": false,
-        "scope": "Three supplied BIN results agree on Insbank/US but differ from official Nova USD program documentation and the participant-reported Apple Pay label Hashbank. Providers, freshness and independent upstream sources unknown. Stale data or token-number lookup are hypotheses only. BIN withheld; original screenshots deleted after analysis."
+        "scope": "Three supplied BIN results agree on Insbank/US but differ from official Nova USD program documentation and the Hashbank label I saw in Apple Pay. Providers, freshness and independent upstream sources unknown. Stale data or token-number lookup are hypotheses only. BIN withheld; original screenshots deleted after analysis."
       }
     },
     "keyone": {
@@ -331,7 +331,7 @@
         "country_normalized": "United Kingdom",
         "provider": null,
         "independently_verified": false,
-        "scope": "Participant states the BIN result is the same as COCA; no separate lookup screenshot or individual agreement supplied. BIN withheld."
+        "scope": "The BIN result I found matches COCA; no separate lookup screenshot or individual agreement supplied. BIN withheld."
       }
     }
   }

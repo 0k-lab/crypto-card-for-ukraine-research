@@ -24,10 +24,12 @@ for (const [edition, language] of [['index.html', 'uk'], ['en/index.html', 'en']
   const events = [];
   const select = {addEventListener: (type, callback) => handlers.set('sort:' + type, callback)};
   const window = {gtag: (...args) => events.push(JSON.parse(JSON.stringify(args)))};
+  const initiallyOpen = element(['details.calculation'], {open: true, classList: {contains: () => false}}, {'.card': {id: 'okx'}});
   vm.runInNewContext(script, {
     window,
     document: {
       documentElement: {lang: language},
+      querySelectorAll: selector => { assert.equal(selector, 'details[open]'); return [initiallyOpen]; },
       getElementById: id => { assert.equal(id, 'card-sort'); return select; },
       addEventListener: (type, callback, capture) => {
         if (type === 'toggle') assert.equal(capture, true);
@@ -50,14 +52,20 @@ for (const [edition, language] of [['index.html', 'uk'], ['en/index.html', 'en']
   }
   const click = target => handlers.get('click')({target});
   const toggle = (target, newState) => handlers.get('toggle')({target, newState});
+  silent(() => toggle(initiallyOpen, 'open'));
+  initiallyOpen.open = false;
+  silent(() => toggle(initiallyOpen, 'closed'));
+  initiallyOpen.open = true;
+  expect('detail_open', {card_id: 'okx', section: 'purchase'}, () => toggle(initiallyOpen, 'open'));
   for (const mode of ['gross', 'potential', 'actual']) {
     expect('sort_change', {sort_mode: mode}, () => handlers.get('sort:change')({target: {value: mode}}));
   }
   silent(() => handlers.get('sort:change')({target: {value: 'unexpected'}}));
   for (const id of cardIds) {
     const card = {id};
+    const detailHtml = fs.readFileSync(path.join(root, language === 'en' ? 'en' : '', 'cards', id, 'index.html'), 'utf8');
     for (const [className, section] of [['', 'purchase'], ['cashback-tiers', 'cashback'], ['earning', 'earning'], ['funding-summary', 'funding'], ['losses', 'losses']]) {
-      assert.ok(html.includes(`class="calculation${className ? ' ' + className : ''}"`));
+      assert.ok(detailHtml.includes(`class="calculation${className ? ' ' + className : ''}"`));
       const details = element(['details.calculation'], {open: true, classList: {contains: name => name === className}}, {'.card': card});
       expect('detail_open', {card_id: id, section}, () => toggle(details, 'open'));
       details.open = false;
@@ -92,4 +100,14 @@ for (const [edition, language] of [['index.html', 'uk'], ['en/index.html', 'en']
   silent(() => handlers.get('sort:change')({target: {value: 'gross'}}));
   silent(() => click(element(['a', '[data-repository-link]'])));
 }
+// Ranking and detail pages have analytics without a card-sort control.
+vm.runInNewContext(script, {
+  window: {},
+  document: {
+    documentElement: {lang: 'uk'},
+    querySelectorAll: () => [],
+    getElementById: () => null,
+    addEventListener: () => {},
+  },
+});
 console.log('PASS: six analytics events in both languages; all card sections; gallery/PNG and Prime; nested-link clicks; no setup/close duplicates; no transmission; absent Google tag is harmless.');

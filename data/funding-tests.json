@@ -56,7 +56,7 @@
         "Credit and card availability are observed; no purchase or withdrawal of this new deposit is shown.",
         "Token credit has no deduction; this does not mean a gas-free or conversion-free route.",
         "The zero USD display does not establish a zero token balance. Small residual remains.",
-        "Private transaction link and wallet details are withheld; public onchain observations are author-reviewed, not independently traceable evidence."
+        "Private transaction link and wallet details are withheld; I checked the onchain observations; the public record cannot be independently traced without my private sources."
       ],
       "withdrawal": {
         "evidence_level": "participant_report_only",
@@ -124,7 +124,7 @@
       },
       "cost_basis": "10 USDT sent, 9.969083 USDC received back on Base, equal to the exact internal funding credit and withdrawal debit. Nominal route difference at USDT/USDC/USD parity is 0.030917 / 0.3091700%, plus separately recorded sending-wallet gas. No extra token withdrawal deduction or AA gas debit observed. App displays are retained separately; no rounding income or repeated internal transfer costs. Fee/conversion/routing components of the funding difference are not individually itemized.",
       "manual_card_transfer_required": null,
-      "manual_card_transfer_evidence_level": "Screens show completed credit to spendable USD account; no participant statement on extra steps or later purchase in this test.",
+      "manual_card_transfer_evidence_level": "Screens show completed credit to spendable USD account; I did not record whether extra steps were needed or a later purchase was made in this test.",
       "source_files": [
         "screenshots/coca_funding_before.png",
         "screenshots/coca_funding_method.png",
@@ -166,7 +166,7 @@
           "No token deduction or AA gas debit observed in this withdrawal; not a universal zero-fee promise.",
           "Bundle transaction has a nonzero ETH fee; ultimate sponsor not established. It is not added as a user debit.",
           "Internal Morpho, vault shares, WUSD burn and tiny residual/yield bookkeeping are not additional received funds or a measured APY.",
-          "Public evidence contains the author review and cleaned app screenshots; exact explorer source is private."
+          "I publish my observations and cleaned app screenshots; exact explorer source is private."
         ],
         "recipient_token_amount_onchain": "9.969083",
         "fee_amount": "0",
@@ -188,7 +188,7 @@
           "bundle_gas_explorer_displayed_usd": "0.01",
           "bundle_gas_added_to_user_cost": false,
           "ultimate_gas_sponsor_identified": false,
-          "source_scope": "Author-reviewed private explorer page and decoded events; raw links, wallets and hashes withheld from public files."
+          "source_scope": "I checked a private explorer page and decoded its events; raw links, wallets and hashes withheld from public files."
         }
       }
     },
@@ -253,7 +253,7 @@
       },
       "cost_basis": "10 USDT sent, 9.910683 USDC received back on Base, equal to the exact internal funding credit and withdrawal debit. Nominal route difference at USDT/USDC/USD parity is 0.089317 / 0.8931700%, plus separately recorded sending-wallet gas. No extra token withdrawal deduction or AA gas debit observed. App displays are retained separately; no rounding income or repeated internal transfer costs. Fee/conversion/routing components of the funding difference are not individually itemized.",
       "manual_card_transfer_required": null,
-      "manual_card_transfer_evidence_level": "Completed deposit and total balance observed; no participant statement or later card purchase for this deposit.",
+      "manual_card_transfer_evidence_level": "Completed deposit and total balance observed; I did not record extra steps or a later card purchase for this deposit.",
       "prior_withdrawal_included_in_funding_cost": false,
       "source_files": [
         "screenshots/keyone_funding_before.png",
@@ -291,7 +291,7 @@
           "No token deduction or AA gas debit observed in this withdrawal; not a universal zero-fee promise.",
           "Bundle transaction has a nonzero ETH fee; ultimate sponsor not established. It is not added as a user debit.",
           "Internal Morpho, vault shares, WUSD burn and tiny residual/yield bookkeeping are not additional received funds or a measured APY.",
-          "Public evidence contains the author review and cleaned app screenshots; exact explorer source is private."
+          "I publish my observations and cleaned app screenshots; exact explorer source is private."
         ],
         "recipient_token_amount_onchain": "9.910683",
         "fee_asset": "USDC",
@@ -312,7 +312,7 @@
           "bundle_gas_explorer_displayed_usd": "0.01",
           "bundle_gas_added_to_user_cost": false,
           "ultimate_gas_sponsor_identified": false,
-          "source_scope": "Author-reviewed private explorer page and decoded events; raw links, wallets and hashes withheld from public files."
+          "source_scope": "I checked a private explorer page and decoded its events; raw links, wallets and hashes withheld from public files."
         }
       }
     },
@@ -320,7 +320,7 @@
       "id": "kolo_arbitrum_10_usdt",
       "card": "kolo",
       "date": "2026-10-11",
-      "scope": "Separate USDT funding and withdrawal route; withdrawal includes other funds reported by the participant. No change to the controlled 158 UAH purchase or cashback ranking.",
+      "scope": "Separate USDT funding and withdrawal route; the withdrawal includes other funds I already held. No change to the controlled 158 UAH purchase or cashback ranking.",
       "evidence_level": "visual_app_screenshots_and_author_checked_private_explorer_transfers",
       "network": "Arbitrum One",
       "onchain_asset_as_displayed": "USD₮0",
@@ -359,7 +359,7 @@
         "precise_unlock_time_independently_verified": false,
         "basis": "App pending screen shows 0/65 network confirmations; completed screen shows 12:08. Credit depends on network confirmations and provider processing; no universal duration inferred."
       },
-      "cost_basis": "Full 10 USDT credited, zero deposit token deduction. Initial sender gas separate. Withdrawal review debits 11.46 USDT, sends 10.46 and charges 1 USDT; private explorer confirms 10.46 received. Other 1.46 USDT reported by participant are not income from this deposit. Do not use 10 minus 10.46 as profit. A hypothetical isolated 10-USDT withdrawal under the same observed fee would return 9 USDT, not an observed second transfer.",
+      "cost_basis": "Full 10 USDT credited, zero deposit token deduction. Initial sender gas separate. Withdrawal review debits 11.46 USDT, sends 10.46 and charges 1 USDT; private explorer confirms 10.46 received. The other 1.46 USDT I already held are not income from this deposit. Do not use 10 minus 10.46 as profit. A hypothetical isolated 10-USDT withdrawal under the same observed fee would return 9 USDT, not an observed second transfer.",
       "source_files": [
         "screenshots/kolo_funding_before.png",
         "screenshots/kolo_funding_pending.png",
@@ -381,7 +381,7 @@
         "status_onchain": "Success",
         "destination_receipt_independently_verified": true,
         "other_amount_excluded_from_new_deposit": "1.46",
-        "other_amount_basis": "Participant says withdrawal includes other balance; intervening movements are not shown.",
+        "other_amount_basis": "My withdrawal includes another balance; intervening movements are not shown.",
         "execution": {
           "recipient_raw_units": "10460000",
           "token_decimals": 6,
@@ -406,7 +406,7 @@
       "limits": [
         "EUR wallet valuation is not a conversion of this USDT deposit into EUR or a new card-spending test.",
         "Deposit network token and app asset labels differ; exact units reconcile at nominal token parity.",
-        "Private explorer links, addresses and hashes withheld; public onchain observations are author-reviewed.",
+        "Private explorer links, addresses and hashes withheld; I checked the public onchain observations.",
         "Different route and assets from COCA/KeyOne; no universal ranking of funding routes or fees."
       ]
     },
@@ -819,7 +819,7 @@
       "cost_basis": "Two deposits of 10 USDT: Arbitrum route credits 9.997 USDT in Fuse, direct Fuse route credits 10 USDT. Combined withdrawal returns all 19.997 USDT to the original external wallet in Fuse. Total token difference 0.003 USDT, 0.015% of both deposits; Arbitrum-specific shortfall 0.03%. Initial ETH and FUSE sender gas separate. No USD-display fee, unexecuted Arbitrum quote fee or duplicated bundle/AA gas added.",
       "limits": [
         "One 10 USDT test per funding route, one combined withdrawal; not universal zero-fee terms.",
-        "Deposit-to-card linkage is based on participant context, matching amounts, recipient and chronology; no common bridge/deposit message ID checked.",
+        "Deposit-to-card linkage is based on my records, matching amounts, recipient and chronology; no common bridge/deposit message ID checked.",
         "No USD conversion or APY inferred; historical cashback is excluded.",
         "Direct Fuse preserves tokens within the tested route; obtaining USDT in Fuse beforehand may have separate costs not tested here.",
         "Explorer links, hashes, wallet addresses, QR and raw APIs are not public. Original screenshots were deleted after analysis."
@@ -829,7 +829,7 @@
       "id": "trustee_plus_polygon_10_plus_1_usdt_card_topup",
       "card": "trustee_plus",
       "date": "2026-10-11",
-      "scope": "Two verified Polygon wallet deposits followed by a separate card top-up; withdrawal attempts, participant-confirmed executed exchange and final transfer review. An additional 1 USDT withdrawal-funding deposit is participant-confirmed, without independent receipt. Withdrawal execution and recipient credit are unconfirmed; controlled purchase unchanged.",
+      "scope": "Two verified Polygon wallet deposits followed by a separate card top-up; withdrawal attempts, an exchange I confirmed executing and final transfer review. I confirmed an additional 1 USDT deposit to fund the withdrawal, without independent receipt. Withdrawal execution and recipient credit are unconfirmed; controlled purchase unchanged.",
       "evidence_level": "visual_app_screenshots_and_card_receipt_with_author_checked_private_polygon_transfers",
       "network": "Polygon",
       "onchain_asset_as_displayed": "USDT0",
@@ -976,7 +976,7 @@
           "confirmed_by_participant": true,
           "confirmed_on": "2026-10-12",
           "evidence_level": "participant_confirmation_supported_by_later_wallet_balance",
-          "basis": "Participant confirms executing this swap to prepare the withdrawal. Quoted receive amount plus the earlier 0.94 USDT residual matches the later 10.885677 USDT balance. No separate execution receipt supplied; market-rate deviation is not independently measured."
+          "basis": "I executed this swap to prepare the withdrawal. Quoted receive amount plus the earlier 0.94 USDT residual matches the later 10.885677 USDT balance. No separate execution receipt supplied; market-rate deviation is not independently measured."
         },
         "polygon_attempt": {
           "asset": "USDT",
@@ -1015,7 +1015,7 @@
           "screenshots/trustee_plus_withdrawal_form.png",
           "screenshots/trustee_plus_withdrawal_review.png"
         ],
-        "basis": "USDC to USDT swap execution is participant-confirmed and consistent with the later wallet balance. Polygon withdrawal requires an additional 1 USDT fee as displayed in the app; paid fee and final recipient credit remain unverified. Initial two-deposit gas excludes the third participant-confirmed deposit; whole-route cost remains unfinalized."
+        "basis": "USDC to USDT swap execution was confirmed by me and consistent with the later wallet balance. Polygon withdrawal requires an additional 1 USDT fee as displayed in the app; paid fee and final recipient credit remain unverified. Initial two-deposit gas excludes the third deposit I confirmed; whole-route cost remains unfinalized."
       },
       "cost_basis": "External deposits total 11 USDT and are fully credited to the wallet. A separate requested 10 USDT card transfer shows an additional 0.06 USDT fee, a 0.94 USDT wallet residual, and a 9.965114 USDT card credit. Nominal full difference is approximately 0.094886 USDT / 0.94886% of requested 10, using displayed fee precision; two initial POL gas fees separate. The extra 1 USDT is not all spent and is not a 1 USDT fee. Exact fee ledger and FX/conversion breakdown unknown.",
       "limits": [
@@ -1095,7 +1095,7 @@
         "other_balance_included_in_debit": true,
         "residual_origin_confirmed_by_participant": true,
         "residual_counted_as_test_gain": false,
-        "residual_basis": "Author moved an existing balance from another WhiteBIT account to empty the exchange, not a new deposit or return on the tested 10.",
+        "residual_basis": "I moved an existing balance from another WhiteBIT account to empty the exchange, not a new deposit or return on the tested 10.",
         "quoted_fee_pct_of_test_deposit": "1",
         "alternate_network_fees_usdt_as_displayed": {
           "ERC20": "0.8",

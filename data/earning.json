@@ -47,7 +47,7 @@
         {
           "file": "data/participant-confirmations.json",
           "evidence_level": "participant_report_no_earning_information_found",
-          "scope": "No other card-linked Earning information found by the participant; does not replace the official USDG Rewards evidence."
+          "scope": "I found no other card-linked Earning information; does not replace the official USDG Rewards evidence."
         }
       ]
     },
@@ -71,7 +71,7 @@
         {
           "file": "data/participant-confirmations.json",
           "evidence_level": "author_transcription_of_private_app_screenshots",
-          "scope": "Author transcription of private app screenshots; source images are not published."
+          "scope": "My transcription of private app screenshots; source images are not published."
         }
       ],
       "displayed_apr_by_asset": {
@@ -115,7 +115,7 @@
         {
           "file": "data/participant-confirmations.json",
           "evidence_level": "author_transcription_of_displayed_balance_rate_and_counter",
-          "scope": "Author transcription of the displayed 5% label and counter increase; Earning sources do not link to images. APR/APY and liquidity are established separately by the cited public terms."
+          "scope": "I transcribed the displayed 5% label and counter increase; Earning sources do not link to images. APR/APY and liquidity are established separately by the cited public terms."
         },
         {
           "url": "https://help.coca.xyz/support/solutions/articles/205000042710-tier-system-terms-conditions",
@@ -235,7 +235,7 @@
         {
           "file": "data/participant-confirmations.json",
           "evidence_level": "author_transcription_of_private_app_screenshots",
-          "scope": "Author transcription of private app screenshots; source images are not published."
+          "scope": "My transcription of private app screenshots; source images are not published."
         },
         {
           "url": "https://support.solid.xyz/articles/solid-fees-and-limits-the-complete-overview",
@@ -448,7 +448,7 @@
         {
           "file": "data/participant-confirmations.json",
           "evidence_level": "author_transcription_of_private_app_screenshots",
-          "scope": "Author transcription of private app screenshots; source images are not published."
+          "scope": "My transcription of private app screenshots; source images are not published."
         },
         {
           "file": "data/card-links.json",
@@ -497,7 +497,7 @@
         {
           "file": "data/participant-confirmations.json",
           "evidence_level": "author_transcription_of_private_app_screenshots",
-          "scope": "Author transcription of private app screenshots; source images are not published."
+          "scope": "My transcription of private app screenshots; source images are not published."
         }
       ],
       "other_displayed_product": {

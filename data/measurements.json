@@ -429,7 +429,7 @@
         "quote_date": "2026-10-09",
         "quote_time_utc": "2026-10-09T14:56:42+00:00",
         "source_file": "data/btc-usd-valuation-2026-10-09.json",
-        "basis": "Fixed reference valuation of the shown BTC amount included before payout at author request; nominal USDT/USD parity. Not the future credit-time price, available dollars or a measured BTC sale."
+        "basis": "I include the shown BTC amount before payout at a fixed reference valuation; nominal USDT/USD parity. Not the future credit-time price, available dollars or a measured BTC sale."
       },
       "card_currency": "EUR",
       "historical_cashback_credit": {

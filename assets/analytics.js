@@ -1,4 +1,5 @@
 (() => {
+  const initiallyOpen = new WeakSet(document.querySelectorAll('details[open]'));
   function track(name, parameters) {
     if (typeof window.gtag === 'function') {
       window.gtag('event', name, {page_language: document.documentElement.lang, ...parameters});
@@ -13,7 +14,7 @@
     };
   }
 
-  document.getElementById('card-sort').addEventListener('change', event => {
+  document.getElementById('card-sort')?.addEventListener('change', event => {
     if (['gross', 'potential', 'actual'].includes(event.target.value)) {
       track('sort_change', {sort_mode: event.target.value});
     }
@@ -22,6 +23,7 @@
   // Native toggle events cover mouse, keyboard and programmatic opening alike.
   document.addEventListener('toggle', event => {
     const target = event.target;
+    if (initiallyOpen.delete(target)) return;
     if (target.matches('details.calculation') && target.open) {
       const card = target.closest('.card');
       const section = target.classList.contains('cashback-tiers') ? 'cashback'

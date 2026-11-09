@@ -1,6 +1,78 @@
 {
-  "default": "actual",
+  "default": "score",
   "modes": {
+    "score": {
+      "label": "By score",
+      "metric": "Score",
+      "description": "Highest score first, based on 10 equally weighted criteria. Equal scores are ordered by card name, matching the ranking table.",
+      "order": [
+        "solid",
+        "coca",
+        "bybit",
+        "okx",
+        "simple",
+        "kolo",
+        "whitebit",
+        "keyone",
+        "trustee_plus"
+      ],
+      "items": {
+        "okx": {
+          "value": "8.7",
+          "display": "8.7/10",
+          "note": "Provisional score across 10 criteria. The methodology is on the ranking page.",
+          "rank": "04"
+        },
+        "coca": {
+          "value": "9",
+          "display": "9.0/10",
+          "note": "Provisional score across 10 criteria. The methodology is on the ranking page.",
+          "rank": "02"
+        },
+        "kolo": {
+          "value": "8.1",
+          "display": "8.1/10",
+          "note": "Provisional score across 10 criteria. The methodology is on the ranking page.",
+          "rank": "06"
+        },
+        "solid": {
+          "value": "9.3",
+          "display": "9.3/10",
+          "note": "Provisional score across 10 criteria. The methodology is on the ranking page.",
+          "rank": "01"
+        },
+        "bybit": {
+          "value": "8.9",
+          "display": "8.9/10",
+          "note": "Provisional score across 10 criteria. The methodology is on the ranking page.",
+          "rank": "03"
+        },
+        "trustee_plus": {
+          "value": "7.3",
+          "display": "7.3/10",
+          "note": "Provisional score across 10 criteria. The methodology is on the ranking page.",
+          "rank": "09"
+        },
+        "simple": {
+          "value": "8.5",
+          "display": "8.5/10",
+          "note": "Provisional score across 10 criteria. The methodology is on the ranking page.",
+          "rank": "05"
+        },
+        "keyone": {
+          "value": "7.9",
+          "display": "7.9/10",
+          "note": "Provisional score across 10 criteria. The methodology is on the ranking page.",
+          "rank": "08"
+        },
+        "whitebit": {
+          "value": "8.1",
+          "display": "8.1/10",
+          "note": "Provisional score across 10 criteria. The methodology is on the ranking page.",
+          "rank": "07"
+        }
+      }
+    },
     "gross": {
       "label": "By gross debit",
       "metric": "Debit for 158 ₴",

@@ -2,6 +2,7 @@
 from pathlib import Path
 from decimal import Decimal
 import html
+import hashlib
 import json
 import struct
 import re
@@ -14,6 +15,9 @@ from i18n import LANGUAGES, load_messages, translate
 from cashback import monthly_cashback, solid_upgrade, solid_spend_threshold
 from earning import monthly_income
 from sorting import comparison_cost, cashback_value, included_cashback_value, card_sorting
+from scoring import score_cards
+from flows import money_flow
+from pages import score_badge, purchase_chart, card_score_overview, card_route_details, ranking_page, cashback_chart, regular_use_summary, faq_markup, card_sources
 
 ROOT = Path(__file__).resolve().parents[1]
 research = json.loads((ROOT / 'data/research.json').read_text())
@@ -22,6 +26,8 @@ if site_url:
     url = urlsplit(site_url)
     assert url.scheme == 'https' and url.hostname and not url.username and not url.password and not url.query and not url.fragment, 'SITE_URL must be a public HTTPS base URL without credentials, query or fragment'
 date.fromisoformat(research['updated_on'])
+
+page_routes = []
 
 def build(language):
     messages = load_messages(language)
@@ -40,6 +46,9 @@ def build(language):
     funding_tests = json.loads((ROOT / 'data/funding-tests.json').read_text())
     earning = json.loads((ROOT / 'data/earning.json').read_text())
     assert set(earning['cards']) == set(art)
+    snapshot = json.loads((ROOT / 'data/scoring.json').read_text())
+    scores = score_cards(snapshot, data, tier_data, funding_tests, earning['model'])
+    edition = 'en/' if language == 'en' else ''
 
     for row in data['rows']:
         for field in ('asset', 'status', 'note', 'reward_text'):
@@ -54,7 +63,7 @@ def build(language):
             source['label'] = t(f'programs.{identifier}.sources.{n}')
     for identifier, opening in card_links.items():
         opening['bonus_note'] = t(f'cards.{identifier}.bonus_note') if opening['bonus_note'] else t('ui.no_bonus')
-    sorting = card_sorting(data['rows'], tier_data, language)
+    sorting = card_sorting(data['rows'], tier_data, scores, language)
     rows_by_id = {row['id']: row for row in data['rows']}
     default_sort = sorting['modes'][sorting['default']]
     ordered_rows = [rows_by_id[identifier] for identifier in default_sort['order']]
@@ -75,10 +84,14 @@ def build(language):
     def popover(identifier, title, figures):
         return f'''<div id="{identifier}" class="evidence-popover" popover role="dialog" aria-labelledby="{identifier}-title">\n      <header class="popover-heading"><div><span class="eyebrow">{esc(t('ui.screenshots_title'))}</span><h2 id="{identifier}-title">{esc(title)}</h2></div>\n      <button class="close" type="button" popovertarget="{identifier}" popovertargetaction="hide" aria-label="{esc(t('ui.close_evidence', value0=title))}" autofocus>×</button></header>\n      <div class="gallery">{figures}</div><p class="muted">{esc(t('ui.privacy_note'))}</p></div>'''
 
-    def card_picture(identifier, name):
+    def card_picture(identifier, name, href=None):
         item = art[identifier]
         width, height = item['dimensions']
-        return f'''<figure class="card-art"><img class="product-art" width="{width}" height="{height}" src="../{esc(item['file'])}" alt="{esc(t('ui.card_alt', value0=name))}" loading="lazy"></figure>'''
+        image = f'''<img class="product-art" width="{width}" height="{height}" src="../{esc(item['file'])}" alt="{esc(t('ui.card_alt', value0=name))}" loading="lazy">'''
+        if href:
+            label = name + ' — ' + t('pages.details')
+            image = f'<a class="card-art-link" href="{esc(href)}" aria-label="{esc(label)}">{image}</a>'
+        return f'<figure class="card-art">{image}</figure>'
 
     def earning_values(identifier):
         offer = earning['cards'][identifier]['offers'][0]
@@ -124,9 +137,9 @@ def build(language):
             credit_rate = fmt(Decimal(program['credit_mode']['account_screen_borrowing_rate']) * 100) + '% APY'
             body += f'<h4>Credit</h4><dl class="ledger"><div><dt>{esc(t("earning.borrowing_rate"))}</dt><dd>{esc(credit_rate)}</dd></div></dl><p class="muted">{esc(t("earning.cards.solid.borrow_note"))}</p>'
         sources = [dict(source, label=t(f'earning.cards.{identifier}.sources.{n}')) for n, source in enumerate(program['sources'])]
-        sources.append({'url': '#earning-method', 'label': t('earning.rules')})
+        sources.append({'url': '../' + edition + 'ranking/#income-method', 'label': t('earning.rules')})
         snapshot = f'<p class="muted">{esc(t("earning.rate_snapshot", value0=date.fromisoformat(earning["checked_on"]).strftime("%d.%m.%Y")))}</p>' if program['offers'][0]['rate'] is not None else ''
-        return f'<details class="calculation earning" id="earning-{identifier}"><summary>{esc(t("earning.title"))}</summary>{snapshot}{body}{source_links(sources)}</details>'
+        return f'<details class="calculation earning" id="earning-{identifier}"><summary>{esc(t("pages.historical_income"))}</summary>{snapshot}{body}{source_links(sources)}</details>'
 
     def cashback_details(identifier):
         program = tier_data['cards'][identifier]
@@ -168,7 +181,7 @@ def build(language):
             difference = Decimal(program['crypto_topup_rate_free']) - Decimal(program['crypto_topup_rate_premium'])
             extra = f"""<p class="muted"><strong>{esc(t('ui.premium_title'))}</strong>{esc(t('ui.premium_scenario', value0=fmt(spend * difference), value1=fmt(monthly_price), value2=f'{spend * difference - monthly_price:+.2f}', value3=fmt(monthly_price / difference)))}</p>"""
         notes = ''.join(f'<p class="muted">{esc(note)}</p>' for note in program['notes'] if note)
-        sources = program['sources'] + [{'url': '#cashback-method', 'label': t('ui.model_sources')}]
+        sources = program['sources'] + [{'url': '../' + edition + 'ranking/#cashback-method', 'label': t('ui.model_sources')}]
         terms_button = f"""<button class="evidence-button" type="button" popovertarget="evidence-prime">{esc(t('ui.prime_button'))}<span>↗</span></button>""" if identifier == 'solid' else ''
         checked_on = date.fromisoformat(program.get('checked_on', tier_data['checked_on'])).strftime('%d.%m.%Y')
         return f"""<details class="calculation cashback-tiers" id="tiers-{identifier}"><summary>{esc(t('ui.cashback'))}</summary><p class="muted">{esc(t('ui.terms_date', value0=program['scope'], value1=checked_on))}</p>{''.join(blocks)}{extra}{notes}{source_links(sources)}{terms_button}</details>"""
@@ -256,6 +269,7 @@ def build(language):
 
     networks = {'okx': 'Mastercard', 'bybit': 'Mastercard'}
     table, cards, evidence = [], [], []
+    full_cards, card_evidence = {}, {}
     for number, row in enumerate(ordered_rows, start=1):
         identifier = row['id']
         cost = comparison_cost(row)
@@ -297,7 +311,8 @@ def build(language):
             net_display = ('≈$' if 'reward_valuation' in row else '$') + fmt(net_value)
             cashback_inline = f'<span class="cashback-inline" aria-describedby="cashback-note">· {esc(t("ui.cashback_net", value0=net_display))}</span>'
         reward_detail = f'<div><dt>{reward_label}</dt><dd>{esc(reward)}</dd></div>'
-        included_detail = f'<div><dt>{esc(default_sort["metric"])}</dt><dd>{esc(sort_item["display"])}</dd></div>' if included_cashback_value(row) else ''
+        actual_sort = sorting['modes']['actual']
+        included_detail = f'<div><dt>{esc(actual_sort["metric"])}</dt><dd>{esc(actual_sort["items"][identifier]["display"])}</dd></div>' if included_cashback_value(row) else ''
         conditional_detail = f'<div class="conditional-cost"><dt>{esc(t("ui.after_pending"))}</dt><dd>{esc(net)}</dd></div>' if cashback is not None and cashback != included_cashback_value(row) else ''
         opening = card_links[identifier]
         official_label = t('ui.open_without_referral_label' if opening['referral'] else 'ui.open_card_label', value0=row['name'])
@@ -324,98 +339,186 @@ def build(language):
         if identifier in ('solid', 'keyone'):
             onchain_source = source_links([{'file': 'data/onchain-summary.json', 'label': t('ui.onchain_limits')}])
             onchain_detail = f'<h4>{esc(t("ui.onchain"))}</h4><p class="muted">{esc(t("cards." + identifier + ".onchain"))}</p>{onchain_source}'
-        cards.append(f'''<article class="card {identifier}" id="{identifier}">\n      <header class="card-header"><span class="card-index">{rank_label}</span><div><h3>{esc(row['name'])}</h3><span class="card-meta">{esc(issuer['label'].partition(' · ')[0])} · {esc(networks.get(identifier, 'Visa'))} · {esc(row['card_currency'])}</span></div></header>\n      {card_picture(identifier, row['name'])}\n      <div class="card-body">\n      <div class="debit"><div class="debit-amount"><span class="label">{esc(t('ui.debit'))}</span><div class="debit-values"><strong>${fmt(cost)}</strong>{cashback_inline}</div>\n      <div class="sort-result" hidden><span class="label sort-label">{esc(default_sort['metric'])}</span><strong class="sort-value">{esc(sort_item['display'])}</strong><p class="sort-note">{esc(sort_item['note'])}</p></div></div><span class="overhead">{overhead}<small>{esc(t('ui.vs_nbu'))}</small></span></div>\n      <p class="verdict">{esc(experience)}</p>\n      <div class="card-details"><details class="calculation"><summary>{esc(t('ui.calculation'))}</summary><dl class="ledger"><div><dt>{esc(t('ui.before_after'))}</dt><dd>{row['before']} → {row['after']}</dd></div><div><dt>{esc(t('ui.transaction_amount'))}</dt><dd>{row['tx']}</dd></div>{receipt_detail}{quote_detail}{final_detail}{reward_detail}{valuation_detail}{included_detail}{conditional_detail}<div><dt>{esc(t('ui.effective_rate'))}</dt><dd>{fmt(rate, 4)} ₴/$</dd></div></dl><p class="muted">{esc(row['asset'])}. {esc(row['note'])}</p>{usd_detail}{onchain_detail}</details>\n      {cashback_details(identifier)}\n      {earning_details(identifier)}\n      {funding_detail}\n      {loss_details(identifier)}\n      <button class="evidence-button" type="button" popovertarget="evidence-{identifier}" aria-label="{esc(t('ui.evidence_label', value0=row['name']))}">{esc(t('ui.screenshots_button'))}<span>{source_count} ↗</span></button></div></div>\n      <div class="card-opening"><p class="card-opening-title">{esc(t("ui.get_card"))}</p><div class="card-actions">{opening_buttons}</div>{bonus_note}</div></article>''')
+        rating = (
+            f'<section class="card-rating-panel" aria-label="{esc(t("pages.score_label"))}">'
+            f'<div class="detail-rating"><div class="detail-rating-value">'
+            f'{score_badge(identifier, scores[identifier], language, t)}'
+            f'<span>{esc(t("pages.score_label"))}</span></div>'
+            f'<span class="score-track" aria-hidden="true"><i style="width:{scores[identifier]["total"] * 10}%"></i></span>'
+            f'<a href="../{edition}ranking/#scoring-method">{esc(t("pages.score_link"))} →</a></div>'
+            f'{card_score_overview(scores[identifier], snapshot["cards"][identifier], language, t)}</section>'
+        )
+        cards.append(f'''<article class="card {identifier}" id="{identifier}">\n      <div class="detail-summary"><header class="card-header"><span class="card-index">{rank_label}</span><div><h3>{esc(row['name'])}</h3><span class="card-meta">{esc(issuer['label'].partition(' · ')[0])} · {esc(networks.get(identifier, 'Visa'))} · {esc(row['card_currency'])}</span></div></header>\n      <div class="debit"><div class="debit-amount"><span class="label">{esc(t('ui.debit'))}</span><div class="debit-values"><strong>${fmt(cost)}</strong>{cashback_inline}</div>\n      <div class="sort-result" hidden><span class="label sort-label">{esc(default_sort['metric'])}</span><strong class="sort-value">{esc(sort_item['display'])}</strong><p class="sort-note">{esc(sort_item['note'])}</p></div></div><span class="overhead">{overhead}<small>{esc(t('ui.vs_nbu'))}</small></span></div>\n      {card_picture(identifier, row['name'])}</div>\n      {rating}\n      <div class="card-body">\n      <p class="verdict">{esc(experience)}</p>\n      <div class="card-details"><details class="calculation" open><summary>{esc(t('ui.calculation'))}</summary><dl class="ledger"><div><dt>{esc(t('ui.before_after'))}</dt><dd>{row['before']} → {row['after']}</dd></div><div><dt>{esc(t('ui.transaction_amount'))}</dt><dd>{row['tx']}</dd></div>{receipt_detail}{quote_detail}{final_detail}{reward_detail}{valuation_detail}{included_detail}{conditional_detail}<div><dt>{esc(t('ui.effective_rate'))}</dt><dd>{fmt(rate, 4)} ₴/$</dd></div></dl><p class="muted">{esc(row['asset'])}. {esc(row['note'])}</p>{usd_detail}{onchain_detail}</details>\n      {cashback_details(identifier)}\n      {earning_details(identifier)}\n      {funding_detail}\n      {loss_details(identifier)}\n      <button class="evidence-button" type="button" popovertarget="evidence-{identifier}" aria-label="{esc(t('ui.evidence_label', value0=row['name']))}">{esc(t('ui.screenshots_button'))}<span>{source_count} ↗</span></button></div></div>\n      <div class="card-opening"><h4 class="card-opening-title">{esc(t("seo.open_card_heading", value0=row["name"]))}</h4><div class="card-actions">{opening_buttons}</div>{bonus_note}</div></article>''')
         captions = {'before': t('ui.before'), 'after': t('ui.after'), 'tx': t('ui.transaction'), 'receipt': t('ui.receipt_caption'), 'quote': t('ui.quote_caption'), 'completed': t('ui.completed_caption'), 'points': t('ui.credited_points_caption'), 'cashback_history': t('ui.kolo_cashback_history_caption'), 'historical_usd': t('ui.historical_usd_caption'), 'historical_usd_details': t('ui.historical_usd_details_caption'), 'historical_usd_points': t('ui.historical_usd_points_caption'), 'historical_chatgpt': t('ui.historical_chatgpt_caption'), 'historical_apple': t('ui.historical_apple_caption'), 'historical_uah': t('ui.kolo_historical_uah_caption'), 'asset_history': t('ui.asset_history_caption'), 'historical_usd_assets': t('ui.historical_usd_assets_caption'), 'funding_before': t('ui.funding_before_caption'), 'funding_waiting': t('ui.funding_waiting_caption'), 'funding_after': t('ui.funding_after_caption'), 'funding_paywith': t('ui.funding_paywith_caption'), 'funding_balance': t('ui.funding_balance_caption'), 'funding_credit': t('ui.funding_credit_caption'), 'funding_method': t('ui.funding_method_caption'), 'funding_alternate_method': t('ui.funding_alternate_method_caption'), 'funding_quote': t('ui.funding_quote_caption'), 'funding_completed': t('ui.funding_completed_caption'), 'funding_pending': t('ui.funding_pending_caption'), 'funding_details_pending': t('ui.funding_details_pending_caption'), 'withdrawal_review': t('ui.withdrawal_review_caption'), 'withdrawal_confirmation': t('ui.withdrawal_confirmation_caption'), 'withdrawal_completed': t('ui.withdrawal_completed_caption'), 'withdrawal_form': t('ui.withdrawal_form_caption'), 'withdrawal_minimum_blocked': t('ui.withdrawal_minimum_blocked_caption'), 'withdrawal_exchange_quote': t('ui.withdrawal_exchange_quote_caption'), 'withdrawal_fee_blocked': t('ui.withdrawal_fee_blocked_caption'), 'funding_direct_credit': t('ui.funding_direct_credit_caption'), 'withdrawal_method': t('ui.withdrawal_method_caption'), 'withdrawal_alternate_quote': t('ui.withdrawal_alternate_quote_caption'), 'funding_form_before': t('ui.funding_form_before_caption'), 'funding_fee_blocked': t('ui.funding_fee_blocked_caption'), 'funding_minimum_blocked': t('ui.funding_minimum_blocked_caption'), 'funding_extra_balance': t('ui.funding_extra_balance_caption'), 'funding_card_after': t('ui.funding_card_after_caption'), 'funding_card_receipt': t('ui.funding_card_receipt_caption'), 'funding_card_debit': t('ui.funding_card_debit_caption')}
         figures = ''.join(picture(source, t(source['caption_key']) if source.get('caption_key') else captions[phase], row['name']) for phase, source in row['sources'].items())
         figures += ''.join(picture(source, t(source['caption_key']), row['name']) for source in extra_sources)
         evidence.append(popover('evidence-' + identifier, row['name'], figures))
+        card_evidence[identifier] = evidence[-1]
+        full_cards[identifier] = cards.pop().replace('class="card-opening"', 'class="card-opening" id="get-card"')
+        detail_href = '../' + edition + 'cards/' + identifier + '/'
+        score_item = scores[identifier]
+        currencies = ' · '.join(snapshot['cards'][identifier]['currencies'])
+        summary = t('pages.cards.' + identifier + '.summary')
+        cashback_month = f"${score_item['values']['cashback']:.0f}"
+        badge = score_badge(identifier, score_item, language, t)
+        short_bonus = f'<p class="referral-note">{esc(t("pages.referral_short"))} <a href="{detail_href}#get-card">{esc(t("ui.referral_terms"))}</a></p>'
+        cards.append(f'''<article class="card {identifier}" id="{identifier}">
+          <header class="card-header"><span class="card-index">{rank_label}</span><div><h3><a href="{detail_href}">{esc(row['name'])}</a></h3><span class="card-meta">{esc(issuer['label'].partition(' · ')[0])} · {esc(networks.get(identifier, 'Visa'))} · {esc(currencies)}</span></div>{badge}</header>
+          {card_picture(identifier, row['name'], detail_href)}<div class="card-body"><div class="debit"><div class="debit-amount"><span class="label">{esc(t('ui.debit'))}</span><div class="debit-values"><strong>${fmt(cost)}</strong>{cashback_inline}</div><div class="sort-result" hidden><span class="label sort-label">{esc(default_sort['metric'])}</span><strong class="sort-value">{esc(sort_item['display'])}</strong><p class="sort-note">{esc(sort_item['note'])}</p></div></div><span class="overhead">{overhead}<small>{esc(t('ui.vs_nbu'))}</small></span></div>
+          <p class="card-summary">{esc(summary)}</p><dl class="overview-facts"><div><dt>{esc(t('pages.currency_label'))}</dt><dd>{esc(currencies)}</dd></div><div><dt>{esc(t('pages.monthly'))}</dt><dd>{cashback_month}</dd></div></dl><a class="card-details-link" href="{detail_href}"><span>{esc(t('pages.details'))}</span><span aria-hidden="true">→</span></a></div>
+          <div class="card-opening"><p class="card-opening-title">{esc(t('ui.get_card'))}</p><div class="card-actions">{opening_buttons}</div>{short_bonus}</div></article>''')
+
         included = included_cashback_value(row)
         approximate = '≈' if 'reward_valuation' in row else ''
         cells = ['$' + fmt(cost), approximate + '$' + fmt(included), approximate + '$' + fmt(cost - included), overhead]
         table.append(f'<tr data-card="{identifier}"><th scope="row"><a href="#{identifier}">{esc(row["name"])}</a></th>' + ''.join('<td class="money">' + esc(cell) + '</td>' for cell in cells) + '</tr>')
 
-    evidence.append(popover('evidence-prime', t('ui.prime_title'), picture(terms['images'][0], t('ui.prime_caption'), 'Solid Prime')))
-    image_path = f'assets/social/preview-{language}.png'
-    image_url = f'{site_url}/{image_path}' if site_url else f'../{image_path}'
-    page_url = f'{site_url}/' + ('en/' if language == 'en' else '')
-    metadata = [
-        ('name', 'author', research['author']['name']),
-        ('name', 'robots', 'index, follow, max-image-preview:large'),
-        ('property', 'og:type', 'website'),
-        ('property', 'og:title', t('page.head.title_1')),
-        ('property', 'og:description', t('page.head.meta_content_1')),
-        ('property', 'og:locale', 'uk_UA' if language == 'uk' else 'en_US'),
-        ('property', 'og:locale:alternate', 'en_US' if language == 'uk' else 'uk_UA'),
-        ('property', 'og:image', image_url),
-        ('property', 'og:image:type', 'image/png'),
-        ('property', 'og:image:width', '1200'),
-        ('property', 'og:image:height', '630'),
-        ('property', 'og:image:alt', t('page.head.social_image_alt')),
-        ('name', 'twitter:card', 'summary_large_image'),
-        ('name', 'twitter:title', t('page.head.title_1')),
-        ('name', 'twitter:description', t('page.head.meta_content_1')),
-        ('name', 'twitter:image', image_url),
-        ('name', 'twitter:image:alt', t('page.head.social_image_alt')),
-    ]
-    if site_url:
-        metadata.append(('property', 'og:url', page_url))
-    social_meta = '\n  '.join(f'<meta {attribute}="{key}" content="{esc(value)}">' for attribute, key, value in metadata)
-    if site_url:
-        social_meta += f'\n  <link rel="canonical" href="{esc(page_url)}">'
-        for lang, path in (('uk', '/'), ('en', '/en/'), ('x-default', '/')):
-            social_meta += f'\n  <link rel="alternate" hreflang="{lang}" href="{esc(site_url + path)}">'
-    faq = [{'@type': 'Question', 'name': t(f'page.faq.{n}.question'), 'acceptedAnswer': {'@type': 'Answer', 'text': t(f'page.faq.{n}.answer')}} for n in range(3)]
-    structured_data = ''
-    if site_url:
-        schema = {'@context': 'https://schema.org', '@graph': [
-            {'@type': 'Article', '@id': page_url + '#research', 'url': page_url,
-             'headline': t('page.head.title_1'), 'description': t('page.head.meta_content_1'),
-             'inLanguage': language, 'image': image_url, 'dateModified': research['updated_on'],
-             'author': {'@type': 'Person', **research['author']},
-             'mainEntityOfPage': {'@type': 'WebPage', '@id': page_url},
-             'citation': [site_url + '/docs/methodology.md', site_url + '/data/measurements.json'],
-             'hasPart': {'@id': page_url + '#faq'}},
-            {'@type': 'FAQPage', '@id': page_url + '#faq', 'inLanguage': language, 'mainEntity': faq}
-        ]}
-        encoded_schema = json.dumps(schema, ensure_ascii=False).replace('&', '\\u0026').replace('<', '\\u003c').replace('>', '\\u003e')
-        structured_data = f'<script type="application/ld+json" id="research-schema">{encoded_schema}</script>'
+    prime_evidence = popover('evidence-prime', t('ui.prime_title'), picture(terms['images'][0], t('ui.prime_caption'), 'Solid Prime'))
     formatted_date = lambda value: date.fromisoformat(value).strftime('%d.%m.%Y')
-    slots = {
-        'SOCIAL_META': social_meta,
-        'STRUCTURED_DATA': structured_data,
+    footer_credit = f'{esc(t("ui.test_date"))} <time datetime="{data["test_date"]}">{formatted_date(data["test_date"])}</time> · {esc(t("ui.updated_date"))} <time datetime="{research["updated_on"]}">{formatted_date(research["updated_on"])}</time> · <a href="{esc(research["author"]["url"])}" rel="author">{esc(research["author"]["name"])}</a> · {esc(t("ui.own_license"))} '
+    def faq_items(prefix, count):
+        return [{'@type': 'Question', 'name': t(f'{prefix}.{n}.question'), 'acceptedAnswer': {'@type': 'Answer', 'text': t(f'{prefix}.{n}.answer')}} for n in range(count)]
+
+    faq = faq_items('page.faq', 8)
+
+    def render_page(logical_path, title, description, body, scripts='', page_class='', home=False, card_id=None, questions=None):
+        output_path = edition + logical_path
+        directory = logical_path.removesuffix('index.html')
+        page_url = site_url + '/' + edition + directory
+        image_path = art[card_id]['file'] if card_id else f'assets/social/preview-{language}.png'
+        image_width, image_height = art[card_id]['dimensions'] if card_id else (1200, 630)
+        image_alt = t('seo.card_image_alt', value0=rows_by_id[card_id]['name']) if card_id else t('page.head.social_image_alt')
+        image_url = site_url + '/' + image_path if site_url else '../' + image_path
+        metadata = [
+            ('name', 'author', research['author']['name']),
+            ('name', 'robots', 'index, follow, max-image-preview:large'),
+            ('property', 'og:type', 'website' if home else 'article'),
+            ('property', 'og:site_name', t('seo.site_name')),
+            ('property', 'og:title', title), ('property', 'og:description', description),
+            ('property', 'og:locale', 'uk_UA' if language == 'uk' else 'en_US'),
+            ('property', 'og:locale:alternate', 'en_US' if language == 'uk' else 'uk_UA'),
+            ('property', 'og:image', image_url), ('property', 'og:image:type', 'image/png'),
+            ('property', 'og:image:width', str(image_width)), ('property', 'og:image:height', str(image_height)),
+            ('property', 'og:image:alt', image_alt),
+            ('name', 'twitter:card', 'summary_large_image'), ('name', 'twitter:title', title),
+            ('name', 'twitter:description', description), ('name', 'twitter:image', image_url),
+            ('name', 'twitter:image:alt', image_alt),
+        ]
+        social = '\n'.join(f'<meta {attribute}="{key}" content="{esc(value)}">' for attribute, key, value in metadata)
+        schema_html = ''
+        alternates = [('uk', '/' + directory), ('en', '/en/' + directory), ('x-default', '/' + directory)]
+        if site_url:
+            social += f'\n<meta property="og:url" content="{esc(page_url)}"><link rel="canonical" href="{esc(page_url)}">'
+            social += ''.join(f'<link rel="alternate" hreflang="{lang}" href="{esc(site_url + path)}">' for lang, path in alternates)
+            image = {'@type': 'ImageObject', 'url': image_url, 'width': image_width, 'height': image_height, 'caption': image_alt}
+            article = {'@type': 'Article', '@id': page_url + '#research', 'url': page_url,
+                       'headline': title, 'description': description, 'inLanguage': language,
+                       'image': image, 'dateModified': research['updated_on'],
+                       'author': {'@type': 'Person', **research['author']},
+                       'mainEntityOfPage': {'@id': page_url + '#webpage'},
+                       'citation': [site_url + '/data/scoring.json', site_url + '/data/measurements.json']}
+            article['publisher'] = article['author']
+            article['isAccessibleForFree'] = True
+            website = {'@type': 'WebSite', '@id': site_url + '/#website', 'url': site_url + '/',
+                       'name': t('page.head.a_2').strip(), 'alternateName': t('seo.site_name'), 'inLanguage': list(LANGUAGES)}
+            webpage = {'@type': 'WebPage' if card_id else 'CollectionPage', '@id': page_url + '#webpage',
+                       'url': page_url, 'name': title, 'description': description, 'inLanguage': language,
+                       'isPartOf': {'@id': website['@id']}, 'mainEntity': {'@id': article['@id']},
+                       'primaryImageOfPage': image, 'dateModified': research['updated_on']}
+            graph = [article]
+            if questions:
+                article['hasPart'] = {'@id': page_url + '#faq'}
+                graph.append({'@type': 'FAQPage', '@id': page_url + '#faq', 'inLanguage': language, 'mainEntity': questions})
+            graph.extend([website, webpage])
+            if not home:
+                breadcrumbs = {'@type': 'BreadcrumbList', '@id': page_url + '#breadcrumbs', 'itemListElement': [
+                    {'@type': 'ListItem', 'position': 1, 'name': t('pages.home'), 'item': site_url + '/' + edition},
+                    {'@type': 'ListItem', 'position': 2, 'name': rows_by_id[card_id]['name'] if card_id else t('pages.rating'), 'item': page_url},
+                ]}
+                webpage['breadcrumb'] = {'@id': breadcrumbs['@id']}
+                graph.append(breadcrumbs)
+            if card_id:
+                article['about'] = {'@type': 'Thing', '@id': page_url + '#card', 'name': rows_by_id[card_id]['name'],
+                                    'url': card_links[card_id]['official_url']}
+                article['citation'].extend(snapshot['cards'][card_id]['sources'])
+            else:
+                listed_rows = ordered_rows if home else [rows_by_id[key] for key in sorting['modes']['score']['order']]
+                items = [{'@type': 'ListItem', 'position': position, 'name': row['name'],
+                          'url': site_url + '/' + edition + 'cards/' + row['id'] + '/'}
+                         for position, row in enumerate(listed_rows, 1)]
+                item_list = {'@type': 'ItemList', '@id': page_url + '#card-list', 'name': t('pages.rating_title'),
+                             'itemListOrder': 'https://schema.org/ItemListOrderDescending',
+                             'numberOfItems': len(items), 'itemListElement': items}
+                article['mainEntity'] = {'@id': item_list['@id']}
+                graph.append(item_list)
+            schema = json.dumps({'@context': 'https://schema.org', '@graph': graph}, ensure_ascii=False).replace('&', '\\u0026').replace('<', '\\u003c').replace('>', '\\u003e')
+            schema_html = f'<script type="application/ld+json" id="research-schema">{schema}</script>'
+        language_switch = '<nav class="language-switch" aria-label="' + esc(t('ui.language')) + '">' + ''.join(
+            f'<a href="../{prefix + directory or "./"}" lang="{lang}" hreflang="{lang}"' + (' aria-current="page"' if lang == language else '') + f'>{label}</a>'
+            for lang, prefix, label in (('uk', '', 'UA'), ('en', 'en/', 'EN'))
+        ) + '</nav>'
+        slots = {
+            'LANG': language, 'SOCIAL_META': social, 'STRUCTURED_DATA': schema_html,
+            'PAGE_TITLE': esc(title), 'PAGE_DESCRIPTION': esc(description), 'PAGE_BODY': body,
+            'STYLESHEET_VERSION': hashlib.sha256((ROOT / 'assets/site.css').read_bytes()).hexdigest()[:12],
+            'PAGE_SCRIPTS': scripts, 'PAGE_CLASS': page_class,
+            'HOME_HREF': '../' + edition + ('./' if output_path == 'index.html' else ''), 'RANKING_HREF': '../' + edition + 'ranking/',
+            'LANG_SWITCH': language_switch, 'FOOTER_CREDIT': footer_credit,
+        }
+        report = (ROOT / 'scripts/page-template.html').read_text()
+        for key, value in slots.items():
+            report = report.replace('{{' + key + '}}', value)
+        report = re.sub(r'\[\[([a-zA-Z0-9_.]+)\]\]', lambda match: esc(messages[match[1]]), report)
+        report = report.replace('{{SUBS_TOTAL}}', fmt(scenario['estimated_total_subscriptions_monthly_usd_at_nbu']))
+        prefix = '../' * (len(Path(output_path).parts) - 1)
+        report = re.sub(r'(href|src|content)="\.\./', lambda match: match[1] + '="' + prefix, report)
+        assert not re.search(r'\{\{[A-Z_]+\}\}|\[\[[a-zA-Z0-9_.]+\]\]', report), 'Unfilled template slot'
+        assert 'data:image/' not in report and '/Users/' not in report
+        target = ROOT / output_path
+        target.parent.mkdir(parents=True, exist_ok=True)
+        target.write_text(report)
+        page_routes.append((output_path, alternates))
+
+    home_slots = {
+        'CARD_BASE_HREF': '../' + edition + 'cards/',
         'AUTHOR_LINE': f'{esc(t("ui.author"))} <a href="{esc(research["author"]["url"])}" rel="author">{esc(research["author"]["name"])}</a>',
-        'FOOTER_CREDIT': f'{esc(t("ui.test_date"))} <time datetime="{data["test_date"]}">{formatted_date(data["test_date"])}</time> · {esc(t("ui.updated_date"))} <time datetime="{research["updated_on"]}">{formatted_date(research["updated_on"])}</time> · {esc(t("ui.own_license"))} ',
-        'FAQ': ''.join(f'<details><summary>{esc(item["name"])}</summary><p>{esc(item["acceptedAnswer"]["text"])}</p></details>' for item in faq),
+        'FAQ': faq_markup(faq),
         'LOWEST_DEBIT': esc(rows_by_id[sorting['modes']['gross']['order'][0]]['name'] + ' · $' + fmt(comparison_cost(rows_by_id[sorting['modes']['gross']['order'][0]]))),
-        'LANG': language,
         'SUPPORTING_DOCS': '<p class="muted">' + esc(t('ui.supporting_docs')) + '</p>' if language == 'en' else '',
-        'LANG_SWITCH': '',
         'SORT_OPTIONS': ''.join(f'<option value="{mode}"' + (' selected' if mode == sorting['default'] else '') + f'>{esc(spec["label"])}</option>' for mode, spec in sorting['modes'].items()),
         'SORT_DESCRIPTION': esc(default_sort['description']),
-        'SORT_CONFIG': json.dumps(sorting, ensure_ascii=False).replace('&', '\\u0026').replace('<', '\\u003c').replace('>', '\\u003e'),
         'CARDS': ''.join(cards), 'TABLE': ''.join(table),
         'PAYMENT_EVIDENCE_COUNT': str(sum(len(row['sources']) for row in data['rows'])),
-        'EVIDENCE': ''.join(evidence),
-        'SUBS_TOTAL': fmt(scenario['estimated_total_subscriptions_monthly_usd_at_nbu']),
+        'EVIDENCE': '', 'SUBS_TOTAL': fmt(scenario['estimated_total_subscriptions_monthly_usd_at_nbu']),
+        'PURCHASE_CHART': purchase_chart(data['rows'], language, t),
     }
-    language_switch = '<nav class="language-switch" aria-label="' + esc(t('ui.language')) + '">' + ''.join(
-        f'<a href="{url}" lang="{lang}" hreflang="{lang}"' + (' aria-current="page"' if lang == language else '') + f'>{label}</a>'
-        for lang, url, label in (('uk', '../index.html', 'UA'), ('en', '../en/index.html', 'EN'))
-    ) + '</nav>'
-    slots['LANG_SWITCH'] = language_switch
-    report = (ROOT / 'scripts/report-template.html').read_text()
-    report = re.sub(r'\[\[([a-zA-Z0-9_.]+)\]\]', lambda match: esc(messages[match[1]]), report)
-    for key, value in slots.items():
-        report = report.replace('{{' + key + '}}', value)
-    assert '{{' not in report
-    assert report.count('class="image-viewport"') == sum(len(row['sources']) for row in data['rows']) + len(terms['images'])
-    assert 'data:image/' not in report and '/Users/' not in report
-    if language == 'uk':
-        (ROOT / 'index.html').write_text(report.replace('href="../', 'href="').replace('src="../', 'src="').replace('content="../assets/social/', 'content="assets/social/'))
-    else:
-        (ROOT / 'en').mkdir(exist_ok=True)
-        (ROOT / 'en/index.html').write_text(report)
-    print(f'Built {language} edition from shared public data.')
+    body = (ROOT / 'scripts/report-template.html').read_text().replace('class="card-grid"', 'class="card-grid overview"')
+    for key, value in home_slots.items():
+        body = body.replace('{{' + key + '}}', value)
+    sorting_json = json.dumps(sorting, ensure_ascii=False).replace('&', '\\u0026').replace('<', '\\u003c').replace('>', '\\u003e')
+    home_scripts = f'<script type="application/json" id="card-sorting">{sorting_json}</script><script src="../assets/card-sort.js" defer></script>'
+    render_page('index.html', t('page.head.title_1'), t('page.head.meta_content_1'), body, home_scripts, home=True, questions=faq)
+    flow_inputs = {'measurements': data, 'scoring': snapshot, 'funding': funding_tests,
+                   'tiers': tier_data, 'earning': earning, 'history': historical}
+    for identifier, row in rows_by_id.items():
+        card = snapshot['cards'][identifier]
+        card_body = f'<nav class="breadcrumbs" aria-label="{esc(t("pages.back"))}"><a href="../{edition}#comparison">← {esc(t("pages.back"))}</a><a href="../{edition}ranking/">{esc(t("pages.rating"))}</a></nav>'
+        card_body += f'<section class="page-intro card-intro"><div><span class="eyebrow">{esc(t("pages.provisional"))}</span><h1>{esc(row["name"])}</h1><p class="lead">{esc(t("pages.cards." + identifier + ".summary"))}</p></div></section>'
+        card_body += f'<nav class="nav" aria-label="{esc(t("pages.details"))}"><a href="#test-evidence">{esc(t("pages.historical"))}</a><a href="#cycle">{esc(t("pages.cycle"))}</a><a href="#card-scores">{esc(t("pages.current"))}</a><a href="#faq">{esc(t("pages.card_faq_nav"))}</a></nav>'
+        monthly_use = regular_use_summary(historical["regular_use"]["solid"], t) if identifier == "solid" else ""
+        card_body += f'<section class="section" id="test-evidence"><h2>{esc(t("pages.historical"))}</h2><p class="muted">{esc(t("pages.historical_note"))}</p>{full_cards[identifier]}{monthly_use}</section>'
+        card_body += money_flow(identifier, flow_inputs, t)
+        card_body += card_route_details(identifier, snapshot, t)
+        card_faq = faq_items('cards.' + identifier + '.faq', 4)
+        card_body += f'<section class="section card-faq" id="faq" aria-labelledby="faq-title"><h2 id="faq-title">{esc(t("pages.card_faq_title", value0=row["name"]))}</h2><div class="faq-list">{faq_markup(card_faq)}</div></section>'
+        card_body += card_sources(identifier, snapshot, t)
+        card_body += '<div id="evidence">' + card_evidence[identifier] + (prime_evidence if identifier == 'solid' else '') + '</div>'
+        card_body += f'<p class="footnote" id="cashback-note">{esc(t("page.comparison.p_3"))}</p>'
+        render_page('cards/' + identifier + '/index.html', t('seo.cards.' + identifier + '.title'), t('seo.cards.' + identifier + '.description'), card_body, '<script src="../assets/card-flow.js" defer></script>', page_class='detail-page', card_id=identifier, questions=card_faq)
+    rating_body = ranking_page(snapshot, scores, data, language, t) + cashback_chart(tier_data, t)
+    rating_body += f'<section class="section"><h2>{esc(t("pages.raw_sources"))}</h2><p class="muted">{esc(t("pages.source_basis"))}</p><a href="../data/scoring.json" download>{esc(t("pages.download"))}</a></section>'
+    render_page('ranking/index.html', t('seo.ranking_title'), t('pages.rating_description'), rating_body, '<script src="../assets/cashback-chart.js" defer></script>')
+    print(f'Built {language} overview, ranking and nine card pages.')
 
 
 for language in LANGUAGES:
@@ -427,12 +530,12 @@ if site_url:
     ET.register_namespace('', ns)
     ET.register_namespace('xhtml', xhtml)
     sitemap = ET.Element(f'{{{ns}}}urlset')
-    for path in ('/', '/en/'):
+    for output_path, alternates in page_routes:
         entry = ET.SubElement(sitemap, f'{{{ns}}}url')
-        ET.SubElement(entry, f'{{{ns}}}loc').text = site_url + path
+        ET.SubElement(entry, f'{{{ns}}}loc').text = site_url + '/' + output_path.removesuffix('index.html')
         ET.SubElement(entry, f'{{{ns}}}lastmod').text = research['updated_on']
-        for lang, alternate in (('uk', '/'), ('en', '/en/'), ('x-default', '/')):
-            ET.SubElement(entry, f'{{{xhtml}}}link', rel='alternate', hreflang=lang, href=site_url + alternate)
+        for lang, path in alternates:
+            ET.SubElement(entry, f'{{{xhtml}}}link', rel='alternate', hreflang=lang, href=site_url + path)
     ET.indent(sitemap)
     (ROOT / 'sitemap.xml').write_bytes(ET.tostring(sitemap, encoding='utf-8', xml_declaration=True) + b'\n')
 else:

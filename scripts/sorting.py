@@ -70,9 +70,13 @@ def cashback_potential(row, program, spend, t=None):
     return Decimal(best['net_usd']), note, candidates
 
 
-def card_sorting(rows, tier_data, language="uk"):
+def card_sorting(rows, tier_data, scores, language="uk"):
     t = translator(language)
     modes = {
+        'score': {
+            'label': t('sort.score_label'), 'metric': t('pages.score'),
+            'description': t('sort.score_description'),
+        },
         'gross': {
             'label': t('sort.gross_label'), 'metric': t('ui.debit'),
             'description': t('sort.gross_description'),
@@ -91,7 +95,12 @@ def card_sorting(rows, tier_data, language="uk"):
         for row in rows:
             identifier = row['id']
             cost = comparison_cost(row)
-            if mode == 'potential':
+            if mode == 'score':
+                value = scores[identifier]['total']
+                display = f'{value:.1f}/10'
+                note = t('sort.score_note')
+                candidates = []
+            elif mode == 'potential':
                 value, note, candidates = cashback_potential(row, tier_data['cards'][identifier], tier_data['monthly_eligible_merchant_spend_usd'], t)
                 display = t('ui.unknown') if value is None else t('sort.monthly_display', value0=f'{value:.2f}')
                 if identifier == 'okx' and not row['reward_eligibility']['eligible_for_cashback']:
@@ -122,13 +131,16 @@ def card_sorting(rows, tier_data, language="uk"):
             items[identifier] = {'value': None if value is None else str(value), 'display': display, 'note': note}
             if mode == 'potential':
                 items[identifier]['candidates'] = candidates
-        ordered = sorted(rows, key=lambda row: (
-            values[row['id']] is None,
-            -(values[row['id']] or Decimal('0')) if mode == 'potential' else values[row['id']],
-            comparison_cost(row),
-        ))
+        if mode == 'score':
+            ordered = sorted(rows, key=lambda row: (-values[row['id']], row['name']))
+        else:
+            ordered = sorted(rows, key=lambda row: (
+                values[row['id']] is None,
+                -(values[row['id']] or Decimal('0')) if mode == 'potential' else values[row['id']],
+                comparison_cost(row),
+            ))
         spec['order'] = [row['id'] for row in ordered]
         spec['items'] = items
         for rank, row in enumerate(ordered, 1):
             items[row['id']]['rank'] = '—' if values[row['id']] is None else f'{rank:02d}'
-    return {'default': 'actual', 'modes': modes}
+    return {'default': 'score', 'modes': modes}

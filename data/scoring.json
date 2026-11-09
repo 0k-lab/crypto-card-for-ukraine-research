@@ -1,0 +1,797 @@
+{
+  "checked_on": "2026-11-05",
+  "version": 1,
+  "monthly_spend_usd": "1000",
+  "eligible_payments": 20,
+  "payment_usd": "50",
+  "route_comparison_usd": "100",
+  "cards": {
+    "bybit": {
+      "currencies": [
+        "USD"
+      ],
+      "income_offer": {
+        "rate": "0.0234",
+        "rate_kind": "apr",
+        "eligible_balance_cap_usd": null,
+        "upper_bound": false,
+        "bonus_apr": "0.05",
+        "bonus_balance_cap_usd": "100",
+        "asset": "USDT"
+      },
+      "withdrawal_fee": "0",
+      "withdrawal_route": "USDT0 / Mantle",
+      "minimum_in": "0.000001",
+      "minimum_out_total": "0.3",
+      "withdrawal_networks": [
+        "Avalanche",
+        "Arbitrum",
+        "Berachain",
+        "BNB Smart Chain",
+        "Celo",
+        "Ethereum",
+        "HyperEVM",
+        "Kaia",
+        "Kava EVM",
+        "Monad",
+        "Mantle",
+        "Optimism",
+        "Plasma",
+        "Polygon",
+        "Solana",
+        "TON",
+        "Tron",
+        "Aptos",
+        "Arc",
+        "Codex",
+        "Hedera",
+        "Sei EVM",
+        "Sui",
+        "Sonic",
+        "XDC",
+        "Base"
+      ],
+      "manual_actions": 0,
+      "conditional_criteria": [
+        "income"
+      ],
+      "sources": [
+        "https://www.bybit.com/en/announcement-info/deposit-withdraw/",
+        "https://www.bybit.com/en/help-center/article/FAQ-Easy-Earn",
+        "https://www.bybit.com/en/pay-rewards/promo/rewards-details/"
+      ],
+      "deposit_route": "USDC / Arc",
+      "funding_routes": [
+        {
+          "asset": "USDT",
+          "networks": [
+            "AVAXC",
+            "Arbitrum One(USDT0)",
+            "BERA (USDT0)",
+            "BSC (BEP20)",
+            "CELO",
+            "Ethereum (ERC20)",
+            "HYPEREVM (USDT0)",
+            "KAIA",
+            "KAVAEVM",
+            "MONAD(USDT0)",
+            "Mantle Network(USDT0)",
+            "OP Mainnet",
+            "Plasma (USDT0)",
+            "Polygon PoS",
+            "SOL",
+            "TON",
+            "TRON (TRC20)"
+          ],
+          "minimum": "0.005",
+          "fee_note": "exchange"
+        },
+        {
+          "asset": "USDC",
+          "networks": [
+            "APTOS",
+            "AVAXC",
+            "Arbitrum One",
+            "BSC (BEP20)",
+            "Base Mainnet",
+            "CODEX",
+            "Ethereum (ERC20)",
+            "HBAR",
+            "MONAD",
+            "Mantle Network",
+            "OP Mainnet",
+            "Polygon PoS",
+            "Polygon(bridged)",
+            "SEIEVM",
+            "SOL",
+            "SUI",
+            "Sonic",
+            "XDC"
+          ],
+          "minimum": "0.005",
+          "fee_note": "exchange"
+        },
+        {
+          "asset": "USDC",
+          "networks": [
+            "ARC"
+          ],
+          "minimum": "0.000001",
+          "fee_note": "exchange"
+        }
+      ],
+      "no_minimum_in_declared": false,
+      "no_minimum_out_declared": false
+    },
+    "coca": {
+      "currencies": [
+        "USD",
+        "EUR"
+      ],
+      "income_offer": {
+        "rate": "0.05",
+        "rate_kind": "apy",
+        "eligible_balance_cap_usd": null,
+        "upper_bound": false
+      },
+      "withdrawal_fee": "0",
+      "withdrawal_route": "USDC / Base",
+      "minimum_in": null,
+      "minimum_out_total": null,
+      "withdrawal_networks": [
+        "Base"
+      ],
+      "manual_actions": 0,
+      "conditional_criteria": [
+        "income"
+      ],
+      "sources": [
+        "https://help.coca.xyz/support/solutions/articles/205000042710-tier-system-terms-conditions",
+        "https://docs.coca.xyz/coca/membership-and-rewards/5-balance-apy"
+      ],
+      "confirmed_small_deposit": {
+        "nominal_usd": "0.01",
+        "asset": null,
+        "network": null,
+        "evidence": "participant_statement"
+      },
+      "deposit_route": "USDC / Base",
+      "funding_routes": [
+        {
+          "asset": "USDC",
+          "networks": [
+            "Base"
+          ],
+          "minimum": null,
+          "fee_note": "zero"
+        },
+        {
+          "asset": "USDC",
+          "networks": [
+            "Arbitrum",
+            "Avalanche",
+            "Ethereum",
+            "Gnosis",
+            "Monad",
+            "NEAR",
+            "Optimism",
+            "Polygon",
+            "Solana",
+            "Stellar",
+            "Sui"
+          ],
+          "minimum": null,
+          "fee_note": "quote"
+        },
+        {
+          "asset": "USDT",
+          "networks": [
+            "Avalanche",
+            "Ethereum",
+            "Gnosis",
+            "NEAR",
+            "Optimism",
+            "Polygon",
+            "Scroll",
+            "Solana",
+            "TON",
+            "Tron"
+          ],
+          "minimum": null,
+          "fee_note": "quote"
+        }
+      ],
+      "no_minimum_in_declared": true,
+      "no_minimum_out_declared": true
+    },
+    "keyone": {
+      "currencies": [
+        "USD"
+      ],
+      "income_offer": {
+        "rate": null,
+        "rate_kind": null,
+        "eligible_balance_cap_usd": null,
+        "upper_bound": false
+      },
+      "withdrawal_fee": "0",
+      "withdrawal_route": "USDC / Base",
+      "minimum_in": null,
+      "minimum_out_total": null,
+      "withdrawal_networks": [
+        "Base"
+      ],
+      "manual_actions": 0,
+      "conditional_criteria": [
+        "funding"
+      ],
+      "sources": [
+        "https://www.keyone.help/fees",
+        "https://www.keyone.help/terms"
+      ],
+      "deposit_route": "USDC / Base",
+      "funding_routes": [
+        {
+          "asset": "USDT",
+          "networks": [
+            "Base",
+            "Ethereum",
+            "Solana",
+            "Arbitrum",
+            "BNB Smart Chain",
+            "Optimism",
+            "Polygon"
+          ],
+          "minimum": null,
+          "fee_note": "keyone"
+        },
+        {
+          "asset": "USDT",
+          "networks": [
+            "Tron"
+          ],
+          "minimum": null,
+          "fee_note": "keyone_tron"
+        },
+        {
+          "asset": "USDC",
+          "networks": [
+            "Base",
+            "Ethereum",
+            "Solana",
+            "Arbitrum",
+            "BNB Smart Chain",
+            "Optimism",
+            "Polygon"
+          ],
+          "minimum": null,
+          "fee_note": "keyone"
+        }
+      ],
+      "no_minimum_in_declared": true,
+      "no_minimum_out_declared": true
+    },
+    "kolo": {
+      "currencies": [
+        "EUR"
+      ],
+      "income_offer": {
+        "rate": null,
+        "rate_kind": null,
+        "eligible_balance_cap_usd": null,
+        "upper_bound": false
+      },
+      "withdrawal_fee": "1",
+      "withdrawal_route": "USDC / Base",
+      "minimum_in": "1",
+      "minimum_out_total": "2",
+      "withdrawal_networks": [
+        "Ethereum",
+        "BNB Smart Chain",
+        "Arbitrum",
+        "Base"
+      ],
+      "manual_actions": 0,
+      "conditional_criteria": [],
+      "sources": [
+        "https://help.kolo.xyz/en/articles/13942206-fees-pricing",
+        "https://help.kolo.xyz/en/articles/13623113-cashback-program"
+      ],
+      "withdrawal_minima": {
+        "USDT": {
+          "Ethereum": "10",
+          "BNB Smart Chain": "1",
+          "Arbitrum": "10"
+        },
+        "USDC": {
+          "Ethereum": "5",
+          "BNB Smart Chain": "1",
+          "Arbitrum": "1",
+          "Base": "1"
+        }
+      },
+      "deposit_route": "USDC / Base",
+      "funding_routes": [
+        {
+          "asset": "USDT",
+          "networks": [
+            "Arbitrum"
+          ],
+          "minimum": null,
+          "fee_note": "zero"
+        },
+        {
+          "asset": "USDC",
+          "networks": [],
+          "minimum": "1",
+          "fee_note": "zero"
+        }
+      ],
+      "no_minimum_in_declared": false,
+      "no_minimum_out_declared": false,
+      "criterion_notes": {
+        "currencies": "score.cards.kolo.currencies_note"
+      }
+    },
+    "okx": {
+      "currencies": [
+        "USD"
+      ],
+      "income_offer": {
+        "rate": null,
+        "rate_kind": null,
+        "eligible_balance_cap_usd": null,
+        "upper_bound": false
+      },
+      "withdrawal_fee": "0",
+      "withdrawal_route": "USDT / X Layer",
+      "minimum_in": null,
+      "minimum_out_total": null,
+      "withdrawal_networks": [
+        "X Layer",
+        "Ethereum"
+      ],
+      "manual_actions": 0,
+      "conditional_criteria": [
+        "income"
+      ],
+      "sources": [
+        "https://www.okx.com/ua/learn/usdg",
+        "https://www.okx.com/help/pay-account-faq"
+      ],
+      "deposit_route": "USDT / X Layer",
+      "funding_routes": [
+        {
+          "asset": "USDT",
+          "networks": [
+            "X Layer",
+            "Tron",
+            "Ethereum",
+            "Solana",
+            "Polygon",
+            "Arbitrum"
+          ],
+          "minimum": null,
+          "fee_note": "zero"
+        }
+      ],
+      "no_minimum_in_declared": true,
+      "no_minimum_out_declared": true
+    },
+    "simple": {
+      "currencies": [
+        "USD"
+      ],
+      "income_offer": {
+        "rate": "0.05",
+        "rate_kind": "apr",
+        "eligible_balance_cap_usd": null,
+        "upper_bound": false
+      },
+      "withdrawal_fee": "0",
+      "withdrawal_route": "USDC / Base",
+      "minimum_in": "1",
+      "minimum_out_total": null,
+      "withdrawal_networks": [
+        "Optimism",
+        "Polygon",
+        "BNB Smart Chain",
+        "Tron",
+        "Ethereum",
+        "Base",
+        "Solana",
+        "Arbitrum"
+      ],
+      "manual_actions": 0,
+      "conditional_criteria": [
+        "income",
+        "withdrawal"
+      ],
+      "sources": [
+        "https://simple.app/terms-and-conditions/",
+        "https://help.simple.app/en/articles/13019556-how-to-withdraw-funds-from-virtual-usdc-simplecard",
+        "https://help.simple.app/en/articles/17578734-moving-your-wallet-to-the-new-engine",
+        "https://help.simple.app/en/articles/17884683-sending-usdc-and-usdt-without-gas"
+      ],
+      "deposit_route": "USDC / Base",
+      "funding_routes": [
+        {
+          "asset": "USDT",
+          "networks": [
+            "Polygon"
+          ],
+          "minimum": "1",
+          "fee_note": "quote"
+        },
+        {
+          "asset": "USDC",
+          "networks": [],
+          "minimum": null,
+          "fee_note": "app"
+        }
+      ],
+      "no_minimum_in_declared": false,
+      "no_minimum_out_declared": true,
+      "withdrawal_fee_basis": "historical_test",
+      "criterion_notes": {
+        "withdrawal": "score.cards.simple.withdrawal_note"
+      },
+      "wallet_engine_update": {
+        "checked_on": "2026-11-09",
+        "provider": "Dynamic",
+        "migration_required": true,
+        "cutoff_date": null,
+        "ton_address_changes": true,
+        "recovery_code_required": true,
+        "activation_once_per_network": true,
+        "activation_fee_amount": null,
+        "network_fee_amount": null,
+        "gasless_tokens_by_network": {
+          "Ethereum": [
+            "USDC",
+            "USDT"
+          ],
+          "Polygon": [
+            "USDC",
+            "USDT"
+          ],
+          "BNB Smart Chain": [
+            "USDC",
+            "USDT"
+          ],
+          "Arbitrum": [
+            "USDC"
+          ],
+          "Base": [
+            "USDC"
+          ],
+          "Optimism": [
+            "USDT"
+          ],
+          "Solana": [
+            "USDC",
+            "USDT"
+          ]
+        }
+      }
+    },
+    "solid": {
+      "currencies": [
+        "USD",
+        "EUR"
+      ],
+      "income_offer": {
+        "rate": "0.08",
+        "rate_kind": "apy",
+        "eligible_balance_cap_usd": null,
+        "upper_bound": false
+      },
+      "withdrawal_fee": "0",
+      "withdrawal_route": "USDC / Fuse",
+      "minimum_in": "0.01",
+      "minimum_out_total": null,
+      "withdrawal_networks": [
+        "Arbitrum",
+        "Base",
+        "BNB Smart Chain",
+        "Ethereum",
+        "Fuse"
+      ],
+      "manual_actions": 0,
+      "conditional_criteria": [
+        "income",
+        "minimum_in"
+      ],
+      "sources": [
+        "https://support.solid.xyz/articles/solid-fees-and-limits-the-complete-overview",
+        "https://support.solid.xyz/en/articles/15804231-how-to-earn-more-with-solid",
+        "https://support.solid.xyz/en/articles/15587319-how-does-solid-rewards-work"
+      ],
+      "confirmed_small_deposit": {
+        "amount": "0.01",
+        "asset": "USDC",
+        "network": "Arbitrum",
+        "credited_on": "2026-11-05",
+        "card_spending_available_per_provider": true,
+        "evidence": "participant_statement_and_provider_notification"
+      },
+      "deposit_route": "USDC / Fuse",
+      "funding_routes": [
+        {
+          "asset": "USDC / USDT",
+          "networks": [
+            "Fuse"
+          ],
+          "minimum": null,
+          "fee_note": "zero"
+        },
+        {
+          "asset": "USDC / USDT",
+          "networks": [
+            "Ethereum"
+          ],
+          "minimum": "10",
+          "fee_note": "solid_eth"
+        },
+        {
+          "asset": "USDC / USDT",
+          "networks": [
+            "Arbitrum",
+            "Base",
+            "BNB Smart Chain"
+          ],
+          "minimum": "10",
+          "fee_note": "solid_other"
+        },
+        {
+          "asset": "EURC",
+          "networks": [
+            "Base"
+          ],
+          "minimum": null,
+          "fee_note": "zero"
+        },
+        {
+          "asset": "ETH",
+          "networks": [
+            "Ethereum"
+          ],
+          "minimum": null,
+          "fee_note": "zero"
+        },
+        {
+          "asset": "FUSE / WFUSE",
+          "networks": [
+            "Fuse"
+          ],
+          "minimum": null,
+          "fee_note": "zero"
+        },
+        {
+          "asset": "WETH",
+          "networks": [
+            "Ethereum",
+            "Base"
+          ],
+          "minimum": null,
+          "fee_note": "zero"
+        },
+        {
+          "asset": "USDC",
+          "networks": [
+            "Arbitrum"
+          ],
+          "minimum": "0.01",
+          "fee_note": "solid_cent"
+        }
+      ],
+      "no_minimum_in_declared": false,
+      "no_minimum_out_declared": true,
+      "withdrawal_network_evidence": {
+        "checked_on": "2026-11-05",
+        "source_file": "data/funding-tests.json",
+        "executed": [
+          "Fuse"
+        ],
+        "quoted": [
+          "Arbitrum"
+        ],
+        "scope": "I transcribed the USDC routes and minima. Polygon is coming soon. Earlier USDT evidence covers executed Fuse and a quoted Arbitrum route. The current full USDT list was not checked.",
+        "confirmed_in_app": {
+          "USDC": [
+            "Arbitrum",
+            "Base",
+            "BNB Smart Chain",
+            "Ethereum",
+            "Fuse"
+          ]
+        },
+        "coming_soon": {
+          "USDC": [
+            "Polygon"
+          ]
+        },
+        "current_usdt_list_verified": false,
+        "evidence_level": "participant_report_of_current_withdrawal_screen"
+      },
+      "withdrawal_minima": {
+        "USDC": {
+          "Arbitrum": "5",
+          "Base": "5",
+          "BNB Smart Chain": "5",
+          "Ethereum": "10",
+          "Fuse": null
+        }
+      },
+      "withdrawal_quote": {
+        "asset": "USDC",
+        "networks": [
+          "Arbitrum",
+          "Base",
+          "BNB Smart Chain",
+          "Ethereum"
+        ],
+        "observed_on": "2026-11-05",
+        "initial_fee": "1.36",
+        "initial_withdrawal_amount": null,
+        "sample_withdrawal_amount": "100",
+        "sample_fee": "1.41",
+        "fee_explanation": "Stargate bridge and LayerZero, as explained in my app",
+        "evidence_level": "participant_report_of_in_app_quote",
+        "executed": false
+      }
+    },
+    "trustee_plus": {
+      "currencies": [
+        "USD"
+      ],
+      "income_offer": {
+        "rate": null,
+        "rate_kind": null,
+        "eligible_balance_cap_usd": null,
+        "upper_bound": false
+      },
+      "withdrawal_fee": "0.5",
+      "withdrawal_route": "USDC / Base",
+      "minimum_in": "10.06",
+      "minimum_out_total": "10.5",
+      "withdrawal_networks": [
+        "BNB Smart Chain",
+        "Ethereum",
+        "Polygon",
+        "NEAR",
+        "TON",
+        "Tron",
+        "Base",
+        "Solana"
+      ],
+      "manual_actions": 1,
+      "conditional_criteria": [
+        "funding",
+        "minimum_out"
+      ],
+      "sources": [
+        "https://trustee.io/wiki/trustee-plus/trustee-plus-commissions/"
+      ],
+      "withdrawal_fees": {
+        "USDT": {
+          "TON": "0.5",
+          "Polygon": "1",
+          "BNB Smart Chain": "1.01",
+          "Ethereum": "1.35"
+        },
+        "USDC": {
+          "Base": "0.5",
+          "Solana": "0.5",
+          "Polygon": "1",
+          "Ethereum": "1.5"
+        }
+      },
+      "deposit_route": "USDT / wallet",
+      "funding_routes": [
+        {
+          "asset": "USDT / USDC",
+          "networks": [],
+          "minimum": "10",
+          "fee_note": "trustee"
+        }
+      ],
+      "no_minimum_in_declared": false,
+      "no_minimum_out_declared": false
+    },
+    "whitebit": {
+      "currencies": [
+        "USD"
+      ],
+      "income_offer": {
+        "rate": null,
+        "rate_kind": null,
+        "eligible_balance_cap_usd": null,
+        "upper_bound": false
+      },
+      "withdrawal_fee": "0",
+      "withdrawal_route": "USDC / Whitechain",
+      "minimum_in": "0.01",
+      "minimum_out_total": "10",
+      "withdrawal_networks": [
+        "Polkadot Asset Hub",
+        "Optimism",
+        "BNB Smart Chain",
+        "Polygon",
+        "Arbitrum",
+        "Solana",
+        "Avalanche",
+        "NEAR",
+        "TON",
+        "Plasma",
+        "Tron",
+        "Ethereum",
+        "Base",
+        "Stellar",
+        "Whitechain"
+      ],
+      "manual_actions": 0,
+      "conditional_criteria": [],
+      "sources": [
+        "https://whitebit.com/api/v4/public/assets",
+        "https://whitebit.com/api/v4/public/fee",
+        "https://help.whitebit.com/hc/en-gb/articles/38461998477981-N%C3%B3va-USD-Card-Cashback-Categories-and-MCC-List",
+        "https://help.whitebit.com/hc/en-gb/articles/38457510322461-N%C3%B3va-USD-Card-Fees-Limits-and-Restricted-MCCs",
+        "https://whitebit.com/usd-card"
+      ],
+      "deposit_route": "USDC / Whitechain",
+      "funding_routes": [
+        {
+          "asset": "USDT",
+          "networks": [
+            "DOTASSETHUB",
+            "OPTIMISM",
+            "BEP20",
+            "POLYGON",
+            "ARBITRUM",
+            "SOL",
+            "CCHAIN",
+            "NEAR",
+            "TON",
+            "PLASMA",
+            "TRC20",
+            "ERC20"
+          ],
+          "minimum": "0.01",
+          "fee_note": "exchange"
+        },
+        {
+          "asset": "USDC",
+          "networks": [
+            "DOTASSETHUB",
+            "OPTIMISM",
+            "ARBITRUM",
+            "BASE",
+            "BEP20",
+            "STELLAR",
+            "POLYGON",
+            "SOL",
+            "CCHAIN",
+            "NEAR",
+            "WHITECHAIN",
+            "ERC20"
+          ],
+          "minimum": "0.01",
+          "fee_note": "exchange"
+        }
+      ],
+      "no_minimum_in_declared": false,
+      "no_minimum_out_declared": false,
+      "criterion_notes": {
+        "purchase": "score.cards.whitebit.purchase_note"
+      },
+      "payment_fees": {
+        "checked_on": "2026-11-09",
+        "transaction_rate": "0.015",
+        "transaction_fixed_usd": "0.20",
+        "possible_conversion_rate": "0.015",
+        "effective_on": null
+      }
+    }
+  }
+}

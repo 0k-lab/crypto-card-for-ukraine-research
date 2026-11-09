@@ -18,10 +18,13 @@ from cashback import monthly_cashback, solid_upgrade, solid_spend_threshold
 from earning import monthly_income
 from sorting import card_sorting, cashback_potential, cashback_value, comparison_cost, included_cashback_value
 from copy import deepcopy
-from urllib.parse import urlsplit
+from urllib.parse import urlsplit, unquote
+from pages import value_text
+from scoring import score_cards, CRITERIA
 
 ROOT = Path(__file__).resolve().parents[1]
 data = json.loads((ROOT / 'data/measurements.json').read_text())
+rows = {row['id']: row for row in data['rows']}
 research = json.loads((ROOT / 'data/research.json').read_text())
 assert research['author'] == {'name': 'kricha', 'url': 'https://github.com/kricha'}
 assert date.fromisoformat(research['updated_on']) >= date.fromisoformat(data['test_date'])
@@ -278,6 +281,9 @@ assert solid_upgrade(solid_tiers, 1000, 0) == solid_upgrade(solid_tiers, 1000, 1
 assert abs(solid_upgrade(solid_tiers, 10000, usd) - (Decimal('50') - Decimal('199') / 12)) < Decimal('1e-20')
 assert [monthly_cashback(tier, 1000)[1] for tier in tier_data['cards']['okx']['tiers']] == [Decimal('20'), Decimal('40')]
 assert all(not tier_data['cards'][card]['tiers'] for card in ('simple', 'keyone', 'trustee_plus'))
+snapshot = json.loads((ROOT / 'data/scoring.json').read_text())
+funding_tests = json.loads((ROOT / 'data/funding-tests.json').read_text())
+scored = score_cards(snapshot, data, tier_data, funding_tests, earning_model)
 sorting = json.loads((ROOT / 'data/card-sorting.json').read_text())
 def sorting_values(config):
     # Presentation copy can change; money, qualification candidates and order cannot.
@@ -290,9 +296,14 @@ def sorting_values(config):
         }} for mode, spec in config['modes'].items()
     }}
 
-assert sorting_values(sorting) == sorting_values(card_sorting(data['rows'], tier_data))
+assert sorting_values(sorting) == sorting_values(card_sorting(data['rows'], tier_data, scored))
 modes = sorting['modes']
-assert set(modes) == {'gross', 'potential', 'actual'} and sorting['default'] == 'actual'
+assert set(modes) == {'score', 'gross', 'potential', 'actual'} and sorting['default'] == 'score'
+score_order = sorted(data['rows'], key=lambda row: (-scored[row['id']]['total'], row['name']))
+assert modes['score']['order'] == [row['id'] for row in score_order]
+for identifier, item in modes['score']['items'].items():
+    assert Decimal(item['value']) == scored[identifier]['total']
+    assert item['display'] == f'{scored[identifier]["total"]:.1f}/10'
 assert modes['gross']['order'] == ['okx', 'coca', 'kolo', 'solid', 'bybit', 'trustee_plus', 'simple', 'keyone', 'whitebit']
 assert modes['actual']['order'] == ['okx', 'solid', 'kolo', 'bybit', 'coca', 'whitebit', 'trustee_plus', 'simple', 'keyone']
 for mode in ('gross', 'actual'):
@@ -466,10 +477,10 @@ for masks in config['images'].values():
     assert all(mask['box'][1] >= 34 for mask in masks), 'Status bar must remain unchanged'
 
 class ReportAudit(HTMLParser):
-    def __init__(self, language="uk"):
+    def __init__(self, language="uk", page_folder=None):
         super().__init__()
         self.t = translator(language)
-        self.page_folder = ROOT / ('en' if language == 'en' else '')
+        self.page_folder = page_folder or ROOT / ('en' if language == 'en' else '')
         self.images = []
         self.metadata = {}
         self.canonicals = []
@@ -504,7 +515,7 @@ class ReportAudit(HTMLParser):
         assert not any(name.lower().startswith('on') for name in attrs), 'Unexpected inline event handler'
         if tag == 'script':
             if attrs.get('type') == 'application/json':
-                assert attrs == {'type': 'application/json', 'id': 'card-sorting'}
+                assert attrs['id'] in {'card-sorting', 'cashback-chart-data'} and set(attrs) == {'type', 'id'}
             elif attrs.get('type') == 'application/ld+json':
                 assert attrs == {'type': 'application/ld+json', 'id': 'research-schema'}
             elif attrs.get('src') == 'https://www.googletagmanager.com/gtag/js?id=G-NWFJQ8WLJ7':
@@ -512,7 +523,9 @@ class ReportAudit(HTMLParser):
             elif attrs.get('id') == 'google-analytics':
                 assert attrs == {'id': 'google-analytics'}
             else:
-                assert set(attrs) == {'src', 'defer'} and attrs['src'] in {'assets/card-sort.js', '../assets/card-sort.js', 'assets/analytics.js', '../assets/analytics.js'}
+                assert set(attrs) == {'src', 'defer'}
+                script_path = (self.page_folder / attrs['src']).resolve()
+                assert script_path in {ROOT / 'assets/card-sort.js', ROOT / 'assets/analytics.js', ROOT / 'assets/cashback-chart.js', ROOT / 'assets/card-flow.js'}
             self.scripts.append(attrs)
         if attrs.get('id'):
             assert attrs['id'] not in self.ids, 'Duplicate HTML anchor'
@@ -548,7 +561,10 @@ class ReportAudit(HTMLParser):
             assert self.current_card in self.opening_links
             self.bonus_cards.append(self.current_card)
         if 'popover' in attrs:
-            assert attrs.get('role') == 'dialog' and attrs.get('aria-labelledby')
+            if attrs.get('class') == 'hub-tooltip':
+                assert attrs.get('role') == 'tooltip' and attrs['id'].startswith('hub-note-')
+            else:
+                assert attrs.get('role') == 'dialog' and attrs.get('aria-labelledby')
             self.popovers.add(attrs['id'])
         if attrs.get('popovertarget'):
             assert tag == 'button' and attrs.get('type') == 'button'
@@ -582,266 +598,379 @@ for key in uk_messages:
 english_sorting = json.loads((ROOT / 'data/card-sorting-en.json').read_text())
 assert sorting_values(english_sorting) == sorting_values(sorting), 'Language must not change financial results or rankings'
 
-for relative in ('index.html', 'en/index.html'):
-    language = 'en' if relative.startswith('en/') else 'uk'
+expected_scores = {
+    'bybit': [9, 7, 8, 7, 10, 10, 9, 9, 10, 10],
+    'coca': [10, 9, 9, 8, 10, 10, 10, 10, 4, 10],
+    'keyone': [9, 5, 7, 5, 9, 10, 10, 10, 4, 10],
+    'kolo': [9, 9, 9, 5, 10, 8, 7, 8, 6, 10],
+    'okx': [9, 10, 7, 6, 10, 10, 10, 10, 5, 10],
+    'simple': [9, 5, 7, 9, 10, 10, 7, 10, 8, 10],
+    'solid': [10, 8, 10, 10, 10, 10, 8, 10, 7, 10],
+    'trustee_plus': [9, 6, 7, 5, 8, 9, 6, 6, 8, 9],
+    'whitebit': [9, 4, 9, 5, 10, 10, 8, 7, 9, 10],
+}
+for identifier, item in scored.items():
+    assert [item['scores'][key] for key in CRITERIA] == expected_scores[identifier]
+    assert item['total'] == sum(item['scores'].values()) / Decimal(10)
+assert scored['solid']['total'] == Decimal('9.3')
+assert scored['coca']['total'] == Decimal('9.0')
+solid_exit_evidence = snapshot['cards']['solid']['withdrawal_network_evidence']
+solid_exit_networks = ['Arbitrum', 'Base', 'BNB Smart Chain', 'Ethereum', 'Fuse']
+assert snapshot['cards']['solid']['withdrawal_networks'] == solid_exit_networks
+assert solid_exit_evidence['confirmed_in_app']['USDC'] == solid_exit_networks
+assert solid_exit_evidence['coming_soon']['USDC'] == ['Polygon']
+assert solid_exit_evidence['current_usdt_list_verified'] is False
+assert solid_exit_evidence['executed'] == ['Fuse'] and solid_exit_evidence['quoted'] == ['Arbitrum']
+assert 'networks' not in snapshot['cards']['solid']['conditional_criteria']
+assert snapshot['cards']['solid']['withdrawal_minima']['USDC'] == dict(zip(solid_exit_networks, ['5', '5', '5', '10', None]))
+solid_quote = snapshot['cards']['solid']['withdrawal_quote']
+assert solid_quote['asset'] == 'USDC' and solid_quote['networks'] == solid_exit_networks[:-1]
+assert solid_quote['initial_fee'] == '1.36' and solid_quote['initial_withdrawal_amount'] is None
+assert solid_quote['sample_withdrawal_amount'] == '100' and solid_quote['sample_fee'] == '1.41'
+assert solid_quote['executed'] is False
+assert scored['solid']['values']['minimum_in'] == Decimal('0.01')
+assert snapshot['cards']['solid']['confirmed_small_deposit']['network'] == 'Arbitrum'
+assert len(snapshot['cards']['kolo']['withdrawal_minima']['USDT']) == 3
+assert len(snapshot['cards']['kolo']['withdrawal_minima']['USDC']) == 4
+assert scored['simple']['scores']['networks'] == scored['trustee_plus']['scores']['networks']
+# The APR bonus applies only to the eligible part of a declining balance.
+banded = snapshot['cards']['bybit']['income_offer']
+assert monthly_income(banded, earning_model)[0].quantize(Decimal('.01')) == Decimal('1.35')
+assert monthly_income(dict(banded, bonus_apr='0.03'), earning_model)[0].quantize(Decimal('.01')) == Decimal('1.20')
+for balance in ('0', '50', '100', '1000'):
+    flat = dict(earning_model, starting_eligible_balance_usd=balance, ending_eligible_balance_usd=balance)
+    expected = (Decimal(balance) * Decimal('.0234') + min(Decimal(balance), Decimal(100)) * Decimal('.05')) * 30 / 365
+    assert abs(monthly_income(banded, flat)[0] - expected) < Decimal('1e-20')
+
+logical_pages = ['index.html', 'ranking/index.html'] + ['cards/' + row['id'] + '/index.html' for row in data['rows']]
+site_url = os.environ.get('SITE_URL', research['public_url']).strip().rstrip('/')
+page_parsers = {}
+seo_titles = set()
+seo_descriptions = set()
+for language in LANGUAGES:
+    prefix = 'en/' if language == 'en' else ''
     t = translator(language)
-    page_sorting = english_sorting if language == 'en' else sorting
+    edition_images, edition_image_links = [], []
+    card_questions = [t(f'cards.{identifier}.faq.{n}.question') for identifier in rows for n in range(4)]
+    assert len(set(card_questions)) == 36, 'Each card needs its own contextual questions'
+    for logical in logical_pages:
+        relative = prefix + logical
+        page = ROOT / relative
+        report = page.read_text()
+        parser = ReportAudit(language, page.parent)
+        parser.feed(report)
+        page_parsers[relative] = parser
+        assert report.count('<h1') == 1
+        badges = re.findall(r'<a class="score-badge"[^>]*>(.*?)</a>', report)
+        assert all(re.fullmatch(r'<strong>\d+\.\d<small>/10</small></strong>', badge) for badge in badges)
+        assert len(parser.canonicals) == (1 if site_url else 0)
+        assert 'data:image/' not in report and '/Users/' not in report
+        assert not re.search(r'\{\{[A-Z_]+\}\}|\[\[[a-zA-Z0-9_.]+\]\]', report)
+        assert not re.search(r'\son[a-z]+=', report, re.I)
+        assert page.stat().st_size < 250000
+        assert f'<html lang="{language}">' in report
+        if language == 'en':
+            assert not re.search('[А-Яа-яІіЇїЄєҐґ]', report), relative
+        assert set(parser.label_targets) <= parser.ids, relative
+        assert set(parser.popover_targets) <= parser.popovers, relative
+        assert report.count('data-repository-link') == 2
+        assert report.count("gtag('config', 'G-NWFJQ8WLJ7');") == 1
+        assert sum(script.get('src', '').endswith('/analytics.js') for script in parser.scripts) == 1
+        assert report.count('aria-current="page"') == 1
+        meta = parser.metadata
+        assert meta['author'] == research['author']['name']
+        assert meta['google-site-verification']
+        assert meta['robots'] == 'index, follow, max-image-preview:large'
+        assert meta['og:title'] == meta['twitter:title']
+        titles = re.findall(r'<title>(.*?)</title>', report.split('</head>', 1)[0], re.S)
+        assert len(titles) == 1 and html.unescape(titles[0]) == meta['og:title']
+        assert 25 <= len(meta['og:title']) <= 70
+        assert 100 <= len(meta['description']) <= 180
+        assert meta['og:title'] not in seo_titles, relative
+        assert meta['description'] not in seo_descriptions, relative
+        seo_titles.add(meta['og:title'])
+        seo_descriptions.add(meta['description'])
+        assert meta['og:site_name'] == t('seo.site_name')
+        assert 'rel="author"' in report and research['author']['name'] in report
+        assert meta['og:description'] == meta['twitter:description'] == meta['description']
+        assert meta['og:locale'] == ('uk_UA' if language == 'uk' else 'en_US')
+        assert meta['twitter:card'] == 'summary_large_image'
+        card_id = logical.split('/')[1] if logical.startswith('cards/') else None
+        image_path = f'assets/cards/{card_id}.png' if card_id else f'assets/social/preview-{language}.png'
+        image_size = (960, 600) if card_id else (1200, 630)
+        image_url = site_url + '/' + image_path if site_url else '../' * (len(Path(relative).parts) - 1) + image_path
+        image_alt = t('seo.card_image_alt', value0=rows[card_id]['name']) if card_id else t('page.head.social_image_alt')
+        check_png((ROOT / image_path).read_bytes(), image_size)
+        assert meta['og:image'] == meta['twitter:image'] == image_url
+        assert (int(meta['og:image:width']), int(meta['og:image:height'])) == image_size
+        assert meta['og:image:alt'] == meta['twitter:image:alt'] == image_alt
+        assert all(not urlsplit(href).path.endswith('index.html') for href in parser.links if not urlsplit(href).scheme)
+        if card_id:
+            assert meta['og:title'] == t('seo.cards.' + card_id + '.title')
+            assert meta['description'] == t('seo.cards.' + card_id + '.description')
+
+        site_url = os.environ.get('SITE_URL', research['public_url']).strip().rstrip('/')
+        if site_url:
+            directory = logical.removesuffix('index.html')
+            page_url = site_url + '/' + prefix + directory
+            assert parser.canonicals == [page_url] and meta['og:url'] == page_url
+            assert parser.alternates == {'uk': site_url + '/' + directory, 'en': site_url + '/en/' + directory, 'x-default': site_url + '/' + directory}
+            schema = json.loads(re.search(r'<script type="application/ld\+json" id="research-schema">(.*?)</script>', report, re.S)[1])
+            article = schema['@graph'][0]
+            assert article['url'] == page_url and article['headline'] == meta['og:title']
+            assert article['author'] == {'@type': 'Person', **research['author']}
+            assert article['dateModified'] == research['updated_on'] and article['inLanguage'] == language
+            graph = {node['@type']: node for node in schema['@graph']}
+            assert schema['@context'] == 'https://schema.org'
+            assert len({node['@id'] for node in schema['@graph']}) == len(schema['@graph'])
+            assert article['publisher'] == article['author'] and article['isAccessibleForFree'] is True
+            assert article['mainEntityOfPage'] == {'@id': page_url + '#webpage'}
+            assert article['image'] == {'@type': 'ImageObject', 'url': image_url, 'width': image_size[0], 'height': image_size[1], 'caption': image_alt}
+            assert 'aggregateRating' not in json.dumps(schema) and 'Review' not in graph
+            website = graph['WebSite']
+            webpage = graph['WebPage' if card_id else 'CollectionPage']
+            assert website['url'] == site_url + '/' and website['inLanguage'] == list(LANGUAGES)
+            assert website['name'] == t('page.head.a_2').strip() and website['alternateName'] == meta['og:site_name']
+            assert webpage['url'] == page_url and webpage['name'] == meta['og:title']
+            assert webpage['description'] == meta['description'] and webpage['inLanguage'] == language
+            assert webpage['isPartOf'] == {'@id': website['@id']}
+            assert webpage['mainEntity'] == {'@id': article['@id']}
+            assert webpage['primaryImageOfPage'] == article['image']
+            if logical != 'index.html':
+                breadcrumbs = graph['BreadcrumbList']
+                assert webpage['breadcrumb'] == {'@id': breadcrumbs['@id']}
+                assert [item['position'] for item in breadcrumbs['itemListElement']] == [1, 2]
+                assert [item['item'] for item in breadcrumbs['itemListElement']] == [site_url + '/' + prefix, page_url]
+            if card_id:
+                assert article['about'] == {'@type': 'Thing', '@id': page_url + '#card', 'name': rows[card_id]['name'], 'url': card_links[card_id]['official_url']}
+                assert set(snapshot['cards'][card_id]['sources']) <= set(article['citation'])
+            else:
+                listing = graph['ItemList']
+                assert article['mainEntity'] == {'@id': listing['@id']}
+                assert listing['numberOfItems'] == 9 and listing['itemListOrder'] == 'https://schema.org/ItemListOrderDescending'
+                expected_order = modes[sorting['default'] if logical == 'index.html' else 'score']['order']
+                assert [item['position'] for item in listing['itemListElement']] == list(range(1, 10))
+                assert [item['url'] for item in listing['itemListElement']] == [site_url + '/' + prefix + 'cards/' + key + '/' for key in expected_order]
+                assert [item['name'] for item in listing['itemListElement']] == [rows[key]['name'] for key in expected_order]
+        if logical == 'index.html':
+            page_sorting = english_sorting if language == 'en' else sorting
+            assert parser.cards == page_sorting['modes'][sorting['default']]['order']
+            assert not parser.images and not parser.popovers
+            assert 'class="calculation' not in report
+            assert report.count('class="score-badge"') == 9
+            assert report.count('class="card-details-link"') == 9
+            image_links = re.findall(r'<figure class="card-art"><a class="card-art-link" href="([^"]+)" aria-label="[^"]+"><img[^>]+></a></figure>', report)
+            assert len(image_links) == 9
+            assert image_links == re.findall(r'<a class="card-details-link" href="([^"]+)">', report)
+            assert '.card-details-link::after' not in (ROOT / 'assets/site.css').read_text()
+            assert report.count('class="purchase-row"') == 9
+            assert len(parser.art_files) == 9
+            assert 'purchase-heading' in parser.ids
+            assert json.loads(re.search(r'<script type="application/json" id="card-sorting">(.*?)</script>', report, re.S)[1]) == page_sorting
+            assert len(parser.opening_links) == 9
+            if site_url:
+                assert len(schema['@graph'][1]['mainEntity']) == 8
+                for item in schema['@graph'][1]['mainEntity']:
+                    assert html.escape(item['name'], quote=True) in report
+                    assert html.escape(item['acceptedAnswer']['text'], quote=True) in report
+        elif logical == 'ranking/index.html':
+            assert not parser.images and not parser.cards
+            assert html.escape(t('pages.choice_title'), quote=True) in report
+            assert html.escape(t('pages.choice_description'), quote=True) in report
+            matrix = re.search(r'<table class="score-matrix".*?</table>', report, re.S)[0]
+            assert matrix.count('<th scope="col">') == 12 and matrix.count('<tr id="score-') == 9
+            assert re.findall(r'<tr id="score-([^"]+)">', matrix) == modes['score']['order']
+            for identifier, item in scored.items():
+                matrix_row = re.search(r'<tr id="score-' + identifier + r'">.*?</tr>', matrix, re.S)[0]
+                values = re.findall(r'<td>([0-9]+)\*?</td>', matrix_row)
+                assert list(map(int, values)) == expected_scores[identifier]
+                assert f'{item["total"]:.1f}</td>' in matrix_row
+            chart_config = json.loads(re.search(r'<script type="application/json" id="cashback-chart-data">(.*?)</script>', report, re.S)[1])
+            assert len(chart_config['programs']) == 4
+            core, prime, starter, standard = chart_config['programs']
+            assert prime['samples'][0][1] == 0 and prime['samples'][0][2] < 0
+            assert core['samples'][20][1] == 30 and starter['samples'][20][1] == 10
+            assert standard['samples'][20][1] == 25
+        else:
+            identifier = logical.split('/')[1]
+            assert parser.cards == [identifier]
+            assert report.count('class="detail-summary"') == 1
+            assert report.count('class="detail-rating"') == 1
+            assert report.count('class="card-rating-panel"') == 1
+            rating_panel = re.search(r'<section class="card-rating-panel".*?</section>', report, re.S)[0]
+            assert 'class="detail-rating"' in rating_panel and 'class="detail-criteria"' in rating_panel
+            assert report.count('class="score-badge"') == 1
+            intro = re.search(r'<section class="page-intro card-intro">.*?</section>', report, re.S)[0]
+            assert 'score-badge' not in intro
+            rating = re.search(r'<div class="detail-rating">.*?<a href="[^"]+ranking/#scoring-method">.*?</a></div>', report, re.S)[0]
+            assert f'<strong>{scored[identifier]["total"]:.1f}<small>/10</small></strong>' in rating
+            assert f'width:{scored[identifier]["total"] * 10}%' in rating
+            assert report.count('class="detail-criteria"') == 1
+            criteria = re.search(r'<dl class="detail-criteria".*?</dl>', report, re.S)[0]
+            assert criteria.count('class="score-track"') == len(CRITERIA)
+            assert 'class="card-score-table"' not in report
+            for criterion in CRITERIA:
+                criterion_markup = re.search(r'<div><dt><button type="button" popovertarget="score-input-' + criterion + r'">.*?</dd></div>', criteria)[0]
+                score = scored[identifier]['scores'][criterion]
+                suffix = '*' if criterion in scored[identifier]['conditional'] else ''
+                assert f'width:{score * 10}%' in criterion_markup
+                assert f'<strong>{score}{suffix}</strong>' in criterion_markup
+                score_input = re.search(r'<div class="score-input-popover" id="score-input-' + criterion + r'".*?</div>', report, re.S)[0]
+                value = html.escape(value_text(criterion, scored[identifier], snapshot['cards'][identifier], t), quote=True)
+                assert value in score_input
+                assert f'aria-labelledby="score-input-{criterion}-title"' in score_input
+            assert report.index('class="detail-summary"') < report.index('class="detail-rating"') < report.index('class="detail-criteria"') < report.index('class="card-body"')
+            assert '<h4 class="card-opening-title">' + html.escape(t('seo.open_card_heading', value0=rows[identifier]['name']), quote=True) + '</h4>' in report
+            assert len(parser.art_files) == 1
+            assert 'class="card-art-link"' not in report
+            faq_block = re.search(r'<section class="section card-faq" id="faq".*?</section>', report, re.S)[0]
+            visible_faq = re.findall(r'<details><summary>(.*?)</summary><p>(.*?)</p></details>', faq_block, re.S)
+            expected_faq = [(t(f'cards.{identifier}.faq.{n}.question'), t(f'cards.{identifier}.faq.{n}.answer')) for n in range(4)]
+            assert [(html.unescape(q), html.unescape(a)) for q, a in visible_faq] == expected_faq
+            assert len({q for q, _ in expected_faq}) == 4
+            assert report.index('id="card-scores"') < report.index('id="faq"') < report.index('id="sources"')
+            assert '<a href="#faq">' in report
+            if site_url:
+                faq_schema = graph['FAQPage']
+                assert faq_schema['@id'] == page_url + '#faq' and faq_schema['inLanguage'] == language
+                assert article['hasPart'] == {'@id': faq_schema['@id']}
+                assert [(item['name'], item['acceptedAnswer']['text']) for item in faq_schema['mainEntity']] == expected_faq
+                assert all(item['@type'] == 'Question' and item['acceptedAnswer']['@type'] == 'Answer' for item in faq_schema['mainEntity'])
+            assert report.count('class="process-map"') == 1
+            assert report.count('class="balance-map"') == 1
+            assert report.count('class="balance-hub"') == 1
+            hub_markup = re.search(r'<div class="balance-map">(.*?)</svg>(.*?)</div></div>', report, re.S)
+            assert hub_markup
+            hub_svg = ET.fromstring(re.search(r'<svg class="hub-links".*?</svg>', report, re.S)[0])
+            edges = {path.attrib['d']: path.attrib for path in hub_svg.findall('path')}
+            assert edges['M 280 355 H 355']['marker-end'] == 'url(#hub-arrow)'
+            assert edges['M 605 355 H 680']['marker-end'] == 'url(#hub-arrow)'
+            assert edges['M 480 440 V 515']['marker-end'] == 'url(#hub-arrow)'
+            assert any(script.get('src', '').endswith('/assets/card-flow.js') for script in parser.scripts)
+            assert 'class="hub-toolbar" hidden' in report
+            assert report.count('class="hub-zoom-out"') == 1
+            assert report.count('class="hub-zoom-in"') == 1
+            assert f'class="hub-reset" title="{html.escape(t("flow.hub.actual_size"), quote=True)}">100%</button>' in report
+            hub_keys = {'balance'} | set(re.findall(r'data-process="([a-z]+)"', report))
+            for edge in edges.values():
+                assert {edge['data-from'], edge['data-to']} <= hub_keys
+                assert edge['data-from-port'] in {'top', 'right', 'bottom', 'left'}
+                assert edge['data-to-port'] in {'top', 'right', 'bottom', 'left'}
+                if edge['class'].endswith('relation'):
+                    assert 'marker-start' not in edge and 'marker-end' not in edge
+            if identifier == 'solid':
+                assert 'M 355 110 H 280' in edges  # Cashback goes to Savings.
+                assert 'M 480 195 V 270' not in edges
+            elif identifier in {'coca', 'bybit'}:
+                assert 'M 480 195 V 270' in edges
+            else:
+                assert 'M 480 195 V 270' not in edges
+            process_links = re.findall(r'class="hub-process ([a-z]+)" data-process="[a-z]+"><a class="hub-process-toggle" href="#flow-([a-z]+)"', report)
+            assert report.count('class="hub-info"') == len(process_links)
+            assert report.count('class="hub-open" aria-hidden="true">+</span>') == len(process_links)
+            for key, target in process_links:
+                assert f'aria-describedby="hub-note-{key}"' in report
+                assert f'popovertarget="hub-note-{key}"' in report
+                assert f'class="hub-tooltip" id="hub-note-{key}" popover' in report
+                assert html.escape(t('flow.hub.info', value0=t('flow.' + key)), quote=True) in report
+            assert process_links and all(key == target for key, target in process_links)
+            assert len(process_links) == report.count('<details class="process-flow">')
+            for key, target in process_links:
+                assert re.search(r'<details class="process-flow"><summary>.*?</summary><div class="flow-routes[^"]*" id="flow-' + target + '">', report)
+            assert 'class="money-cycle"' not in report
+            for process in ['funding', 'payment', 'cashback', 'withdrawal']:
+                assert 'flow-' + process in parser.ids
+            flow_markup = re.search(r'<div class="process-map">.*?</section>', report, re.S)[0]
+            assert 'class="flow-node"' in flow_markup
+            assert 'class="flow-status test"' in flow_markup
+            assert 'class="flow-status app"' in flow_markup
+            for route in re.findall(r'<figure class="flow-route">(.*?)</figure>', flow_markup, re.S):
+                assert 2 <= route.count('class="flow-node"') <= 5
+                assert route.count('class="flow-status ') == route.count('class="flow-node"')
+                assert '<figcaption>' in route and 'href="#' in route
+            if identifier == 'solid':
+                assert '19.997 USDT' in flow_markup and '0.33 USDT' in flow_markup
+                assert '100 USDC' in flow_markup and '1.41 USDC' in flow_markup
+                for network in solid_quote['networks']:
+                    assert 'USDC / ' + network in flow_markup
+                quote_note = t('pages.solid_withdrawal_quote', value0='05.11.2026', value1='1.36', value2='100', value3='1.41')
+                assert html.escape(quote_note, quote=True) in report
+                assert 'Fuse' in report and html.escape(t('pages.no_minimum'), quote=True) in report
+                assert 'flow-level' in parser.ids and 'flow-referral' in parser.ids
+                assert html.escape(t('flow.solid_combined'), quote=True) in flow_markup
+            if identifier in {'whitebit', 'trustee_plus'}:
+                assert html.escape(t('flow.no_outcome'), quote=True) in flow_markup
+            if identifier == 'trustee_plus':
+                assert '9.945677 USDT' in flow_markup and '11.885677 USDT' in flow_markup
+            if identifier == 'simple':
+                assert flow_markup.count('9.989909 USDC') >= 3
+            if identifier == 'bybit':
+                assert '36 × 0.002 = 0.072 USDT' in flow_markup
+                assert html.escape(t('flow.bybit_points_pending'), quote=True) in flow_markup
+            assert report.count('<details class="calculation" open>') == 1
+            if included_cashback_value(rows[identifier]):
+                expected_cashback = '<dt>' + html.escape(t('sort.actual_metric'), quote=True) + '</dt><dd>' + html.escape(modes['actual']['items'][identifier]['display'], quote=True) + '</dd>'
+                assert expected_cashback in report
+            funding_block = re.search(r'<section class="panel funding-assets".*?</section>', report, re.S)[0]
+            assert '<summary' not in funding_block and 'class="route-table"' in funding_block
+            assert '<h3 id="funding-assets-title">' + html.escape(t('pages.funding_assets'), quote=True) + '</h3>' in funding_block
+            assert report.count('class="score-network-list"') == 1
+            assert html.escape(t('pages.withdrawal_networks'), quote=True) in report
+            assert 'card-scores' in parser.ids and 'test-evidence' in parser.ids
+            assert report.index('id="test-evidence"') < report.index('id="cycle"') < report.index('id="card-scores"')
+            assert report.index('href="#test-evidence"') < report.index('href="#cycle"') < report.index('href="#card-scores"')
+            assert '<h2>' + html.escape(t('pages.historical'), quote=True) + '</h2>' in report
+            assert 'criterion-explanations' not in report and 'card-criterion-' not in report
+            for criterion in CRITERIA:
+                expected_href = ('../' * (len(Path(relative).parts) - 1)) + prefix + 'ranking/#criterion-' + criterion
+                assert expected_href in parser.links, (relative, criterion)
+            assert parser.opening_links == {identifier: [card_links[identifier]['official_url'], card_links[identifier]['url']]}
+            assert set(parser.popovers) == {'hub-note-' + key for key, target in process_links} | {'score-input-' + criterion for criterion in CRITERIA} | {'evidence-' + identifier} | ({'evidence-prime'} if identifier == 'solid' else set())
+            for section in ['cashback-tiers', 'earning', 'funding-summary', 'losses']:
+                assert report.count('class="calculation ' + section + '"') == 1
+            for key in ['experience', 'funding', 'note']:
+                assert html.escape(t('cards.' + identifier + '.' + key), quote=True) in report
+            historical_income = re.search(r'<details class="calculation earning".*?</details>', report, re.S)[0]
+            assert 'screenshots/' not in historical_income
+            assert html.escape(t('pages.historical_income'), quote=True) in historical_income
+            edition_images.extend(parser.images)
+            edition_image_links.extend(hashlib.sha256((page.parent / href).read_bytes()).hexdigest() for href in parser.image_files)
+    assert len(edition_images) == len(all_sources) and set(edition_images) == public_hashes
+    assert set(edition_image_links) == public_hashes
+
+assert len(seo_titles) == len(seo_descriptions) == len(page_parsers) == 22
+
+for relative, parser in page_parsers.items():
     page = ROOT / relative
-    report = page.read_text()
-    parser = ReportAudit(language)
-    parser.feed(report)
-    meta = parser.metadata
-    assert meta['og:type'] == 'website' and meta['twitter:card'] == 'summary_large_image'
-    assert meta['og:title'] == meta['twitter:title'] == t('page.head.title_1')
-    assert meta['og:description'] == meta['twitter:description'] == meta['description'] == t('page.head.meta_content_1')
-    assert meta['og:image:alt'] == meta['twitter:image:alt'] == t('page.head.social_image_alt')
-    assert meta['og:locale'] == ('uk_UA' if language == 'uk' else 'en_US')
-    assert meta['og:image:type'] == 'image/png' and meta['og:image:width'] == '1200' and meta['og:image:height'] == '630'
-    image_path = f'assets/social/preview-{language}.png'
-    raw = (ROOT / image_path).read_bytes()
-    check_png(raw, (1200, 630))
-    assert len(raw) < 1000000, 'Social preview should stay below 1 MB'
-    svg = (ROOT / 'scripts' / f'social-preview-{language}.svg').read_text()
-    costs = [comparison_cost(row) for row in data['rows']]
-    assert f'${min(costs):.2f}–${max(costs):.2f}' in svg and svg.count('<image ') == 9
-    assert '/Users/' not in svg and 'screenshots/' not in svg
-    site_url = os.environ.get('SITE_URL', research['public_url']).strip().rstrip('/')
-    assert meta['author'] == research['author']['name']
-    assert meta['robots'] == 'index, follow, max-image-preview:large'
-    assert f'href="{research["author"]["url"]}" rel="author">{research["author"]["name"]}</a>' in report
-    assert f'<time datetime="{research["updated_on"]}">' in report
-    assert f'<time datetime="{data["test_date"]}">' in report
-    if site_url:
-        assert meta['og:image'] == meta['twitter:image'] == f'{site_url}/{image_path}'
-        page_url = site_url + ('/en/' if language == 'en' else '/')
-        assert meta['og:url'] == page_url and parser.canonicals == [page_url]
-        expected_alternates = {'uk': site_url + '/', 'en': site_url + '/en/', 'x-default': site_url + '/'}
-        assert parser.alternates == expected_alternates
-        schema = json.loads(re.search(r'<script type="application/ld\+json" id="research-schema">(.*?)</script>', report, re.S)[1])
-        assert schema['@context'] == 'https://schema.org'
-        article, faq = schema['@graph']
-        assert article['@type'] == 'Article' and article['url'] == page_url
-        assert article['headline'] == t('page.head.title_1') and article['description'] == meta['description']
-        assert article['author'] == {'@type': 'Person', **research['author']}
-        assert article['dateModified'] == research['updated_on'] and 'datePublished' not in article
-        assert article['inLanguage'] == faq['inLanguage'] == language
-        assert article['image'] == meta['og:image']
-        assert article['hasPart']['@id'] == faq['@id'] == page_url + '#faq'
-        assert faq['@type'] == 'FAQPage' and len(faq['mainEntity']) == 3
-        for n, question in enumerate(faq['mainEntity']):
-            assert question == {'@type': 'Question', 'name': t(f'page.faq.{n}.question'), 'acceptedAnswer': {'@type': 'Answer', 'text': t(f'page.faq.{n}.answer')}}
-            assert '<summary>' + html.escape(question['name'], quote=True) + '</summary>' in report
-            assert '<p>' + html.escape(question['acceptedAnswer']['text'], quote=True) + '</p>' in report
-        ns = {'s': 'http://www.sitemaps.org/schemas/sitemap/0.9', 'x': 'http://www.w3.org/1999/xhtml'}
-        entries = ET.parse(ROOT / 'sitemap.xml').findall('s:url', ns)
-        assert [item.findtext('s:loc', namespaces=ns) for item in entries] == [site_url + '/', site_url + '/en/']
-        for item in entries:
-            assert item.findtext('s:lastmod', namespaces=ns) == research['updated_on']
-            assert {link.get('hreflang'): link.get('href') for link in item.findall('x:link', ns)} == expected_alternates
-    else:
-        assert meta['og:image'] == meta['twitter:image'] == (image_path if relative == 'index.html' else '../' + image_path)
-        assert (page.parent / meta['og:image']).resolve() == ROOT / image_path
-        assert 'og:url' not in meta and parser.canonicals == []
-        assert parser.alternates == {} and 'application/ld+json' not in report
-        assert not (ROOT / 'sitemap.xml').exists()
-    assert len(parser.images) == len(all_sources) and set(parser.images) == public_hashes
-    assert len(parser.art_files) == len(art_hashes) == 9
-    assert {hashlib.sha256((page.parent / href).read_bytes()).hexdigest() for href in parser.art_files} == set(art_hashes.values())
-    assert len(parser.image_files) == len(all_sources)
-    assert html.escape(t('ui.kolo_cashback_history_caption'), quote=True) in report
-    assert html.escape(t('ui.historical_usd_caption'), quote=True) in report
-    assert html.escape(t('ui.historical_usd_details_caption'), quote=True) in report
-    assert html.escape(t('ui.historical_usd_points_caption'), quote=True) in report
-    assert html.escape(t('ui.historical_chatgpt_caption'), quote=True) in report
-    assert html.escape(t('ui.historical_apple_caption'), quote=True) in report
-    assert html.escape(t('ui.kolo_historical_uah_caption'), quote=True) in report
-    assert html.escape(t('cards.kolo.note'), quote=True) in report
-    assert {hashlib.sha256((page.parent / href).read_bytes()).hexdigest() for href in parser.image_files} == public_hashes, 'Full PNG links must reference the sanitized evidence'
-    assert parser.cards == modes[sorting['default']]['order']
-    repository_url = 'https://github.com/0k-lab/crypto-card-for-ukraine-research'
-    assert parser.links.count(repository_url) == 2
-    assert repository_url in report.split('<header class="site-header">', 1)[1].split('</header>', 1)[0]
-    assert repository_url in report.split('<footer class="footer">', 1)[1].split('</footer>', 1)[0]
-    assert parser.opening_links == {card: [item['official_url']] + ([item['url']] if item['referral'] else []) for card, item in card_links.items()}
-    assert len(parser.bonus_cards) == 9 and set(parser.bonus_cards) == set(card_links)
-    assert report.count('<span class="referral-kind">' + t('ui.referral') + '</span>') == 9
-    assert report.count(t('ui.open_without_referral_button')) == 9
-    assert report.count(t('ui.open_with_referral_button')) == 9
-    assert report.count(t('ui.no_bonus')) == 2
-    assert html.escape(t('cards.coca.bonus_note'), quote=True) in report
-    assert html.escape(t('page.comparison.p_2'), quote=True) in report
-    assert len(parser.scripts) == (6 if site_url else 5)
-    assert sum(script.get('src') == 'https://www.googletagmanager.com/gtag/js?id=G-NWFJQ8WLJ7' for script in parser.scripts) == 1
-    assert report.count("gtag('config', 'G-NWFJQ8WLJ7');") == 1
-    assert json.loads(re.search(r'<script type="application/json" id="card-sorting">(.*?)</script>', report, re.S)[1]) == page_sorting
-    for script in parser.scripts:
-        if 'src' in script and not script['src'].startswith('https://'):
-            assert (page.parent / script['src']).resolve() in {ROOT / 'assets/card-sort.js', ROOT / 'assets/analytics.js'}
-            assert (page.parent / script['src']).is_file()
-    assert sum(script.get('src', '').endswith('/analytics.js') for script in parser.scripts) == 1
-    assert report.count('data-repository-link') == 2
-    assert report.count('class="sort-value"') == report.count('class="label sort-label"') == report.count('class="sort-note"') == 9
-    assert {'card-sort', 'sort-controls', 'sort-description', 'card-grid'} <= parser.ids
-    assert report.count('<option value=') == 3
-    assert 'id="sort-controls" hidden' in report and 'aria-live="polite"' in report
-    assert report.count('class="card-grid"') == 1
-    comparison_table = re.search(r'<table\b[^>]*>.*?</table>', report, re.S)[0]
-    assert comparison_table.count('scope="col"') == 5
-    assert html.escape(t('page.comparison.table_note'), quote=True) in report
-    assert 'aria-describedby="comparison-table-note"' in comparison_table
-    assert 'comparison-table-note' in parser.ids
-    for row in data['rows']:
-        table_row = re.search(r'<tr data-card="' + row['id'] + r'">.*?</tr>', comparison_table, re.S)[0]
-        cells = re.findall(r'<td class="money">(.*?)</td>', table_row)
-        cost = comparison_cost(row)
-        included = included_cashback_value(row)
-        prefix = '≈$' if 'reward_valuation' in row else '$'
-        assert cells == ['$' + f'{cost:.2f}', prefix + f'{included:.2f}', prefix + f'{cost - included:.2f}', f"{(cost / Decimal(data['nbu_equivalent_usd']) - 1) * 100:+.2f}%"]
-    assert '<details class="issuer">' not in report
-    assert report.count('class="card-meta"') == 9
-    assert report.count('class="calculation cashback-tiers"') == 9
-    assert report.count('class="calculation earning"') == 9
-    assert report.count('class="calculation funding-summary"') == 9
-    assert html.escape(t('page.methodology.wallet_warning'), quote=True) in report
-    assert 'id="wallet-warning"' in report
-    assert 'id="losses"' not in report and 'id="funding"' not in report
-    assert 'href="#losses"' not in report
-    assert report.count('class="calculation losses"') == 9
-    assert 'Показати розрахунок від внеску до залишку' not in report
-    for row in data['rows']:
-        card = re.search(r'<article class="card ' + row['id'] + r'".*?</article>', report, re.S)[0]
-        assert 'id="funding-' + row['id'] + '"' in card
-        assert 'id="losses-' + row['id'] + '"' in card
-        assert html.escape(t('cards.' + row['id'] + '.funding'), quote=True) in card
-        experience = t('cards.' + row['id'] + '.experience')
-        assert '<p class="verdict">' + html.escape(experience, quote=True) + '</p>' in card
-        assert 'class="calculation experience"' not in card
-        assert card.count(html.escape(experience, quote=True)) == 1, 'Show author experience once, beneath the debit'
-    earning_blocks = re.findall(r'<details class="calculation earning".*?</details>', report, re.S)
-    assert len(earning_blocks) == 9
-    assert all('screenshots/' not in block and '<img' not in block for block in earning_blocks), 'Screenshots must not appear in Earning details or sources'
-    assert html.escape(t('page.hero.freshness'), quote=True) in report
-    assert {'earning-method'} | {'earning-' + row['id'] for row in data['rows']} <= parser.ids
-    assert html.escape(t('earning.combined'), quote=True) in report
-    assert 'id="earning"' not in report and 'href="#earning"' not in report
-    assert html.escape(t('earning.okx_unavailable'), quote=True) in report
-    assert html.escape(t('earning.cards.okx.note'), quote=True) in report
-    assert html.escape(t('earning.cards.whitebit.note'), quote=True) in report
-    assert html.escape(t('earning.cards.solid.borrow_note'), quote=True) in report
-    solid_income = html.escape(t('earning.amount', value0='1.73'), quote=True)
-    assert f'<dd>{solid_income}</dd>' in report
-    assert html.escape(t('earning.cards.solid.recent_note', value0='2.83', value1='1.15', value2='3.44', value3='4.29'), quote=True) in report
-    solid_earning_block = next(block for block in earning_blocks if 'id="earning-solid"' in block)
-    assert html.escape(t('earning.before_fees'), quote=True) in solid_earning_block
-    assert html.escape(t('earning.cards.solid.fees_note'), quote=True) in solid_earning_block
-    assert html.escape(t('earning.rate_snapshot', value0='09.10.2026'), quote=True) in solid_earning_block
-    assert all(f'<h4>{name}</h4>' in solid_earning_block for name in ('Savings', 'Prime', 'Credit'))
-    assert '<dd>4.29% APY</dd>' in solid_earning_block
-    assert '<dd>+2% APY</dd>' in solid_earning_block and '<dd>$10,000</dd>' in solid_earning_block
-    assert '<dd>4.00% APY</dd>' in solid_earning_block
-    assert html.escape(t('earning.amount', value0='2.80'), quote=True) in report
-    assert html.escape(t('earning.cards.bybit.usdc_note', value0='2.23'), quote=True) in report
-    assert html.escape(t('earning.maximum_amount', value0='4.48'), quote=True) not in report
-    simple_income = html.escape(t('earning.amount', value0='2.05'), quote=True)
-    assert f'<dd>{simple_income}</dd>' in report
-    assert html.escape(t('earning.cards.simple.note'), quote=True) in report
-    coca_income = html.escape(t('earning.amount', value0='2.01'), quote=True)
-    assert f'<dd>{coca_income}</dd>' in report
-    assert {'tiers-' + row['id'] for row in data['rows']} <= parser.ids
-    assert page_sorting['modes']['potential']['items']['okx']['display'] == t('sort.okx_unavailable_display')
-    assert page_sorting['modes']['potential']['items']['kolo']['display'] == t('ui.up_to', value0=t('sort.monthly_display', value0='20.00'))
-    assert parser.tier_levels['kolo'] == 2
-    assert page_sorting['modes']['potential']['items']['whitebit']['display'] == t('ui.up_to', value0=t('sort.monthly_display', value0='25.00'))
-    assert parser.tier_levels['whitebit'] == 1
-    subs = sum(Decimal(item['monthly_equivalent_usd_at_nbu']) for item in scenario['subscriptions'])
-    subs_cashback = subs * Decimal(white_tier['category_rates']['subscriptions'])
-    mixed = min(subs_cashback + (Decimal('1000') - subs) * Decimal(white_tier['category_rates']['groceries']), Decimal(white_tier['cap']))
-    assert html.escape(t('ui.whitebit_budget_scenario', value0=f'{subs:.2f}', value1=f'{subs_cashback:.2f}', value2=f'{mixed:.2f}'), quote=True) in report
-    assert f'{subs_cashback:.2f}' == '14.18' and f'{mixed:.2f}' == '22.76'
-    assert '€100' in report and t('ui.per_purchase_cap') in report
-    assert parser.hidden_sort_cards == {row['id'] for row in data['rows']}
-    assert 'class="metrics"' not in report and 'class="card-results"' not in report
-    assert report.count('class="cashback-inline"') == 5
-    debit_labels = re.findall(r'<div class="debit-values"><strong>\$([0-9]+\.[0-9]{2})</strong>', report)
-    assert len(debit_labels) == 9, 'Card headline amounts must use two decimal places'
-    expected_debits = {row['id']: f'{comparison_cost(row):.2f}' for row in data['rows']}
-    assert debit_labels == [expected_debits[identifier] for identifier in modes[sorting['default']]['order']]
-    for row in data['rows']:
-        value = cashback_value(row)
-        if value:
-            display = ('≈$' if 'reward_valuation' in row else '$') + f'{comparison_cost(row) - value:.2f}'
-            expected = '· ' + html.escape(t('ui.cashback_net', value0=display), quote=True)
-            assert f'<span class="cashback-inline" aria-describedby="cashback-note">{expected}</span>' in report
-        label = t('ui.points') if row['id'] == 'trustee_plus' else t('ui.shown_btc') if 'reward_valuation' in row else t('ui.shown_cashback')
-        assert '<dt>' + label + '</dt>' in report
-    assert parser.conditional_cards == set()
-    assert 'class="status' not in report
-    assert 'class="detail-sources"' in report
-    for row in data['rows']:
-        card = re.search(r'<article class="card ' + row['id'] + r'".*?</article>', report, re.S)[0]
-        example = t('cards.' + row['id'] + '.usd_example')
-        if example:
-            assert card.count(html.escape(example, quote=True)) == 1
-            assert '<h4>' + html.escape(t('ui.usd_examples'), quote=True) + '</h4>' in card
-        block = next(block for block in earning_blocks if 'id="earning-' + row['id'] + '"' in block)
-        for n in range(len(earning['cards'][row['id']]['sources'])):
-            assert '>' + html.escape(t(f'earning.cards.{row["id"]}.sources.{n}'), quote=True) + '</a>' in block
-    assert html.escape(t('cards.solid.note'), quote=True) in report
-    onchain_href = 'href="' + ('../' if relative != 'index.html' else '') + 'data/onchain-summary.json"'
-    assert report.count(onchain_href) == 2
-    for identifier in ('solid', 'keyone'):
-        card = re.search(r'<article class="card ' + identifier + r'".*?</article>', report, re.S)[0]
-        calculation = card.split('<details class="calculation">', 1)[1].split('</details>', 1)[0]
-        assert html.escape(t('cards.' + identifier + '.onchain'), quote=True) in calculation
-        assert onchain_href in calculation
-    methodology = report.split('id="methodology"', 1)[1].split('</section>', 1)[0]
-    assert 'data/onchain-summary.json' not in methodology
-    assert report.count('<dt>' + t('ui.after_tier_fee') + '</dt>') == 1
-    assert 'class="net-note"' not in report and 'class="test-facts"' not in report
-    assert 'debit/conditional_net' not in report and 'Сума на старому екрані tx' not in report
-    assert html.escape(t('programs.bybit.scope'), quote=True) in report
-    for row in data['rows']:
-        currency = 'EUR' if row['id'] == 'kolo' else 'USD'
-        assert row['card_currency'] == currency
-        issuer_name = issuers['entries'][row['id']]['label'].partition(' · ')[0]
-        network = 'Mastercard' if row['id'] in ('okx', 'bybit') else 'Visa'
-        assert f'<span class="card-meta">{issuer_name} · {network} · {currency}</span>' in report
-    assert report.count('<span class="card-index">—</span>') == 0
-    assert '3.648467 USDC' in report and html.escape(t('cards.trustee_plus.experience'), quote=True) in report
-    assert 'id="unranked"' not in report
-    assert 'Перегляд не збільшує скріни' not in report
-    assert 'окремий PNG відкривається без додаткового стиснення' not in report
-    assert parser.popovers == {'evidence-' + row['id'] for row in data['rows']} | {'evidence-prime'}
-    assert len(parser.popover_targets) == 20 and set(parser.popover_targets) == parser.popovers
-    assert set(parser.label_targets) <= parser.ids
-    assert '/Users/' not in report and 'data:image/' not in report
-    assert page.stat().st_size < 250000, 'Keep HTML small; evidence PNGs must remain external'
-    assert '{{' not in report and '[[' not in report
-    assert f'<html lang="{language}">' in report
-    assert report.count('aria-current="page"') == 1
-    if language == 'en':
-        assert not re.search('[А-Яа-яІіЇїЄєҐґ]', report)
-    readable_report = report
-    assert 'p2p' not in readable_report.lower() and 'Банківський маршрут' not in readable_report
-    assert t('ui.vs_nbu') in report
-    assert 'Ultra' not in readable_report and 'Alpha' not in readable_report
-    assert all(count <= 2 for count in parser.tier_levels.values())
-    assert parser.tier_levels['solid'] == parser.tier_levels['bybit'] == 2
-    assert t('ui.base_group') in report and t('ui.next_group') in report
-    assert {'content', 'comparison', 'recommendations', 'sources', 'evidence'} <= parser.ids
-    assert 'budget' not in parser.ids and '#budget' not in parser.links
     for href in parser.links:
-        if href.startswith('#'):
-            assert href[1:] in parser.ids, href
-        elif not href.startswith(('https://', 'http://')):
-            target = (page.parent / href).resolve()
-            assert target.is_relative_to(ROOT) and target.exists(), href
-            assert 'private' not in target.relative_to(ROOT).parts, href
-    assert html.escape(t('cards.solid.experience'), quote=True) in report
-    assert html.escape(t('page.hero.p_1'), quote=True) in report
-    assert 'Archive.zip' not in report
-    assert 'Georgia' not in report and 'content="dark"' in report
-    assert html.escape(t('page.recommendations.p_2'), quote=True) in report
+        url = urlsplit(href)
+        if url.scheme:
+            assert url.scheme in {'https', 'http'}
+            continue
+        target = (page.parent / unquote(url.path)).resolve() if url.path else page
+        assert target.is_relative_to(ROOT) and 'private' not in target.relative_to(ROOT).parts
+        if target.is_dir():
+            target = target / 'index.html'
+        assert target.is_file(), (relative, href)
+        if url.fragment:
+            target_parser = page_parsers.get(str(target.relative_to(ROOT)))
+            assert target_parser is not None and unquote(url.fragment) in target_parser.ids, (relative, href)
+
+if site_url:
+    ns = {'s': 'http://www.sitemaps.org/schemas/sitemap/0.9', 'x': 'http://www.w3.org/1999/xhtml'}
+    entries = ET.parse(ROOT / 'sitemap.xml').findall('s:url', ns)
+    assert len(entries) == 22
+    assert {entry.findtext('s:loc', namespaces=ns) for entry in entries} == {site_url + '/' + path.removesuffix('index.html') for path in page_parsers}
+    for entry in entries:
+        assert entry.findtext('s:lastmod', namespaces=ns) == research['updated_on']
+        assert len(entry.findall('x:link', ns)) == 3
+        relative_page = entry.findtext('s:loc', namespaces=ns).removeprefix(site_url + '/') + 'index.html'
+        assert {link.attrib['hreflang']: link.attrib['href'] for link in entry.findall('x:link', ns)} == page_parsers[relative_page].alternates
+
+
+def study_html(language):
+    prefix = 'en/' if language == 'en' else ''
+    return '\n'.join((ROOT / prefix / 'cards' / row['id'] / 'index.html').read_text() for row in data['rows'])
 
 confirmations = json.loads((ROOT / 'data/participant-confirmations.json').read_text())
 solid_completion = [claim for claim in confirmations['claims'] if claim['evidence_level'] == 'participant_assessed_completed_payment']
@@ -855,7 +984,6 @@ assert set(issuer_claims) == {'okx', 'bybit', 'solid', 'kolo', 'keyone', 'coca',
 for card, claim in issuer_claims.items():
     assert claim['issuer_reported'] == issuers['entries'][card]['participant_reported_issuer']
     assert claim['screenshots_in_public_dataset'] is False
-rows = {row['id']: row for row in data['rows']}
 okx = rows['okx']
 assert okx['reward'] == '0' and okx['conditional_net'] == okx['debit']
 assert okx['reward_eligibility']['required_spending_asset'] == 'USDG'
@@ -1016,7 +1144,7 @@ for ledger, expected_debit in ((bybit_ledger, '3.6407'), (historical_ledger, '5.
     assert sum(Decimal(item['amount']) for item in entries if item['asset'] == 'USD') == 0
 for lang in ('uk', 'en'):
     t = translator(lang)
-    report = (ROOT / ('index.html' if lang == 'uk' else 'en/index.html')).read_text()
+    report = study_html(lang)
     assert html.escape(t('ui.asset_history_caption'), quote=True) in report
     assert html.escape(t('ui.historical_usd_assets_caption'), quote=True) in report
 assert [row['id'] for row in data['rows']] == ['okx', 'coca', 'kolo', 'solid', 'bybit', 'trustee_plus', 'simple', 'keyone', 'whitebit']
@@ -1068,7 +1196,7 @@ for phase in phases:
     assert source['kind'] == 'funding_test'
     assert source['dimensions'] == ([1179, 685] if phase == 'funding_credit' else [590, 1280])
 for lang in ('uk', 'en'):
-    report = (ROOT / ('index.html' if lang == 'uk' else 'en/index.html')).read_text()
+    report = study_html(lang)
     t = translator(lang)
     for phase in phases:
         assert html.escape(t('ui.' + phase + '_caption'), quote=True) in report
@@ -1096,7 +1224,7 @@ assert coca_funding['source_files'] == [rows['coca']['sources'][phase]['file'] f
 assert not any('funding_account' in source['file'] for source in all_sources), 'Private Earning account screenshot must not be published'
 assert comparison_cost(rows['coca']) == Decimal('3.63'), 'New deposit does not change controlled purchase cost'
 for lang in ('uk', 'en'):
-    report = (ROOT / ('index.html' if lang == 'uk' else 'en/index.html')).read_text()
+    report = study_html(lang)
     t = translator(lang)
     for phase in coca_phases:
         assert html.escape(t('ui.' + phase + '_caption'), quote=True) in report
@@ -1127,7 +1255,7 @@ keyone_phases = ('funding_before', 'funding_pending', 'funding_details_pending',
 assert keyone_funding['source_files'] == [rows['keyone']['sources'][phase]['file'] for phase in keyone_phases]
 assert comparison_cost(rows['keyone']) == Decimal('3.66'), 'New top-up must not change the controlled purchase'
 for lang in ('uk', 'en'):
-    report = (ROOT / ('index.html' if lang == 'uk' else 'en/index.html')).read_text()
+    report = study_html(lang)
     t = translator(lang)
     for phase in keyone_phases:
         assert html.escape(t('ui.' + phase + '_caption'), quote=True) in report
@@ -1169,7 +1297,7 @@ for test, phases in ((coca_funding, ('withdrawal_review', 'withdrawal_confirmati
         masks = config['images'][test['card'] + '_' + phase + '.jpeg']
         assert masks and all(mask['box'][1] >= 200 for mask in masks), 'Preserve status bars while hiding identifiers'
     for lang in ('uk', 'en'):
-        report = (ROOT / ('index.html' if lang == 'uk' else 'en/index.html')).read_text()
+        report = study_html(lang)
         t = translator(lang)
         withdrawal = test['withdrawal']
         text = t('cards.' + test['card'] + '.funding')
@@ -1202,7 +1330,7 @@ assert withdrawal['source_files'] == [rows['kolo']['sources'][phase]['file'] for
 assert rows['kolo']['sources']['funding_balance']['dimensions'] == [1179, 1095]
 assert comparison_cost(rows['kolo']) == Decimal('3.63') and Decimal(modes['actual']['items']['kolo']['value']) == Decimal('3.563619172'), 'Route test must not change purchase or BTC cashback'
 for lang in ('uk', 'en'):
-    report = (ROOT / ('index.html' if lang == 'uk' else 'en/index.html')).read_text()
+    report = study_html(lang)
     t = translator(lang)
     for phase in ('funding_before', 'funding_pending', 'funding_completed', 'funding_balance', 'funding_after', 'withdrawal_form', 'withdrawal_review'):
         assert html.escape(t('ui.' + phase + '_caption'), quote=True) in report
@@ -1241,7 +1369,7 @@ assert withdrawal['source_files'] == [rows['okx']['sources']['withdrawal_review'
 assert not any('notification' in source['file'] for source in all_sources)
 assert comparison_cost(rows['okx']) == Decimal('3.49'), 'Pay route must not alter completed purchase'
 for lang in ('uk', 'en'):
-    report = (ROOT / ('index.html' if lang == 'uk' else 'en/index.html')).read_text()
+    report = study_html(lang)
     t = translator(lang)
     for phase in phases + ('withdrawal_review',):
         assert html.escape(t('ui.' + phase + '_caption'), quote=True) in report
@@ -1280,7 +1408,7 @@ for phase in ('funding_before', 'funding_after'):
     assert any(mask['box'] == [132, 637, 454, 691] for mask in masks), 'Keep historical Earning private'
 assert comparison_cost(rows['simple']) == Decimal('3.66'), 'Funding route must not change the controlled purchase'
 for lang in ('uk', 'en'):
-    report = (ROOT / ('index.html' if lang == 'uk' else 'en/index.html')).read_text()
+    report = study_html(lang)
     t = translator(lang)
     assert '9.98 USDC' in report and '$0.010091' in report
 
@@ -1327,7 +1455,7 @@ assert solid_funding['source_files'] == [rows['solid']['sources'][phase]['file']
 assert withdrawal['source_files'] == [rows['solid']['sources'][phase]['file'] for phase in withdrawal_phases]
 assert comparison_cost(rows['solid']) == Decimal('3.64') and included_cashback_value(rows['solid']) == Decimal('0.11'), 'Funding test must not alter purchase or cashback'
 for lang in ('uk', 'en'):
-    report = (ROOT / ('index.html' if lang == 'uk' else 'en/index.html')).read_text()
+    report = study_html(lang)
     t = translator(lang)
     assert '0.003 USDT' in report, 'Do not round a measured small route difference to zero'
     for phase in funding_phases + withdrawal_phases:
@@ -1396,7 +1524,7 @@ assert rows['trustee_plus']['sources']['funding_card_receipt']['kind'] == 'recei
 assert len(config['images']['trustee_plus_funding_card_receipt.jpeg']) == 4, 'Receipt payer, card ending, Trustee ID and transaction number must be redacted'
 assert comparison_cost(rows['trustee_plus']) == Decimal('3.648467'), 'New funding must not change the controlled purchase'
 for lang in ('uk', 'en'):
-    report = (ROOT / ('index.html' if lang == 'uk' else 'en/index.html')).read_text()
+    report = study_html(lang)
     t = translator(lang)
     for phase in trustee_phases + trustee_withdrawal_phases:
         assert html.escape(t('ui.' + phase + '_caption'), quote=True) in report
@@ -1423,7 +1551,7 @@ assert solid_program['current_fees']['withdrawal_solver_fee'] == '0.0001'
 assert subscription_rebate['current_terms_review']['account_category_eligibility_reverified'] is False
 for lang in ('uk', 'en'):
     messages = load_messages(lang)
-    report = (ROOT / ('index.html' if lang == 'uk' else 'en/index.html')).read_text()
+    report = study_html(lang)
     for card, current in current_terms.items():
         block = re.search(r'<details[^>]+id="funding-' + card + r'".*?</details>', report, re.S)[0]
         assert all(html.escape(paragraph, quote=True) in block for paragraph in messages['cards.' + card + '.funding_current'].splitlines())
@@ -1451,7 +1579,7 @@ assert Decimal(bybit_conversion['amount']) == Decimal('0.0179')
 bybit_terms = rows['bybit']['conversion_quote']['documented_terms']
 assert bybit_terms['crypto_conversion_fee_rate'] == '0.009'
 for lang in ('uk', 'en'):
-    report = (ROOT / ('index.html' if lang == 'uk' else 'en/index.html')).read_text()
+    report = study_html(lang)
     assert bybit_terms['fees_url'] in report
 whitebit_conversion = recorded_loss('whitebit', 'whitebit_difference')
 assert whitebit_conversion['group'] == 'conversion' and whitebit_conversion['asset'] == 'USDT'
@@ -1470,7 +1598,7 @@ for test in funding_tests['tests']:
     assert [(entry['amount'], entry['asset']) for entry in gas_rows] == [(fee['amount'], fee['asset']) for fee in fees], 'Native sending-wallet gas only; do not add sponsor or bundle charges'
 for language in ('uk', 'en'):
     t = translator(language)
-    report = (ROOT / ('en/index.html' if language == 'en' else 'index.html')).read_text()
+    report = study_html(language)
     for row in data['rows']:
         card = re.search(r'<article class="card ' + row['id'] + r'".*?</article>', report, re.S)[0]
         block = re.search(r'<details class="calculation losses".*?</details>', card, re.S)[0]
@@ -1516,7 +1644,7 @@ assert rows['whitebit']['sources']['funding_credit']['dimensions'] == [1179, 969
 assert config['images']['whitebit_funding_credit.jpeg'][0]['box'] == [38, 886, 322, 938]
 assert comparison_cost(rows['whitebit']) == Decimal('3.82'), 'Funding and quoted fees must not change the controlled purchase'
 for lang in ('uk', 'en'):
-    report = (ROOT / ('index.html' if lang == 'uk' else 'en/index.html')).read_text()
+    report = study_html(lang)
     t = translator(lang)
     for phase in whitebit_funding_phases + whitebit_withdrawal_phases:
         assert html.escape(t('ui.' + phase + '_caption'), quote=True) in report
@@ -1525,12 +1653,16 @@ for lang in ('uk', 'en'):
 visible = subprocess.run(['git', '-C', str(ROOT), 'ls-files', '--cached', '--others', '--exclude-standard', '-z'], check=True, capture_output=True).stdout.decode().split('\0')
 for name in filter(None, visible):
     p = Path(name)
-    assert p.parts[0] in {'.gitignore', '.github', '.nojekyll', 'index.html', 'sitemap.xml', 'README.md', 'LICENSE', 'docs', 'data', 'scripts', 'screenshots', 'assets', 'en', 'locales'}, name
-    assert not {'private', 'cards_samples'} & set(p.parts) and p.suffix.lower() not in {'.zip', '.jpeg', '.jpg'} and p.name != '.DS_Store', name
+    if p == Path('sitemap.xml') and not site_url:
+        assert not (ROOT / p).exists()
+        continue
+    assert p.parts[0] in {'.gitignore', '.github', '.nojekyll', 'index.html', 'sitemap.xml', 'README.md', 'LICENSE', 'docs', 'data', 'scripts', 'screenshots', 'assets', 'en', 'locales', 'cards', 'ranking'}, name
+    assert not {'private', 'cards_samples'} & set(p.parts) and p.suffix.lower() not in {'.zip', '.jpeg', '.jpg', '.csv'} and p.name != '.DS_Store', name
     if p.suffix.lower() == '.png':
         assert not re.search(r'_(?:earning|savings|yield|autoinvest)(?:_|$)', p.stem), 'Analysis-only screenshot in public files: ' + name
     if p.suffix in {'.md', '.json', '.py', '.html', '.xml', '.js', '.cjs'}:
         text = (ROOT / p).read_text()
         assert not re.search(r'/(?:Users|home|mnt/data)/[A-Za-z0-9]', text), name
         assert not re.search(r'0x[0-9a-fA-F]{40,}', text), 'Public blockchain identifier: ' + name
-print('PASS: matching Ukrainian/English financial values, locale keys and placeholders; three exact sorting modes with Solid/COCA accepted cashback and credited Bybit points included; OKX completed USDT amount selected; shown BTC included at a fixed reference quote before payout and cap/fee-aware base/next projections; issuer evidence; conditional Earning arithmetic and unknown-rate handling; financial arithmetic; Kolo BTC valuation; Trustee receipt; Bybit quote and asset-history reconciliation; nine card samples; 125 public PNGs; credited WhiteBIT BTC and completed purchase; WhiteBIT main-account credit, unknown sender gas, Plasma quote and existing-balance exclusion; Trustee wallet/card separation, minimum/fee failures, participant-confirmed swap, stated withdrawal fee, confirmed extra deposit and unexecuted withdrawal review; Solid two funding routes and combined sponsored Fuse withdrawal; Simple exact two-stage USDC return and separate paymaster/relayer gas; OKX Pay X Layer token parity and separate OKB gas; KOLO full token credit, withdrawal fee and other-balance exclusion; COCA and KeyOne withdrawal precision and evidence limits; exact Kolo historical cashback sum and USD example; local scripts and links; private originals excluded.')
+print('PASS: SEO across 22 pages, unique titles and descriptions, canonical language URLs, page-specific card previews, linked structured data, breadcrumbs, card lists and reciprocal sitemap alternatives.')
+print('PASS: matching Ukrainian/English financial values, locale keys and placeholders; four exact sorting modes with Solid/COCA accepted cashback and credited Bybit points included; OKX completed USDT amount selected; shown BTC included at a fixed reference quote before payout and cap/fee-aware base/next projections; issuer evidence; conditional Earning arithmetic and unknown-rate handling; financial arithmetic; Kolo BTC valuation; Trustee receipt; Bybit quote and asset-history reconciliation; nine card samples; 125 public PNGs; credited WhiteBIT BTC and completed purchase; WhiteBIT main-account credit, unknown sender gas, Plasma quote and existing-balance exclusion; Trustee wallet/card separation, minimum/fee failures, participant-confirmed swap, stated withdrawal fee, confirmed extra deposit and unexecuted withdrawal review; Solid two funding routes and combined sponsored Fuse withdrawal; Simple exact two-stage USDC return and separate paymaster/relayer gas; OKX Pay X Layer token parity and separate OKB gas; KOLO full token credit, withdrawal fee and other-balance exclusion; COCA and KeyOne withdrawal precision and evidence limits; exact Kolo historical cashback sum and USD example; local scripts and links; private originals excluded.')

@@ -5,7 +5,7 @@
     282,
     612
   ],
-  "status_bar": "preserved at participant request",
+  "status_bar": "preserved as I requested",
   "coordinate_format": "left, top, right, bottom; right/bottom exclusive",
   "images": {
     "bybit_before.jpeg": [
@@ -382,7 +382,7 @@
           93,
           74
         ],
-        "reason": "participant nickname and avatar"
+        "reason": "my nickname and avatar"
       },
       {
         "box": [

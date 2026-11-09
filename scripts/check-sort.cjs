@@ -31,8 +31,8 @@ vm.runInNewContext(fs.readFileSync(path.join(root, 'assets/card-sort.js'), 'utf8
   document: {getElementById: id => elements.get(id)},
 });
 assert.equal(controls.hidden, false);
-assert.deepEqual(grid.children.map(card => card.id), config.modes.actual.order);
-for (const mode of ['gross', 'potential', 'actual', 'potential', 'actual']) {
+assert.deepEqual(grid.children.map(card => card.id), config.modes[config.default].order);
+for (const mode of ['gross', 'score', 'potential', 'actual', 'score', 'potential', 'actual']) {
   select.value = mode;
   events.get('change')();
   const spec = config.modes[mode];
@@ -52,4 +52,4 @@ select.value = 'unknown';
 events.get('change')();
 assert.deepEqual(grid.children.map(card => card.id), config.modes.actual.order);
 }
-console.log('PASS: both languages, all three UI modes; ranks and monetary labels; unchanged card identity and expanded details.');
+console.log('PASS: both languages, all four UI modes; ranks and monetary labels; unchanged card identity and expanded details.');

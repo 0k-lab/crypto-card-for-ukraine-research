@@ -108,7 +108,7 @@
       "asset": "BTC",
       "amount_shown": "0.0000008",
       "screenshots_in_public_dataset": false,
-      "scope": "Clarified in subsequent author message: credit takes a few days; use the shown fixed BTC amount for calculated purchase cost before payout. No credited balance or BTC sale independently verified."
+      "scope": "My later clarification: credit takes a few days; use the shown fixed BTC amount for calculated purchase cost before payout. No credited balance or BTC sale independently verified."
     },
     {
       "card": "bybit",
@@ -132,7 +132,7 @@
       "evidence_level": "participant_reported_bin_lookup_result",
       "confirmed_on": "2026-10-09",
       "screenshots_in_public_dataset": false,
-      "scope": "Participant-reported matching BIN result; no separate screenshot or individual agreement supplied. BIN withheld."
+      "scope": "The matching BIN result I recorded; no separate screenshot or individual agreement supplied. BIN withheld."
     },
     {
       "card": "kolo",
@@ -140,7 +140,7 @@
       "evidence_level": "participant_reported_bin_lookup_result",
       "confirmed_on": "2026-10-09",
       "screenshots_in_public_dataset": false,
-      "scope": "Participant-reported matching BIN result; no separate screenshot or individual agreement supplied. BIN withheld."
+      "scope": "The matching BIN result I recorded; no separate screenshot or individual agreement supplied. BIN withheld."
     },
     {
       "card": "simple",
@@ -148,7 +148,7 @@
       "evidence_level": "participant_reported_bin_lookup_result",
       "confirmed_on": "2026-10-09",
       "screenshots_in_public_dataset": false,
-      "scope": "Participant-reported matching BIN result; no separate screenshot or individual agreement supplied. BIN withheld."
+      "scope": "The matching BIN result I recorded; no separate screenshot or individual agreement supplied. BIN withheld."
     },
     {
       "card": "solid",
@@ -156,7 +156,7 @@
       "evidence_level": "participant_reported_bin_lookup_result",
       "confirmed_on": "2026-10-09",
       "screenshots_in_public_dataset": false,
-      "scope": "Participant-reported matching BIN result; no separate screenshot or individual agreement supplied. BIN withheld."
+      "scope": "The matching BIN result I recorded; no separate screenshot or individual agreement supplied. BIN withheld."
     },
     {
       "card": "trustee_plus",
@@ -164,7 +164,7 @@
       "evidence_level": "participant_reported_bin_lookup_result",
       "confirmed_on": "2026-10-09",
       "screenshots_in_public_dataset": false,
-      "scope": "Participant-reported matching BIN result, corroborating official product page. No separate screenshot or individual agreement supplied. BIN withheld."
+      "scope": "The matching BIN result I recorded, corroborating official product page. No separate screenshot or individual agreement supplied. BIN withheld."
     },
     {
       "card": "okx",
@@ -188,7 +188,7 @@
       "evidence_level": "participant_reported_wallet_issuer_label",
       "confirmed_on": "2026-10-09",
       "screenshots_in_public_dataset": false,
-      "scope": "Participant-reported Apple Pay label; no separate wallet screenshot supplied. Not an individual card agreement."
+      "scope": "The Apple Pay label I recorded; no separate wallet screenshot supplied. Not an individual card agreement."
     },
     {
       "card": "kolo",
@@ -197,7 +197,7 @@
       "confirmed_on": "2026-10-09",
       "test_date": null,
       "screenshots_in_public_dataset": false,
-      "scope": "Author-confirmed working Share Card. Exact setup, limits, access revocation and refunds were not described; no independent screenshot verification."
+      "scope": "I confirmed that Share Card works. Exact setup, limits, access revocation and refunds were not described; no independent screenshot verification."
     },
     {
       "card": "kolo",
@@ -235,7 +235,7 @@
       "confirmed_on": "2026-10-09",
       "evidence_level": "participant_confirmed_test_card_currency",
       "screenshots_in_public_dataset": false,
-      "scope": "Card denomination reported by the author for the tested cards; separate from funding/spending crypto assets, merchant currency and internal processor settlement currency."
+      "scope": "The card denomination I recorded for my tested cards; separate from funding/spending crypto assets, merchant currency and internal processor settlement currency."
     },
     {
       "card": "solid",
@@ -243,7 +243,7 @@
       "evidence_level": "participant_assessed_completed_payment",
       "claim": "Після перевірки старіших операцій, що досі мають Pending, для дослідження вважаю тестовий платіж Done.",
       "screenshots_in_public_dataset": false,
-      "scope": "Author assessment of payment completion, not a Done label observed in the app, independently verified card-network settlement, or crediting of the current $0.11 cashback.",
+      "scope": "My assessment of payment completion, not a Done label observed in the app, independently verified card-network settlement, or crediting of the current $0.11 cashback.",
       "unverified_hypotheses": [
         "The transaction status may not update in the app.",
         "Pending may be related to the cashback release period."
@@ -257,7 +257,7 @@
       "claim": "Solid для дослідження — повністю Done; показані $0.11 кешбеку вважаю остаточною сумою та включаю в розрахунок відразу.",
       "amount_usd": "0.11",
       "net_cost_usd": "3.53",
-      "scope": "Author-directed comparison treatment of the displayed amount; does not assert a newly observed payout or change the original screenshot."
+      "scope": "My chosen comparison treatment of the displayed amount; does not assert a newly observed payout or change the original screenshot."
     },
     {
       "card": "keyone",
@@ -301,7 +301,7 @@
       "confirmed_on": "2026-10-10",
       "evidence_level": "author_transcription_of_private_app_screenshots",
       "screenshots_in_public_dataset": false,
-      "scope": "Author review and transcription of privately supplied app screenshots. Images are retained only for private analysis and withheld from the public site and repository. Not independently inspectable image evidence or measured annual income."
+      "scope": "I reviewed and transcribed my private app screenshots. Images are retained only for private analysis and withheld from the public site and repository. Not independently inspectable image evidence or measured annual income."
     },
     {
       "card": "simple",
@@ -309,7 +309,7 @@
       "confirmed_on": "2026-10-10",
       "evidence_level": "author_transcription_of_private_app_screenshots",
       "screenshots_in_public_dataset": false,
-      "scope": "Author review and transcription of privately supplied app screenshots. Images are retained only for private analysis and withheld from the public site and repository. Not independently inspectable image evidence or measured annual income."
+      "scope": "I reviewed and transcribed my private app screenshots. Images are retained only for private analysis and withheld from the public site and repository. Not independently inspectable image evidence or measured annual income."
     },
     {
       "card": "solid",
@@ -317,7 +317,7 @@
       "confirmed_on": "2026-10-10",
       "evidence_level": "author_transcription_of_private_app_screenshots",
       "screenshots_in_public_dataset": false,
-      "scope": "Author review and transcription of privately supplied app screenshots. Images are retained only for private analysis and withheld from the public site and repository. Not independently inspectable image evidence or measured annual income."
+      "scope": "I reviewed and transcribed my private app screenshots. Images are retained only for private analysis and withheld from the public site and repository. Not independently inspectable image evidence or measured annual income."
     },
     {
       "card": "whitebit",
@@ -325,7 +325,7 @@
       "confirmed_on": "2026-10-10",
       "evidence_level": "author_transcription_of_private_app_screenshots",
       "screenshots_in_public_dataset": false,
-      "scope": "Author review and transcription of privately supplied app screenshots. Images are retained only for private analysis and withheld from the public site and repository. Not independently inspectable image evidence or measured annual income."
+      "scope": "I reviewed and transcribed my private app screenshots. Images are retained only for private analysis and withheld from the public site and repository. Not independently inspectable image evidence or measured annual income."
     },
     {
       "card": "solid",
@@ -333,14 +333,14 @@
       "confirmed_on": "2026-10-10",
       "evidence_level": "author_transcription_of_private_app_screenshots",
       "screenshots_in_public_dataset": false,
-      "scope": "Author transcription of privately supplied app screens, FAQ and onboarding. Labeled historical annualized APY and account-screen borrowing quote are observed UI data, not future yields, measured payout, activated loan or tested payment."
+      "scope": "I transcribed my private app screens, FAQ and onboarding. Labeled historical annualized APY and account-screen borrowing quote are observed UI data, not future yields, measured payout, activated loan or tested payment."
     },
     {
       "card": "coca",
       "claim": "На екранах балансу COCA бачу Earning 5% і приріст лічильника з $0.00005191 до $0.00007055: +$0.00001864. Це не доказ отримання чи виміряний APY; вид ставки й механізм перевіряю за окремими офіційними умовами.",
       "confirmed_on": "2026-10-10",
       "evidence_level": "author_transcription_of_displayed_balance_rate_and_counter",
-      "scope": "Author summary of observed UI data, not measured annual yield or an independently verified claim/withdrawal. No image link is included among Earning sources."
+      "scope": "My summary of observed UI data, not measured annual yield or an independently verified claim/withdrawal. No image link is included among Earning sources."
     },
     {
       "card": "coca",
@@ -391,7 +391,7 @@
       "amount_btc": "0.00000443",
       "payments_count": 2,
       "test_purchase_credit": false,
-      "scope": "Both purchase screenshots and aggregate successful BTC credit are available. Displayed BTC amounts sum exactly to the payout; attribution of this payout to those purchases is participant-confirmed. Does not establish credit of the 0.0000008 BTC controlled-test reward or a historical net USD amount.",
+      "scope": "Both purchase screenshots and aggregate successful BTC credit are available. Displayed BTC amounts sum exactly to the payout; I attributed this payout to those purchases. Does not establish credit of the 0.0000008 BTC controlled-test reward or a historical net USD amount.",
       "purchase_source_files": [
         "screenshots/kolo_historical_usd.png",
         "screenshots/kolo_historical_uah.png"
@@ -414,7 +414,7 @@
         "screenshots/solid_historical_usd.png",
         "screenshots/solid_historical_chatgpt.png"
       ],
-      "scope": "Screenshots establish displayed USD charges and Standard 3% cashback, not an exact crypto debit, payout credit, or Prime 10% eligibility. Payments are treated as Done under the participant’s existing interpretation of Solid UI statuses."
+      "scope": "Screenshots establish displayed USD charges and Standard 3% cashback, not an exact crypto debit, payout credit, or Prime 10% eligibility. I treat payments as Done based on my reading of Solid UI statuses."
     },
     {
       "card": "simple",
@@ -437,7 +437,7 @@
         "screenshots/bybit_historical_usd_details.png",
         "screenshots/bybit_historical_usd_points.png"
       ],
-      "scope": "The three screens match the same transaction by private IDs, timestamps, merchant and amount. They establish completed USD card charge and points credit; exact USDT debit and actual points redemption are not established. Earlier 5.8819 USDT remains participant-reported. Subsequently supplied asset history corroborates two debits totaling 5.8819 USDT; actual points redemption remains unverified."
+      "scope": "The three screens match the same transaction by private IDs, timestamps, merchant and amount. They establish completed USD card charge and points credit; exact USDT debit and actual points redemption are not established. I previously recorded 5.8819 USDT. Subsequently supplied asset history corroborates two debits totaling 5.8819 USDT; actual points redemption remains unverified."
     },
     {
       "card": "solid",
@@ -456,7 +456,7 @@
         "screenshots/bybit_asset_history.png",
         "screenshots/bybit_historical_usd_assets.png"
       ],
-      "scope": "Payment-route evidence, not APY screenshots. Internal redemptions are not extra costs or yield. Historical purchase association uses author context, amount and sequence without shared IDs; extra 0.0123 purpose unknown. No proof of points redemption."
+      "scope": "Payment-route evidence, not APY screenshots. Internal redemptions are not extra costs or yield. I associate the historical purchase using my records, amount and sequence without shared IDs; extra 0.0123 purpose unknown. No proof of points redemption."
     },
     {
       "card": "bybit",
@@ -504,7 +504,7 @@
       "evidence_level": "participant_report_only",
       "claim": "Виведення коштів відбувається за правилами біржі для обраного активу й мережі.",
       "source_file": "data/funding-tests.json",
-      "scope": "Participant report; no measured withdrawal amount or fee supplied."
+      "scope": "My observation; I did not record a measured withdrawal amount or fee."
     },
     {
       "card": "coca",
@@ -512,7 +512,7 @@
       "evidence_level": "author_checked_private_explorer_transfer_and_events",
       "claim": "Виведення Base Success: кінцевий гаманець отримав 9.969083 USDC, рівно внутрішнє зарахування та списання при виведенні. Утримання USDC — 0; UserOperationEvent success true, actualGasCost 0.",
       "source_file": "data/funding-tests.json",
-      "scope": "Author-checked final USDC transfer, internal debit, WUSD burn and successful AA operation. Nonzero bundle ETH gas not charged by the user-operation event; ultimate sponsor unknown. Same nominal parity assumption and separate initial sender gas. Private explorer links, wallets and raw logs withheld; no universal withdrawal-fee or measured APY claim."
+      "scope": "I checked the final USDC transfer, internal debit, WUSD burn and successful AA operation. Nonzero bundle ETH gas not charged to me by the user-operation event; ultimate sponsor unknown. Same nominal parity assumption and separate initial sender gas. Private explorer links, wallets and raw logs withheld; no universal withdrawal-fee or measured APY claim."
     },
     {
       "card": "keyone",
@@ -520,7 +520,7 @@
       "evidence_level": "author_checked_private_explorer_transfer_and_events",
       "claim": "Виведення Base Success: кінцевий гаманець отримав 9.910683 USDC, рівно внутрішнє зарахування та списання при виведенні. Утримання USDC — 0; UserOperationEvent success true, actualGasCost 0.",
       "source_file": "data/funding-tests.json",
-      "scope": "Author-checked final USDC transfer, internal debit, WUSD burn and successful AA operation. Nonzero bundle ETH gas not charged by the user-operation event; ultimate sponsor unknown. Same nominal parity assumption and separate initial sender gas. Private explorer links, wallets and raw logs withheld; no universal withdrawal-fee or measured APY claim."
+      "scope": "I checked the final USDC transfer, internal debit, WUSD burn and successful AA operation. Nonzero bundle ETH gas not charged to me by the user-operation event; ultimate sponsor unknown. Same nominal parity assumption and separate initial sender gas. Private explorer links, wallets and raw logs withheld; no universal withdrawal-fee or measured APY claim."
     },
     {
       "card": "kolo",
@@ -528,7 +528,7 @@
       "evidence_level": "visual_app_screenshots_and_author_checked_private_explorer_transfers",
       "claim": "Arbitrum One: поповнення 10 USDT, усі 10 зараховані без утримання; у Wallet 10 USDT та оцінка €8.91. Виведення зі залишками: буде списано 11.46, буде надіслано 10.46, комісія 1 USDT; ончейн підтвердив 10.46 на кінцевому гаманці.",
       "source_file": "data/funding-tests.json",
-      "scope": "Participant explicitly says the withdrawal includes other balance. It is not 0.46 profit from a 10-USDT deposit. Deposit sender gas separate; withdrawal service gas not added again to the quoted 1-USDT charge. EUR valuation not an executed conversion; receipt confirms sent amount, not a full completed app debit ledger."
+      "scope": "My withdrawal includes another balance I already held. It is not 0.46 profit from a 10-USDT deposit. Deposit sender gas separate; withdrawal service gas not added again to the quoted 1-USDT charge. EUR valuation not an executed conversion; receipt confirms sent amount, not a full completed app debit ledger."
     },
     {
       "card": "okx",
@@ -595,6 +595,13 @@
       "initial_cashback_btc": "0.00000215",
       "final_cashback_btc": "0.00000213",
       "scope": "Purchase screenshot transcribed privately because it contains a transaction identifier. Public cashback screen confirms the credited amount and claim availability, not withdrawal, sale or the BTC price at the unknown exact credit time. Initial screenshot is retained as historical evidence."
+    },
+    {
+      "card": "kolo",
+      "confirmed_on": "2026-11-09",
+      "evidence_level": "participant_statement",
+      "claim": "Дізнався, що Kolo також пропонує USD-картку, але її випуск для України наразі недоступний.",
+      "scope": "Current regional availability from my findings. I retain EUR as the only available card currency in the Ukrainian scoring scenario; I have not tested the USD card."
     }
   ]
 }
