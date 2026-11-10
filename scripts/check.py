@@ -524,7 +524,7 @@ class ReportAudit(HTMLParser):
                 assert attrs == {'id': 'google-analytics'}
             else:
                 assert set(attrs) == {'src', 'defer'}
-                script_path = (self.page_folder / attrs['src']).resolve()
+                script_path = (self.page_folder / urlsplit(attrs['src']).path).resolve()
                 assert script_path in {ROOT / 'assets/card-sort.js', ROOT / 'assets/analytics.js', ROOT / 'assets/cashback-chart.js', ROOT / 'assets/card-flow.js'}
             self.scripts.append(attrs)
         if attrs.get('id'):
@@ -578,7 +578,7 @@ class ReportAudit(HTMLParser):
                 assert (int(attrs['width']), int(attrs['height'])) == tuple(art['normalized_dimensions'])
                 return
             assert not urlsplit(attrs['src']).scheme and attrs.get('loading') == 'lazy'
-            source_path = (self.page_folder / attrs['src']).resolve()
+            source_path = (self.page_folder / urlsplit(attrs['src']).path).resolve()
             assert source_path.is_relative_to(ROOT / 'screenshots') and source_path.suffix == '.png'
             image = source_path.read_bytes()
             assert (int(attrs['width']), int(attrs['height'])) == struct.unpack('>II', image[16:24]), 'Screenshot intrinsic size must match its pixels'
@@ -675,7 +675,7 @@ for language in LANGUAGES:
         assert set(parser.popover_targets) <= parser.popovers, relative
         assert report.count('data-repository-link') == 2
         assert report.count("gtag('config', 'G-NWFJQ8WLJ7');") == 1
-        assert sum(script.get('src', '').endswith('/analytics.js') for script in parser.scripts) == 1
+        assert sum(urlsplit(script.get('src', '')).path.endswith('/analytics.js') for script in parser.scripts) == 1
         assert report.count('aria-current="page"') == 1
         meta = parser.metadata
         assert meta['author'] == research['author']['name']
@@ -824,7 +824,7 @@ for language in LANGUAGES:
             assert len(parser.art_files) == 1
             assert 'class="card-art-link"' not in report
             faq_block = re.search(r'<section class="section card-faq" id="faq".*?</section>', report, re.S)[0]
-            visible_faq = re.findall(r'<details><summary>(.*?)</summary><p>(.*?)</p></details>', faq_block, re.S)
+            visible_faq = re.findall(r'<details data-faq-id="q[1-4]"><summary>(.*?)</summary><p>(.*?)</p></details>', faq_block, re.S)
             expected_faq = [(t(f'cards.{identifier}.faq.{n}.question'), t(f'cards.{identifier}.faq.{n}.answer')) for n in range(4)]
             assert [(html.unescape(q), html.unescape(a)) for q, a in visible_faq] == expected_faq
             assert len({q for q, _ in expected_faq}) == 4

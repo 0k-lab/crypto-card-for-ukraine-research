@@ -216,7 +216,7 @@ def card_route_details(identifier, snapshot, t):
 
 
 def faq_markup(items):
-    return ''.join(f'<details><summary>{esc(item["name"])}</summary><p>{esc(item["acceptedAnswer"]["text"])}</p></details>' for item in items)
+    return ''.join(f'<details data-faq-id="q{index + 1}"><summary>{esc(item["name"])}</summary><p>{esc(item["acceptedAnswer"]["text"])}</p></details>' for index, item in enumerate(items))
 
 
 def card_sources(identifier, snapshot, t):

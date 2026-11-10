@@ -461,6 +461,8 @@ def build(language):
             'LANG': language, 'SOCIAL_META': social, 'STRUCTURED_DATA': schema_html,
             'PAGE_TITLE': esc(title), 'PAGE_DESCRIPTION': esc(description), 'PAGE_BODY': body,
             'STYLESHEET_VERSION': hashlib.sha256((ROOT / 'assets/site.css').read_bytes()).hexdigest()[:12],
+            'ANALYTICS_VERSION': hashlib.sha256((ROOT / 'assets/analytics.js').read_bytes()).hexdigest()[:12],
+            'PAGE_TYPE': 'card' if card_id else 'home' if home else 'ranking', 'PAGE_CARD': card_id or '',
             'PAGE_SCRIPTS': scripts, 'PAGE_CLASS': page_class,
             'HOME_HREF': '../' + edition + ('./' if output_path == 'index.html' else ''), 'RANKING_HREF': '../' + edition + 'ranking/',
             'LANG_SWITCH': language_switch, 'FOOTER_CREDIT': footer_credit,
